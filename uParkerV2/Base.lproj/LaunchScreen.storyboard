@@ -103,7 +103,7 @@
     <resources>
         <image name="uParker Logo" width="358" height="438"/>
         <namedColor name="uParkerBlue">
-            <color red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.097999997437000275" green="0.21199999749660492" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
