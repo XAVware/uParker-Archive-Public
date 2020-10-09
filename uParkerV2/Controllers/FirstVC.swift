@@ -14,6 +14,11 @@ class FirstVC: UIViewController {
         super.viewDidLoad()
         registerForUpdates()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
 }
 
 //MARK: - GlobalUpdating

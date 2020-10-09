@@ -1,0 +1,18 @@
+
+    Environment protocol function will be removed from all controllers once other persistent data is implemented.
+
+i. RoundButton
+    - Template class for all round buttons. Generates rounded edges by making the corner radius 1/2 of the button's height. The height can be provided programmatically or in storyboard.
+    - If a button is given a background color of 'Default' the button will generate a border to match the color of its title property.
+    - Class originally utilized @IBDesignable, however this seem to cause issues while working with storyboard.
+
+ii. UnderlinedTextField
+    - Template subclass of UITextField that adds a line under the text field
+    - The color of the line, placeholder text color, etc. are determined at runtime to match the 'Text Color' property provided in storyboard.
+
+I. FirstVC
+
+    - Controller for initial view controller that gives potential ways to log in.
+    - Firebase may allow for login/authentication through facebook/google/etc.
+    
+II. LoginVC
