@@ -46,7 +46,7 @@ class LoginVC: UIViewController {
     }
     
     private func login() {
-        //self.performSegue(withIdentifier: K.Segues.toHomescreen, sender: self)
+        self.performSegue(withIdentifier: K.Segues.toHomescreen, sender: self)
     }
     
 }
