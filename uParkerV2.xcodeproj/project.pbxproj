@@ -26,6 +26,7 @@
 		94BFA99A2534FA4C00DA52D4 /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9992534FA4C00DA52D4 /* CreateAccountVC.swift */; };
 		94BFA99D2534FAD100DA52D4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA99C2534FAD100DA52D4 /* Constants.swift */; };
 		94BFA9A12534FB1800DA52D4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9A02534FB1800DA52D4 /* Extensions.swift */; };
+		94BFA9A4253530EF00DA52D4 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9A3253530EF00DA52D4 /* ForgotPasswordVC.swift */; };
 		BF211EBC2F03B58E46AC021D /* Pods_uParkerV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA67E281B656C2EA34DBA02 /* Pods_uParkerV2.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		94BFA9992534FA4C00DA52D4 /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		94BFA99C2534FAD100DA52D4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		94BFA9A02534FB1800DA52D4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		94BFA9A3253530EF00DA52D4 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		CEFD44BA2757B6F98B128C92 /* Pods-uParkerV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParkerV2.release.xcconfig"; path = "Target Support Files/Pods-uParkerV2/Pods-uParkerV2.release.xcconfig"; sourceTree = "<group>"; };
 		D713BEE57365F832F73A1348 /* Pods-uParkerV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParkerV2.debug.xcconfig"; path = "Target Support Files/Pods-uParkerV2/Pods-uParkerV2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +139,7 @@
 				94AC5BC225310BD100FDE1E2 /* FirstVC.swift */,
 				94AC5BDE2531197800FDE1E2 /* LoginVC.swift */,
 				94BFA9992534FA4C00DA52D4 /* CreateAccountVC.swift */,
+				94BFA9A3253530EF00DA52D4 /* ForgotPasswordVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				94AC5BD125310C5E00FDE1E2 /* User.swift in Sources */,
 				94BFA99D2534FAD100DA52D4 /* Constants.swift in Sources */,
 				94AC5BE225311A4A00FDE1E2 /* UnderlinedTextField.swift in Sources */,
+				94BFA9A4253530EF00DA52D4 /* ForgotPasswordVC.swift in Sources */,
 				94AC5BCC25310C5E00FDE1E2 /* PaymentMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,7 +21,19 @@ class LoginVC: UIViewController {
         passwordText.delegate = self
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.layoutIfNeeded()
+    }
+    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         if emailText.text == "On" {
             currentUser.toggleErrorHandling(enabled: true)
