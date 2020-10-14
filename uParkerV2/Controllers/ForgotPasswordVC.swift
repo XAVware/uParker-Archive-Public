@@ -34,12 +34,11 @@ class ForgotPasswordVC: UIViewController {
     private func submit() {
         if submitButton.titleLabel!.text == "Submit" {
             submitButton.setTitle("Back", for: .normal)
-            //Send email and check for success message before: 
+            //Send email and check for success message before:
             displaySentPage()
         } else {
             self.navigationController?.popViewController(animated: true)
         }
-        
     }
     
     private func displaySentPage() {

@@ -17,21 +17,20 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForUpdates()
-        emailText.delegate = self
-        passwordText.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        if let navController = self.navigationController {
+            navController.setUpNavBar(with: navController, isHidden: true)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.layoutIfNeeded()
+        if let navController = self.navigationController {
+            navController.setUpNavBar(with: navController, isHidden: false)
+        }
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -63,22 +62,6 @@ class LoginVC: UIViewController {
     
 }
 
-
-//MARK: - UITextFieldDelegate
-extension LoginVC: UITextFieldDelegate {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailText {
-            passwordText.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-            login()
-        }
-        return false
-    }
-}
 
 //MARK: - GlobalUpdating
 extension LoginVC: GlobalUpdating {

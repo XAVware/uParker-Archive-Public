@@ -28,3 +28,12 @@ extension UIView {
         bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive     = true
     }
 }
+
+extension UINavigationController {
+    func setUpNavBar(with navigationController: UINavigationController, isHidden: Bool) {
+        navigationController.setNavigationBarHidden(isHidden, animated: true)
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.layoutIfNeeded()
+    }
+}

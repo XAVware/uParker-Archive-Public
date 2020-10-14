@@ -15,7 +15,7 @@ struct K {
         //Login screen segues
         static let toCreateAccount      = "goToCreateAccount"
         static let toForgotPassword     = "goToForgotPassword"
-        static let toHomescreen         = "goToHomescreen"
+        static let toHomescreen         = "goToHomepage"
         
         //Homescreen segues
         static let toFindParking        = "goToFindParking"

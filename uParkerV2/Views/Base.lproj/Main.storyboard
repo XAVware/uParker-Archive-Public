@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -152,6 +153,9 @@
                                                 <state key="normal" title="Log In">
                                                     <color key="titleColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="loginButtonPressed:" destination="2Le-2z-3zo" eventType="touchUpInside" id="TFY-vh-nfa"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
@@ -178,6 +182,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
+                                                            <action selector="createAccountButtonPressed:" destination="2Le-2z-3zo" eventType="touchUpInside" id="AYW-cS-DKo"/>
                                                             <segue destination="Axa-Ba-g0r" kind="show" id="b7j-Jd-dkO"/>
                                                         </connections>
                                                     </button>
@@ -190,6 +195,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="forgotPasswordPressed:" destination="2Le-2z-3zo" eventType="touchUpInside" id="54o-38-Q7R"/>
                                                     <segue destination="LEm-WT-0BU" kind="show" id="BcY-KW-nNK"/>
                                                 </connections>
                                             </button>
@@ -211,11 +217,12 @@
                     <connections>
                         <outlet property="emailText" destination="uZY-zB-Qf6" id="zBs-Ai-CkQ"/>
                         <outlet property="passwordText" destination="8BC-eA-iBN" id="ywA-GQ-i3Y"/>
+                        <segue destination="xS8-xQ-tqA" kind="show" identifier="goToHomepage" animates="NO" id="mEF-vk-145"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0S0-67-Y1L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1970" y="-305"/>
+            <point key="canvasLocation" x="1970" y="-319"/>
         </scene>
         <!--Create An Account-->
         <scene sceneID="HSC-aT-tn9">
@@ -226,7 +233,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="u1b-nV-IzF">
-                                <rect key="frame" x="0.0" y="103" width="414" height="242"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="242"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="cDo-75-Coa">
                                         <rect key="frame" x="16" y="8" width="382" height="126"/>
@@ -373,7 +380,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="u1b-nV-IzF" firstAttribute="leading" secondItem="Upl-Cd-EFH" secondAttribute="leading" id="6wP-kW-fIr"/>
-                            <constraint firstItem="u1b-nV-IzF" firstAttribute="top" secondItem="Upl-Cd-EFH" secondAttribute="top" constant="15" id="Xxc-Gw-O5e"/>
+                            <constraint firstItem="u1b-nV-IzF" firstAttribute="top" secondItem="Upl-Cd-EFH" secondAttribute="top" constant="20" id="Xxc-Gw-O5e"/>
                             <constraint firstItem="Upl-Cd-EFH" firstAttribute="trailing" secondItem="u1b-nV-IzF" secondAttribute="trailing" id="pHc-bf-vDy"/>
                         </constraints>
                     </view>
@@ -392,11 +399,134 @@
                         <outlet property="phoneNumberStack" destination="dYF-qZ-qh5" id="2Od-GW-QFU"/>
                         <outlet property="phoneNumberText" destination="EO7-O0-zl3" id="Q7v-ao-2SX"/>
                         <outlet property="reEnterPasswordText" destination="ABo-CL-Sid" id="FZP-sk-fIZ"/>
+                        <segue destination="xS8-xQ-tqA" kind="show" identifier="goToHomepage" animates="NO" id="DQw-Pk-umW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OZj-mH-A34" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1970" y="504"/>
+            <point key="canvasLocation" x="1970" y="584"/>
+        </scene>
+        <!--HomepageVC-->
+        <scene sceneID="3cV-Ov-yLV">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="g8i-fX-MlL" customClass="HomepageVC" customModule="uParkerV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wan-Iq-g3Y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dE9-RF-M3P">
+                                <rect key="frame" x="0.0" y="108" width="414" height="754"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uParker Logo" translatesAutoresizingMaskIntoConstraints="NO" id="cWn-aF-Rg3">
+                                        <rect key="frame" x="20" y="8" width="374" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="eL3-aB-c29"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z63-yt-jGh">
+                                        <rect key="frame" x="20" y="208" width="374" height="202"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4Hc-Xp-q1P">
+                                        <rect key="frame" x="20" y="410" width="374" height="56"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="University Parking," textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JG2-p5-Uo5">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="28"/>
+                                                <fontDescription key="fontDescription" name="Helvetica-Oblique" family="Helvetica" pointSize="24"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In The Palm Of Your Hand..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooS-ld-zlh">
+                                                <rect key="frame" x="0.0" y="28" width="374" height="28"/>
+                                                <fontDescription key="fontDescription" name="Helvetica-Oblique" family="Helvetica" pointSize="24"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6B-Hu-oSU">
+                                        <rect key="frame" x="20" y="466" width="374" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="XCL-4d-39O"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xTJ-Xs-y5n">
+                                        <rect key="frame" x="20" y="496" width="374" height="250"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8n-oc-RR4" customClass="RoundButton" customModule="uParker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="R4p-hH-h3A"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
+                                                <state key="normal" title="Find Parking">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kvo-dX-1Lg" customClass="RoundButton" customModule="uParker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="70" width="374" height="60"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
+                                                <state key="normal" title="Reservations">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="reservationsClicked:" destination="g8i-fX-MlL" eventType="touchUpInside" id="aZb-4j-Rrb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-gM-2uV" customClass="RoundButton" customModule="uParker" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="140" width="374" height="60"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
+                                                <state key="normal" title="Host Dashboard">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FEX-3H-SEf">
+                                                <rect key="frame" x="0.0" y="210" width="374" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="1cR-mw-MNz"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="h8n-oc-RR4" firstAttribute="height" secondItem="kvo-dX-1Lg" secondAttribute="height" id="bdm-hL-xbb"/>
+                                            <constraint firstItem="h8n-oc-RR4" firstAttribute="height" secondItem="vu6-gM-2uV" secondAttribute="height" id="kQK-0k-mPu"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="8" left="20" bottom="8" right="20"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Q9B-tZ-Y9n"/>
+                        <color key="backgroundColor" name="uParkerBlue"/>
+                        <constraints>
+                            <constraint firstItem="dE9-RF-M3P" firstAttribute="leading" secondItem="Q9B-tZ-Y9n" secondAttribute="leading" id="1C0-On-6eG"/>
+                            <constraint firstItem="dE9-RF-M3P" firstAttribute="top" secondItem="Q9B-tZ-Y9n" secondAttribute="top" constant="20" id="JVC-AE-Z2e"/>
+                            <constraint firstItem="dE9-RF-M3P" firstAttribute="trailing" secondItem="Q9B-tZ-Y9n" secondAttribute="trailing" id="dfA-9l-hQY"/>
+                            <constraint firstItem="Q9B-tZ-Y9n" firstAttribute="bottom" secondItem="dE9-RF-M3P" secondAttribute="bottom" id="fl9-XI-8FX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="4F9-Ae-nE9">
+                        <barButtonItem key="rightBarButtonItem" id="9sV-dz-yiX">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aSY-nc-M70">
+                                <rect key="frame" x="300.5" y="10" width="93.5" height="24.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Menu  ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <imageReference key="image" image="line.horizontal.3" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" scale="large" weight="black"/>
+                                </state>
+                                <connections>
+                                    <action selector="menuPressed:" destination="g8i-fX-MlL" eventType="touchUpInside" id="NYi-Ag-sQy"/>
+                                </connections>
+                            </button>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evp-ZN-kl1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3845" y="120"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zTX-GP-bDk">
@@ -437,7 +567,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="LDB-Qz-xsI">
-                                <rect key="frame" x="0.0" y="103" width="414" height="242"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="242"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="BP4-Ic-Mad">
                                         <rect key="frame" x="16" y="8" width="382" height="126"/>
@@ -506,7 +636,7 @@
                         <viewLayoutGuide key="safeArea" id="VFc-5h-WST"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LDB-Qz-xsI" firstAttribute="top" secondItem="VFc-5h-WST" secondAttribute="top" constant="15" id="jUj-QW-tPW"/>
+                            <constraint firstItem="LDB-Qz-xsI" firstAttribute="top" secondItem="VFc-5h-WST" secondAttribute="top" constant="20" id="jUj-QW-tPW"/>
                             <constraint firstItem="LDB-Qz-xsI" firstAttribute="leading" secondItem="VFc-5h-WST" secondAttribute="leading" id="neS-WK-mVR"/>
                             <constraint firstItem="VFc-5h-WST" firstAttribute="trailing" secondItem="LDB-Qz-xsI" secondAttribute="trailing" id="zRr-oT-THc"/>
                         </constraints>
@@ -526,12 +656,36 @@
             </objects>
             <point key="canvasLocation" x="1970" y="-1080"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tr1-T2-Mtx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="xS8-xQ-tqA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="8ya-24-hh7"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sGK-1K-IRh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="uParkerBlue"/>
+                        <color key="tintColor" name="uParkerBlue"/>
+                        <color key="barTintColor" name="uParkerBlue"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="g8i-fX-MlL" kind="relationship" relationship="rootViewController" id="ceg-Q3-2vp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="juL-rx-IDP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2984" y="120"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="mEF-vk-145"/>
         <segue reference="b7j-Jd-dkO"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
+        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <image name="uParker Logo" width="358" height="438"/>
         <namedColor name="uParkerBlue">
