@@ -7,5 +7,6 @@ target 'uParkerV2' do
 
   # Pods for uParkerV2
   pod 'IQKeyboardManagerSwift'
+  pod 'SideMenu'
 
 end

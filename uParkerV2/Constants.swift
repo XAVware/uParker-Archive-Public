@@ -56,6 +56,11 @@ struct K {
                                          alpha: 1.0)
     }
     
+    struct TableCells {
+        static let menuProfileIdentifier = "MenuProfileTableViewCell"
+        static let menuButtonIdentifier = "MenuButtonTableViewCell"
+    }
+    
     struct FStore {
         
     }

@@ -22,14 +22,14 @@ class LoginVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let navController = self.navigationController {
-            navController.setUpNavBar(with: navController, isHidden: true)
+            navController.setUpNavBar(with: navController, backgroundColor: UIColor(named: "uParkerBlue")!, isHidden: true)
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         if let navController = self.navigationController {
-            navController.setUpNavBar(with: navController, isHidden: false)
+            navController.setUpNavBar(with: navController, backgroundColor: .white, isHidden: false)
         }
     }
     

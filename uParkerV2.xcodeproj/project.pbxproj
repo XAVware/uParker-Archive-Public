@@ -28,6 +28,11 @@
 		94BFA9A12534FB1800DA52D4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9A02534FB1800DA52D4 /* Extensions.swift */; };
 		94BFA9A4253530EF00DA52D4 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9A3253530EF00DA52D4 /* ForgotPasswordVC.swift */; };
 		94BFA9AA25366D6C00DA52D4 /* HomepageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9A925366D6C00DA52D4 /* HomepageVC.swift */; };
+		94BFA9B025367F8F00DA52D4 /* MenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9AF25367F8F00DA52D4 /* MenuTVC.swift */; };
+		94BFA9BD25379AE800DA52D4 /* MenuProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9BB25379AE800DA52D4 /* MenuProfileTableViewCell.swift */; };
+		94BFA9BE25379AE800DA52D4 /* MenuProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFA9BC25379AE800DA52D4 /* MenuProfileTableViewCell.xib */; };
+		94BFA9C22537A25600DA52D4 /* MenuButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94BFA9C02537A25600DA52D4 /* MenuButtonTableViewCell.swift */; };
+		94BFA9C32537A25600DA52D4 /* MenuButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94BFA9C12537A25600DA52D4 /* MenuButtonTableViewCell.xib */; };
 		BF211EBC2F03B58E46AC021D /* Pods_uParkerV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DA67E281B656C2EA34DBA02 /* Pods_uParkerV2.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +61,11 @@
 		94BFA9A02534FB1800DA52D4 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		94BFA9A3253530EF00DA52D4 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		94BFA9A925366D6C00DA52D4 /* HomepageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomepageVC.swift; sourceTree = "<group>"; };
+		94BFA9AF25367F8F00DA52D4 /* MenuTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTVC.swift; sourceTree = "<group>"; };
+		94BFA9BB25379AE800DA52D4 /* MenuProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuProfileTableViewCell.swift; sourceTree = "<group>"; };
+		94BFA9BC25379AE800DA52D4 /* MenuProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuProfileTableViewCell.xib; sourceTree = "<group>"; };
+		94BFA9C02537A25600DA52D4 /* MenuButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButtonTableViewCell.swift; sourceTree = "<group>"; };
+		94BFA9C12537A25600DA52D4 /* MenuButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuButtonTableViewCell.xib; sourceTree = "<group>"; };
 		CEFD44BA2757B6F98B128C92 /* Pods-uParkerV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParkerV2.release.xcconfig"; path = "Target Support Files/Pods-uParkerV2/Pods-uParkerV2.release.xcconfig"; sourceTree = "<group>"; };
 		D713BEE57365F832F73A1348 /* Pods-uParkerV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParkerV2.debug.xcconfig"; path = "Target Support Files/Pods-uParkerV2/Pods-uParkerV2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +141,7 @@
 				941AD524253103B500146B13 /* Main.storyboard */,
 				94AC5BD72531117800FDE1E2 /* RoundButton.swift */,
 				94AC5BE125311A4A00FDE1E2 /* UnderlinedTextField.swift */,
+				94BFA9C52537AC1600DA52D4 /* Menu Elements */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -143,6 +154,7 @@
 				94BFA9992534FA4C00DA52D4 /* CreateAccountVC.swift */,
 				94BFA9A3253530EF00DA52D4 /* ForgotPasswordVC.swift */,
 				94BFA9A925366D6C00DA52D4 /* HomepageVC.swift */,
+				94BFA9AF25367F8F00DA52D4 /* MenuTVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -158,6 +170,17 @@
 				94AC5BCA25310C5E00FDE1E2 /* VehicleList.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		94BFA9C52537AC1600DA52D4 /* Menu Elements */ = {
+			isa = PBXGroup;
+			children = (
+				94BFA9BB25379AE800DA52D4 /* MenuProfileTableViewCell.swift */,
+				94BFA9BC25379AE800DA52D4 /* MenuProfileTableViewCell.xib */,
+				94BFA9C02537A25600DA52D4 /* MenuButtonTableViewCell.swift */,
+				94BFA9C12537A25600DA52D4 /* MenuButtonTableViewCell.xib */,
+			);
+			path = "Menu Elements";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +246,8 @@
 				94AC5BDC253117C300FDE1E2 /* Dev. Documents in Resources */,
 				941AD5352531054D00146B13 /* Assets.xcassets in Resources */,
 				941AD526253103B500146B13 /* Main.storyboard in Resources */,
+				94BFA9C32537A25600DA52D4 /* MenuButtonTableViewCell.xib in Resources */,
+				94BFA9BE25379AE800DA52D4 /* MenuProfileTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,10 +305,13 @@
 				94AC5BCF25310C5E00FDE1E2 /* Vehicle.swift in Sources */,
 				94AC5BC325310BD100FDE1E2 /* FirstVC.swift in Sources */,
 				94AC5BD025310C5E00FDE1E2 /* VehicleList.swift in Sources */,
+				94BFA9B025367F8F00DA52D4 /* MenuTVC.swift in Sources */,
 				94AC5BD82531117800FDE1E2 /* RoundButton.swift in Sources */,
 				94AC5BCD25310C5E00FDE1E2 /* Reservation.swift in Sources */,
+				94BFA9C22537A25600DA52D4 /* MenuButtonTableViewCell.swift in Sources */,
 				94AC5BCE25310C5E00FDE1E2 /* Environment.swift in Sources */,
 				941AD51F253103B500146B13 /* AppDelegate.swift in Sources */,
+				94BFA9BD25379AE800DA52D4 /* MenuProfileTableViewCell.swift in Sources */,
 				941AD521253103B500146B13 /* SceneDelegate.swift in Sources */,
 				94BFA9A12534FB1800DA52D4 /* Extensions.swift in Sources */,
 				94AC5BD125310C5E00FDE1E2 /* User.swift in Sources */,
