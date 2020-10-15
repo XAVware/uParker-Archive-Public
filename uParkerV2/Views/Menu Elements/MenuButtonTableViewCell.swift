@@ -9,7 +9,8 @@ import UIKit
 
 class MenuButtonTableViewCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var buttonLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +24,7 @@ class MenuButtonTableViewCell: UITableViewCell {
     }
     
     public func configure(withText buttonText: String) {
-        menuButton.setTitle(buttonText, for: .normal)
+        buttonLabel.text = buttonText
         
         switch buttonText {
         case "Find Parking":

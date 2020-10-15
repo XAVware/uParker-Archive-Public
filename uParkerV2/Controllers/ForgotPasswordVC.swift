@@ -16,6 +16,8 @@ class ForgotPasswordVC: UIViewController {
     @IBOutlet weak var submitButton: RoundButton!
     
     var email: String = ""
+    
+    //MARK: - ViewController LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -27,6 +29,7 @@ class ForgotPasswordVC: UIViewController {
         }
     }
     
+    //MARK: - UI ButtonPressed Methods
     @IBAction func submitPressed(_ sender: UIButton) {
         submit()
     }
@@ -48,7 +51,7 @@ class ForgotPasswordVC: UIViewController {
     
 }
 
-//MARK: - GlobalUpdating
+//MARK: - GlobalUpdating Methods
 extension ForgotPasswordVC: GlobalUpdating {
     func update() { }
 }

@@ -15,18 +15,16 @@ class ReservationsVC: UIViewController {
         registerForUpdates()
     }
     
+    //MARK: - ViewController Lifecycle Methods
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let navController = self.navigationController {
-            navController.setUpNavBar(with: navController, backgroundColor: .white, isHidden: false)
+            navController.setUpNavBar(navController, isTextWhite: false, isHidden: false)
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        if let navController = self.navigationController {
-//            navController.setUpNavBar(with: navController, backgroundColor: UIColor(named: "uParker Blue")!, isHidden: false)
-//        }
     }
 }
 

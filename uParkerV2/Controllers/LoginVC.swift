@@ -14,6 +14,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var emailText: UnderlinedTextField!
     @IBOutlet weak var passwordText: UnderlinedTextField!
     
+    //MARK: - ViewController Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForUpdates()
@@ -22,17 +23,19 @@ class LoginVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let navController = self.navigationController {
-            navController.setUpNavBar(with: navController, backgroundColor: UIColor(named: "uParkerBlue")!, isHidden: true)
+            navController.setUpNavBar(navController, isTextWhite: true, isHidden: true)
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         if let navController = self.navigationController {
-            navController.setUpNavBar(with: navController, backgroundColor: .white, isHidden: false)
+            navController.setUpNavBar(navController, isTextWhite: false, isHidden: false)
         }
     }
     
+    
+    //MARK: - UI ButtonPressed Methods
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         if emailText.text == "On" {
             currentUser.toggleErrorHandling(enabled: true)

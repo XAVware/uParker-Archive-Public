@@ -469,7 +469,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="6DD-zn-u17" kind="show" animates="NO" id="cBp-mI-LLl"/>
+                                                    <segue destination="6DD-zn-u17" kind="show" identifier="goToReservations" animates="NO" id="cBp-mI-LLl"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vu6-gM-2uV" customClass="RoundButton" customModule="uParkerV2" customModuleProvider="target">

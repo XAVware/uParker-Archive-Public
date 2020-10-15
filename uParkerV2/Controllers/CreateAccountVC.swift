@@ -32,6 +32,7 @@ class CreateAccountVC: UIViewController {
     var password: String            = ""
     var phoneNumber: String?
     
+    //MARK: - ViewController Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForUpdates()
@@ -45,6 +46,7 @@ class CreateAccountVC: UIViewController {
         }
     }
     
+    //MARK: - UI ButtonPressed Methods
     @IBAction func nextPressed(_ sender: UIButton) {
         next()
     }
@@ -53,6 +55,7 @@ class CreateAccountVC: UIViewController {
         newsletterIsSelected.toggle()
         let imageName = newsletterIsSelected ? "checkmark.square" : "square"
         newsletterCheckbox.setImage(UIImage(systemName: imageName), for: .normal)
+        //Code to sign them up for newsletter
     }
     
     

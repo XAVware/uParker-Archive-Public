@@ -30,15 +30,9 @@ extension UIView {
 }
 
 extension UINavigationController {
-    func setUpNavBar(with navigationController: UINavigationController, backgroundColor: UIColor, isHidden: Bool) {
-        var tint: UIColor!
-        if backgroundColor == .white {
-            tint = UIColor(named: "uParkerBlue")
-        } else {
-            tint = .white
-        }
-        
-        
+    func setUpNavBar(_ navigationController: UINavigationController, isTextWhite: Bool, isHidden: Bool) {
+        let tint = isTextWhite ? UIColor.white : UIColor(named: "uParkerBlue")
+
         navigationController.setNavigationBarHidden(isHidden, animated: true)
         navigationController.navigationBar.setBackgroundImage(UIImage(), for:.default)
         navigationController.navigationBar.shadowImage = UIImage()

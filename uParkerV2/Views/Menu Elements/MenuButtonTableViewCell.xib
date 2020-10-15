@@ -26,26 +26,25 @@
                             <constraint firstAttribute="width" constant="40" id="g0R-GF-bPe"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5g-RC-kcw">
-                        <rect key="frame" x="80" y="17.5" width="240" height="40"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXo-Cd-Bwq">
+                        <rect key="frame" x="80" y="23.5" width="240" height="28"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
-                        <state key="normal" title="Button">
-                            <color key="titleColor" name="uParkerBlue"/>
-                        </state>
-                    </button>
+                        <color key="textColor" name="uParkerBlue"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="M5g-RC-kcw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Kfy-UC-xH0"/>
+                    <constraint firstAttribute="trailing" secondItem="iXo-Cd-Bwq" secondAttribute="trailing" id="60D-ZU-8n6"/>
                     <constraint firstItem="6eZ-2S-16e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="MVU-d6-B3T"/>
-                    <constraint firstItem="M5g-RC-kcw" firstAttribute="leading" secondItem="6eZ-2S-16e" secondAttribute="trailing" constant="15" id="NPC-9C-88f"/>
-                    <constraint firstAttribute="trailing" secondItem="M5g-RC-kcw" secondAttribute="trailing" id="Qdn-4O-UD8"/>
+                    <constraint firstItem="iXo-Cd-Bwq" firstAttribute="leading" secondItem="6eZ-2S-16e" secondAttribute="trailing" constant="15" id="RQA-6H-Jm6"/>
+                    <constraint firstItem="iXo-Cd-Bwq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bH2-Sm-wcG"/>
                     <constraint firstItem="6eZ-2S-16e" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qh7-1t-BRB"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="buttonLabel" destination="iXo-Cd-Bwq" id="IBb-sS-oM7"/>
                 <outlet property="iconImageView" destination="6eZ-2S-16e" id="fcl-ik-888"/>
-                <outlet property="menuButton" destination="M5g-RC-kcw" id="MCq-bS-XZH"/>
             </connections>
             <point key="canvasLocation" x="-178.2608695652174" y="120.87053571428571"/>
         </tableViewCell>
