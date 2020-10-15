@@ -44,9 +44,6 @@ class HomepageVC: UIViewController {
         present(menu!, animated: true)
     }
     
-    @IBAction func reservationsClicked(_ sender: UIButton) {
-        self.performSegue(withIdentifier: K.Segues.toReservations, sender: self)
-    }
     
 }
 
