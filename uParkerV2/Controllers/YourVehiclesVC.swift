@@ -10,27 +10,24 @@ import UIKit
 class YourVehiclesVC: UIViewController {
     @Global var currentUser: User
     
-    
     @IBOutlet weak var addVehicleButton: UIButton!
     @IBOutlet weak var vehicleTable: UITableView!
-    @IBOutlet weak var firstTimeStack: UIStackView!
-    
-    
     
     var ownedVehicles: [Vehicle]            = []
     var tableCells: [UITableViewCell]       = []
-    var tableIsInEditMode: Bool             = false
+    
+    let firstTimeView = FirstTimeView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForUpdates()
         vehicleTable.delegate           = self
         vehicleTable.dataSource         = self
-        vehicleTable.backgroundColor = UIColor(named: "uParker Blue")
+        vehicleTable.backgroundColor = K.BrandColors.uParkerBlue
         navigationController?.navigationBar.prefersLargeTitles = true
         updateUI()
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == K.Segues.toAddVehicle {
             if let nextViewController = segue.destination as? AddVehicleVC {
@@ -48,12 +45,12 @@ class YourVehiclesVC: UIViewController {
         ownedVehicles = currentUser.getOwnedVehicles()
         tableCells.removeAll()
         vehicleTable.reloadData()
-        if ownedVehicles.count == 0 && currentUser.primaryVehicle == nil {
-            firstTimeStack.isHidden = false
-            vehicleTable.isHidden = true
+        if currentUser.primaryVehicle == nil {
+            firstTimeView.configureWith(type: "Payment Method")
+            view.addSubview(firstTimeView)
+            firstTimeView.pinTo(view)
         } else {
-            firstTimeStack.isHidden = true
-            vehicleTable.isHidden = false
+            firstTimeView.removeFromSuperview()
         }
     }
 }
@@ -63,7 +60,6 @@ class YourVehiclesVC: UIViewController {
 //MARK: - UITableViewDataSource & Delegate
 extension YourVehiclesVC: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         if ownedVehicles.count > 0 {
             return 2
         } else if currentUser.primaryVehicle != nil {
@@ -140,7 +136,7 @@ extension YourVehiclesVC: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section != 0 {
             alert.addAction(makeDefaultAction)
         }
-    
+        
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         

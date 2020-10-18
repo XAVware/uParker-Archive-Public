@@ -16,6 +16,7 @@
 		9482FACF25391DE30010EC5F /* VehiclePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FACE25391DE30010EC5F /* VehiclePickerView.swift */; };
 		9482FAD225391E4A0010EC5F /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAD125391E4A0010EC5F /* ColorPickerView.swift */; };
 		9482FAD52539215A0010EC5F /* AddVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAD42539215A0010EC5F /* AddVehicleVC.swift */; };
+		9482FAD8253CCFEF0010EC5F /* FirstTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAD7253CCFEF0010EC5F /* FirstTimeView.swift */; };
 		948F19B82537BD660095F8CE /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948F19B72537BD660095F8CE /* CircularProgressView.swift */; };
 		948F19BB2537BD950095F8CE /* ReservationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948F19BA2537BD950095F8CE /* ReservationsVC.swift */; };
 		94AC5BC325310BD100FDE1E2 /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AC5BC225310BD100FDE1E2 /* FirstVC.swift */; };
@@ -55,6 +56,7 @@
 		9482FACE25391DE30010EC5F /* VehiclePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePickerView.swift; sourceTree = "<group>"; };
 		9482FAD125391E4A0010EC5F /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		9482FAD42539215A0010EC5F /* AddVehicleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleVC.swift; sourceTree = "<group>"; };
+		9482FAD7253CCFEF0010EC5F /* FirstTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeView.swift; sourceTree = "<group>"; };
 		948F19B72537BD660095F8CE /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		948F19BA2537BD950095F8CE /* ReservationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsVC.swift; sourceTree = "<group>"; };
 		94AC5BC225310BD100FDE1E2 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				94BFA9C52537AC1600DA52D4 /* Menu Elements */,
 				9482FACE25391DE30010EC5F /* VehiclePickerView.swift */,
 				9482FAD125391E4A0010EC5F /* ColorPickerView.swift */,
+				9482FAD7253CCFEF0010EC5F /* FirstTimeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				94AC5BCD25310C5E00FDE1E2 /* Reservation.swift in Sources */,
 				94BFA9C22537A25600DA52D4 /* MenuButtonTableViewCell.swift in Sources */,
 				94AC5BCE25310C5E00FDE1E2 /* Environment.swift in Sources */,
+				9482FAD8253CCFEF0010EC5F /* FirstTimeView.swift in Sources */,
 				948F19B82537BD660095F8CE /* CircularProgressView.swift in Sources */,
 				9482FACF25391DE30010EC5F /* VehiclePickerView.swift in Sources */,
 				9482FAC42539058D0010EC5F /* YourVehiclesVC.swift in Sources */,
