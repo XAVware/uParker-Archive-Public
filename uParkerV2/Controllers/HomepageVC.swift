@@ -26,12 +26,42 @@ class HomepageVC: UIViewController {
             navController.setUpNavBar(navController, isTextWhite: true, isHidden: false)
         }
     }
+
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        if let navController = self.navigationController {
-            navController.setUpNavBar(navController, isTextWhite: false, isHidden: false)
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var textShouldBeWhite: Bool = true
+        var navBarShouldBeHidden: Bool = true
+        
+        switch segue.identifier {
+        case K.Segues.toFindParking:
+            textShouldBeWhite = true
+            navBarShouldBeHidden = false
+        case K.Segues.toReservations:
+            textShouldBeWhite = false
+            navBarShouldBeHidden = false
+        case K.Segues.toHostDashboard:
+            textShouldBeWhite = true
+            navBarShouldBeHidden = true
+        case K.Segues.toVehicles:
+            textShouldBeWhite = true
+            navBarShouldBeHidden = false
+        case K.Segues.toPaymentMethods:
+            textShouldBeWhite = true
+            navBarShouldBeHidden = false
+        case K.Segues.toPreferences:
+            textShouldBeWhite = true
+            navBarShouldBeHidden = true
+        default:
+            textShouldBeWhite = true
+            navBarShouldBeHidden = true
         }
+        
+        if let navController = self.navigationController {
+            navController.setUpNavBar(navController, isTextWhite: textShouldBeWhite, isHidden: navBarShouldBeHidden)
+        }
+        
+        
     }
     
     //MARK: - Initialization Methods

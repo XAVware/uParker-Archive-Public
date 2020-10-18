@@ -23,7 +23,7 @@ class FirstVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if let navController = self.navigationController {
-            navController.setUpNavBar(navController, isTextWhite: true, isHidden: true)
+            navController.setUpNavBar(navController, isTextWhite: false, isHidden: false)
         }
     }
 }

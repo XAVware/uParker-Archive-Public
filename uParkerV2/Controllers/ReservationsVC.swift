@@ -15,17 +15,6 @@ class ReservationsVC: UIViewController {
         registerForUpdates()
     }
     
-    //MARK: - ViewController Lifecycle Methods
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let navController = self.navigationController {
-            navController.setUpNavBar(navController, isTextWhite: false, isHidden: false)
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
 }
 
 //MARK: - GlobalUpdating

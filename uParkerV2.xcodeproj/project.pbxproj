@@ -12,6 +12,10 @@
 		941AD526253103B500146B13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 941AD524253103B500146B13 /* Main.storyboard */; };
 		941AD52B253103B700146B13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 941AD529253103B700146B13 /* LaunchScreen.storyboard */; };
 		941AD5352531054D00146B13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 941AD5342531054D00146B13 /* Assets.xcassets */; };
+		9482FAC42539058D0010EC5F /* YourVehiclesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAC32539058D0010EC5F /* YourVehiclesVC.swift */; };
+		9482FACF25391DE30010EC5F /* VehiclePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FACE25391DE30010EC5F /* VehiclePickerView.swift */; };
+		9482FAD225391E4A0010EC5F /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAD125391E4A0010EC5F /* ColorPickerView.swift */; };
+		9482FAD52539215A0010EC5F /* AddVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAD42539215A0010EC5F /* AddVehicleVC.swift */; };
 		948F19B82537BD660095F8CE /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948F19B72537BD660095F8CE /* CircularProgressView.swift */; };
 		948F19BB2537BD950095F8CE /* ReservationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948F19BA2537BD950095F8CE /* ReservationsVC.swift */; };
 		94AC5BC325310BD100FDE1E2 /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AC5BC225310BD100FDE1E2 /* FirstVC.swift */; };
@@ -47,6 +51,10 @@
 		941AD52A253103B700146B13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		941AD52C253103B700146B13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		941AD5342531054D00146B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9482FAC32539058D0010EC5F /* YourVehiclesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourVehiclesVC.swift; sourceTree = "<group>"; };
+		9482FACE25391DE30010EC5F /* VehiclePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePickerView.swift; sourceTree = "<group>"; };
+		9482FAD125391E4A0010EC5F /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		9482FAD42539215A0010EC5F /* AddVehicleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleVC.swift; sourceTree = "<group>"; };
 		948F19B72537BD660095F8CE /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		948F19BA2537BD950095F8CE /* ReservationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsVC.swift; sourceTree = "<group>"; };
 		94AC5BC225310BD100FDE1E2 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -147,6 +155,8 @@
 				94AC5BE125311A4A00FDE1E2 /* UnderlinedTextField.swift */,
 				948F19B72537BD660095F8CE /* CircularProgressView.swift */,
 				94BFA9C52537AC1600DA52D4 /* Menu Elements */,
+				9482FACE25391DE30010EC5F /* VehiclePickerView.swift */,
+				9482FAD125391E4A0010EC5F /* ColorPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,6 +171,8 @@
 				94BFA9A925366D6C00DA52D4 /* HomepageVC.swift */,
 				94BFA9AF25367F8F00DA52D4 /* MenuTVC.swift */,
 				948F19BA2537BD950095F8CE /* ReservationsVC.swift */,
+				9482FAC32539058D0010EC5F /* YourVehiclesVC.swift */,
+				9482FAD42539215A0010EC5F /* AddVehicleVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -317,7 +329,10 @@
 				94BFA9C22537A25600DA52D4 /* MenuButtonTableViewCell.swift in Sources */,
 				94AC5BCE25310C5E00FDE1E2 /* Environment.swift in Sources */,
 				948F19B82537BD660095F8CE /* CircularProgressView.swift in Sources */,
+				9482FACF25391DE30010EC5F /* VehiclePickerView.swift in Sources */,
+				9482FAC42539058D0010EC5F /* YourVehiclesVC.swift in Sources */,
 				941AD51F253103B500146B13 /* AppDelegate.swift in Sources */,
+				9482FAD225391E4A0010EC5F /* ColorPickerView.swift in Sources */,
 				94BFA9BD25379AE800DA52D4 /* MenuProfileTableViewCell.swift in Sources */,
 				941AD521253103B500146B13 /* SceneDelegate.swift in Sources */,
 				94BFA9A12534FB1800DA52D4 /* Extensions.swift in Sources */,
@@ -328,6 +343,7 @@
 				94BFA9AA25366D6C00DA52D4 /* HomepageVC.swift in Sources */,
 				94BFA9A4253530EF00DA52D4 /* ForgotPasswordVC.swift in Sources */,
 				94AC5BCC25310C5E00FDE1E2 /* PaymentMethod.swift in Sources */,
+				9482FAD52539215A0010EC5F /* AddVehicleVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

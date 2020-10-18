@@ -32,12 +32,19 @@ extension UIView {
 extension UINavigationController {
     func setUpNavBar(_ navigationController: UINavigationController, isTextWhite: Bool, isHidden: Bool) {
         let tint = isTextWhite ? UIColor.white : UIColor(named: "uParkerBlue")
-
-        navigationController.setNavigationBarHidden(isHidden, animated: true)
+        let titleFont = UIFont(name: "Helvetica", size: 18.0)
+        
+        navigationController.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: tint!,
+             NSAttributedString.Key.font: titleFont!]
+        
+        navigationController.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: tint!]
+        
+        navigationController.setNavigationBarHidden(isHidden, animated: false)
         navigationController.navigationBar.setBackgroundImage(UIImage(), for:.default)
         navigationController.navigationBar.shadowImage = UIImage()
         navigationController.navigationBar.backgroundColor = nil
-        navigationController.navigationBar.tintColor = nil
         navigationController.navigationBar.layoutIfNeeded()
         navigationController.navigationBar.tintColor = tint
         
