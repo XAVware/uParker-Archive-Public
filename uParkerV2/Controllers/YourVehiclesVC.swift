@@ -46,7 +46,7 @@ class YourVehiclesVC: UIViewController {
         tableCells.removeAll()
         vehicleTable.reloadData()
         if currentUser.primaryVehicle == nil {
-            firstTimeView.configureWith(type: "Payment Method")
+            firstTimeView.configureWith(type: "Vehicle")
             view.addSubview(firstTimeView)
             firstTimeView.pinTo(view)
         } else {

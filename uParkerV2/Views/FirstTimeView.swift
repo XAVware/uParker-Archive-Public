@@ -14,35 +14,38 @@ class FirstTimeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        //        setupView()
     }
     
     func configureWith(type: String) {
+        var labelText: String!
+        let image: UIImage!
+        
         switch type {
         
         case "Vehicle":
-            let image = UIImageView(image: UIImage(systemName: "car.fill"))
-            let labelText = vehicleLabelText
-            setupView(withImage: image, withText: labelText)
+            image = UIImage(systemName: "car.fill")
+            labelText = vehicleLabelText
+//            setupView(withImage: image, withText: labelText)
             
         case "Payment Method":
-            let image = UIImageView(image: UIImage(systemName: "creditcard"))
-            let labelText = paymentMethodLabelText
-            setupView(withImage: image, withText: labelText)
+            image = UIImage(systemName: "creditcard")
+            labelText = paymentMethodLabelText
+//            setupView(withImage: image, withText: labelText)
             
         default:
-            let image = UIImageView(image: UIImage(systemName: ""))
-            let labelText = vehicleLabelText
-            setupView(withImage: image, withText: labelText)
+            image = UIImage(systemName: "")
+            labelText = vehicleLabelText
+//            setupView(withImage: image, withText: labelText)
         }
+        
+        setupView(withImage: image, withText: labelText)
     }
     
-    private func setupView(withImage image: UIImageView, withText labelText: String) {
+    private func setupView(withImage image: UIImage, withText labelText: String) {
         backgroundColor = UIColor(named: "uParker Blue")
         
         let stackView = UIStackView()
@@ -56,12 +59,12 @@ class FirstTimeView: UIView {
         
         
         
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = .white
+        imageView.contentMode = .scaleAspectFit
+        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-        image.tintColor = .white
-        image.contentMode = .scaleAspectFit
-        image.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        stackView.addArrangedSubview(image)
+        stackView.addArrangedSubview(imageView)
         
         
         
@@ -79,7 +82,7 @@ class FirstTimeView: UIView {
         
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        image.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         translatesAutoresizingMaskIntoConstraints = false
         
