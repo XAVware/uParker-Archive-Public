@@ -16,8 +16,15 @@ class User: ObservableObject {
     private var isHost: Bool = false
     
     
-    @Published var ownedVehicles: [Vehicle] = []
+//    @Published var ownedVehicles: [Vehicle] = []
+//    @Published var primaryVehicle: Vehicle?
+    
+    
     @Published var primaryVehicle: Vehicle?
+    @Published var ownedVehicles: [Vehicle] = []
+    
+    
+    
     @Published var paymentMethods: [PaymentMethod] = []
     @Published var upcomingReservations: [Reservation] = []
     
@@ -28,6 +35,8 @@ class User: ObservableObject {
     init() {
         self.firstName = "Ryan"
         self.email = "ryan.smetana@xavware.com"
+//        self.primaryVehicle = Vehicle(vehicle: "Black Subaru WRX", licensePlate: "S71 JCY")
+//        ownedVehicles = [Vehicle(vehicle: "Silver BMW 545i", licensePlate: "3KP YTA"), Vehicle(vehicle: "White Mazda 3i", licensePlate: "ERT 9J0")]
     }
     
     func toggleErrorHandling(enabled: Bool) {
