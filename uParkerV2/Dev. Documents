@@ -15,6 +15,9 @@ ii. UnderlinedTextField
 
 
 
+A. User
+    - The delete vehicle/payment methods can only be accessed by clicking on a vehicle/paymentMethod cell - because of this it can be force unwrapped.
+
 
 ~~~~~~~~~~~~~~~~~~~~ Controllers ~~~~~~~~~~~~~~~~~~~~
 
@@ -50,7 +53,7 @@ VI. MenuTVC
             - Depending on the provided string, the imageView is updated with the appropriate image.
             - When one of these cells are clicked, the selected row is used to find the name of the button in the menuItems array. It then uses the name to search the menuButtonDestinations dictionary and find the corresponding segue. The segue is passed through the delegate and executed in the HomepageVC
 
-
+VII. YourVehiclesVC & PaymentMethodsVC
 
 
 ~~~~~~~~~~~~~~~~~~~~ Pods/Other ~~~~~~~~~~~~~~~~~~~~

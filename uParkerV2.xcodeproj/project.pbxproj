@@ -18,6 +18,9 @@
 		9482FAD52539215A0010EC5F /* AddVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAD42539215A0010EC5F /* AddVehicleVC.swift */; };
 		9482FAD8253CCFEF0010EC5F /* FirstTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAD7253CCFEF0010EC5F /* FirstTimeView.swift */; };
 		9482FADB253D1DAB0010EC5F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FADA253D1DAB0010EC5F /* TableHeaderView.swift */; };
+		9482FADE253DF2020010EC5F /* ExpirationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FADD253DF2020010EC5F /* ExpirationPickerView.swift */; };
+		9482FAE3253DF2E70010EC5F /* PaymentMethodsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAE2253DF2E70010EC5F /* PaymentMethodsVC.swift */; };
+		9482FAEA253DF9B40010EC5F /* AddPaymentMethodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9482FAE9253DF9B40010EC5F /* AddPaymentMethodVC.swift */; };
 		948F19B82537BD660095F8CE /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948F19B72537BD660095F8CE /* CircularProgressView.swift */; };
 		948F19BB2537BD950095F8CE /* ReservationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948F19BA2537BD950095F8CE /* ReservationsVC.swift */; };
 		94AC5BC325310BD100FDE1E2 /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AC5BC225310BD100FDE1E2 /* FirstVC.swift */; };
@@ -59,6 +62,9 @@
 		9482FAD42539215A0010EC5F /* AddVehicleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleVC.swift; sourceTree = "<group>"; };
 		9482FAD7253CCFEF0010EC5F /* FirstTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeView.swift; sourceTree = "<group>"; };
 		9482FADA253D1DAB0010EC5F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
+		9482FADD253DF2020010EC5F /* ExpirationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpirationPickerView.swift; sourceTree = "<group>"; };
+		9482FAE2253DF2E70010EC5F /* PaymentMethodsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsVC.swift; sourceTree = "<group>"; };
+		9482FAE9253DF9B40010EC5F /* AddPaymentMethodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPaymentMethodVC.swift; sourceTree = "<group>"; };
 		948F19B72537BD660095F8CE /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		948F19BA2537BD950095F8CE /* ReservationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsVC.swift; sourceTree = "<group>"; };
 		94AC5BC225310BD100FDE1E2 /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -151,6 +157,16 @@
 			path = uParkerV2;
 			sourceTree = "<group>";
 		};
+		9482FAE0253DF2C00010EC5F /* Picker Views */ = {
+			isa = PBXGroup;
+			children = (
+				9482FACE25391DE30010EC5F /* VehiclePickerView.swift */,
+				9482FAD125391E4A0010EC5F /* ColorPickerView.swift */,
+				9482FADD253DF2020010EC5F /* ExpirationPickerView.swift */,
+			);
+			path = "Picker Views";
+			sourceTree = "<group>";
+		};
 		94AC5BBE25310B4F00FDE1E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,8 +175,7 @@
 				94AC5BE125311A4A00FDE1E2 /* UnderlinedTextField.swift */,
 				948F19B72537BD660095F8CE /* CircularProgressView.swift */,
 				94BFA9C52537AC1600DA52D4 /* Menu Elements */,
-				9482FACE25391DE30010EC5F /* VehiclePickerView.swift */,
-				9482FAD125391E4A0010EC5F /* ColorPickerView.swift */,
+				9482FAE0253DF2C00010EC5F /* Picker Views */,
 				9482FAD7253CCFEF0010EC5F /* FirstTimeView.swift */,
 				9482FADA253D1DAB0010EC5F /* TableHeaderView.swift */,
 			);
@@ -179,6 +194,8 @@
 				948F19BA2537BD950095F8CE /* ReservationsVC.swift */,
 				9482FAC32539058D0010EC5F /* YourVehiclesVC.swift */,
 				9482FAD42539215A0010EC5F /* AddVehicleVC.swift */,
+				9482FAE2253DF2E70010EC5F /* PaymentMethodsVC.swift */,
+				9482FAE9253DF9B40010EC5F /* AddPaymentMethodVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -342,6 +359,8 @@
 				941AD51F253103B500146B13 /* AppDelegate.swift in Sources */,
 				9482FAD225391E4A0010EC5F /* ColorPickerView.swift in Sources */,
 				94BFA9BD25379AE800DA52D4 /* MenuProfileTableViewCell.swift in Sources */,
+				9482FAE3253DF2E70010EC5F /* PaymentMethodsVC.swift in Sources */,
+				9482FAEA253DF9B40010EC5F /* AddPaymentMethodVC.swift in Sources */,
 				941AD521253103B500146B13 /* SceneDelegate.swift in Sources */,
 				94BFA9A12534FB1800DA52D4 /* Extensions.swift in Sources */,
 				94AC5BD125310C5E00FDE1E2 /* User.swift in Sources */,
@@ -351,6 +370,7 @@
 				94BFA9AA25366D6C00DA52D4 /* HomepageVC.swift in Sources */,
 				94BFA9A4253530EF00DA52D4 /* ForgotPasswordVC.swift in Sources */,
 				94AC5BCC25310C5E00FDE1E2 /* PaymentMethod.swift in Sources */,
+				9482FADE253DF2020010EC5F /* ExpirationPickerView.swift in Sources */,
 				9482FAD52539215A0010EC5F /* AddVehicleVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

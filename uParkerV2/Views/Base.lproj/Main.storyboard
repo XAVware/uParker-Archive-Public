@@ -525,6 +525,7 @@
                     </navigationItem>
                     <connections>
                         <segue destination="nDG-Bj-siA" kind="show" identifier="goToVehicles" animates="NO" id="IkF-hy-Ajs"/>
+                        <segue destination="shg-kL-PIW" kind="show" identifier="goToPaymentMethods" animates="NO" id="UOF-2c-xHh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evp-ZN-kl1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -597,6 +598,202 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDS-OC-9Xa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5698.5507246376819" y="119.86607142857142"/>
+        </scene>
+        <!--Payment Methods-->
+        <scene sceneID="Wa3-7f-YJ1">
+            <objects>
+                <viewController id="shg-kL-PIW" customClass="PaymentMethodsVC" customModule="uParkerV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QK1-2W-tDF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ckF-sV-3MG">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" name="uParkerBlue"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="paymentMethodCell" textLabel="o4H-LW-rvR" detailTextLabel="GDR-Sh-jza" style="IBUITableViewCellStyleSubtitle" id="KSc-3f-vN3">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="60.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KSc-3f-vN3" id="dnL-4f-Jic">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="60.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o4H-LW-rvR">
+                                                    <rect key="frame" x="20" y="8" width="33.5" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GDR-Sh-jza">
+                                                    <rect key="frame" x="20" y="32" width="41" height="18.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="uParkerBlue"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BlJ-MA-GdL"/>
+                        <color key="backgroundColor" name="uParkerBlue"/>
+                        <constraints>
+                            <constraint firstItem="ckF-sV-3MG" firstAttribute="top" secondItem="BlJ-MA-GdL" secondAttribute="top" id="Gbk-Ts-SFB"/>
+                            <constraint firstItem="ckF-sV-3MG" firstAttribute="leading" secondItem="BlJ-MA-GdL" secondAttribute="leading" id="US7-EM-yS9"/>
+                            <constraint firstAttribute="bottom" secondItem="ckF-sV-3MG" secondAttribute="bottom" id="fRO-8t-Qsm"/>
+                            <constraint firstItem="ckF-sV-3MG" firstAttribute="trailing" secondItem="BlJ-MA-GdL" secondAttribute="trailing" id="gGI-cF-6yj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Payment Methods" id="VY5-Se-H5q">
+                        <barButtonItem key="rightBarButtonItem" image="plus.circle" catalog="system" id="Esi-cZ-NZ5">
+                            <connections>
+                                <action selector="addPaymentMethodPressed:" destination="shg-kL-PIW" id="Okm-KI-Fei"/>
+                                <segue destination="MDB-yj-6pB" kind="show" identifier="goToAddPayment" id="6VQ-H8-nWP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addPaymentMethodButton" destination="Esi-cZ-NZ5" id="lo6-h0-kCI"/>
+                        <outlet property="paymentMethodTable" destination="ckF-sV-3MG" id="JqG-EN-9kf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l5o-4f-tH7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5699" y="-610"/>
+        </scene>
+        <!--Add A Card-->
+        <scene sceneID="euf-wh-DFF">
+            <objects>
+                <viewController id="MDB-yj-6pB" customClass="AddPaymentMethodVC" customModule="uParkerV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JoE-7m-EdZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="ShE-t1-jR7">
+                                <rect key="frame" x="0.0" y="88" width="414" height="224"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="gps-qc-afa">
+                                        <rect key="frame" x="16" y="8" width="382" height="108"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter The Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x75-cL-gJN">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="28"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                                <color key="textColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name On Card" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xs8-BH-SI6" customClass="UnderlinedTextField" customModule="uParkerV2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="58" width="382" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Qnw-gs-DRc"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ebh-kp-ntq">
+                                        <rect key="frame" x="16" y="141" width="382" height="80"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter The Card Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fev-dg-VOP">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                                <color key="textColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Card Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="obj-FS-Nux" customClass="UnderlinedTextField" customModule="uParkerV2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="30" width="382" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="8iw-vK-lEg"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ELY-TJ-8Kz">
+                                        <rect key="frame" x="16" y="141" width="382" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter The Expiration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVP-qd-gyJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                                <color key="textColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NMP-b5-9eh" customClass="ExpirationPickerView" customModule="uParkerV2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="30" width="382" height="0.0"/>
+                                            </pickerView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="aPS-nE-vG2">
+                                        <rect key="frame" x="16" y="141" width="382" height="80"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter The CVC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDw-xB-ExF">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                                <color key="textColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CVC" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zyF-9M-Lu0" customClass="UnderlinedTextField" customModule="uParkerV2" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="30" width="382" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="pOs-SI-d2w"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5uX-C9-2a8" customClass="RoundButton" customModule="uParker" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="166" width="382" height="50"/>
+                                        <color key="backgroundColor" red="0.098039215690000001" green="0.21176470589999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Zb2-2k-geB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                                        <state key="normal" title="Next">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextPressed:" destination="MDB-yj-6pB" eventType="touchUpInside" id="4VQ-Oj-BYI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NNW-d5-CgC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ShE-t1-jR7" firstAttribute="leading" secondItem="NNW-d5-CgC" secondAttribute="leading" id="XAH-HR-gNF"/>
+                            <constraint firstItem="ShE-t1-jR7" firstAttribute="top" secondItem="NNW-d5-CgC" secondAttribute="top" id="lje-Cw-CxO"/>
+                            <constraint firstItem="NNW-d5-CgC" firstAttribute="trailing" secondItem="ShE-t1-jR7" secondAttribute="trailing" id="szS-Q3-xtT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add A Card" id="BrS-3K-rVB"/>
+                    <connections>
+                        <outlet property="cardNumberStack" destination="Ebh-kp-ntq" id="UN1-nM-FTh"/>
+                        <outlet property="cardNumberText" destination="obj-FS-Nux" id="5XR-oa-cM8"/>
+                        <outlet property="cvcStack" destination="aPS-nE-vG2" id="r1k-bB-26e"/>
+                        <outlet property="cvcText" destination="zyF-9M-Lu0" id="eln-d1-X6h"/>
+                        <outlet property="expirationPicker" destination="NMP-b5-9eh" id="iSi-DF-d3j"/>
+                        <outlet property="expirationStack" destination="ELY-TJ-8Kz" id="FjA-Oj-rtm"/>
+                        <outlet property="nameOnCardText" destination="Xs8-BH-SI6" id="ieL-hb-HeR"/>
+                        <outlet property="nameStack" destination="gps-qc-afa" id="nv5-6c-eSl"/>
+                        <outlet property="nextButton" destination="5uX-C9-2a8" id="ffI-LR-7DH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qkP-tk-Czw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6709" y="-610"/>
         </scene>
         <!--Add A Vehicle-->
         <scene sceneID="BCJ-BW-RMf">

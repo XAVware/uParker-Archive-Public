@@ -45,12 +45,8 @@ struct K {
     }
     
     struct BrandColors {
-//        static let uParkerBlue = UIColor(red: 25 / 255,
-//                                    green: 54 / 255,
-//                                    blue: 88 / 255,
-//                                    alpha: 1.0)
         
-        static let uParkerBlue = UIColor(named: "uParkerBlue")!
+        static let uParkerBlue          = UIColor(named: "uParkerBlue")!
         
         static let uParkerLightBlue = UIColor(red: 25 / 255,
                                          green: 54 / 255,
@@ -59,8 +55,9 @@ struct K {
     }
     
     struct TableCells {
-        static let menuProfileIdentifier = "MenuProfileTableViewCell"
-        static let menuButtonIdentifier = "MenuButtonTableViewCell"
+        static let menuProfileIdentifier            = "MenuProfileTableViewCell"
+        static let menuButtonIdentifier             = "MenuButtonTableViewCell"
+        static let paymentMethodCellIdentifier      = "paymentMethodCell"
     }
     
     struct FStore {

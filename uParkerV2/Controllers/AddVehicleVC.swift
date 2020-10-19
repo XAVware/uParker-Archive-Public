@@ -28,9 +28,12 @@ class AddVehicleVC: UIViewController, UIGestureRecognizerDelegate {
     var stackArray                  = [UIStackView]()
     var stackLocation:Int           = 0
     
+    
+    //MARK: - ViewController Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         registerForUpdates()
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         stackArray = [vehicleStack, colorStack, licensePlateStack]
     }
     

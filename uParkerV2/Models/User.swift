@@ -16,16 +16,15 @@ class User: ObservableObject {
     private var isHost: Bool = false
     
     
-//    @Published var ownedVehicles: [Vehicle] = []
-//    @Published var primaryVehicle: Vehicle?
-    
     
     @Published var primaryVehicle: Vehicle?
     @Published var ownedVehicles: [Vehicle] = []
     
     
-    
+    @Published var defaultPaymentMethod: PaymentMethod?
     @Published var paymentMethods: [PaymentMethod] = []
+    
+    
     @Published var upcomingReservations: [Reservation] = []
     
     @Published var errorHandlingEnabled: Bool = false
@@ -37,6 +36,8 @@ class User: ObservableObject {
         self.email = "ryan.smetana@xavware.com"
 //        self.primaryVehicle = Vehicle(vehicle: "Black Subaru WRX", licensePlate: "S71 JCY")
 //        ownedVehicles = [Vehicle(vehicle: "Silver BMW 545i", licensePlate: "3KP YTA"), Vehicle(vehicle: "White Mazda 3i", licensePlate: "ERT 9J0")]
+//        self.defaultPaymentMethod = PaymentMethod(nameOnCard: "Ryan", cardNumber: "1234", expirationDate: "10/18", cvc: "555")
+//        self.paymentMethods = [PaymentMethod(nameOnCard: "Megan", cardNumber: "5678", expirationDate: "08/24", cvc: "777")]
     }
     
     func toggleErrorHandling(enabled: Bool) {
@@ -80,6 +81,11 @@ class User: ObservableObject {
     }
     
     func deleteVehicle(_ selectedVehicle: Vehicle) {
+        if ownedVehicles.count == 0 {
+            primaryVehicle = nil
+            return
+        }
+        
         if selectedVehicle.licensePlate == primaryVehicle!.licensePlate {
             makePrimaryVehicle(ownedVehicles[0])
             ownedVehicles.remove(at: 0)
@@ -102,12 +108,46 @@ class User: ObservableObject {
         primaryVehicle = selectedVehicle
     }
     
+    
     func getPaymentMethods() -> [PaymentMethod] {
         return paymentMethods
     }
     
     func addPaymentMethod(newPaymentMethod: PaymentMethod) {
-        paymentMethods.append(newPaymentMethod)
+        if defaultPaymentMethod == nil {
+            defaultPaymentMethod = newPaymentMethod
+        } else {
+            paymentMethods.insert(newPaymentMethod, at: 0)
+        }
+    }
+    
+    
+    func deletePaymentMethod(_ selectedPaymentMethod: PaymentMethod) {
+        if paymentMethods.count == 0 {
+            defaultPaymentMethod = nil
+            return
+        }
+        
+        if selectedPaymentMethod.cardNumber == defaultPaymentMethod!.cardNumber {
+            makeDefaultPaymentMethod(paymentMethods[0])
+            paymentMethods.remove(at: 0)
+        } else {
+            var paymentMethodIndex = 0
+            for paymentMethod in paymentMethods {
+                if paymentMethod.cardNumber == selectedPaymentMethod.cardNumber {
+                    paymentMethods.remove(at: paymentMethodIndex)
+                    return
+                } else {
+                    paymentMethodIndex += 1
+                }
+            }
+        }
+    }
+    
+    func makeDefaultPaymentMethod(_ selectedPaymentMethod: PaymentMethod) {
+        deletePaymentMethod(selectedPaymentMethod)
+        paymentMethods.insert(defaultPaymentMethod!, at: 0)
+        defaultPaymentMethod = selectedPaymentMethod
     }
     
 }

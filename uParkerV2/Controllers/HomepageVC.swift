@@ -26,7 +26,7 @@ class HomepageVC: UIViewController {
             navController.setUpNavBar(navController, isTextWhite: true, isHidden: false)
         }
     }
-
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
