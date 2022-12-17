@@ -16,7 +16,7 @@ struct LoginView: View {
             primaryColor
                 .edgesIgnoringSafeArea(.all)
             
-            VStack {
+            VStack(spacing: 40) {
                 Image("uParker-Logo")
                     .resizable()
                     .scaledToFit()
@@ -27,7 +27,27 @@ struct LoginView: View {
                     
                 UnderlinedTextField(text: $password, placeholder: "Password", icon: "lock", isSecure: true)
                     
-                
+                Button {
+                    //
+                } label: {
+                    Text("Login")
+                        .font(.title)
+                        .foregroundColor(primaryColor)
+                        .fontWeight(.light)
+                        .padding()
+                }
+                .modifier(
+                    ButtonModifier(
+                        type: .secondaryFill,
+                        minWidth: 150,
+                        idealWidth: 300,
+                        maxWidth: 350,
+                        minHeight: 40,
+                        idealHeight: 50,
+                        maxHeight: 50,
+                        alignment: .center)
+                )
+
                 
                 Spacer()
                 

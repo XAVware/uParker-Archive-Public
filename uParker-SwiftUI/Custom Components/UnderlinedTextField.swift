@@ -18,6 +18,7 @@ struct UnderlinedTextField: View {
     @State var isSecure: Bool
     
     // MARK: - Initializers
+    //Default
     init(text: Binding<String>, placeholder: String, icon: String) {
         self._text = text
         self.placeholder = placeholder
@@ -28,6 +29,8 @@ struct UnderlinedTextField: View {
         self.isSecure = false
     }
     
+    
+    //Include Font Type
     init(text: Binding<String>, placeholder: String, icon: String, fontType: Font) {
         self._text = text
         self.placeholder = placeholder
@@ -38,6 +41,7 @@ struct UnderlinedTextField: View {
         self.isSecure = false
     }
     
+    //Include isSecure
     init(text: Binding<String>, placeholder: String, icon: String, isSecure: Bool) {
         self._text = text
         self.placeholder = placeholder
@@ -48,6 +52,7 @@ struct UnderlinedTextField: View {
         self.isSecure = isSecure
     }
     
+    //Include showsIcon
     init(text: Binding<String>, placeholder: String, icon: String, showsIcon: Bool) {
         self._text = text
         self.placeholder = placeholder
@@ -58,6 +63,8 @@ struct UnderlinedTextField: View {
         self.isSecure = false
     }
     
+    
+    //Include all
     init(text: Binding<String>, placeholder: String, icon: String, fontType: Font, fgColor: Color, showsIcon: Bool, isSecure: Bool) {
         self._text = text
         self.placeholder = placeholder
@@ -97,10 +104,8 @@ struct UnderlinedTextField: View {
                 
                 Rectangle().frame(height: 1)
             } //: VStack
-            .padding(0)
         } //: HStack
         .foregroundColor(fgColor)
-        .padding()
     }
 
 }
