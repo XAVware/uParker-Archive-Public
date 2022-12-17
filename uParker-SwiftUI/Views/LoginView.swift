@@ -48,6 +48,26 @@ struct LoginView: View {
                         alignment: .center)
                 )
 
+                Button {
+                    //
+                } label: {
+                    Text("Sign Up")
+                        .font(.title)
+                        .foregroundColor(secondaryColor)
+                        .fontWeight(.light)
+                        .padding()
+                }
+                .modifier(
+                    ButtonModifier(
+                        type: .secondaryBorder,
+                        minWidth: 150,
+                        idealWidth: 200,
+                        maxWidth: 250,
+                        minHeight: 40,
+                        idealHeight: 50,
+                        maxHeight: 50,
+                        alignment: .center)
+                )
                 
                 Spacer()
                 

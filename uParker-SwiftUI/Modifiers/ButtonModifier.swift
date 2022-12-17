@@ -26,6 +26,15 @@ struct ButtonModifier: ViewModifier {
     let defaultShadowY: CGFloat = 5
     
     // MARK: - COMPUTED PROPERTIES
+    var backgroundColor: some View {
+        switch type {
+        case .primaryFill, .primaryBorder:
+            return AnyView(primaryColor)
+        case .secondaryFill, .secondaryBorder:
+            return AnyView(secondaryColor)
+        }
+    }
+    
     var rectangle: some Shape {
         switch type {
         case .primaryFill, .secondaryFill:
@@ -37,16 +46,16 @@ struct ButtonModifier: ViewModifier {
     }
 
     var buttonBackground: some View {
-        var color: Color
-
-        switch type {
-        case .primaryFill, .primaryBorder:
-            color = primaryColor
-        case .secondaryFill, .secondaryBorder:
-            color = secondaryColor
-        }
+//        var color: Color
+//
+//        switch type {
+//        case .primaryFill, .primaryBorder:
+//            color = primaryColor
+//        case .secondaryFill, .secondaryBorder:
+//            color = secondaryColor
+//        }
         
-        return AnyView(color.clipShape(self.rectangle))
+        return AnyView(backgroundColor.clipShape(self.rectangle))
     }
     
     // MARK: - BODY
@@ -55,5 +64,6 @@ struct ButtonModifier: ViewModifier {
             .frame(minWidth: self.minWidth, idealWidth: self.idealWidth, maxWidth: self.maxWidth, minHeight: self.minHeight, idealHeight: self.idealHeight, maxHeight: self.maxHeight, alignment: self.alignment)
             .background(buttonBackground)
             .shadow(radius: defaultShadowRadius, y: defaultShadowY)
+        
     }
 }
