@@ -11,7 +11,7 @@ import SwiftUI
 struct uParker_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ViewManager()
         }
     }
 }

@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */; };
-		80A64A08294D6490001317DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A07294D6490001317DD /* ContentView.swift */; };
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
+		80A64A18294D665B001317DD /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A17294D665B001317DD /* ViewManager.swift */; };
+		80A64A1A294D66C0001317DD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A19294D66C0001317DD /* LoginView.swift */; };
+		80A64A1D294D6859001317DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1C294D6859001317DD /* Constants.swift */; };
+		80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uParker_SwiftUIApp.swift; sourceTree = "<group>"; };
-		80A64A07294D6490001317DD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		80A64A09294D6491001317DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80A64A0C294D6491001317DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		80A64A17294D665B001317DD /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
+		80A64A19294D66C0001317DD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		80A64A1C294D6859001317DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +58,12 @@
 			isa = PBXGroup;
 			children = (
 				80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */,
-				80A64A07294D6490001317DD /* ContentView.swift */,
+				80A64A1C294D6859001317DD /* Constants.swift */,
 				80A64A09294D6491001317DD /* Assets.xcassets */,
 				80A64A0B294D6491001317DD /* Preview Content */,
+				80A64A17294D665B001317DD /* ViewManager.swift */,
+				80A64A1B294D6716001317DD /* Views */,
+				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
 			);
 			path = "uParker-SwiftUI";
 			sourceTree = "<group>";
@@ -65,6 +74,14 @@
 				80A64A0C294D6491001317DD /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		80A64A1B294D6716001317DD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80A64A19294D66C0001317DD /* LoginView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80A64A08294D6490001317DD /* ContentView.swift in Sources */,
+				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
+				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
+				80A64A1A294D66C0001317DD /* LoginView.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
+				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
