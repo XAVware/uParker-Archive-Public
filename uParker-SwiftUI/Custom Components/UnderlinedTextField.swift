@@ -75,7 +75,18 @@ struct UnderlinedTextField: View {
         self.isSecure = isSecure
     }
     
-
+    init(text: Binding<String>, placeholder: String, icon: String, fgColor: Color, showsIcon: Bool) {
+        self._text = text
+        self.placeholder = placeholder
+        self.icon = icon
+        self.fontType = .title3
+        self.fgColor = fgColor
+        self.showsIcon = showsIcon
+        self.isSecure = false
+    }
+    
+    
+    // MARK: - BODY
     var body: some View {
         HStack(spacing: 20) {
             if showsIcon {

@@ -46,15 +46,6 @@ struct ButtonModifier: ViewModifier {
     }
 
     var buttonBackground: some View {
-//        var color: Color
-//
-//        switch type {
-//        case .primaryFill, .primaryBorder:
-//            color = primaryColor
-//        case .secondaryFill, .secondaryBorder:
-//            color = secondaryColor
-//        }
-        
         return AnyView(backgroundColor.clipShape(self.rectangle))
     }
     

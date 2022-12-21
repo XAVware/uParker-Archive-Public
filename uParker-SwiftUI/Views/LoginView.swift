@@ -8,25 +8,46 @@
 import SwiftUI
 
 struct LoginView: View {
+    // MARK: - PROPERTIES
     @State var username: String = ""
     @State var password: String = ""
+    
+    @State var isShowingSignUp: Bool = false
     
     var body: some View {
         ZStack {
             primaryColor
                 .edgesIgnoringSafeArea(.all)
             
+            // MARK: - LOGIN STACK
             VStack(spacing: 40) {
+                //LOGO
                 Image("uParker-Logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 150)
                     .padding()
                 
-                UnderlinedTextField(text: $username, placeholder: "Username", icon: "person.fill")
-                    
-                UnderlinedTextField(text: $password, placeholder: "Password", icon: "lock", isSecure: true)
-                    
+                Spacer()
+                
+                //USERNAME
+                UnderlinedTextField(
+                    text: $username,
+                    placeholder: "Username",
+                    icon: "person.fill"
+                )
+                
+                //PASSWORD
+                UnderlinedTextField(
+                    text: $password,
+                    placeholder: "Password",
+                    icon: "lock",
+                    isSecure: true
+                )
+                
+                Spacer()
+                
+                //LOGIN
                 Button {
                     //
                 } label: {
@@ -39,17 +60,14 @@ struct LoginView: View {
                 .modifier(
                     ButtonModifier(
                         type: .secondaryFill,
-                        minWidth: 150,
-                        idealWidth: 300,
-                        maxWidth: 350,
-                        minHeight: 40,
-                        idealHeight: 50,
-                        maxHeight: 50,
+                        minWidth: 150, idealWidth: 300, maxWidth: 350,
+                        minHeight: 40, idealHeight: 50, maxHeight: 50,
                         alignment: .center)
                 )
-
+                
+                //SIGN UP
                 Button {
-                    //
+                    self.isShowingSignUp.toggle()
                 } label: {
                     Text("Sign Up")
                         .font(.title)
@@ -60,19 +78,26 @@ struct LoginView: View {
                 .modifier(
                     ButtonModifier(
                         type: .secondaryBorder,
-                        minWidth: 150,
-                        idealWidth: 200,
-                        maxWidth: 250,
-                        minHeight: 40,
-                        idealHeight: 50,
-                        maxHeight: 50,
+                        minWidth: 150, idealWidth: 200, maxWidth: 250,
+                        minHeight: 40, idealHeight: 50, maxHeight: 50,
                         alignment: .center)
                 )
                 
-                Spacer()
-                
+                Button {
+                    // Forgot Password
+                } label: {
+                    Text("Forgot Password?")
+                        .font(.subheadline)
+                        .foregroundColor(secondaryColor)
+                        .fontWeight(.medium)
+                        .padding()
+                }
             } //: VStack
             .padding()
+            
+            if isShowingSignUp {
+                SignUpView(isShowingSignUp: $isShowingSignUp)
+            }
         } //: ZStack
         
     }

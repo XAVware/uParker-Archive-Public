@@ -15,6 +15,7 @@
 		80A64A1D294D6859001317DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1C294D6859001317DD /* Constants.swift */; };
 		80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */; };
 		80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A25294D8F77001317DD /* ButtonModifier.swift */; };
+		80A64A28294E4C61001317DD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A27294E4C61001317DD /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		80A64A1C294D6859001317DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		80A64A25294D8F77001317DD /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
+		80A64A27294E4C61001317DD /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				80A64A19294D66C0001317DD /* LoginView.swift */,
+				80A64A27294E4C61001317DD /* SignUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
+				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
 				80A64A1A294D66C0001317DD /* LoginView.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
