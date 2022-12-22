@@ -11,7 +11,7 @@ struct SignUpView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
-    @Binding var isShowingSignUp: Bool
+//    @Binding var isShowingSignUp: Bool
     
     enum SignUpViews { case name, email, phone, password}
     
@@ -159,14 +159,14 @@ struct SignUpView: View {
         case .phone:
             currentView = .password
         case .password:
-            isShowingSignUp.toggle()
+            sessionManager.isShowingSignUp.toggle()
         }
     }
     
     func backTapped() {
         switch (currentView) {
         case .name:
-            isShowingSignUp.toggle()
+            sessionManager.isShowingSignUp.toggle()
         case .email:
             currentView = .name
         case .phone:
@@ -181,8 +181,8 @@ struct SignUpView: View {
 
 // MARK: - PREVIEW
 struct SignUpView_Previews: PreviewProvider {
-    @State static var isShowingSignUp: Bool = true
     static var previews: some View {
-        SignUpView(isShowingSignUp: $isShowingSignUp)
+        SignUpView()
+            .environmentObject(SessionManager())
     }
 }

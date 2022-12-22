@@ -14,7 +14,7 @@ struct LoginView: View {
     @State var username: String = ""
     @State var password: String = ""
     
-    @State var isShowingSignUp: Bool = false
+//    @State var isShowingSignUp: Bool = false
     
     var body: some View {
         ZStack {
@@ -51,7 +51,7 @@ struct LoginView: View {
                 
                 //LOGIN
                 Button {
-                    //
+                    sessionManager.isLoggedIn.toggle()
                 } label: {
                     Text("Login")
                         .font(.title)
@@ -69,7 +69,7 @@ struct LoginView: View {
                 
                 //SIGN UP
                 Button {
-                    self.isShowingSignUp.toggle()
+                    sessionManager.isShowingSignUp.toggle()
                 } label: {
                     Text("Sign Up")
                         .font(.title)
@@ -97,8 +97,8 @@ struct LoginView: View {
             } //: VStack
             .padding()
             
-            if isShowingSignUp {
-                SignUpView(isShowingSignUp: $isShowingSignUp)
+            if sessionManager.isShowingSignUp {
+                SignUpView()
                     .environmentObject(sessionManager)
             }
         } //: ZStack
@@ -109,5 +109,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(SessionManager())
     }
 }
