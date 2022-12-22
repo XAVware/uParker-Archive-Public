@@ -146,18 +146,32 @@ struct SignUpView: View {
             .tint(primaryColor)
         }
     } //: Body
+    
+    
     // MARK: - FUNCTIONS
     func nextTapped() {
-        self.viewCounter += 1
+        switch (currentView) {
+        case .name:
+            currentView = .email
+        case .email:
+            currentView = .phone
+        case .phone:
+            currentView = .password
+        case .password:
+            isShowingSignUp.toggle()
+        }
     }
     
     func backTapped() {
-        if viewCounter == 0 {
-            self.isShowingSignUp.toggle()
-        } else if viewCounter == 3 {
-            self.isShowingSignUp.toggle()
-        } else {
-            viewCounter -= 1
+        switch (currentView) {
+        case .name:
+            isShowingSignUp.toggle()
+        case .email:
+            currentView = .name
+        case .phone:
+            currentView = .email
+        case .password:
+            currentView = .phone
         }
     }
 } //: Struct
