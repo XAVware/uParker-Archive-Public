@@ -11,6 +11,10 @@ struct SignUpView: View {
     // MARK: - PROPERTIES
     @Binding var isShowingSignUp: Bool
     
+    enum SignUpViews { case name, email, phone, password}
+    
+    @State var currentView: SignUpViews = .name
+    
     @State var firstName: String        = ""
     @State var lastName: String         = ""
     @State var email: String            = ""
@@ -24,9 +28,9 @@ struct SignUpView: View {
     var body: some View {
         NavigationView {
             VStack {
-                switch (viewCounter) {
+                switch (currentView) {
                 // MARK: - NAME
-                case 0:
+                case .name:
                     VStack(spacing: 60) {
                         Text("What is your name?")
                             .foregroundColor(primaryColor)
@@ -43,7 +47,7 @@ struct SignUpView: View {
                     .padding()
                     
                 // MARK: - EMAIL
-                case 1:
+                case .email:
                     VStack(spacing: 60) {
                         Text("What is your email?")
                             .foregroundColor(primaryColor)
@@ -72,7 +76,7 @@ struct SignUpView: View {
                     .padding()
                     
                 // MARK: - PHONE NUMBER
-                case 2:
+                case .phone:
                     VStack(spacing: 60) {
                         Text("What is your phone number?")
                             .multilineTextAlignment(.center)
@@ -88,7 +92,7 @@ struct SignUpView: View {
                     .padding()
                     
                 // MARK: - PASSWORD
-                case 3:
+                case .password:
                     VStack(spacing: 60) {
                         Text("Enter a Password")
                             .foregroundColor(primaryColor)
@@ -104,13 +108,10 @@ struct SignUpView: View {
                     } //: VStack
                     .padding()
                     
-                default:
-                    UnderlinedTextField(text: $firstName, placeholder: "Error", icon: "person.fill", fgColor: primaryColor, showsIcon: false)
-                    
-                }
+                } //: Switch
                                 
                 Button {
-                    self.viewCounter += 1
+                    nextTapped()
                 } label: {
                     Text("Next")
                         .font(.title)
@@ -132,7 +133,7 @@ struct SignUpView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        backTapped()
+                        self.backTapped()
                     } label: {
                         Image(systemName: "chevron.left")
                             .resizable()
@@ -147,7 +148,7 @@ struct SignUpView: View {
     } //: Body
     // MARK: - FUNCTIONS
     func nextTapped() {
-        
+        self.viewCounter += 1
     }
     
     func backTapped() {
