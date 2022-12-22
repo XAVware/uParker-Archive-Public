@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct ViewManager: View {
+    @EnvironmentObject var sessionManager: SessionManager
+    
     @State var isLoggedIn: Bool = false
+    
     var body: some View {
         ZStack {
             //Map View
             
             if isLoggedIn == false {
                 LoginView()
+                    .environmentObject(sessionManager)
             }
         }
     }

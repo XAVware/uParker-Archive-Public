@@ -16,6 +16,8 @@
 		80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */; };
 		80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A25294D8F77001317DD /* ButtonModifier.swift */; };
 		80A64A28294E4C61001317DD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A27294E4C61001317DD /* SignUpView.swift */; };
+		80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2A2953FFCB001317DD /* SessionManager.swift */; };
+		80A64A2E2953FFF0001317DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D2953FFF0001317DD /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		80A64A25294D8F77001317DD /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 		80A64A27294E4C61001317DD /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		80A64A292953FB46001317DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		80A64A2A2953FFCB001317DD /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		80A64A2D2953FFF0001317DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +66,8 @@
 		80A64A04294D6490001317DD /* uParker-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				80A64A2C2953FFE7001317DD /* Model */,
+				80A64A292953FB46001317DD /* Info.plist */,
 				80A64A23294D8A49001317DD /* App */,
 				80A64A22294D8A2C001317DD /* Custom Components */,
 				80A64A1B294D6716001317DD /* Views */,
@@ -102,6 +109,7 @@
 			children = (
 				80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */,
 				80A64A17294D665B001317DD /* ViewManager.swift */,
+				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -112,6 +120,14 @@
 				80A64A25294D8F77001317DD /* ButtonModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		80A64A2C2953FFE7001317DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				80A64A2D2953FFF0001317DD /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,7 +205,9 @@
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
 				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
 				80A64A1A294D66C0001317DD /* LoginView.swift in Sources */,
+				80A64A2E2953FFF0001317DD /* User.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
+				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,9 +340,9 @@
 				DEVELOPMENT_TEAM = FV4ACN6AD6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "uParker-SwiftUI/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -351,9 +369,9 @@
 				DEVELOPMENT_TEAM = FV4ACN6AD6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "uParker-SwiftUI/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

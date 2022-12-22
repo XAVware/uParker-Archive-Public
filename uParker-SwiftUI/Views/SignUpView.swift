@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SignUpView: View {
     // MARK: - PROPERTIES
+    @EnvironmentObject var sessionManager: SessionManager
+    
     @Binding var isShowingSignUp: Bool
     
     enum SignUpViews { case name, email, phone, password}
@@ -22,8 +24,6 @@ struct SignUpView: View {
     @State var phoneNumber: String      = ""
     @State var password: String         = ""
     @State var confirmPassword: String  = ""
-    @State var viewCounter: Int         = 2
-    
     
     var body: some View {
         NavigationView {
@@ -154,6 +154,7 @@ struct SignUpView: View {
         case .name:
             currentView = .email
         case .email:
+            //If opts in to newsletter, add email to email list. Not included in User table
             currentView = .phone
         case .phone:
             currentView = .password
@@ -174,6 +175,7 @@ struct SignUpView: View {
             currentView = .phone
         }
     }
+    
 } //: Struct
 
 

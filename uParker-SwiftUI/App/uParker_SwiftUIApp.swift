@@ -12,6 +12,7 @@ struct uParker_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             ViewManager()
+                .environmentObject(SessionManager())
         }
     }
 }

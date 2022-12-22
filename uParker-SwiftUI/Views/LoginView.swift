@@ -9,6 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     // MARK: - PROPERTIES
+    @EnvironmentObject var sessionManager: SessionManager
+    
     @State var username: String = ""
     @State var password: String = ""
     
@@ -97,6 +99,7 @@ struct LoginView: View {
             
             if isShowingSignUp {
                 SignUpView(isShowingSignUp: $isShowingSignUp)
+                    .environmentObject(sessionManager)
             }
         } //: ZStack
         
