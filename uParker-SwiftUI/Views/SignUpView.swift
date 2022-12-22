@@ -8,49 +8,50 @@
 import SwiftUI
 
 struct SignUpView: View {
+    // MARK: - PROPERTIES
     @Binding var isShowingSignUp: Bool
     
     @State var firstName: String        = ""
+    @State var lastName: String         = ""
     @State var email: String            = ""
     @State var optInNewsletter: Bool    = false
     @State var phoneNumber: String      = ""
     @State var password: String         = ""
     @State var confirmPassword: String  = ""
-    @State var viewCounter: Int         = 1
-    
-    var headerText: String {
-        switch (viewCounter) {
-        case 0:
-            return "What is your name?"
-        case 1:
-            return "What is your email?"
-        case 2:
-            return "What is your phone number?"
-        case 3:
-            return "Enter a password."
-        default:
-            return "Error"
-        }
-    }
+    @State var viewCounter: Int         = 2
     
     
     var body: some View {
         NavigationView {
-            
-            VStack(spacing: 70) {
-                Text(headerText)
-                    .foregroundColor(primaryColor)
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                Spacer()
-                
-                VStack {
-                    switch (viewCounter) {
-                    case 0:
-                        UnderlinedTextField(text: $firstName, placeholder: "First Name", icon: "person.fill", fgColor: primaryColor, showsIcon: false)
-                    case 1:
-                        UnderlinedTextField(text: $email, placeholder: "Email Address", icon: "person.fill", fgColor: primaryColor, showsIcon: false)
+            VStack {
+                switch (viewCounter) {
+                // MARK: - NAME
+                case 0:
+                    VStack(spacing: 60) {
+                        Text("What is your name?")
+                            .foregroundColor(primaryColor)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(.bottom, 30)
+                        
+                        UnderlinedTextField(text: $firstName, placeholder: "First Name", fgColor: primaryColor)
+                        
+                        UnderlinedTextField(text: $lastName, placeholder: "Last Name", fgColor: primaryColor)
+                        
+                        Spacer()
+                    } //: VStack
+                    .padding()
+                    
+                // MARK: - EMAIL
+                case 1:
+                    VStack(spacing: 60) {
+                        Text("What is your email?")
+                            .foregroundColor(primaryColor)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(.bottom, 30)
+                        
+                        UnderlinedTextField(text: $email, placeholder: "Email Address", fgColor: primaryColor)
                         
                         Button {
                             self.optInNewsletter.toggle()
@@ -64,22 +65,50 @@ struct SignUpView: View {
                             Text("I want to receive newsletters")
                                 .font(.subheadline)
                                 .foregroundColor(primaryColor)
-                        }
-                        .padding()
+                        } //: Opt In Button
                         
-                    case 2:
-                        UnderlinedTextField(text: $phoneNumber, placeholder: "xxx-xxx-xxxx", icon: "person.fill", fgColor: primaryColor, showsIcon: false)
-
-                    default:
-                        UnderlinedTextField(text: $firstName, placeholder: "Error", icon: "person.fill", fgColor: primaryColor, showsIcon: false)
-
-                    }
+                        Spacer()
+                    } //: VStack
+                    .padding()
+                    
+                // MARK: - PHONE NUMBER
+                case 2:
+                    VStack(spacing: 60) {
+                        Text("What is your phone number?")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(primaryColor)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(.bottom, 30)
+                        
+                        UnderlinedTextField(text: $phoneNumber, placeholder: "xxx-xxx-xxxx", fgColor: primaryColor)
+                        
+                        Spacer()
+                    } //: VStack
+                    .padding()
+                    
+                // MARK: - PASSWORD
+                case 3:
+                    VStack(spacing: 60) {
+                        Text("Enter a Password")
+                            .foregroundColor(primaryColor)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding(.bottom, 30)
+                        
+                        UnderlinedTextField(text: $password, placeholder: "Password", fgColor: primaryColor)
+                        
+                        UnderlinedTextField(text: $confirmPassword, placeholder: "Confirm Password", fgColor: primaryColor)
+                        
+                        Spacer()
+                    } //: VStack
+                    .padding()
+                    
+                default:
+                    UnderlinedTextField(text: $firstName, placeholder: "Error", icon: "person.fill", fgColor: primaryColor, showsIcon: false)
+                    
                 }
-                .padding()
-                .frame(maxHeight: 500)
-                
-                Spacer()
-                
+                                
                 Button {
                     self.viewCounter += 1
                 } label: {
@@ -87,7 +116,6 @@ struct SignUpView: View {
                         .font(.title)
                         .foregroundColor(secondaryColor)
                         .fontWeight(.light)
-                        .padding()
                 }
                 .modifier(ButtonModifier(
                     type: .primaryFill,
@@ -95,25 +123,16 @@ struct SignUpView: View {
                     minHeight: 40, idealHeight: 50, maxHeight: 50,
                     alignment: .center)
                 )
-
-                Spacer()
-                
+                .padding()
+                                
             } //: VStack
-            .frame(maxHeight: 400)
             .padding()
             .navigationTitle(Text("Sign Up"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        if viewCounter == 0 {
-                            self.isShowingSignUp.toggle()
-                        } else if viewCounter == 3 {
-                            self.isShowingSignUp.toggle()
-                        } else {
-                            viewCounter -= 1
-                        }
-                        
+                        backTapped()
                     } label: {
                         Image(systemName: "chevron.left")
                             .resizable()
@@ -121,13 +140,29 @@ struct SignUpView: View {
                         
                         Text("Back")
                     }
-                }
-            }
+                } //: Back Button
+            } //: Toolbar
             .tint(primaryColor)
         }
+    } //: Body
+    // MARK: - FUNCTIONS
+    func nextTapped() {
+        
     }
-}
+    
+    func backTapped() {
+        if viewCounter == 0 {
+            self.isShowingSignUp.toggle()
+        } else if viewCounter == 3 {
+            self.isShowingSignUp.toggle()
+        } else {
+            viewCounter -= 1
+        }
+    }
+} //: Struct
 
+
+// MARK: - PREVIEW
 struct SignUpView_Previews: PreviewProvider {
     @State static var isShowingSignUp: Bool = true
     static var previews: some View {

@@ -75,6 +75,7 @@ struct UnderlinedTextField: View {
         self.isSecure = isSecure
     }
     
+    //Include foregroundColor & showsIcon
     init(text: Binding<String>, placeholder: String, icon: String, fgColor: Color, showsIcon: Bool) {
         self._text = text
         self.placeholder = placeholder
@@ -85,6 +86,27 @@ struct UnderlinedTextField: View {
         self.isSecure = false
     }
     
+    //Includes foregroundColor & showsIcon without icon name
+    init(text: Binding<String>, placeholder: String, fgColor: Color) {
+        self._text = text
+        self.placeholder = placeholder
+        self.icon = "person.fill"
+        self.fontType = .title3
+        self.fgColor = fgColor
+        self.showsIcon = false
+        self.isSecure = false
+    }
+    
+    //Includes foregroundColor, showsIcon & secureField
+    init(text: Binding<String>, placeholder: String, fgColor: Color, isSecure: Bool) {
+        self._text = text
+        self.placeholder = placeholder
+        self.icon = "person.fill"
+        self.fontType = .title3
+        self.fgColor = fgColor
+        self.showsIcon = false
+        self.isSecure = isSecure
+    }
     
     // MARK: - BODY
     var body: some View {
