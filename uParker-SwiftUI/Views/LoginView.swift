@@ -13,9 +13,7 @@ struct LoginView: View {
     
     @State var username: String = ""
     @State var password: String = ""
-    
-//    @State var isShowingSignUp: Bool = false
-    
+        
     var body: some View {
         ZStack {
             primaryColor
@@ -51,7 +49,7 @@ struct LoginView: View {
                 
                 //LOGIN
                 Button {
-                    sessionManager.isLoggedIn.toggle()
+                    sessionManager.isLoggedIn = true
                 } label: {
                     Text("Login")
                         .font(.title)

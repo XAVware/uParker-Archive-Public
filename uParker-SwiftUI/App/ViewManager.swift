@@ -9,22 +9,26 @@ import SwiftUI
 
 struct ViewManager: View {
     @EnvironmentObject var sessionManager: SessionManager
-    
-//    @State var isLoggedIn: Bool = false
-    
     var body: some View {
-        ZStack {
-            
-            if sessionManager.isLoggedIn == false {
-                LoginView()
-                    .environmentObject(sessionManager)
+        if sessionManager.isLoggedIn == false {
+            LoginView()
+                .environmentObject(sessionManager)
+        } else {
+            VStack {
+                Button {
+                    sessionManager.isLoggedIn = false
+                } label: {
+                    Text("Logout")
+                }
+
             }
         }
     }
 }
 
-//struct ViewManager_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ViewManager()
-//    }
-//}
+struct ViewManager_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewManager()
+            .environmentObject(SessionManager())
+    }
+}

@@ -10,9 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
-    
-//    @Binding var isShowingSignUp: Bool
-    
+        
     enum SignUpViews { case name, email, phone, password}
     
     @State var currentView: SignUpViews = .name
@@ -25,6 +23,37 @@ struct SignUpView: View {
     @State var password: String         = ""
     @State var confirmPassword: String  = ""
     
+    
+    // MARK: - FUNCTIONS
+    func nextTapped() {
+        switch (currentView) {
+        case .name:
+            currentView = .email
+        case .email:
+            //If opts in to newsletter, add email to email list. Not included in User table
+            currentView = .phone
+        case .phone:
+            currentView = .password
+        case .password:
+            sessionManager.isShowingSignUp = false
+            sessionManager.isLoggedIn = true
+        }
+    }
+    
+    func backTapped() {
+        switch (currentView) {
+        case .name:
+            sessionManager.isShowingSignUp = false
+        case .email:
+            currentView = .name
+        case .phone:
+            currentView = .email
+        case .password:
+            currentView = .phone
+        }
+    }
+    
+    // MARK: - BODY
     var body: some View {
         NavigationView {
             VStack {
@@ -146,35 +175,6 @@ struct SignUpView: View {
             .tint(primaryColor)
         }
     } //: Body
-    
-    
-    // MARK: - FUNCTIONS
-    func nextTapped() {
-        switch (currentView) {
-        case .name:
-            currentView = .email
-        case .email:
-            //If opts in to newsletter, add email to email list. Not included in User table
-            currentView = .phone
-        case .phone:
-            currentView = .password
-        case .password:
-            sessionManager.isShowingSignUp.toggle()
-        }
-    }
-    
-    func backTapped() {
-        switch (currentView) {
-        case .name:
-            sessionManager.isShowingSignUp.toggle()
-        case .email:
-            currentView = .name
-        case .phone:
-            currentView = .email
-        case .password:
-            currentView = .phone
-        }
-    }
     
 } //: Struct
 
