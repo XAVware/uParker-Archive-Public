@@ -7,5 +7,13 @@ target 'uParker-UIKit' do
 
   # Pods for uParker-UIKit
 	pod 'IQKeyboardManagerSwift'
+	pod 'SideMenu'
+  	# pod 'Mapbox-iOS-SDK', '~> 6.4'
+  	# pod 'MapboxCoreNavigation'
+  	# pod 'MapboxNavigation', '~> 2.5'
+  	# pod 'MapboxGeocoder.swift', '~> 0.14'
+  	# pod 'FloatingPanel'
+  	# pod 'FSCalendar'
+  	# pod 'RangeSeekSlider'
 
 end
