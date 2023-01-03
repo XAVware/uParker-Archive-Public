@@ -1,0 +1,38 @@
+
+
+- Triangular tip for map annotation. If this is used the location of the annotation will need to be adjusted to compensate for where the tip points.
+
+        let pointerPath = CGMutablePath()
+        pointerPath.move(to: CGPoint(x: (backgroundFrame.maxX / 2) - 5, y: backgroundFrame.maxY))
+        pointerPath.addLine(to: CGPoint(x: backgroundFrame.maxX / 2, y: backgroundFrame.maxY + 5))
+        pointerPath.addLine(to: CGPoint(x: (backgroundFrame.maxX / 2) + 5, y: backgroundFrame.maxY))
+        
+        let pointer = CAShapeLayer()
+        pointer.path = pointerPath
+        pointer.fillColor = K.BrandColors.uParkerBlue.cgColor
+        backgroundView.layer.insertSublayer(pointer, at: 0)
+
+
+
+ - Bounce animation
+     func moveUp() {
+        guard self.isSelected else {
+            return
+        }
+        UIView.animate(withDuration: 0.8) {
+            self.transform = CGAffineTransform(translationX: 0, y: -0.5)
+        } completion: { (finished) in
+            self.moveDown()
+        }
+    }
+    
+    func moveDown() {
+        guard self.isSelected else {
+            return
+        }
+        UIView.animate(withDuration: 1) {
+            self.transform = CGAffineTransform(translationX: 0, y: 0.5)
+        } completion: { (finished) in
+            self.moveUp()
+        }
+    }

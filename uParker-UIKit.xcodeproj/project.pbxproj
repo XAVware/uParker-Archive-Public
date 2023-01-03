@@ -22,6 +22,10 @@
 		80B934102963F0F20050EA0C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934082963F0F20050EA0C /* User.swift */; };
 		80B934112963F0F20050EA0C /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934092963F0F20050EA0C /* Vehicle.swift */; };
 		80B934122963F0F20050EA0C /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9340A2963F0F20050EA0C /* Reservation.swift */; };
+		80B934182963F2100050EA0C /* Dev. Documents in Resources */ = {isa = PBXBuildFile; fileRef = 80B934142963F2100050EA0C /* Dev. Documents */; };
+		80B934192963F2100050EA0C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934152963F2100050EA0C /* Constants.swift */; };
+		80B9341A2963F2100050EA0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934162963F2100050EA0C /* Extensions.swift */; };
+		80B9341B2963F2100050EA0C /* Unused Code in Resources */ = {isa = PBXBuildFile; fileRef = 80B934172963F2100050EA0C /* Unused Code */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		80B934082963F0F20050EA0C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		80B934092963F0F20050EA0C /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		80B9340A2963F0F20050EA0C /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		80B934142963F2100050EA0C /* Dev. Documents */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Dev. Documents"; sourceTree = "<group>"; };
+		80B934152963F2100050EA0C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		80B934162963F2100050EA0C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		80B934172963F2100050EA0C /* Unused Code */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Unused Code"; sourceTree = "<group>"; };
 		A32419873A8EA3131CC33BEB /* Pods-uParker-UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.release.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.release.xcconfig"; sourceTree = "<group>"; };
 		BEDB4BCD8673EA786F95D02F /* Pods-uParker-UIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.debug.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				80B933ED2963EDE30050EA0C /* AppDelegate.swift */,
+				80B9341D2963F2240050EA0C /* App */,
+				80B9341C2963F2180050EA0C /* Text */,
 				80B933EF2963EDE30050EA0C /* SceneDelegate.swift */,
 				80B933F12963EDE30050EA0C /* ViewController.swift */,
 				80B934132963F0F70050EA0C /* Model */,
@@ -113,6 +123,24 @@
 				80B934072963F0F20050EA0C /* VehicleList.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		80B9341C2963F2180050EA0C /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				80B934142963F2100050EA0C /* Dev. Documents */,
+				80B934172963F2100050EA0C /* Unused Code */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		80B9341D2963F2240050EA0C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				80B934152963F2100050EA0C /* Constants.swift */,
+				80B934162963F2100050EA0C /* Extensions.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		B47D50B6DF9D1725F0760E4C /* Frameworks */ = {
@@ -184,7 +212,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				80B933FA2963EDE40050EA0C /* LaunchScreen.storyboard in Resources */,
+				80B934182963F2100050EA0C /* Dev. Documents in Resources */,
 				80B933F72963EDE40050EA0C /* Assets.xcassets in Resources */,
+				80B9341B2963F2100050EA0C /* Unused Code in Resources */,
 				80B933F52963EDE30050EA0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,9 +276,11 @@
 				80B933EE2963EDE30050EA0C /* AppDelegate.swift in Sources */,
 				80B934102963F0F20050EA0C /* User.swift in Sources */,
 				80B933F02963EDE30050EA0C /* SceneDelegate.swift in Sources */,
+				80B9341A2963F2100050EA0C /* Extensions.swift in Sources */,
 				80B9340E2963F0F20050EA0C /* Spot.swift in Sources */,
 				80B934112963F0F20050EA0C /* Vehicle.swift in Sources */,
 				80B9340C2963F0F20050EA0C /* PaymentMethod.swift in Sources */,
+				80B934192963F2100050EA0C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
