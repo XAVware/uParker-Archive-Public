@@ -37,6 +37,9 @@
 		80B934352963FFEA0050EA0C /* MenuButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934312963FFEA0050EA0C /* MenuButtonTableViewCell.swift */; };
 		80B934362963FFEA0050EA0C /* MenuProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934322963FFEA0050EA0C /* MenuProfileTableViewCell.swift */; };
 		80B934372963FFEA0050EA0C /* MenuProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B934332963FFEA0050EA0C /* MenuProfileTableViewCell.xib */; };
+		80B9343D296400BA0050EA0C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9343A296400BA0050EA0C /* ColorPickerView.swift */; };
+		80B9343E296400BA0050EA0C /* ExpirationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9343B296400BA0050EA0C /* ExpirationPickerView.swift */; };
+		80B9343F296400BA0050EA0C /* VehiclePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9343C296400BA0050EA0C /* VehiclePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +74,9 @@
 		80B934312963FFEA0050EA0C /* MenuButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButtonTableViewCell.swift; sourceTree = "<group>"; };
 		80B934322963FFEA0050EA0C /* MenuProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProfileTableViewCell.swift; sourceTree = "<group>"; };
 		80B934332963FFEA0050EA0C /* MenuProfileTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuProfileTableViewCell.xib; sourceTree = "<group>"; };
+		80B9343A296400BA0050EA0C /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		80B9343B296400BA0050EA0C /* ExpirationPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpirationPickerView.swift; sourceTree = "<group>"; };
+		80B9343C296400BA0050EA0C /* VehiclePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclePickerView.swift; sourceTree = "<group>"; };
 		A236536517C009ADE3188E03 /* Pods-uParker-UIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.debug.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5C23B4E6A6C99B35ED1AD7 /* Pods-uParker-UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.release.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,10 +134,11 @@
 			children = (
 				80B934392963FFFF0050EA0C /* Custom Components */,
 				80B9341D2963F2240050EA0C /* App */,
-				80B9341C2963F2180050EA0C /* Text */,
+				80B9341C2963F2180050EA0C /* Documentation */,
 				80B933F12963EDE30050EA0C /* ViewController.swift */,
 				80B934132963F0F70050EA0C /* Model */,
 				80B933F32963EDE30050EA0C /* Main.storyboard */,
+				80B93440296400BF0050EA0C /* Picker Views */,
 				80B933F62963EDE40050EA0C /* Assets.xcassets */,
 				80B9341E2963F2B90050EA0C /* LaunchScreen.storyboard */,
 				80B933FB2963EDE40050EA0C /* Info.plist */,
@@ -156,13 +163,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		80B9341C2963F2180050EA0C /* Text */ = {
+		80B9341C2963F2180050EA0C /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
 				80B934142963F2100050EA0C /* Dev. Documents */,
 				80B934172963F2100050EA0C /* Unused Code */,
 			);
-			path = Text;
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 		80B9341D2963F2240050EA0C /* App */ = {
@@ -205,6 +212,16 @@
 				80B9342B2963FFD10050EA0C /* UnderlinedTextField.swift */,
 			);
 			path = "Custom Components";
+			sourceTree = "<group>";
+		};
+		80B93440296400BF0050EA0C /* Picker Views */ = {
+			isa = PBXGroup;
+			children = (
+				80B9343A296400BA0050EA0C /* ColorPickerView.swift */,
+				80B9343B296400BA0050EA0C /* ExpirationPickerView.swift */,
+				80B9343C296400BA0050EA0C /* VehiclePickerView.swift */,
+			);
+			path = "Picker Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +352,7 @@
 				80B9340F2963F0F20050EA0C /* VehicleList.swift in Sources */,
 				80B933F22963EDE30050EA0C /* ViewController.swift in Sources */,
 				80B934362963FFEA0050EA0C /* MenuProfileTableViewCell.swift in Sources */,
+				80B9343E296400BA0050EA0C /* ExpirationPickerView.swift in Sources */,
 				80B9342F2963FFD20050EA0C /* CircularProgressView.swift in Sources */,
 				80B9340D2963F0F20050EA0C /* Environment.swift in Sources */,
 				80B934122963F0F20050EA0C /* Reservation.swift in Sources */,
@@ -342,6 +360,7 @@
 				80B9340B2963F0F20050EA0C /* Review.swift in Sources */,
 				80B933EE2963EDE30050EA0C /* AppDelegate.swift in Sources */,
 				80B934352963FFEA0050EA0C /* MenuButtonTableViewCell.swift in Sources */,
+				80B9343F296400BA0050EA0C /* VehiclePickerView.swift in Sources */,
 				80B934102963F0F20050EA0C /* User.swift in Sources */,
 				80B933F02963EDE30050EA0C /* SceneDelegate.swift in Sources */,
 				80B9341A2963F2100050EA0C /* Extensions.swift in Sources */,
@@ -350,6 +369,7 @@
 				80B934112963F0F20050EA0C /* Vehicle.swift in Sources */,
 				80B9342E2963FFD20050EA0C /* UnderlinedTextField.swift in Sources */,
 				80B9340C2963F0F20050EA0C /* PaymentMethod.swift in Sources */,
+				80B9343D296400BA0050EA0C /* ColorPickerView.swift in Sources */,
 				80B9342D2963FFD20050EA0C /* RoundButton.swift in Sources */,
 				80B934272963FF5D0050EA0C /* FirstVC.swift in Sources */,
 				80B934192963F2100050EA0C /* Constants.swift in Sources */,
