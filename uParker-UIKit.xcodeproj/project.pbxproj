@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		492115918E759CC3FA5601AF /* Pods_uParker_UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B221D2A3467481B3FCE68E6 /* Pods_uParker_UIKit.framework */; };
+		8045FBF42964109D00D7276D /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 8045FBF32964109D00D7276D /* MapboxMaps */; };
 		80B933EE2963EDE30050EA0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933ED2963EDE30050EA0C /* AppDelegate.swift */; };
 		80B933F02963EDE30050EA0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933EF2963EDE30050EA0C /* SceneDelegate.swift */; };
 		80B933F22963EDE30050EA0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933F12963EDE30050EA0C /* ViewController.swift */; };
@@ -25,7 +26,6 @@
 		80B9341A2963F2100050EA0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934162963F2100050EA0C /* Extensions.swift */; };
 		80B9341B2963F2100050EA0C /* Unused Code in Resources */ = {isa = PBXBuildFile; fileRef = 80B934172963F2100050EA0C /* Unused Code */; };
 		80B9341F2963F2B90050EA0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B9341E2963F2B90050EA0C /* LaunchScreen.storyboard */; };
-		80B934222963FCD40050EA0C /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 80B934212963FCD40050EA0C /* MapboxMaps */; };
 		80B934262963FF5D0050EA0C /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934232963FF5D0050EA0C /* CreateAccountVC.swift */; };
 		80B934272963FF5D0050EA0C /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934242963FF5D0050EA0C /* FirstVC.swift */; };
 		80B934282963FF5D0050EA0C /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934252963FF5D0050EA0C /* LoginVC.swift */; };
@@ -158,7 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80B934222963FCD40050EA0C /* MapboxMaps in Frameworks */,
+				8045FBF42964109D00D7276D /* MapboxMaps in Frameworks */,
 				492115918E759CC3FA5601AF /* Pods_uParker_UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,7 +399,7 @@
 			);
 			name = "uParker-UIKit";
 			packageProductDependencies = (
-				80B934212963FCD40050EA0C /* MapboxMaps */,
+				8045FBF32964109D00D7276D /* MapboxMaps */,
 			);
 			productName = "uParker-UIKit";
 			productReference = 80B933EA2963EDE30050EA0C /* uParker-UIKit.app */;
@@ -430,7 +430,7 @@
 			);
 			mainGroup = 80B933E12963EDE30050EA0C;
 			packageReferences = (
-				80B934202963FCD40050EA0C /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+				8045FBF22964109D00D7276D /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 			);
 			productRefGroup = 80B933EB2963EDE30050EA0C /* Products */;
 			projectDirPath = "";
@@ -573,6 +573,7 @@
 /* Begin XCBuildConfiguration section */
 		80B933FC2963EDE40050EA0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A236536517C009ADE3188E03 /* Pods-uParker-UIKit.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -633,6 +634,7 @@
 		};
 		80B933FD2963EDE40050EA0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA5C23B4E6A6C99B35ED1AD7 /* Pods-uParker-UIKit.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -696,6 +698,9 @@
 				DEVELOPMENT_TEAM = FV4ACN6AD6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "uParker-UIKit/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to calculate turn-by-turn directions, show your location on the map, and help improve the map.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -726,6 +731,9 @@
 				DEVELOPMENT_TEAM = FV4ACN6AD6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "uParker-UIKit/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your precise location is used to calculate turn-by-turn directions, show your location on the map, and help improve the map.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -769,20 +777,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		80B934202963FCD40050EA0C /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+		8045FBF22964109D00D7276D /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
 			requirement = {
-				kind = exactVersion;
-				version = 10.10.1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.10.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		80B934212963FCD40050EA0C /* MapboxMaps */ = {
+		8045FBF32964109D00D7276D /* MapboxMaps */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 80B934202963FCD40050EA0C /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			package = 8045FBF22964109D00D7276D /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
 			productName = MapboxMaps;
 		};
 /* End XCSwiftPackageProductDependency section */

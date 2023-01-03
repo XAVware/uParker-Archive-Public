@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import CoreLocation
 import MapboxMaps
 import SideMenu
@@ -46,14 +47,9 @@ class MapVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let myResourceOptions = ResourceOptions(accessToken: "your_public_access_token")
-        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions)
-        mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-         
-        self.view.addSubview(mapView)
+        
 //        mapView.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
         initializeMap()
         initializeSearchBar()
         initializeSpotCollection()
@@ -190,14 +186,20 @@ class MapVC: UIViewController {
     
     
     func initializeMap() {
-        let myResourceOptions = ResourceOptions(accessToken: "your_public_access_token")
-        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions)
-        mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-         
-        self.view.addSubview(mapView)
+        let myResourceOptions = ResourceOptions(accessToken: "pk.eyJ1IjoicnlzbWV0IiwiYSI6ImNrZXZ5OHU4bDBoMG8ycmw5YWdjcG11bnkifQ.uREplVHezS8CYP4djva__Q")
+        let cameraOptions = CameraOptions(center: CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600), zoom: 12, bearing: -17.6, pitch: 0)
         
-        /*
+
+        // Pass camera options to map init options
+        let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions)
+                
+        mapView = MapView(frame: view.bounds, mapInitOptions: options)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Pass options when initializing the map
+        self.view.addSubview(mapView)
+        self.view.sendSubviewToBack(mapView)
+        
         spotList[0].coordinate = CLLocationCoordinate2D(latitude: 40.800370, longitude: -77.869320)
         spotList[1].coordinate = CLLocationCoordinate2D(latitude: 40.803870, longitude: -77.869640)
         spotList[2].coordinate = CLLocationCoordinate2D(latitude: 40.800430, longitude: -77.846370)
@@ -217,19 +219,33 @@ class MapVC: UIViewController {
 
                     // Add the annotation to the manager in order to render it on the map.
                     pointAnnotationManager.annotations = [point]
+                    
+                    
                 }
             }
         }
         
-        mapView.frame = view.bounds
+//        mapView.frame = view.bounds
 //        mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v11")
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 //        mapView.setCenter(stateCollegeCoor, animated: false)
 //        mapView.setZoomLevel(12, animated: false)
-        view.addSubview(mapView)
-        view.sendSubviewToBack(mapView)
+//        view.addSubview(mapView)
+//        view.sendSubviewToBack(mapView)
          
-         */
+    }
+    
+    private func addViewAnnotation(at coordinate: CLLocationCoordinate2D) {
+        let options = ViewAnnotationOptions(
+            geometry: Point(coordinate),
+            width: 100,
+            height: 40,
+            allowOverlap: false,
+            anchor: .center
+        )
+        
+//        createSampleView(withText: "Hello world!")
+//        try? mapView.viewAnnotations.add(sampleView, options: options)
     }
    
 }
