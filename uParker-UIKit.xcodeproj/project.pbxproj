@@ -13,7 +13,6 @@
 		80B933F22963EDE30050EA0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933F12963EDE30050EA0C /* ViewController.swift */; };
 		80B933F52963EDE30050EA0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B933F32963EDE30050EA0C /* Main.storyboard */; };
 		80B933F72963EDE40050EA0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80B933F62963EDE40050EA0C /* Assets.xcassets */; };
-		80B933FA2963EDE40050EA0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B933F82963EDE40050EA0C /* LaunchScreen.storyboard */; };
 		80B9340B2963F0F20050EA0C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934032963F0F20050EA0C /* Review.swift */; };
 		80B9340C2963F0F20050EA0C /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934042963F0F20050EA0C /* PaymentMethod.swift */; };
 		80B9340D2963F0F20050EA0C /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934052963F0F20050EA0C /* Environment.swift */; };
@@ -26,6 +25,7 @@
 		80B934192963F2100050EA0C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934152963F2100050EA0C /* Constants.swift */; };
 		80B9341A2963F2100050EA0C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934162963F2100050EA0C /* Extensions.swift */; };
 		80B9341B2963F2100050EA0C /* Unused Code in Resources */ = {isa = PBXBuildFile; fileRef = 80B934172963F2100050EA0C /* Unused Code */; };
+		80B9341F2963F2B90050EA0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B9341E2963F2B90050EA0C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,6 @@
 		80B933F12963EDE30050EA0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		80B933F42963EDE30050EA0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80B933F62963EDE40050EA0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		80B933F92963EDE40050EA0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80B933FB2963EDE40050EA0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80B934032963F0F20050EA0C /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		80B934042963F0F20050EA0C /* PaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
@@ -50,6 +49,7 @@
 		80B934152963F2100050EA0C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80B934162963F2100050EA0C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		80B934172963F2100050EA0C /* Unused Code */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Unused Code"; sourceTree = "<group>"; };
+		80B9341E2963F2B90050EA0C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A32419873A8EA3131CC33BEB /* Pods-uParker-UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.release.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.release.xcconfig"; sourceTree = "<group>"; };
 		BEDB4BCD8673EA786F95D02F /* Pods-uParker-UIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.debug.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,7 +104,7 @@
 				80B934132963F0F70050EA0C /* Model */,
 				80B933F32963EDE30050EA0C /* Main.storyboard */,
 				80B933F62963EDE40050EA0C /* Assets.xcassets */,
-				80B933F82963EDE40050EA0C /* LaunchScreen.storyboard */,
+				80B9341E2963F2B90050EA0C /* LaunchScreen.storyboard */,
 				80B933FB2963EDE40050EA0C /* Info.plist */,
 			);
 			path = "uParker-UIKit";
@@ -211,9 +211,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80B933FA2963EDE40050EA0C /* LaunchScreen.storyboard in Resources */,
 				80B934182963F2100050EA0C /* Dev. Documents in Resources */,
 				80B933F72963EDE40050EA0C /* Assets.xcassets in Resources */,
+				80B9341F2963F2B90050EA0C /* LaunchScreen.storyboard in Resources */,
 				80B9341B2963F2100050EA0C /* Unused Code in Resources */,
 				80B933F52963EDE30050EA0C /* Main.storyboard in Resources */,
 			);
@@ -293,14 +293,6 @@
 				80B933F42963EDE30050EA0C /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		80B933F82963EDE40050EA0C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80B933F92963EDE40050EA0C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
