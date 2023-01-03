@@ -7,7 +7,7 @@
 
 import UIKit
 import MapboxMaps
-
+/*
 class SpotAnnotationView: MGLAnnotationView {
     let backgroundFrame                         = CGRect(x: 0, y: 0, width: 60, height: 25)
     
@@ -85,3 +85,5 @@ class SpotAnnotationView: MGLAnnotationView {
         }
     }
 }
+
+*/
