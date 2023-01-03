@@ -9,10 +9,22 @@ import SwiftUI
 
 @main
 struct uParker_SwiftUIApp: App {
+    @State var isShowingLoginModal: Bool = true
+    @State var userType: UserType = .parker
+    
+    enum UserType { case parker, host}
+    
     var body: some Scene {
         WindowGroup {
-            ViewManager()
-                .environmentObject(SessionManager())
+            if userType == .parker {
+                ParkerMainView()
+                    .sheet(isPresented: $isShowingLoginModal) {
+                        LoginModal()
+                    }
+            } else {
+                HostMainView()
+            }
         }
+        
     }
 }

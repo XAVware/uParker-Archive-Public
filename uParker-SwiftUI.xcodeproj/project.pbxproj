@@ -18,6 +18,9 @@
 		80A64A28294E4C61001317DD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A27294E4C61001317DD /* SignUpView.swift */; };
 		80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2A2953FFCB001317DD /* SessionManager.swift */; };
 		80A64A2E2953FFF0001317DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D2953FFF0001317DD /* User.swift */; };
+		80EE942F2964E8A200A85CEF /* ParkerMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE942E2964E8A200A85CEF /* ParkerMainView.swift */; };
+		80EE94312964E8C500A85CEF /* HostMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94302964E8C500A85CEF /* HostMainView.swift */; };
+		80EE94332964E93400A85CEF /* LoginModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		80A64A292953FB46001317DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80A64A2A2953FFCB001317DD /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		80A64A2D2953FFF0001317DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		80EE942E2964E8A200A85CEF /* ParkerMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerMainView.swift; sourceTree = "<group>"; };
+		80EE94302964E8C500A85CEF /* HostMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostMainView.swift; sourceTree = "<group>"; };
+		80EE94322964E93400A85CEF /* LoginModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,9 @@
 			children = (
 				80A64A19294D66C0001317DD /* LoginView.swift */,
 				80A64A27294E4C61001317DD /* SignUpView.swift */,
+				80EE942E2964E8A200A85CEF /* ParkerMainView.swift */,
+				80EE94302964E8C500A85CEF /* HostMainView.swift */,
+				80EE94322964E93400A85CEF /* LoginModal.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,8 +210,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */,
+				80EE942F2964E8A200A85CEF /* ParkerMainView.swift in Sources */,
+				80EE94312964E8C500A85CEF /* HostMainView.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
+				80EE94332964E93400A85CEF /* LoginModal.swift in Sources */,
 				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
 				80A64A1A294D66C0001317DD /* LoginView.swift in Sources */,
 				80A64A2E2953FFF0001317DD /* User.swift in Sources */,
