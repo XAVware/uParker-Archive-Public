@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		741F1912D975687992013653 /* Pods_uParker_UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F9065AF238C9EE9B6BA909 /* Pods_uParker_UIKit.framework */; };
 		80B933EE2963EDE30050EA0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933ED2963EDE30050EA0C /* AppDelegate.swift */; };
 		80B933F02963EDE30050EA0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933EF2963EDE30050EA0C /* SceneDelegate.swift */; };
 		80B933F22963EDE30050EA0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933F12963EDE30050EA0C /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09F9065AF238C9EE9B6BA909 /* Pods_uParker_UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_uParker_UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80B933EA2963EDE30050EA0C /* uParker-UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-UIKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80B933ED2963EDE30050EA0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80B933EF2963EDE30050EA0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		80B933F62963EDE40050EA0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80B933F92963EDE40050EA0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80B933FB2963EDE40050EA0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A32419873A8EA3131CC33BEB /* Pods-uParker-UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.release.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.release.xcconfig"; sourceTree = "<group>"; };
+		BEDB4BCD8673EA786F95D02F /* Pods-uParker-UIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.debug.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				741F1912D975687992013653 /* Pods_uParker_UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0145A19A97977B5698EE4D2B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB4BCD8673EA786F95D02F /* Pods-uParker-UIKit.debug.xcconfig */,
+				A32419873A8EA3131CC33BEB /* Pods-uParker-UIKit.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		80B933E12963EDE30050EA0C = {
 			isa = PBXGroup;
 			children = (
 				80B933EC2963EDE30050EA0C /* uParker-UIKit */,
 				80B933EB2963EDE30050EA0C /* Products */,
+				0145A19A97977B5698EE4D2B /* Pods */,
+				B47D50B6DF9D1725F0760E4C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +84,14 @@
 			path = "uParker-UIKit";
 			sourceTree = "<group>";
 		};
+		B47D50B6DF9D1725F0760E4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09F9065AF238C9EE9B6BA909 /* Pods_uParker_UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80B933FE2963EDE40050EA0C /* Build configuration list for PBXNativeTarget "uParker-UIKit" */;
 			buildPhases = (
+				374F3312479F5F1814CD3907 /* [CP] Check Pods Manifest.lock */,
 				80B933E62963EDE30050EA0C /* Sources */,
 				80B933E72963EDE30050EA0C /* Frameworks */,
 				80B933E82963EDE30050EA0C /* Resources */,
+				B3FEC1694F19A9DA08F1A723 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		374F3312479F5F1814CD3907 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-uParker-UIKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3FEC1694F19A9DA08F1A723 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		80B933E62963EDE30050EA0C /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		80B933FF2963EDE40050EA0C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEDB4BCD8673EA786F95D02F /* Pods-uParker-UIKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -311,6 +381,7 @@
 		};
 		80B934002963EDE40050EA0C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A32419873A8EA3131CC33BEB /* Pods-uParker-UIKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
