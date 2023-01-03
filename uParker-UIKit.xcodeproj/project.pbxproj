@@ -40,6 +40,20 @@
 		80B9343D296400BA0050EA0C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9343A296400BA0050EA0C /* ColorPickerView.swift */; };
 		80B9343E296400BA0050EA0C /* ExpirationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9343B296400BA0050EA0C /* ExpirationPickerView.swift */; };
 		80B9343F296400BA0050EA0C /* VehiclePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9343C296400BA0050EA0C /* VehiclePickerView.swift */; };
+		80B93450296401700050EA0C /* ReviewListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934422964016F0050EA0C /* ReviewListVC.swift */; };
+		80B93451296401700050EA0C /* PaymentMethodsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934432964016F0050EA0C /* PaymentMethodsVC.swift */; };
+		80B93452296401700050EA0C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93444296401700050EA0C /* SearchVC.swift */; };
+		80B93453296401700050EA0C /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93445296401700050EA0C /* ForgotPasswordVC.swift */; };
+		80B93454296401700050EA0C /* HomepageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93446296401700050EA0C /* HomepageVC.swift */; };
+		80B93455296401700050EA0C /* FiltersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93447296401700050EA0C /* FiltersTVC.swift */; };
+		80B93456296401700050EA0C /* ReservationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93448296401700050EA0C /* ReservationsVC.swift */; };
+		80B93457296401700050EA0C /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93449296401700050EA0C /* MapVC.swift */; };
+		80B93458296401700050EA0C /* YourVehiclesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9344A296401700050EA0C /* YourVehiclesVC.swift */; };
+		80B93459296401700050EA0C /* AddVehicleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9344B296401700050EA0C /* AddVehicleVC.swift */; };
+		80B9345A296401700050EA0C /* ConfirmationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9344C296401700050EA0C /* ConfirmationVC.swift */; };
+		80B9345B296401700050EA0C /* AddPaymentMethodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9344D296401700050EA0C /* AddPaymentMethodVC.swift */; };
+		80B9345C296401700050EA0C /* MenuTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9344E296401700050EA0C /* MenuTVC.swift */; };
+		80B9345D296401700050EA0C /* SpotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B9344F296401700050EA0C /* SpotVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +91,20 @@
 		80B9343A296400BA0050EA0C /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		80B9343B296400BA0050EA0C /* ExpirationPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpirationPickerView.swift; sourceTree = "<group>"; };
 		80B9343C296400BA0050EA0C /* VehiclePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehiclePickerView.swift; sourceTree = "<group>"; };
+		80B934422964016F0050EA0C /* ReviewListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewListVC.swift; sourceTree = "<group>"; };
+		80B934432964016F0050EA0C /* PaymentMethodsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethodsVC.swift; sourceTree = "<group>"; };
+		80B93444296401700050EA0C /* SearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		80B93445296401700050EA0C /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		80B93446296401700050EA0C /* HomepageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomepageVC.swift; sourceTree = "<group>"; };
+		80B93447296401700050EA0C /* FiltersTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersTVC.swift; sourceTree = "<group>"; };
+		80B93448296401700050EA0C /* ReservationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationsVC.swift; sourceTree = "<group>"; };
+		80B93449296401700050EA0C /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		80B9344A296401700050EA0C /* YourVehiclesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourVehiclesVC.swift; sourceTree = "<group>"; };
+		80B9344B296401700050EA0C /* AddVehicleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleVC.swift; sourceTree = "<group>"; };
+		80B9344C296401700050EA0C /* ConfirmationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmationVC.swift; sourceTree = "<group>"; };
+		80B9344D296401700050EA0C /* AddPaymentMethodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentMethodVC.swift; sourceTree = "<group>"; };
+		80B9344E296401700050EA0C /* MenuTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTVC.swift; sourceTree = "<group>"; };
+		80B9344F296401700050EA0C /* SpotVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotVC.swift; sourceTree = "<group>"; };
 		A236536517C009ADE3188E03 /* Pods-uParker-UIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.debug.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5C23B4E6A6C99B35ED1AD7 /* Pods-uParker-UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.release.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,18 +160,16 @@
 		80B933EC2963EDE30050EA0C /* uParker-UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				80B934392963FFFF0050EA0C /* Custom Components */,
+				80B933FB2963EDE40050EA0C /* Info.plist */,
 				80B9341D2963F2240050EA0C /* App */,
+				80B93441296401100050EA0C /* Views */,
+				80B934292963FF880050EA0C /* Controllers */,
 				80B9341C2963F2180050EA0C /* Documentation */,
 				80B933F12963EDE30050EA0C /* ViewController.swift */,
 				80B934132963F0F70050EA0C /* Model */,
 				80B933F32963EDE30050EA0C /* Main.storyboard */,
-				80B93440296400BF0050EA0C /* Picker Views */,
 				80B933F62963EDE40050EA0C /* Assets.xcassets */,
 				80B9341E2963F2B90050EA0C /* LaunchScreen.storyboard */,
-				80B933FB2963EDE40050EA0C /* Info.plist */,
-				80B934382963FFF20050EA0C /* Menu Elements */,
-				80B934292963FF880050EA0C /* Controllers */,
 			);
 			path = "uParker-UIKit";
 			sourceTree = "<group>";
@@ -188,6 +214,20 @@
 			children = (
 				80B934232963FF5D0050EA0C /* CreateAccountVC.swift */,
 				80B934242963FF5D0050EA0C /* FirstVC.swift */,
+				80B9344D296401700050EA0C /* AddPaymentMethodVC.swift */,
+				80B9344B296401700050EA0C /* AddVehicleVC.swift */,
+				80B9344C296401700050EA0C /* ConfirmationVC.swift */,
+				80B93447296401700050EA0C /* FiltersTVC.swift */,
+				80B93445296401700050EA0C /* ForgotPasswordVC.swift */,
+				80B93446296401700050EA0C /* HomepageVC.swift */,
+				80B93449296401700050EA0C /* MapVC.swift */,
+				80B9344E296401700050EA0C /* MenuTVC.swift */,
+				80B934432964016F0050EA0C /* PaymentMethodsVC.swift */,
+				80B93448296401700050EA0C /* ReservationsVC.swift */,
+				80B934422964016F0050EA0C /* ReviewListVC.swift */,
+				80B93444296401700050EA0C /* SearchVC.swift */,
+				80B9344F296401700050EA0C /* SpotVC.swift */,
+				80B9344A296401700050EA0C /* YourVehiclesVC.swift */,
 				80B934252963FF5D0050EA0C /* LoginVC.swift */,
 			);
 			path = Controllers;
@@ -222,6 +262,16 @@
 				80B9343C296400BA0050EA0C /* VehiclePickerView.swift */,
 			);
 			path = "Picker Views";
+			sourceTree = "<group>";
+		};
+		80B93441296401100050EA0C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80B934392963FFFF0050EA0C /* Custom Components */,
+				80B93440296400BF0050EA0C /* Picker Views */,
+				80B934382963FFF20050EA0C /* Menu Elements */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +402,7 @@
 				80B9340F2963F0F20050EA0C /* VehicleList.swift in Sources */,
 				80B933F22963EDE30050EA0C /* ViewController.swift in Sources */,
 				80B934362963FFEA0050EA0C /* MenuProfileTableViewCell.swift in Sources */,
+				80B93452296401700050EA0C /* SearchVC.swift in Sources */,
 				80B9343E296400BA0050EA0C /* ExpirationPickerView.swift in Sources */,
 				80B9342F2963FFD20050EA0C /* CircularProgressView.swift in Sources */,
 				80B9340D2963F0F20050EA0C /* Environment.swift in Sources */,
@@ -360,18 +411,31 @@
 				80B9340B2963F0F20050EA0C /* Review.swift in Sources */,
 				80B933EE2963EDE30050EA0C /* AppDelegate.swift in Sources */,
 				80B934352963FFEA0050EA0C /* MenuButtonTableViewCell.swift in Sources */,
+				80B93454296401700050EA0C /* HomepageVC.swift in Sources */,
+				80B9345C296401700050EA0C /* MenuTVC.swift in Sources */,
 				80B9343F296400BA0050EA0C /* VehiclePickerView.swift in Sources */,
 				80B934102963F0F20050EA0C /* User.swift in Sources */,
+				80B9345A296401700050EA0C /* ConfirmationVC.swift in Sources */,
+				80B93456296401700050EA0C /* ReservationsVC.swift in Sources */,
+				80B93455296401700050EA0C /* FiltersTVC.swift in Sources */,
+				80B93450296401700050EA0C /* ReviewListVC.swift in Sources */,
 				80B933F02963EDE30050EA0C /* SceneDelegate.swift in Sources */,
 				80B9341A2963F2100050EA0C /* Extensions.swift in Sources */,
 				80B934282963FF5D0050EA0C /* LoginVC.swift in Sources */,
 				80B9340E2963F0F20050EA0C /* Spot.swift in Sources */,
+				80B93458296401700050EA0C /* YourVehiclesVC.swift in Sources */,
+				80B93459296401700050EA0C /* AddVehicleVC.swift in Sources */,
 				80B934112963F0F20050EA0C /* Vehicle.swift in Sources */,
 				80B9342E2963FFD20050EA0C /* UnderlinedTextField.swift in Sources */,
 				80B9340C2963F0F20050EA0C /* PaymentMethod.swift in Sources */,
+				80B93453296401700050EA0C /* ForgotPasswordVC.swift in Sources */,
 				80B9343D296400BA0050EA0C /* ColorPickerView.swift in Sources */,
 				80B9342D2963FFD20050EA0C /* RoundButton.swift in Sources */,
+				80B9345D296401700050EA0C /* SpotVC.swift in Sources */,
 				80B934272963FF5D0050EA0C /* FirstVC.swift in Sources */,
+				80B9345B296401700050EA0C /* AddPaymentMethodVC.swift in Sources */,
+				80B93457296401700050EA0C /* MapVC.swift in Sources */,
+				80B93451296401700050EA0C /* PaymentMethodsVC.swift in Sources */,
 				80B934192963F2100050EA0C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
