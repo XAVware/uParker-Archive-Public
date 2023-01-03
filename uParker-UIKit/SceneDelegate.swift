@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  uParker-UIKit
+//  uParkerV2
 //
-//  Created by Smetana, Ryan on 1/3/23.
+//  Created by Ryan Smetana on 10/9/20.
 //
 
 import UIKit

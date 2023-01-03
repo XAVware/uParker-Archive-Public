@@ -1,19 +1,23 @@
 //
 //  AppDelegate.swift
-//  uParker-UIKit
+//  uParkerV2
 //
-//  Created by Smetana, Ryan on 1/3/23.
+//  Created by Ryan Smetana on 10/9/20.
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    override init() {
+        Environment.shared.register(User())
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        IQKeyboardManager.shared.enable = true
         return true
     }
 
