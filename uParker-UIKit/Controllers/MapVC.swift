@@ -190,6 +190,14 @@ class MapVC: UIViewController {
     
     
     func initializeMap() {
+        let myResourceOptions = ResourceOptions(accessToken: "your_public_access_token")
+        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions)
+        mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+         
+        self.view.addSubview(mapView)
+        
+        /*
         spotList[0].coordinate = CLLocationCoordinate2D(latitude: 40.800370, longitude: -77.869320)
         spotList[1].coordinate = CLLocationCoordinate2D(latitude: 40.803870, longitude: -77.869640)
         spotList[2].coordinate = CLLocationCoordinate2D(latitude: 40.800430, longitude: -77.846370)
@@ -220,6 +228,8 @@ class MapVC: UIViewController {
 //        mapView.setZoomLevel(12, animated: false)
         view.addSubview(mapView)
         view.sendSubviewToBack(mapView)
+         
+         */
     }
    
 }

@@ -11,7 +11,6 @@
 		80B933EE2963EDE30050EA0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933ED2963EDE30050EA0C /* AppDelegate.swift */; };
 		80B933F02963EDE30050EA0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933EF2963EDE30050EA0C /* SceneDelegate.swift */; };
 		80B933F22963EDE30050EA0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B933F12963EDE30050EA0C /* ViewController.swift */; };
-		80B933F52963EDE30050EA0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B933F32963EDE30050EA0C /* Main.storyboard */; };
 		80B933F72963EDE40050EA0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80B933F62963EDE40050EA0C /* Assets.xcassets */; };
 		80B9340B2963F0F20050EA0C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934032963F0F20050EA0C /* Review.swift */; };
 		80B9340C2963F0F20050EA0C /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B934042963F0F20050EA0C /* PaymentMethod.swift */; };
@@ -76,6 +75,7 @@
 		80B9348C296404210050EA0C /* SpotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93485296404210050EA0C /* SpotAnnotationView.swift */; };
 		80B9348D296404210050EA0C /* FirstTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93486296404210050EA0C /* FirstTimeView.swift */; };
 		80B9348E296404210050EA0C /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B93487296404210050EA0C /* TableHeaderView.swift */; };
+		80B934902964089C0050EA0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B9348F2964089C0050EA0C /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,7 +84,6 @@
 		80B933ED2963EDE30050EA0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80B933EF2963EDE30050EA0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		80B933F12963EDE30050EA0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		80B933F42963EDE30050EA0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80B933F62963EDE40050EA0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80B933FB2963EDE40050EA0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80B934032963F0F20050EA0C /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
@@ -149,6 +148,7 @@
 		80B93485296404210050EA0C /* SpotAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotAnnotationView.swift; sourceTree = "<group>"; };
 		80B93486296404210050EA0C /* FirstTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstTimeView.swift; sourceTree = "<group>"; };
 		80B93487296404210050EA0C /* TableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
+		80B9348F2964089C0050EA0C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A236536517C009ADE3188E03 /* Pods-uParker-UIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.debug.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.debug.xcconfig"; sourceTree = "<group>"; };
 		BA5C23B4E6A6C99B35ED1AD7 /* Pods-uParker-UIKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uParker-UIKit.release.xcconfig"; path = "Target Support Files/Pods-uParker-UIKit/Pods-uParker-UIKit.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -211,7 +211,7 @@
 				80B9341C2963F2180050EA0C /* Documentation */,
 				80B933F12963EDE30050EA0C /* ViewController.swift */,
 				80B934132963F0F70050EA0C /* Model */,
-				80B933F32963EDE30050EA0C /* Main.storyboard */,
+				80B9348F2964089C0050EA0C /* Main.storyboard */,
 				80B933F62963EDE40050EA0C /* Assets.xcassets */,
 				80B9341E2963F2B90050EA0C /* LaunchScreen.storyboard */,
 			);
@@ -453,12 +453,12 @@
 				80B933F72963EDE40050EA0C /* Assets.xcassets in Resources */,
 				80B9341F2963F2B90050EA0C /* LaunchScreen.storyboard in Resources */,
 				80B93461296403330050EA0C /* ReviewListCollectionViewCell.xib in Resources */,
+				80B934902964089C0050EA0C /* Main.storyboard in Resources */,
 				80B93476296403A90050EA0C /* SpotCollectionViewCell.xib in Resources */,
 				80B9341B2963F2100050EA0C /* Unused Code in Resources */,
 				80B934692964033D0050EA0C /* ReviewCardCollectionViewCell.xib in Resources */,
 				80B934342963FFEA0050EA0C /* MenuButtonTableViewCell.xib in Resources */,
 				80B9348B296404210050EA0C /* SuggestedDestinationCollectionViewCell.xib in Resources */,
-				80B933F52963EDE30050EA0C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,17 +569,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		80B933F32963EDE30050EA0C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80B933F42963EDE30050EA0C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		80B933FC2963EDE40050EA0C /* Debug */ = {
