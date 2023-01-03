@@ -16,7 +16,7 @@ struct LoginView: View {
         
     var body: some View {
         ZStack {
-            primaryColor
+            backgroundGradient
                 .edgesIgnoringSafeArea(.all)
             
             // MARK: - LOGIN STACK
@@ -25,7 +25,7 @@ struct LoginView: View {
                 Image("uParker-Logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 150)
+                    .frame(width: 180)
                     .padding()
                 
                 Spacer()
