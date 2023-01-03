@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReviewCardCollectionViewCell" id="gTV-IL-0wX" customClass="ReviewCardCollectionViewCell" customModule="uParkerV2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="103"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="103"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F83-qs-XU9">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="103"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0 / 5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJR-s6-Vic">
+                                <rect key="frame" x="65" y="35" width="43.5" height="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7r-6e-i1Y">
+                                <rect key="frame" x="10" y="60" width="46" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="avp-9X-jhM">
+                                <rect key="frame" x="10" y="10.5" width="40" height="39"/>
+                                <color key="tintColor" name="uParkerBlue"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Y7I-2w-U4b"/>
+                                    <constraint firstAttribute="height" constant="40" id="djr-tx-a3s"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qf-0V-ab3">
+                                <rect key="frame" x="65" y="10" width="100" height="20"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hOf-Mz-bAT">
+                                        <rect key="frame" x="0.0" y="-0.5" width="20" height="20"/>
+                                        <color key="tintColor" name="uParkerBlue"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="erh-UV-Igy"/>
+                                            <constraint firstAttribute="height" constant="20" id="kqp-yg-4aW"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ldl-D8-bpf">
+                                        <rect key="frame" x="20" y="-0.5" width="20" height="20"/>
+                                        <color key="tintColor" name="uParkerBlue"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="dgJ-4D-4dm"/>
+                                            <constraint firstAttribute="height" constant="20" id="hgy-pY-W2g"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WdA-0V-b4u">
+                                        <rect key="frame" x="40" y="-0.5" width="20" height="20"/>
+                                        <color key="tintColor" name="uParkerBlue"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="MMm-pa-F39"/>
+                                            <constraint firstAttribute="height" constant="20" id="g3k-Ix-B1C"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="csl-ie-1md">
+                                        <rect key="frame" x="60" y="-0.5" width="20" height="20"/>
+                                        <color key="tintColor" name="uParkerBlue"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="0iq-2e-o2f"/>
+                                            <constraint firstAttribute="height" constant="20" id="QQu-np-HEX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="iwB-2i-VRZ">
+                                        <rect key="frame" x="80" y="-0.5" width="20" height="20"/>
+                                        <color key="tintColor" name="uParkerBlue"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="6mk-GM-0RV"/>
+                                            <constraint firstAttribute="height" constant="20" id="KY0-33-QkS"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtQ-wG-k2j">
+                                <rect key="frame" x="264.5" y="10" width="25.5" height="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mJR-s6-Vic" firstAttribute="top" secondItem="1Qf-0V-ab3" secondAttribute="bottom" constant="5" id="6gI-fd-eym"/>
+                            <constraint firstItem="qtQ-wG-k2j" firstAttribute="top" secondItem="F83-qs-XU9" secondAttribute="top" constant="10" id="Gzn-GU-muA"/>
+                            <constraint firstItem="e7r-6e-i1Y" firstAttribute="leading" secondItem="F83-qs-XU9" secondAttribute="leading" constant="10" id="Q4q-uQ-6xW"/>
+                            <constraint firstItem="1Qf-0V-ab3" firstAttribute="top" secondItem="F83-qs-XU9" secondAttribute="top" constant="10" id="QDb-R3-V2C"/>
+                            <constraint firstItem="1Qf-0V-ab3" firstAttribute="leading" secondItem="avp-9X-jhM" secondAttribute="trailing" constant="15" id="Sdm-ij-Uk2"/>
+                            <constraint firstAttribute="trailing" secondItem="qtQ-wG-k2j" secondAttribute="trailing" constant="10" id="TEq-vv-167"/>
+                            <constraint firstItem="avp-9X-jhM" firstAttribute="leading" secondItem="F83-qs-XU9" secondAttribute="leading" constant="10" id="Ug6-g8-RJV"/>
+                            <constraint firstItem="avp-9X-jhM" firstAttribute="top" secondItem="F83-qs-XU9" secondAttribute="top" constant="10" id="Ymf-BQ-2AX"/>
+                            <constraint firstItem="e7r-6e-i1Y" firstAttribute="top" secondItem="avp-9X-jhM" secondAttribute="bottom" constant="10" id="dBe-Ig-8Mg"/>
+                            <constraint firstItem="mJR-s6-Vic" firstAttribute="leading" secondItem="avp-9X-jhM" secondAttribute="trailing" constant="15" id="dre-5I-xFy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="F83-qs-XU9" secondAttribute="trailing" id="TK3-q0-bXp"/>
+                <constraint firstItem="F83-qs-XU9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Z7q-WA-ic3"/>
+                <constraint firstAttribute="bottom" secondItem="F83-qs-XU9" secondAttribute="bottom" id="lJ1-iH-RBF"/>
+                <constraint firstItem="F83-qs-XU9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sry-dr-9eF"/>
+            </constraints>
+            <size key="customSize" width="300" height="103"/>
+            <connections>
+                <outlet property="background" destination="F83-qs-XU9" id="gmi-XM-TCx"/>
+                <outlet property="dateLabel" destination="qtQ-wG-k2j" id="erM-Zd-Jwh"/>
+                <outlet property="profileImage" destination="avp-9X-jhM" id="lD3-hD-8Ps"/>
+                <outlet property="ratingLabel" destination="mJR-s6-Vic" id="eUO-iT-FgC"/>
+                <outlet property="reviewLabel" destination="e7r-6e-i1Y" id="OqZ-fM-Ob6"/>
+                <outlet property="starFive" destination="iwB-2i-VRZ" id="N91-wT-ybF"/>
+                <outlet property="starFour" destination="csl-ie-1md" id="yX9-kC-Okb"/>
+                <outlet property="starOne" destination="hOf-Mz-bAT" id="EUb-s7-KHM"/>
+                <outlet property="starThree" destination="WdA-0V-b4u" id="ka2-98-6j4"/>
+                <outlet property="starTwo" destination="ldl-D8-bpf" id="5PT-VR-G2n"/>
+            </connections>
+            <point key="canvasLocation" x="318.84057971014494" y="124.21875"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="uParkerBlue">
+            <color red="0.097999997437000275" green="0.21199999749660492" blue="0.3449999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

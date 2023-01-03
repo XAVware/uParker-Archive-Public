@@ -7,7 +7,7 @@
 
 import UIKit
 import CoreLocation
-import Mapbox
+import MapboxMaps
 import SideMenu
 
 class MapVC: UIViewController {
@@ -21,7 +21,8 @@ class MapVC: UIViewController {
     @IBOutlet weak var filterButton: RoundButton!
     @IBOutlet weak var listCollectionView: UIView!
     
-    var mapView: MGLMapView = MGLMapView()
+//    var mapView: MGLMapView = MGLMapView()
+    internal var mapView: MapView!
 
     let locationManager = CLLocationManager()
     
@@ -35,7 +36,9 @@ class MapVC: UIViewController {
                             Spot(streetAdress: "12 Bellaire Ave, State College Pennsylvania, 16801", title: "Paul's Driveway", price: "8.00", rating: "4.75"),
                             Spot(streetAdress: "25 West Fairmount Ave, State College Pennsylvania, 16801", title: "Megan's Driveway", price: "14.00", rating: "4.75")]
     
-    var pointAnnotations = [MGLPointAnnotation]()
+//    var pointAnnotations = [MGLPointAnnotation]()
+    var pointAnnotations = [PointAnnotation]()
+
     
     private var filtersMenu: SideMenuNavigationController?
     
@@ -43,7 +46,13 @@ class MapVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
+        let myResourceOptions = ResourceOptions(accessToken: "your_public_access_token")
+        let myMapInitOptions = MapInitOptions(resourceOptions: myResourceOptions)
+        mapView = MapView(frame: view.bounds, mapInitOptions: myMapInitOptions)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+         
+        self.view.addSubview(mapView)
+//        mapView.delegate = self
         locationManager.requestWhenInUseAuthorization()
         initializeMap()
         initializeSearchBar()
@@ -104,7 +113,7 @@ class MapVC: UIViewController {
     }
     
     func selectSpotAnnotation(spotIndex: Int) {
-        mapView.selectAnnotation(pointAnnotations[spotIndex], animated: true, completionHandler: nil)
+//        mapView.selectAnnotation(pointAnnotations[spotIndex], animated: true, completionHandler: nil)
     }
     
     func initializeListView() {
@@ -190,28 +199,32 @@ class MapVC: UIViewController {
             
             for spot in self.spotList {
                 let spotCoordinate = spot.coordinate!
-                let point = MGLPointAnnotation()
-                point.coordinate = spotCoordinate
-                point.title = String(spot.price)
+                let point = PointAnnotation(coordinate: spotCoordinate)
+//                point.title = String(spot.price)
                 self.pointAnnotations.append(point)
                 DispatchQueue.main.async {
-                    self.mapView.addAnnotations(self.pointAnnotations)
+//                    self.mapView.addAnnotations(self.pointAnnotations)
+                    // Create the `PointAnnotationManager` which will be responsible for handling this annotation
+                    let pointAnnotationManager = self.mapView.annotations.makePointAnnotationManager()
+
+                    // Add the annotation to the manager in order to render it on the map.
+                    pointAnnotationManager.annotations = [point]
                 }
             }
         }
         
         mapView.frame = view.bounds
-        mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v11")
+//        mapView.styleURL = URL(string: "mapbox://styles/mapbox/streets-v11")
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.setCenter(stateCollegeCoor, animated: false)
-        mapView.setZoomLevel(12, animated: false)
+//        mapView.setCenter(stateCollegeCoor, animated: false)
+//        mapView.setZoomLevel(12, animated: false)
         view.addSubview(mapView)
         view.sendSubviewToBack(mapView)
     }
    
 }
 
-
+/*
 
 //MARK: - MGLMapViewDelegate
 extension MapVC: MGLMapViewDelegate {
@@ -249,3 +262,4 @@ extension MapVC: MGLMapViewDelegate {
         }
     }
 }
+*/
