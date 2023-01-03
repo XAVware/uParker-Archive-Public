@@ -12,8 +12,8 @@ target 'uParker-UIKit' do
   	# pod 'MapboxCoreNavigation'
   	# pod 'MapboxNavigation', '~> 2.5'
   	# pod 'MapboxGeocoder.swift', '~> 0.14'
-  	# pod 'FloatingPanel'
-  	# pod 'FSCalendar'
-  	# pod 'RangeSeekSlider'
+  	pod 'FloatingPanel'
+  	pod 'FSCalendar'
+  	pod 'RangeSeekSlider'
 
 end
