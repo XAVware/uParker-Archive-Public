@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct HostMainView: View {
+    // MARK: - PROPERTIES
+    @EnvironmentObject var sessionManager: SessionManager
+    
+    // MARK: - BODY
     var body: some View {
         Text("Hello, Host!")
     }
 }
 
+// MARK: - PREVIEW
 struct HostMainView_Previews: PreviewProvider {
     static var previews: some View {
         HostMainView()
+            .environmentObject(SessionManager())
     }
 }

@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct ParkerMainView: View {
+    // MARK: - PROPERTIES
+    @EnvironmentObject var sessionManager: SessionManager
+    
+    // MARK: - BODY
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text("Hello, Parker!")
+            
+            Button {
+                sessionManager.isShowingLoginModal.toggle()
+            } label: {
+                Text("Logout")
+            }
+
+        }
     }
 }
 
+// MARK: - PREVIEW
 struct ParkerView_Previews: PreviewProvider {
     static var previews: some View {
         ParkerMainView()
+            .environmentObject(SessionManager())
     }
 }

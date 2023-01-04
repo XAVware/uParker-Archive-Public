@@ -5,6 +5,7 @@
 //  Created by Smetana, Ryan on 12/16/22.
 //
 
+/*
 import SwiftUI
 
 struct ViewManager: View {
@@ -32,3 +33,4 @@ struct ViewManager_Previews: PreviewProvider {
             .environmentObject(SessionManager())
     }
 }
+*/

@@ -5,6 +5,7 @@
 //  Created by Smetana, Ryan on 12/17/22.
 //
 
+/*
 import SwiftUI
 
 struct SignUpView: View {
@@ -186,3 +187,5 @@ struct SignUpView_Previews: PreviewProvider {
             .environmentObject(SessionManager())
     }
 }
+
+*/
