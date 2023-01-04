@@ -13,7 +13,6 @@ struct LoginModal: View {
     @EnvironmentObject var sessionManager: SessionManager
     
     @State private var phoneNumber: String = ""
-    @State private var phoneNumIsSelected: Bool = false
     
     // MARK: - BODY
     var body: some View {
@@ -51,28 +50,9 @@ struct LoginModal: View {
                         
             // MARK: - MAIN STACK
             VStack {
-//                ZStack(alignment: .leading) {
-//                    Text("Phone Number")
-//                        .foregroundColor(.gray)
-//                        .offset(y: self.phoneNumIsSelected ? -14 : 0)
-//                        .font(self.phoneNumIsSelected ? .footnote : .body)
-//
-//                    TextField("", text: $phoneNumber) { isSelected in
-//                        withAnimation { phoneNumIsSelected = isSelected }
-//                    }
-//                        .foregroundColor(.black)
-//                        .frame(height: 36)
-//                        .offset(y: 7)
-//
-//                } //: ZStack
-//                .frame(height: 60)
-//                .padding(.horizontal)
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 5)
-//                        .stroke(.gray, lineWidth: 2)
-//                )
                 
                 AnimatedTextField(boundTo: $phoneNumber, placeholder: "Phone Number")
+                    .padding(.top, 20)
                     .keyboardType(.numberPad)
                 
                 Text("We'll call or text to confirm your number. Standard message and data rates apply.")
@@ -116,14 +96,14 @@ struct LoginModal: View {
                 }
                 .padding(.vertical, 4)
                     
+                Spacer()
                     
             } //: VStack - Main Stack
             .padding()
             .frame(maxHeight: .infinity)
+            .ignoresSafeArea(.keyboard)
             
-            Spacer()
         } //: VStack
-        .ignoresSafeArea(.keyboard)
     } //: Body
 } //: Struct
 
