@@ -111,12 +111,7 @@ struct LoginModal: View {
                 }
                 .padding(.vertical, 4)
                 
-                ContinueWithButton(icon: Image(systemName: "questionmark"), text: "Continue with Facebook") {
-                    //
-                }
-                .padding(.vertical, 4)
-                
-                ContinueWithButton(icon: Image(systemName: "questionmark"), text: "Continue with Google") {
+                ContinueWithButton(icon: Image("GoogleIcon"), text: "Continue with Google") {
                     //
                 }
                 .padding(.vertical, 4)
@@ -126,7 +121,7 @@ struct LoginModal: View {
             .padding()
             .frame(maxHeight: .infinity)
             
-//            Spacer()
+            Spacer()
         } //: VStack
         .ignoresSafeArea(.keyboard)
     } //: Body
