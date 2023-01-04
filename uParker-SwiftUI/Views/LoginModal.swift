@@ -54,7 +54,7 @@ struct LoginModal: View {
                 .resizable()
                 .scaledToFit()
                 .padding(.vertical)
-                .frame(width: 150)
+                .frame(width: 120)
             
             Spacer()
             
@@ -107,15 +107,17 @@ struct LoginModal: View {
                     Rectangle()
                         .frame(height: 1)
                     
-                    Text("or")
-                        .padding(.horizontal, 4)
+                    Text("OR")
+                        .font(.footnote)
                     
                     Rectangle()
                         .frame(height: 1)
-                }
+                } //: HStack
                 .frame(height: 10)
                 .foregroundColor(.gray)
                 .padding()
+                
+                
                 
             } //: VStack
             .padding()
