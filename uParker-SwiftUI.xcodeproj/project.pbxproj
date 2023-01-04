@@ -21,6 +21,9 @@
 		80EE942F2964E8A200A85CEF /* ParkerMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE942E2964E8A200A85CEF /* ParkerMainView.swift */; };
 		80EE94312964E8C500A85CEF /* HostMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94302964E8C500A85CEF /* HostMainView.swift */; };
 		80EE94332964E93400A85CEF /* LoginModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginModal.swift */; };
+		80F372A22965FC61004A2570 /* LoginViewDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A12965FC61004A2570 /* LoginViewDivider.swift */; };
+		80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A32965FECB004A2570 /* ContinueWithButton.swift */; };
+		80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A529660309004A2570 /* AnimatedTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		80EE942E2964E8A200A85CEF /* ParkerMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerMainView.swift; sourceTree = "<group>"; };
 		80EE94302964E8C500A85CEF /* HostMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostMainView.swift; sourceTree = "<group>"; };
 		80EE94322964E93400A85CEF /* LoginModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModal.swift; sourceTree = "<group>"; };
+		80F372A12965FC61004A2570 /* LoginViewDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewDivider.swift; sourceTree = "<group>"; };
+		80F372A32965FECB004A2570 /* ContinueWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithButton.swift; sourceTree = "<group>"; };
+		80F372A529660309004A2570 /* AnimatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +84,7 @@
 				80A64A1B294D6716001317DD /* Views */,
 				80A64A22294D8A2C001317DD /* Custom Components */,
 				80A64A24294D8A57001317DD /* Modifiers */,
-				80A64A1C294D6859001317DD /* Constants.swift */,
+				80F372A729662059004A2570 /* Unused */,
 				80A64A09294D6491001317DD /* Assets.xcassets */,
 				80A64A0B294D6491001317DD /* Preview Content */,
 			);
@@ -96,11 +102,9 @@
 		80A64A1B294D6716001317DD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				80A64A19294D66C0001317DD /* LoginView.swift */,
-				80A64A27294E4C61001317DD /* SignUpView.swift */,
-				80EE942E2964E8A200A85CEF /* ParkerMainView.swift */,
 				80EE94302964E8C500A85CEF /* HostMainView.swift */,
 				80EE94322964E93400A85CEF /* LoginModal.swift */,
+				80EE942E2964E8A200A85CEF /* ParkerMainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,7 +112,10 @@
 		80A64A22294D8A2C001317DD /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
+				80F372A32965FECB004A2570 /* ContinueWithButton.swift */,
+				80F372A12965FC61004A2570 /* LoginViewDivider.swift */,
 				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
+				80F372A529660309004A2570 /* AnimatedTextField.swift */,
 			);
 			path = "Custom Components";
 			sourceTree = "<group>";
@@ -117,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */,
-				80A64A17294D665B001317DD /* ViewManager.swift */,
+				80A64A1C294D6859001317DD /* Constants.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
 			);
 			path = App;
@@ -137,6 +144,16 @@
 				80A64A2D2953FFF0001317DD /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		80F372A729662059004A2570 /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				80A64A19294D66C0001317DD /* LoginView.swift */,
+				80A64A17294D665B001317DD /* ViewManager.swift */,
+				80A64A27294E4C61001317DD /* SignUpView.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,10 +228,13 @@
 			files = (
 				80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */,
 				80EE942F2964E8A200A85CEF /* ParkerMainView.swift in Sources */,
+				80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */,
 				80EE94312964E8C500A85CEF /* HostMainView.swift in Sources */,
+				80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
 				80EE94332964E93400A85CEF /* LoginModal.swift in Sources */,
+				80F372A22965FC61004A2570 /* LoginViewDivider.swift in Sources */,
 				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
 				80A64A1A294D66C0001317DD /* LoginView.swift in Sources */,
 				80A64A2E2953FFF0001317DD /* User.swift in Sources */,

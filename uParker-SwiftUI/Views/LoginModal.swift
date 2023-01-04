@@ -45,41 +45,35 @@ struct LoginModal: View {
             } //: HStack
             .frame(height: 30)
             .padding(.top)
+            .ignoresSafeArea(.keyboard)
             
             Divider()
-            
-            Spacer()
-            
-            Image("LogoFull-Blue")
-                .resizable()
-                .scaledToFit()
-                .padding(.vertical)
-                .frame(width: 120)
-            
-            Spacer()
-            
+                        
             // MARK: - MAIN STACK
             VStack {
-                ZStack(alignment: .leading) {
-                    Text("Phone Number")
-                        .foregroundColor(.gray)
-                        .offset(y: self.phoneNumIsSelected ? -14 : 0)
-                        .font(self.phoneNumIsSelected ? .footnote : .body)
-                        
-                    TextField("", text: $phoneNumber) { isSelected in
-                        withAnimation { phoneNumIsSelected = isSelected }
-                    }
-                        .foregroundColor(.black)
-                        .frame(height: 36)
-                        .offset(y: 7)
-                    
-                } //: ZStack
-                .frame(height: 60)
-                .padding(.horizontal)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(.gray, lineWidth: 2)
-                )
+//                ZStack(alignment: .leading) {
+//                    Text("Phone Number")
+//                        .foregroundColor(.gray)
+//                        .offset(y: self.phoneNumIsSelected ? -14 : 0)
+//                        .font(self.phoneNumIsSelected ? .footnote : .body)
+//
+//                    TextField("", text: $phoneNumber) { isSelected in
+//                        withAnimation { phoneNumIsSelected = isSelected }
+//                    }
+//                        .foregroundColor(.black)
+//                        .frame(height: 36)
+//                        .offset(y: 7)
+//
+//                } //: ZStack
+//                .frame(height: 60)
+//                .padding(.horizontal)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 5)
+//                        .stroke(.gray, lineWidth: 2)
+//                )
+                
+                AnimatedTextField(boundTo: $phoneNumber, placeholder: "Phone Number")
+                    .keyboardType(.numberPad)
                 
                 Text("We'll call or text to confirm your number. Standard message and data rates apply.")
                     .font(.caption)
@@ -99,32 +93,42 @@ struct LoginModal: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
-                .frame(height: 60)
+                .frame(height: 50)
                 .background(backgroundGradient)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
-                HStack {
-                    Rectangle()
-                        .frame(height: 1)
+                LoginViewDivider()
+                    .padding(20)
+                
+                
+                ContinueWithButton(icon: Image(systemName: "envelope"), text: "Continue with email") {
+                    //
+                }
+                .padding(.vertical, 4)
+                
+                ContinueWithButton(icon: Image(systemName: "apple.logo"), text: "Continue with Apple") {
+                    //
+                }
+                .padding(.vertical, 4)
+                
+                ContinueWithButton(icon: Image(systemName: "questionmark"), text: "Continue with Facebook") {
+                    //
+                }
+                .padding(.vertical, 4)
+                
+                ContinueWithButton(icon: Image(systemName: "questionmark"), text: "Continue with Google") {
+                    //
+                }
+                .padding(.vertical, 4)
                     
-                    Text("OR")
-                        .font(.footnote)
                     
-                    Rectangle()
-                        .frame(height: 1)
-                } //: HStack
-                .frame(height: 10)
-                .foregroundColor(.gray)
-                .padding()
-                
-                
-                
-            } //: VStack
+            } //: VStack - Main Stack
             .padding()
             .frame(maxHeight: .infinity)
             
-            Spacer()
+//            Spacer()
         } //: VStack
+        .ignoresSafeArea(.keyboard)
     } //: Body
 } //: Struct
 
