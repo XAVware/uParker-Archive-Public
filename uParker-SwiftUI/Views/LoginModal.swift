@@ -85,13 +85,37 @@ struct LoginModal: View {
                     .font(.caption)
                     .foregroundColor(.black)
                     .opacity(0.7)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical)
                 
                 Button {
                     //Continue
                 } label: {
-                    //
+                    Text("Continue")
+                        .foregroundColor(.white)
+                        .font(.title)
+                        .fontDesign(.rounded)
+                        
                 }
-
+                .padding()
+                .frame(maxWidth: .infinity)
+                .frame(height: 60)
+                .background(backgroundGradient)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                HStack {
+                    Rectangle()
+                        .frame(height: 1)
+                    
+                    Text("or")
+                        .padding(.horizontal, 4)
+                    
+                    Rectangle()
+                        .frame(height: 1)
+                }
+                .frame(height: 10)
+                .foregroundColor(.gray)
+                .padding()
                 
             } //: VStack
             .padding()
