@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ParkerMainView: View {
+struct ParkerView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
@@ -31,16 +31,13 @@ struct ParkerMainView: View {
             }
 
         } //: VStack
-        .sheet(isPresented: $isShowingLoginModal) {
-            LoginModal()
-        }
     }
 }
 
 // MARK: - PREVIEW
 struct ParkerView_Previews: PreviewProvider {
     static var previews: some View {
-        ParkerMainView()
+        ParkerView()
             .environmentObject(SessionManager())
     }
 }

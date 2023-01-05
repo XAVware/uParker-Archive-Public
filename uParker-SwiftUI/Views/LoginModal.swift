@@ -15,7 +15,6 @@ struct LoginModal: View {
     
     @State private var phoneNumber: String = ""
     @State private var email: String = ""
-//    @State private var isShowingPhoneNum: Bool = true
     @State private var loginMethod: LoginMethod = .phone
     
     enum FocusText { case phoneEmail }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HostMainView: View {
+struct HostView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
@@ -28,7 +28,7 @@ struct HostMainView: View {
 // MARK: - PREVIEW
 struct HostMainView_Previews: PreviewProvider {
     static var previews: some View {
-        HostMainView()
+        HostView()
             .environmentObject(SessionManager())
     }
 }

@@ -9,26 +9,28 @@ import SwiftUI
 
 @main
 struct uParker_SwiftUIApp: App {
-    @ObservedObject var sessionManager: SessionManager
+    @EnvironmentObject var sessionManager: SessionManager
     
-    @State var isShowingLoginModal: Bool = true
-    @State var userType: UserType = .parker
+//    @State var isShowingLoginModal: Bool = true
+//    @State var userType: UserType = .parker
+//    
+//    enum UserType { case parker, host}
     
-    enum UserType { case parker, host}
-    
-    init() {
-        sessionManager = SessionManager()
-    }
+//    init() {
+//        sessionManager = SessionManager()
+//    }
     
     var body: some Scene {
         WindowGroup {
-            if userType == .parker {
-                ParkerMainView()
-                    .environmentObject(sessionManager)
-                    
-            } else {
-                HostMainView()
-            }
+            MainView()
+                .environmentObject(SessionManager())
+//            if userType == .parker {
+//                ParkerMainView()
+//                    .environmentObject(sessionManager)
+//
+//            } else {
+//                HostMainView()
+//            }
         }
         
     }
