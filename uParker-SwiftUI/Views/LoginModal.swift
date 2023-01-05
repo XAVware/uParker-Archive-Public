@@ -11,8 +11,21 @@ struct LoginModal: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sessionManager: SessionManager
+    @FocusState private var focusField: FocusText?
     
     @State private var phoneNumber: String = ""
+    @State private var email: String = ""
+//    @State private var isShowingPhoneNum: Bool = true
+    @State private var loginMethod: LoginMethod = .phone
+    
+    enum FocusText { case phoneEmail }
+    enum LoginMethod { case phone, email }
+    
+    private let haptic = UIImpactFeedbackGenerator(style: .medium)
+    
+    var isOptingPhone: Bool {
+        return loginMethod == .phone ? true : false
+    }
     
     // MARK: - BODY
     var body: some View {
@@ -50,29 +63,53 @@ struct LoginModal: View {
                         
             // MARK: - MAIN STACK
             VStack {
-                
-                AnimatedTextField(boundTo: $phoneNumber, placeholder: "Phone Number")
-                    .padding(.top, 20)
-                    .keyboardType(.numberPad)
-                
-                Text("We'll call or text to confirm your number. Standard message and data rates apply.")
-                    .font(.caption)
-                    .foregroundColor(.black)
-                    .opacity(0.7)
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical)
+                switch(loginMethod) {
+                case .phone:
+                    AnimatedTextField(boundTo:$phoneNumber, placeholder: "Phone Number")
+                        .padding(.top, 20)
+                        .keyboardType(.numberPad)
+                        .focused($focusField, equals: .phoneEmail)
+                        .submitLabel(.continue)
+                        .onSubmit {
+                            focusField = nil
+                        }
+                        .onTapGesture {
+                            focusField = .phoneEmail
+                        }
+                    
+                    Text("We'll call or text to confirm your number. Standard message and data rates apply.")
+                        .font(.caption)
+                        .foregroundColor(.black)
+                        .opacity(0.7)
+                        .multilineTextAlignment(.center)
+                        .padding(.vertical)
+                    
+                case .email:
+                    AnimatedTextField(boundTo: $email, placeholder: "Email Address")
+                        .padding(.vertical, 20)
+                        .keyboardType(.emailAddress)
+                        .focused($focusField, equals: .phoneEmail)
+                        .submitLabel(.continue)
+                        .onSubmit {
+                            focusField = nil
+                        }
+                        .onTapGesture {
+                            focusField = .phoneEmail
+                        }
+                }
                 
                 Button {
-                    //Continue
+                    self.haptic.impactOccurred()
+                    print("Phone Number: \(phoneNumber)")
+                    print("Email: \(email)")
                 } label: {
                     Text("Continue")
                         .foregroundColor(.white)
-                        .font(.title)
+                        .font(.title2)
                         .fontDesign(.rounded)
-                        
+                        .frame(maxWidth: .infinity)
                 }
                 .padding()
-                .frame(maxWidth: .infinity)
                 .frame(height: 50)
                 .background(backgroundGradient)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -80,9 +117,15 @@ struct LoginModal: View {
                 LoginViewDivider()
                     .padding(20)
                 
-                
-                ContinueWithButton(icon: Image(systemName: "envelope"), text: "Continue with email") {
-                    //
+                ContinueWithButton(icon: Image(systemName: loginMethod == .phone ? "envelope" : "phone.fill"), text: loginMethod == .phone ? "Continue with Email" : "Continue with Phone") {
+                    self.haptic.impactOccurred()
+                    withAnimation {
+                        if self.loginMethod == .phone {
+                            self.loginMethod = .email
+                        } else {
+                            self.loginMethod = .phone
+                        }
+                    }
                 }
                 .padding(.vertical, 4)
                 
@@ -104,6 +147,9 @@ struct LoginModal: View {
             .ignoresSafeArea(.keyboard)
             
         } //: VStack
+        .onTapGesture {
+            focusField = nil
+        }
     } //: Body
 } //: Struct
 
