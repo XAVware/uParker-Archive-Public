@@ -16,7 +16,7 @@ struct ParkerView: View {
     // MARK: - BODY
     var body: some View {
         TabView {
-            ParkingMapView()
+            ParkingMapViewWrapper()
                 .tabItem {
                     Text("Park")
                     
