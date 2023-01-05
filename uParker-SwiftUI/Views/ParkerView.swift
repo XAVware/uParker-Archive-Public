@@ -15,22 +15,68 @@ struct ParkerView: View {
     
     // MARK: - BODY
     var body: some View {
-        VStack {
-            Text("Hello, Parker!")
+        TabView {
+            Text("Map View")
+                .tabItem {
+                    Text("Park")
+                    
+                    Image(systemName: "car.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                }
             
-            Button {
-                self.isShowingLoginModal.toggle()
-            } label: {
-                Text("Logout")
+            Text("Events")
+                .tabItem {
+                    Text("Events")
+                    
+                    Image(systemName: "flag.2.crossed")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                }
+            
+            Text("List View")
+                .tabItem {
+                    Text("List View")
+                    
+                    Image(systemName: "list.bullet")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                }
+            
+            Text("Chat")
+                .tabItem {
+                    Text("Chat")
+                    
+                    Image(systemName: "bubble.left.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                }
+            
+            
+            VStack {
+                Text("Login/Profile/Settings View")
+                Button {
+                    self.sessionManager.userType = .host
+                } label: {
+                    Text("Change to host")
+                }
+                
+            } //: VStack
+            .tabItem {
+                Text("Login")
+                
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30)
             }
             
-            Button {
-                self.sessionManager.userType = .host
-            } label: {
-                Text("Change to host")
-            }
-
-        } //: VStack
+            
+        }
     }
 }
 
