@@ -25,9 +25,7 @@ struct uParker_SwiftUIApp: App {
             if userType == .parker {
                 ParkerMainView()
                     .environmentObject(sessionManager)
-                    .sheet(isPresented: $isShowingLoginModal) {
-                        LoginModal()
-                    }
+                    
             } else {
                 HostMainView()
             }

@@ -11,17 +11,28 @@ struct ParkerMainView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
+    @State var isShowingLoginModal: Bool = true
+    
     // MARK: - BODY
     var body: some View {
         VStack {
             Text("Hello, Parker!")
             
             Button {
-                sessionManager.isShowingLoginModal.toggle()
+                self.isShowingLoginModal.toggle()
             } label: {
                 Text("Logout")
             }
+            
+            Button {
+                self.sessionManager.userType = .host
+            } label: {
+                Text("Change to host")
+            }
 
+        } //: VStack
+        .sheet(isPresented: $isShowingLoginModal) {
+            LoginModal()
         }
     }
 }

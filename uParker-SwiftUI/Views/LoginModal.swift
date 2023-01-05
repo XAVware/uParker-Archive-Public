@@ -140,6 +140,25 @@ struct LoginModal: View {
                 .padding(.vertical, 4)
                     
                 Spacer()
+                
+                VStack(spacing: 4) {
+                    HStack(spacing: 0) {
+                        Text("You can ")
+                        
+                        Button {
+                            self.dismiss.callAsFunction()
+                        } label: {
+                            Text("skip this").underline()
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        Text(" for now, but")
+
+                    }
+                    
+                    Text("you will need to log in to reserve parking.")
+                }
+                .font(.footnote)
                     
             } //: VStack - Main Stack
             .padding()

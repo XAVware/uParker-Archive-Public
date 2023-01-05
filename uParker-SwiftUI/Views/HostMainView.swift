@@ -13,7 +13,15 @@ struct HostMainView: View {
     
     // MARK: - BODY
     var body: some View {
-        Text("Hello, Host!")
+        VStack {
+            Text("Hello, Host!")
+            
+            Button {
+                self.sessionManager.userType = .parker
+            } label: {
+                Text("Change to parker")
+            }
+        }
     }
 }
 
