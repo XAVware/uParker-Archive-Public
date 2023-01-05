@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
+		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
+		806073582966B70B00C4E136 /* ParkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* ParkingMapView.swift */; };
 		80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */; };
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
@@ -29,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		806073572966B70B00C4E136 /* ParkingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingMapView.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uParker_SwiftUIApp.swift; sourceTree = "<group>"; };
 		80A64A09294D6491001317DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				806073562966B6C600C4E136 /* MapboxMaps in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +112,7 @@
 				80EE94322964E93400A85CEF /* LoginModal.swift */,
 				80EE942E2964E8A200A85CEF /* ParkerView.swift */,
 				80607352296662F600C4E136 /* MainView.swift */,
+				806073572966B70B00C4E136 /* ParkingMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -175,6 +180,9 @@
 			dependencies = (
 			);
 			name = "uParker-SwiftUI";
+			packageProductDependencies = (
+				806073552966B6C600C4E136 /* MapboxMaps */,
+			);
 			productName = "uParker-SwiftUI";
 			productReference = 80A64A02294D6490001317DD /* uParker-SwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -203,6 +211,9 @@
 				Base,
 			);
 			mainGroup = 80A649F9294D6490001317DD;
+			packageReferences = (
+				806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+			);
 			productRefGroup = 80A64A03294D6490001317DD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -238,6 +249,7 @@
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
 				80EE94332964E93400A85CEF /* LoginModal.swift in Sources */,
 				80F372A22965FC61004A2570 /* LoginViewDivider.swift in Sources */,
+				806073582966B70B00C4E136 /* ParkingMapView.swift in Sources */,
 				80607353296662F600C4E136 /* MainView.swift in Sources */,
 				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
 				80A64A1A294D66C0001317DD /* LoginView.swift in Sources */,
@@ -443,6 +455,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		806073552966B6C600C4E136 /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 80A649FA294D6490001317DD /* Project object */;
 }
