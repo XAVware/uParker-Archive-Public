@@ -13,7 +13,6 @@ struct ParkerView: View {
     
     @State var isShowingLoginModal: Bool = true
     
-    let tabBarHeight: CGFloat = 60
     
     // MARK: - BODY
     var body: some View {
@@ -21,22 +20,25 @@ struct ParkerView: View {
             TabView {
                 ZStack {
                     ParkingMapViewWrapper()
+                        .edgesIgnoringSafeArea(.all)
                     Rectangle()
-                        .frame(width: geometry.size.width, height: tabBarHeight)
+                        .frame(width: geometry.size.width, height: (geometry.size.height + geometry.safeAreaInsets.bottom))
                         .foregroundColor(.white)
+                        .offset(y: geometry.size.height - 8)
+                        .blur(radius: 8)
+                        .opacity(0.9)
+                } //: ZStack
+                .edgesIgnoringSafeArea(.all)
+                .tabItem {
+                    Text("Park")
+                    
+                    Image(systemName: "car.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                        .padding(.top)
+                    
                 }
-                    .edgesIgnoringSafeArea(.all)
-                    .tabItem {
-                        
-                        Text("Park")
-                        
-                        Image(systemName: "car.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                            .padding(.top)
-                            
-                    }
                 
                 Text("Reservations")
                     .tabItem {
