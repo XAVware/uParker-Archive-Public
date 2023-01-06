@@ -18,7 +18,7 @@ struct MainView: View {
         if sessionManager.userType == .parker {
             ParkerView()
                 .sheet(isPresented: $isShowingLoginModal) {
-                    LoginModal()
+                    LoginSignUpView()
                         .environmentObject(sessionManager)
                         .ignoresSafeArea(.keyboard)
                 }

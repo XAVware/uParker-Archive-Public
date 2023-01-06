@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapboxMaps
+import CoreLocation
 
 struct ParkingMapViewWrapper: UIViewControllerRepresentable {
     

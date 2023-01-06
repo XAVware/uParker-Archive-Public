@@ -1,5 +1,5 @@
 //
-//  LoginModal.swift
+//  LoginSignUpView.swift
 //  uParker-SwiftUI
 //
 //  Created by Smetana, Ryan on 1/3/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginModal: View {
+struct LoginSignUpView: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sessionManager: SessionManager
@@ -97,21 +97,10 @@ struct LoginModal: View {
                         }
                 }
                 
-                Button {
-                    self.haptic.impactOccurred()
-                    print("Phone Number: \(phoneNumber)")
-                    print("Email: \(email)")
-                } label: {
-                    Text("Continue")
-                        .foregroundColor(.white)
-                        .font(.title2)
-                        .fontDesign(.rounded)
-                        .frame(maxWidth: .infinity)
+                ContinueButton(text: "Continue") {
+                    //
                 }
-                .padding()
-                .frame(height: 50)
-                .background(backgroundGradient)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
                 
                 LoginViewDivider()
                     .padding(20)
@@ -172,9 +161,9 @@ struct LoginModal: View {
 } //: Struct
 
 // MARK: - PREVIEW
-struct LoginModal_Previews: PreviewProvider {
+struct LoginSignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginModal()
+        LoginSignUpView()
             .environmentObject(SessionManager())
     }
 }

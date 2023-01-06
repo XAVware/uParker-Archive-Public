@@ -62,20 +62,8 @@ struct ParkerView: View {
                             .padding(.top)
                     }
                 
-                Text("Chat")
-                    .tabItem {
-                        Text("Chat")
-                        
-                        Image(systemName: "bubble.left.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                            .padding(.top)
-                    }
-                
-                
                 VStack {
-                    Text("Login/Profile/Settings View")
+                    Text("Chat")
                     Button {
                         self.sessionManager.userType = .host
                     } label: {
@@ -84,14 +72,27 @@ struct ParkerView: View {
                     
                 } //: VStack
                 .tabItem {
-                    Text("Login")
+                    Text("Chat")
                     
-                    Image(systemName: "person.circle")
+                    Image(systemName: "bubble.left.fill")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30)
                         .padding(.top)
                 }
+                
+                
+                ProfileView()
+                    .environmentObject(sessionManager)
+                    .tabItem {
+                        Text(sessionManager.isLoggedIn ? "Profile" : "Login")
+                        
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30)
+                            .padding(.top)
+                    }
                 
             }
         } //: TabView

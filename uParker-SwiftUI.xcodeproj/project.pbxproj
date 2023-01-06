@@ -14,16 +14,20 @@
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
 		80A64A18294D665B001317DD /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A17294D665B001317DD /* ViewManager.swift */; };
-		80A64A1A294D66C0001317DD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A19294D66C0001317DD /* LoginView.swift */; };
+		80A64A1A294D66C0001317DD /* LoginView-OG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A19294D66C0001317DD /* LoginView-OG.swift */; };
 		80A64A1D294D6859001317DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1C294D6859001317DD /* Constants.swift */; };
 		80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */; };
 		80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A25294D8F77001317DD /* ButtonModifier.swift */; };
 		80A64A28294E4C61001317DD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A27294E4C61001317DD /* SignUpView.swift */; };
 		80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2A2953FFCB001317DD /* SessionManager.swift */; };
 		80A64A2E2953FFF0001317DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D2953FFF0001317DD /* User.swift */; };
+		80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1BE2968C38900F4DC09 /* ProfileView.swift */; };
+		80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */; };
+		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
+		80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */; };
 		80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE942E2964E8A200A85CEF /* ParkerView.swift */; };
 		80EE94312964E8C500A85CEF /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94302964E8C500A85CEF /* HostView.swift */; };
-		80EE94332964E93400A85CEF /* LoginModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginModal.swift */; };
+		80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginSignUpView.swift */; };
 		80F372A22965FC61004A2570 /* LoginViewDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A12965FC61004A2570 /* LoginViewDivider.swift */; };
 		80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A32965FECB004A2570 /* ContinueWithButton.swift */; };
 		80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A529660309004A2570 /* AnimatedTextField.swift */; };
@@ -38,7 +42,7 @@
 		80A64A09294D6491001317DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80A64A0C294D6491001317DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		80A64A17294D665B001317DD /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
-		80A64A19294D66C0001317DD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		80A64A19294D66C0001317DD /* LoginView-OG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView-OG.swift"; sourceTree = "<group>"; };
 		80A64A1C294D6859001317DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		80A64A25294D8F77001317DD /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
@@ -46,9 +50,13 @@
 		80A64A292953FB46001317DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80A64A2A2953FFCB001317DD /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		80A64A2D2953FFF0001317DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		80EAC1BE2968C38900F4DC09 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
+		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedLoginView.swift; sourceTree = "<group>"; };
 		80EE942E2964E8A200A85CEF /* ParkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerView.swift; sourceTree = "<group>"; };
 		80EE94302964E8C500A85CEF /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
-		80EE94322964E93400A85CEF /* LoginModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModal.swift; sourceTree = "<group>"; };
+		80EE94322964E93400A85CEF /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
 		80F372A12965FC61004A2570 /* LoginViewDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewDivider.swift; sourceTree = "<group>"; };
 		80F372A32965FECB004A2570 /* ContinueWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithButton.swift; sourceTree = "<group>"; };
 		80F372A529660309004A2570 /* AnimatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
@@ -111,9 +119,10 @@
 			isa = PBXGroup;
 			children = (
 				80EE94302964E8C500A85CEF /* HostView.swift */,
-				80EE94322964E93400A85CEF /* LoginModal.swift */,
+				80EE94322964E93400A85CEF /* LoginSignUpView.swift */,
 				80EE942E2964E8A200A85CEF /* ParkerView.swift */,
 				806073572966B70B00C4E136 /* ParkingMapView.swift */,
+				80EAC1BE2968C38900F4DC09 /* ProfileView.swift */,
 				80607352296662F600C4E136 /* MainView.swift */,
 			);
 			path = Views;
@@ -122,10 +131,10 @@
 		80A64A22294D8A2C001317DD /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
-				80F372A32965FECB004A2570 /* ContinueWithButton.swift */,
+				80EAC1C32968CB6600F4DC09 /* Buttons */,
 				80F372A12965FC61004A2570 /* LoginViewDivider.swift */,
-				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
-				80F372A529660309004A2570 /* AnimatedTextField.swift */,
+				80EAC1C22968CB5F00F4DC09 /* TextFields */,
+				80EAC1C62968CE8C00F4DC09 /* View Components */,
 			);
 			path = "Custom Components";
 			sourceTree = "<group>";
@@ -144,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				80A64A25294D8F77001317DD /* ButtonModifier.swift */,
+				80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -156,10 +166,36 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		80EAC1C22968CB5F00F4DC09 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
+				80F372A529660309004A2570 /* AnimatedTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		80EAC1C32968CB6600F4DC09 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */,
+				80F372A32965FECB004A2570 /* ContinueWithButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		80EAC1C62968CE8C00F4DC09 /* View Components */ = {
+			isa = PBXGroup;
+			children = (
+				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
+			);
+			path = "View Components";
+			sourceTree = "<group>";
+		};
 		80F372A729662059004A2570 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
-				80A64A19294D66C0001317DD /* LoginView.swift */,
+				80A64A19294D66C0001317DD /* LoginView-OG.swift */,
 				80A64A17294D665B001317DD /* ViewManager.swift */,
 				80A64A27294E4C61001317DD /* SignUpView.swift */,
 				80F7260B296758DB00ABE49B /* UIKitMapVC.swift */,
@@ -249,16 +285,20 @@
 				80EE94312964E8C500A85CEF /* HostView.swift in Sources */,
 				80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
+				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
-				80EE94332964E93400A85CEF /* LoginModal.swift in Sources */,
+				80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */,
 				80F372A22965FC61004A2570 /* LoginViewDivider.swift in Sources */,
 				806073582966B70B00C4E136 /* ParkingMapView.swift in Sources */,
 				80607353296662F600C4E136 /* MainView.swift in Sources */,
 				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
-				80A64A1A294D66C0001317DD /* LoginView.swift in Sources */,
+				80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */,
+				80A64A1A294D66C0001317DD /* LoginView-OG.swift in Sources */,
 				80A64A2E2953FFF0001317DD /* User.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
+				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
+				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
 				80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
 			);
