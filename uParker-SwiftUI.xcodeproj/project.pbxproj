@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		800772E72969ED3A00E7FEED /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772E62969ED3A00E7FEED /* Spot.swift */; };
+		800772EA2969F23000E7FEED /* MapboxGeocoder in Frameworks */ = {isa = PBXBuildFile; productRef = 800772E92969F23000E7FEED /* MapboxGeocoder */; };
+		800772EC2969F27F00E7FEED /* Geocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772EB2969F27F00E7FEED /* Geocoder.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
@@ -41,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		800772E62969ED3A00E7FEED /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
+		800772EB2969F27F00E7FEED /* Geocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocoder.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				806073562966B6C600C4E136 /* MapboxMaps in Frameworks */,
+				800772EA2969F23000E7FEED /* MapboxGeocoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +161,7 @@
 				80A64A1C294D6859001317DD /* Constants.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
 				80EAC1D329691D1C00F4DC09 /* ToDos */,
+				800772EB2969F27F00E7FEED /* Geocoder.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			name = "uParker-SwiftUI";
 			packageProductDependencies = (
 				806073552966B6C600C4E136 /* MapboxMaps */,
+				800772E92969F23000E7FEED /* MapboxGeocoder */,
 			);
 			productName = "uParker-SwiftUI";
 			productReference = 80A64A02294D6490001317DD /* uParker-SwiftUI.app */;
@@ -267,6 +273,7 @@
 			mainGroup = 80A649F9294D6490001317DD;
 			packageReferences = (
 				806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+				800772E82969F23000E7FEED /* XCRemoteSwiftPackageReference "MapboxGeocoder.swift" */,
 			);
 			productRefGroup = 80A64A03294D6490001317DD /* Products */;
 			projectDirPath = "";
@@ -320,6 +327,7 @@
 				80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */,
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
+				800772EC2969F27F00E7FEED /* Geocoder.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,6 +529,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		800772E82969F23000E7FEED /* XCRemoteSwiftPackageReference "MapboxGeocoder.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/MapboxGeocoder.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.0;
+			};
+		};
 		806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
@@ -532,6 +548,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		800772E92969F23000E7FEED /* MapboxGeocoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 800772E82969F23000E7FEED /* XCRemoteSwiftPackageReference "MapboxGeocoder.swift" */;
+			productName = MapboxGeocoder;
+		};
 		806073552966B6C600C4E136 /* MapboxMaps */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
