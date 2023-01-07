@@ -16,7 +16,7 @@ struct ParkerChatView: View {
         VStack {
             HeaderView(leftItem: nil, title: nil, rightItem: nil)
             
-            NeedLoginView(title: "Chat", headline: "Login to view conversations", subheadline: "Once you login, your message inbox will appear here.")
+            NeedLoginView(title: "Chat", mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
             
             Spacer()
         } //: VStack

@@ -14,10 +14,32 @@ struct ProfileView: View {
     // MARK: - BODY
     var body: some View {
         NavigationView {
-            VStack() {
-                NeedLoginView(title: "Profile", headline: "Tell us about yourself", subheadline: "You need to log in before you can reserve parking")
+            VStack {
+                HeaderView(leftItem: nil, title: nil, rightItem: nil)
                 
-                Spacer()
+                NeedLoginView(title: "Profile", mainHeadline: "Tell us about yourself", mainDetail: "You need to log in before you can reserve parking")
+                
+                Spacer().frame(maxHeight: .infinity)
+                
+                Group {
+                    SettingsButton(image: Image(systemName: "info.circle"), text: "More Info")
+                    
+                    Divider()
+                    
+                    SettingsButton(image: nil, text: "Privacy Policy")
+                    
+                    Divider()
+                    
+                    SettingsButton(image: nil, text: "Terms & Conditions")
+                    
+                    Divider()
+                    
+                    Text("Version 2.0.1")
+                        .modifier(SettingsButtonModifier())
+                        .frame(height: 50)
+                    
+                }
+                
             } //: VStack
             .padding()
             .navigationBarBackButtonHidden()

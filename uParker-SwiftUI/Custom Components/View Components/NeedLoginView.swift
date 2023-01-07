@@ -13,8 +13,8 @@ struct NeedLoginView: View {
     @State var isShowingLoginModal: Bool = false
     
     let title: String
-    let headline: String
-    let subheadline: String
+    let mainHeadline: String
+    let mainDetail: String
     
     // MARK: - BODY
     var body: some View {
@@ -24,11 +24,11 @@ struct NeedLoginView: View {
                     .modifier(PageTitleModifier())
                     .padding(.bottom, 20)
                 
-                Text(headline)
+                Text(mainHeadline)
                     .font(.headline)
                     .fontDesign(.rounded)
                 
-                Text(subheadline)
+                Text(mainDetail)
                     .font(.subheadline)
                     .fontDesign(.rounded)
             } //: VStack
@@ -38,7 +38,7 @@ struct NeedLoginView: View {
                     self.isShowingLoginModal.toggle()
                 }
                 
-                VStack {
+                HStack(spacing: 8) {
                     Text("Don't have an account?")
                         .font(.callout)
                         .fontDesign(.rounded)
@@ -47,7 +47,7 @@ struct NeedLoginView: View {
                         self.isShowingLoginModal.toggle()
                     } label: {
                         Text("Sign Up").underline()
-                            .font(.headline)
+                            .font(.callout)
                             .fontDesign(.rounded)
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -68,7 +68,7 @@ struct NeedLoginView_Previews: PreviewProvider {
     static let subheadline: String = "You need to log in before you can reserve parking"
     
     static var previews: some View {
-        NeedLoginView(title: title, headline: headline, subheadline: subheadline)
+        NeedLoginView(title: title, mainHeadline: headline, mainDetail: subheadline)
             .environmentObject(SessionManager())
             .previewLayout(.sizeThatFits)
     }

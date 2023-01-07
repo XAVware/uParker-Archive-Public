@@ -1,0 +1,3 @@
+
+1/6/23
+1. Learn how to pass views correctly. HeaderView currently takes an optional image as AnyView. SettingsButton takes the destination as AnyView. Ideally the content will be included as a closure - look into how Apple wrote their VStack.

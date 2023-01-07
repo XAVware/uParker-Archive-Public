@@ -25,3 +25,13 @@ struct PageTitleModifier: ViewModifier {
             .fontDesign(.rounded)
     }
 }
+
+// MARK: - SETTINGS BUTTON LABEL MOD
+struct SettingsButtonModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title2)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}

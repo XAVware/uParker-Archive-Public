@@ -16,7 +16,7 @@ struct ParkerReservationsView: View {
         VStack {
             HeaderView(leftItem: nil, title: nil, rightItem: nil)
             
-            NeedLoginView(title: "Reservations", headline: "Login to view your reservations", subheadline: "Once you login, your upcoming and past reservations will appear here.")
+            NeedLoginView(title: "Reservations", mainHeadline: "Login to view your reservations", mainDetail: "Once you login, your upcoming and past reservations will appear here.")
             
             Spacer()
         } //: VStack

@@ -36,7 +36,7 @@ struct LoginSignUpView: View {
             
             Divider()
                         
-            // MARK: - MAIN STACK
+            // MARK: - TOP TEXTFIELD
             VStack {
                 switch(loginMethod) {
                 case .phone:
@@ -77,10 +77,11 @@ struct LoginSignUpView: View {
                     //
                 }
                 
-                
+                // MARK: - DIVIDER
                 LoginViewDivider()
                     .padding(20)
                 
+                // MARK: - AUTH W/ EMAIL/PHONE
                 ContinueWithButton(icon: Image(systemName: loginMethod == .phone ? "envelope" : "phone.fill"), text: loginMethod == .phone ? "Continue with Email" : "Continue with Phone") {
                     self.haptic.impactOccurred()
                     withAnimation {
@@ -93,11 +94,13 @@ struct LoginSignUpView: View {
                 }
                 .padding(.vertical, 4)
                 
+                // MARK: - AUTH W/ APPLE BTN
                 ContinueWithButton(icon: Image(systemName: "apple.logo"), text: "Continue with Apple") {
                     //
                 }
                 .padding(.vertical, 4)
                 
+                // MARK: - AUTH W/ GOOGLE BTN
                 ContinueWithButton(icon: Image("GoogleIcon"), text: "Continue with Google") {
                     //
                 }
