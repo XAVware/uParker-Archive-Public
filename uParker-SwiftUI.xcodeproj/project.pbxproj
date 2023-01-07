@@ -106,8 +106,8 @@
 				80A64A292953FB46001317DD /* Info.plist */,
 				80A64A23294D8A49001317DD /* App */,
 				80A64A1B294D6716001317DD /* Views */,
-				80A64A22294D8A2C001317DD /* Custom Components */,
-				80A64A24294D8A57001317DD /* Modifiers */,
+				80A64A22294D8A2C001317DD /* CustomComponents */,
+				80A64A24294D8A57001317DD /* ViewModifiers */,
 				80F372A729662059004A2570 /* Unused */,
 				80A64A09294D6491001317DD /* Assets.xcassets */,
 				80A64A0B294D6491001317DD /* Preview Content */,
@@ -138,14 +138,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		80A64A22294D8A2C001317DD /* Custom Components */ = {
+		80A64A22294D8A2C001317DD /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
 				80EAC1C32968CB6600F4DC09 /* Buttons */,
 				80EAC1C22968CB5F00F4DC09 /* TextFields */,
 				80EAC1C62968CE8C00F4DC09 /* View Components */,
 			);
-			path = "Custom Components";
+			path = CustomComponents;
 			sourceTree = "<group>";
 		};
 		80A64A23294D8A49001317DD /* App */ = {
@@ -159,13 +159,13 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		80A64A24294D8A57001317DD /* Modifiers */ = {
+		80A64A24294D8A57001317DD /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
 				80A64A25294D8F77001317DD /* ButtonModifier.swift */,
 				80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */,
 			);
-			path = Modifiers;
+			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		80A64A2C2953FFE7001317DD /* Model */ = {

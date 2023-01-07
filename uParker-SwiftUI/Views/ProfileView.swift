@@ -42,10 +42,9 @@ struct ProfileView: View {
                         
                     
                 }
-                
+                    
             } //: VStack
             .padding()
-            .navigationBarBackButtonHidden()
         } //: Navigation View
     }
 }

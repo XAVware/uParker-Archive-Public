@@ -1,3 +1,28 @@
 
 1/6/23
 1. Learn how to pass views correctly. HeaderView currently takes an optional image as AnyView. SettingsButton takes the destination as AnyView. Ideally the content will be included as a closure - look into how Apple wrote their VStack.
+
+2. Adjust all button heights based on size of screen with global constant
+
+3. Correct Divider line above tab view
+
+4. Can I make geometry reader a constant if I'm only allowing portrait mode?
+
+My iPhone:
+Geometry Height: 845.0
+Geometry Width: 428.0
+Geometry Size: (428.0, 845.0)
+Geometry Safe Area - Bottom: 34.0
+Geometry Safe Area - Top: 47.0
+Geometry Safe Area - Leading: 0.0
+Geometry Safe Area - Trailing: 0.0
+
+
+iPhone 13 Pro
+Geometry Height: 763.0
+Geometry Width: 390.0
+Geometry Size: (390.0, 763.0)
+Geometry Safe Area - Bottom: 34.0
+Geometry Safe Area - Top: 47.0
+Geometry Safe Area - Leading: 0.0
+Geometry Safe Area - Trailing: 0.0
