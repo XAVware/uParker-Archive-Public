@@ -34,8 +34,9 @@ struct SettingsButton: View {
         }
         .padding()
         .buttonStyle(PlainButtonStyle())
-        .modifier(SettingsButtonModifier())
-        .frame(height: 50)
+        .font(.title3)
+        .fontDesign(.rounded)
+        .frame(height: 40)
     }
 }
 

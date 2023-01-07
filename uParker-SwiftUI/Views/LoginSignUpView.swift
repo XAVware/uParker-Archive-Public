@@ -78,8 +78,20 @@ struct LoginSignUpView: View {
                 }
                 
                 // MARK: - DIVIDER
-                LoginViewDivider()
-                    .padding(20)
+                HStack {
+                    Rectangle()
+                        .frame(height: 1)
+                    
+                    Text("OR")
+                        .font(.footnote)
+                        .fontDesign(.rounded)
+                    
+                    Rectangle()
+                        .frame(height: 1)
+                } //: HStack
+                .frame(height: 10)
+                .foregroundColor(.gray)
+                .padding(20)
                 
                 // MARK: - AUTH W/ EMAIL/PHONE
                 ContinueWithButton(icon: Image(systemName: loginMethod == .phone ? "envelope" : "phone.fill"), text: loginMethod == .phone ? "Continue with Email" : "Continue with Phone") {

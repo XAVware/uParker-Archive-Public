@@ -35,8 +35,12 @@ struct ProfileView: View {
                     Divider()
                     
                     Text("Version 2.0.1")
-                        .modifier(SettingsButtonModifier())
-                        .frame(height: 50)
+                        .font(.title3)
+//                        .fontWeight(.semibold)
+                        .fontDesign(.rounded)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 40)
+                        
                     
                 }
                 
