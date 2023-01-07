@@ -33,34 +33,6 @@ struct LoginSignUpView: View {
                 .padding(.horizontal)
                 .padding(.top)
                 .ignoresSafeArea(.keyboard)
-
-            
-//            HStack(alignment: .center) {
-//                Button {
-//                    dismiss.callAsFunction()
-//                } label: {
-//                    Image(systemName: "xmark")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .fontWeight(.light)
-//                        .frame(width: 16)
-//                }
-//                .buttonStyle(PlainButtonStyle())
-//                .padding(.horizontal)
-//
-//
-//                Text("Log In or Sign Up")
-//                    .font(.title3)
-//                    .fontDesign(.rounded)
-//                    .frame(maxWidth: .infinity)
-//
-//
-//                Spacer()
-//                    .frame(width: 16)
-//                    .padding(.horizontal)
-//
-//            } //: HStack
-//            .frame(height: 30)
             
             Divider()
                         
@@ -133,25 +105,6 @@ struct LoginSignUpView: View {
                     
                 Spacer()
                 
-                VStack(spacing: 4) {
-                    HStack(spacing: 0) {
-                        Text("You can ")
-                        
-                        Button {
-                            self.dismiss.callAsFunction()
-                        } label: {
-                            Text("skip this").underline()
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        
-                        Text(" for now, but")
-
-                    }
-                    
-                    Text("you will need to log in to reserve parking.")
-                }
-                .font(.footnote)
-                    
             } //: VStack - Main Stack
             .padding()
             .frame(maxHeight: .infinity)

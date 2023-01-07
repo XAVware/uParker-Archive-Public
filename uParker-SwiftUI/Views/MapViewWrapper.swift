@@ -1,5 +1,5 @@
 //
-//  MapView.swift
+//  MapViewWrapper.swift
 //  uParker-SwiftUI
 //
 //  Created by Smetana, Ryan on 1/5/23.
@@ -9,10 +9,10 @@ import SwiftUI
 import MapboxMaps
 import CoreLocation
 
-struct ParkingMapViewWrapper: UIViewControllerRepresentable {
+struct MapViewWrapper: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> some UIViewController {
-        return ParkingMapViewController()
+        return MapViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
@@ -20,7 +20,7 @@ struct ParkingMapViewWrapper: UIViewControllerRepresentable {
     }
 }
 
-public class ParkingMapViewController: UIViewController {
+public class MapViewController: UIViewController {
     
     internal var mapView: MapView!
     

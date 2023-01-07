@@ -19,7 +19,7 @@ struct ParkerView: View {
         GeometryReader { geometry in
             TabView {
                 ZStack {
-                    ParkingMapViewWrapper()
+                    MapViewWrapper()
                         .edgesIgnoringSafeArea(.all)
                     Rectangle()
                         .frame(width: geometry.size.width, height: (geometry.size.height + geometry.safeAreaInsets.bottom))
@@ -40,7 +40,8 @@ struct ParkerView: View {
                     
                 }
                 
-                Text("Reservations")
+                ParkerReservationsView()
+                    .environmentObject(sessionManager)
                     .tabItem {
                         Text("Reservations")
                         
@@ -51,26 +52,8 @@ struct ParkerView: View {
                             .padding(.top)
                     }
                 
-                Text("List View")
-                    .tabItem {
-                        Text("List View")
-                        
-                        Image(systemName: "list.bullet")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                            .padding(.top)
-                    }
-                
-                VStack {
-                    Text("Chat")
-                    Button {
-                        self.sessionManager.userType = .host
-                    } label: {
-                        Text("Change to host")
-                    }
-                    
-                } //: VStack
+                ParkerChatView()
+                    .environmentObject(sessionManager)
                 .tabItem {
                     Text("Chat")
                     

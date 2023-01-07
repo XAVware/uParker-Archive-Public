@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
-		806073582966B70B00C4E136 /* ParkingMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* ParkingMapView.swift */; };
+		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
 		80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */; };
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
@@ -26,6 +26,8 @@
 		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
 		80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */; };
 		80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C92968F2E400F4DC09 /* HeaderView.swift */; };
+		80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1CD2969017900F4DC09 /* ParkerReservationsView.swift */; };
+		80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */; };
 		80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE942E2964E8A200A85CEF /* ParkerView.swift */; };
 		80EE94312964E8C500A85CEF /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94302964E8C500A85CEF /* HostView.swift */; };
 		80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginSignUpView.swift */; };
@@ -37,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		806073572966B70B00C4E136 /* ParkingMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingMapView.swift; sourceTree = "<group>"; };
+		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uParker_SwiftUIApp.swift; sourceTree = "<group>"; };
 		80A64A09294D6491001317DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,6 +58,8 @@
 		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedLoginView.swift; sourceTree = "<group>"; };
 		80EAC1C92968F2E400F4DC09 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		80EAC1CD2969017900F4DC09 /* ParkerReservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerReservationsView.swift; sourceTree = "<group>"; };
+		80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerChatView.swift; sourceTree = "<group>"; };
 		80EE942E2964E8A200A85CEF /* ParkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerView.swift; sourceTree = "<group>"; };
 		80EE94302964E8C500A85CEF /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		80EE94322964E93400A85CEF /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
@@ -122,10 +126,12 @@
 			children = (
 				80EE94302964E8C500A85CEF /* HostView.swift */,
 				80EE94322964E93400A85CEF /* LoginSignUpView.swift */,
+				80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */,
+				80EAC1CD2969017900F4DC09 /* ParkerReservationsView.swift */,
 				80EE942E2964E8A200A85CEF /* ParkerView.swift */,
-				806073572966B70B00C4E136 /* ParkingMapView.swift */,
 				80EAC1BE2968C38900F4DC09 /* ProfileView.swift */,
 				80607352296662F600C4E136 /* MainView.swift */,
+				806073572966B70B00C4E136 /* MapViewWrapper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,8 +297,9 @@
 				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
 				80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */,
+				80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */,
 				80F372A22965FC61004A2570 /* LoginViewDivider.swift in Sources */,
-				806073582966B70B00C4E136 /* ParkingMapView.swift in Sources */,
+				806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */,
 				80607353296662F600C4E136 /* MainView.swift in Sources */,
 				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
 				80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */,
@@ -302,6 +309,7 @@
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
 				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
+				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
 				80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
