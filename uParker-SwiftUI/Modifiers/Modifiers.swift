@@ -23,6 +23,5 @@ struct PageTitleModifier: ViewModifier {
             .font(.largeTitle)
             .fontWeight(.semibold)
             .fontDesign(.rounded)
-            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

@@ -15,6 +15,7 @@ struct LoginViewDivider: View {
             
             Text("OR")
                 .font(.footnote)
+                .fontDesign(.rounded)
             
             Rectangle()
                 .frame(height: 1)
@@ -27,5 +28,7 @@ struct LoginViewDivider: View {
 struct LoginViewDivider_Previews: PreviewProvider {
     static var previews: some View {
         LoginViewDivider()
+            .previewLayout(.sizeThatFits)
+            .padding()
     }
 }

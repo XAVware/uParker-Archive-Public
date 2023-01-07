@@ -25,6 +25,7 @@
 		80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */; };
 		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
 		80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */; };
+		80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C92968F2E400F4DC09 /* HeaderView.swift */; };
 		80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE942E2964E8A200A85CEF /* ParkerView.swift */; };
 		80EE94312964E8C500A85CEF /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94302964E8C500A85CEF /* HostView.swift */; };
 		80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginSignUpView.swift */; };
@@ -54,6 +55,7 @@
 		80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedLoginView.swift; sourceTree = "<group>"; };
+		80EAC1C92968F2E400F4DC09 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		80EE942E2964E8A200A85CEF /* ParkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerView.swift; sourceTree = "<group>"; };
 		80EE94302964E8C500A85CEF /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		80EE94322964E93400A85CEF /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
+				80EAC1C92968F2E400F4DC09 /* HeaderView.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
 				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
 				80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */,
+				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

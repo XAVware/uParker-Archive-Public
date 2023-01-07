@@ -29,34 +29,38 @@ struct LoginSignUpView: View {
     // MARK: - BODY
     var body: some View {
         VStack {
-            HStack(alignment: .center) {
-                Button {
-                    dismiss.callAsFunction()
-                } label: {
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .scaledToFit()
-                        .fontWeight(.light)
-                        .frame(width: 16)
-                }
-                .buttonStyle(PlainButtonStyle())
+            HeaderView(leftItem: .xmark, title: "Log In or Sign Up", rightItem: nil)
                 .padding(.horizontal)
-                
+                .padding(.top)
+                .ignoresSafeArea(.keyboard)
 
-                Text("Log In or Sign Up")
-                    .font(.title3)
-                    .fontDesign(.rounded)
-                    .frame(maxWidth: .infinity)
-                
-                
-                Spacer()
-                    .frame(width: 16)
-                    .padding(.horizontal)
-                
-            } //: HStack
-            .frame(height: 30)
-            .padding(.top)
-            .ignoresSafeArea(.keyboard)
+            
+//            HStack(alignment: .center) {
+//                Button {
+//                    dismiss.callAsFunction()
+//                } label: {
+//                    Image(systemName: "xmark")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .fontWeight(.light)
+//                        .frame(width: 16)
+//                }
+//                .buttonStyle(PlainButtonStyle())
+//                .padding(.horizontal)
+//
+//
+//                Text("Log In or Sign Up")
+//                    .font(.title3)
+//                    .fontDesign(.rounded)
+//                    .frame(maxWidth: .infinity)
+//
+//
+//                Spacer()
+//                    .frame(width: 16)
+//                    .padding(.horizontal)
+//
+//            } //: HStack
+//            .frame(height: 30)
             
             Divider()
                         

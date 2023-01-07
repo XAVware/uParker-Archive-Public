@@ -14,44 +14,8 @@ struct ProfileView: View {
     // MARK: - BODY
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 50) {
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("Profile")
-                        .modifier(PageTitleModifier())
-                    
-                    Text("Login to reserve parking.")
-                        .font(.title3)
-                } //: VStack
-                .padding(.top)
-                
-                
-                
-                if sessionManager.isLoggedIn {
-                    Text("Is Logged In")
-                } else {
-                    VStack(alignment: .leading, spacing: 20) {
-                        ContinueButton(text: "Log In") {
-                            //
-                        }
-                        
-                        HStack {
-                            Text("Don't have an account?")
-                                .font(.callout)
-                            
-                            Button {
-                                
-                            } label: {
-                                Text("Sign Up").underline()
-                                    .font(.callout)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                    } //: VStack
-                    
-                    
-                    
-                }
+            VStack() {
+                NeedLoginView(title: "Profile", headline: "Tell us about yourself", subheadline: "You need to log in before you can reserve parking")
                 
                 Spacer()
             } //: VStack

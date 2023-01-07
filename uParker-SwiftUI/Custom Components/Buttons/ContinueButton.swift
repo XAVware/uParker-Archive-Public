@@ -17,6 +17,7 @@ struct ContinueButton: View {
     var body: some View {
         Button {
             self.haptic.impactOccurred()
+            self.action()
         } label: {
             Text(text)
                 .foregroundColor(.white)

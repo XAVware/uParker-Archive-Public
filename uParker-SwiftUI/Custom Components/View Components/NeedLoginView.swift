@@ -10,48 +10,66 @@ import SwiftUI
 struct NeedLoginView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
-    
     @State var isShowingLoginModal: Bool = false
+    
+    let title: String
+    let headline: String
+    let subheadline: String
     
     // MARK: - BODY
     var body: some View {
-        VStack(alignment: .leading, spacing: 50) {
-            
+        VStack(alignment: .leading, spacing: 40) {
             VStack(alignment: .leading, spacing: 10) {
-                Text("Profile")
+                Text(title)
                     .modifier(PageTitleModifier())
+                    .padding(.bottom, 20)
                 
-                Text("Login to reserve parking.")
-                    .font(.title3)
+                Text(headline)
+                    .font(.headline)
+                    .fontDesign(.rounded)
+                
+                Text(subheadline)
+                    .font(.subheadline)
+                    .fontDesign(.rounded)
             } //: VStack
-            .padding(.top)
             
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(spacing: 20) {
                 ContinueButton(text: "Log In") {
                     self.isShowingLoginModal.toggle()
                 }
                 
-                HStack {
+                VStack {
                     Text("Don't have an account?")
                         .font(.callout)
+                        .fontDesign(.rounded)
                     
                     Button {
                         self.isShowingLoginModal.toggle()
                     } label: {
                         Text("Sign Up").underline()
-                            .font(.callout)
+                            .font(.headline)
+                            .fontDesign(.rounded)
                     }
                     .buttonStyle(PlainButtonStyle())
-                }
-            } //: VStack
+                } //: VStack - Sign Up
+            } //: VStack - Login/Sign up
         } //: VStack
+        .sheet(isPresented: self.$isShowingLoginModal) {
+            LoginSignUpView()
+                .environmentObject(sessionManager)
+        }
     }
 }
 
 // MARK: - PREVIEW
 struct NeedLoginView_Previews: PreviewProvider {
+    static let title: String = "Profile"
+    static let headline: String = "Tell us about yourself"
+    static let subheadline: String = "You need to log in before you can reserve parking"
+    
     static var previews: some View {
-        NeedLoginView()
+        NeedLoginView(title: title, headline: headline, subheadline: subheadline)
             .environmentObject(SessionManager())
+            .previewLayout(.sizeThatFits)
     }
 }
