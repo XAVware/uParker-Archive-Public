@@ -14,6 +14,8 @@ public class MapViewController: UIViewController {
     // MARK: - PROPERTIES
     internal var mapView: MapView!
     
+    var geocoder: MBGeocoder = MBGeocoder(generalArea: CLLocation(latitude: 40.7934, longitude: -77.8600))
+    
     let pennStateCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)
     
     
@@ -22,6 +24,8 @@ public class MapViewController: UIViewController {
         super.viewDidLoad()
         
         initializeMap()
+        geocoder.getCoordinates(forAddress: "100 East Beaver Ave, State College, PA")
+        
     }
     
     private func initializeMap() {

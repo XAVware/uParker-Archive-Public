@@ -4,6 +4,8 @@
 <dict>
 	<key>MBXAcessToken</key>
 	<string>pk.eyJ1IjoicnlzbWV0IiwiYSI6ImNrZXZ5OHU4bDBoMG8ycmw5YWdjcG11bnkifQ.uREplVHezS8CYP4djva__Q</string>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoicnlzbWV0IiwiYSI6ImNrZXZ5OHU4bDBoMG8ycmw5YWdjcG11bnkifQ.uREplVHezS8CYP4djva__Q</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

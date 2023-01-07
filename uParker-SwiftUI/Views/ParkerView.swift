@@ -14,6 +14,7 @@ struct ParkerView: View {
     @State var isShowingLoginModal: Bool = true
     
     let tabViewDividerPadding: CGFloat = 10
+    
         
     // MARK: - BODY
     var body: some View {
