@@ -33,7 +33,6 @@
 		80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE942E2964E8A200A85CEF /* ParkerView.swift */; };
 		80EE94312964E8C500A85CEF /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94302964E8C500A85CEF /* HostView.swift */; };
 		80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginSignUpView.swift */; };
-		80F372A22965FC61004A2570 /* LoginViewDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A12965FC61004A2570 /* LoginViewDivider.swift */; };
 		80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A32965FECB004A2570 /* ContinueWithButton.swift */; };
 		80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A529660309004A2570 /* AnimatedTextField.swift */; };
 		80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7260B296758DB00ABE49B /* UIKitMapVC.swift */; };
@@ -67,7 +66,6 @@
 		80EE942E2964E8A200A85CEF /* ParkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerView.swift; sourceTree = "<group>"; };
 		80EE94302964E8C500A85CEF /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		80EE94322964E93400A85CEF /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
-		80F372A12965FC61004A2570 /* LoginViewDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewDivider.swift; sourceTree = "<group>"; };
 		80F372A32965FECB004A2570 /* ContinueWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithButton.swift; sourceTree = "<group>"; };
 		80F372A529660309004A2570 /* AnimatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
 		80F7260B296758DB00ABE49B /* UIKitMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMapVC.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				80EAC1C32968CB6600F4DC09 /* Buttons */,
-				80F372A12965FC61004A2570 /* LoginViewDivider.swift */,
 				80EAC1C22968CB5F00F4DC09 /* TextFields */,
 				80EAC1C62968CE8C00F4DC09 /* View Components */,
 			);
@@ -305,7 +302,6 @@
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
 				80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */,
 				80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */,
-				80F372A22965FC61004A2570 /* LoginViewDivider.swift in Sources */,
 				806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */,
 				80607353296662F600C4E136 /* MainView.swift in Sources */,
 				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,

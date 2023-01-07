@@ -15,4 +15,6 @@ class SessionManager: ObservableObject {
     @Published var userType: UserType = .parker
     
     enum UserType { case parker, host}
+    
+    let isErrorHandling: Bool = false
 }

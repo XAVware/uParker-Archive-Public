@@ -36,7 +36,6 @@ struct ProfileView: View {
                     
                     Text("Version 2.0.1")
                         .font(.title3)
-//                        .fontWeight(.semibold)
                         .fontDesign(.rounded)
                         .frame(maxWidth: .infinity)
                         .frame(height: 40)

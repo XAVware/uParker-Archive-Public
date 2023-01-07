@@ -23,7 +23,6 @@ struct SettingsButton: View {
         } label: {
             if image != nil {
                 image!
-                    .padding(.trailing)
             }
             
             Text(text)
