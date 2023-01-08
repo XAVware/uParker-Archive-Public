@@ -23,24 +23,41 @@ struct MBGeocoder {
         self.focalArea = generalArea
     }
     
-    func getCoordinates(forAddress address: String) {
+    //pk.eyJ1IjoicnlzbWV0IiwiYSI6ImNrZXZ5OHU4bDBoMG8ycmw5YWdjcG11bnkifQ.uREplVHezS8CYP4djva__Q
+    func getCoordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+        let geocoder = Geocoder(accessToken: "pk.eyJ1IjoicnlzbWV0IiwiYSI6ImNrZXZ5OHU4bDBoMG8ycmw5YWdjcG11bnkifQ.uREplVHezS8CYP4djva__Q")
         let options = ForwardGeocodeOptions(query: address)
-        options.focalLocation = self.focalArea
-        options.allowedScopes = [.address, .pointOfInterest]
-        var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)
-        print("Original Coordinate: \(coordinate)")
-        
-        let task = geocoder.geocode(options) { (placemarks, attribution, error) in
+
+        geocoder.geocode(options) { (placemarks, attribution, error) in
             guard let placemark = placemarks?.first else {
+                completion(nil)
                 return
             }
-            print("Result Coordinate: \(placemark.location!.coordinate)")
-            coordinate = placemark.location!.coordinate
-            print("New Coordinate: \(coordinate)")
+            
+            let coordinates = placemark.location!.coordinate
+            completion(coordinates)
         }
-        print("Confirm New Coordinate: \(coordinate)")
-        
     }
+
+    
+//    func getCoordinates(forAddress address: String) {
+//        let options = ForwardGeocodeOptions(query: address)
+//        options.focalLocation = self.focalArea
+//        options.allowedScopes = [.address, .pointOfInterest]
+//        var coordinate: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)
+//        print("Original Coordinate: \(coordinate)")
+//
+//        let task = geocoder.geocode(options) { (placemarks, attribution, error) in
+//            guard let placemark = placemarks?.first else {
+//                return
+//            }
+//            print("Result Coordinate: \(placemark.location!.coordinate)")
+//            coordinate = placemark.location!.coordinate
+//            print("New Coordinate: \(coordinate)")
+//
+//        }
+//        print("Confirm New Coordinate: \(coordinate)")
+//    }
     
 //    func getCoordinates(forAddress address: String) -> CLLocationCoordinate2D {
 //        let options = ForwardGeocodeOptions(query: address)

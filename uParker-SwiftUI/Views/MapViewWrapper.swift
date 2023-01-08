@@ -24,8 +24,13 @@ public class MapViewController: UIViewController {
         super.viewDidLoad()
         
         initializeMap()
-        geocoder.getCoordinates(forAddress: "100 East Beaver Ave, State College, PA")
+//        geocoder.getCoordinates(forAddress: "100 East Beaver Ave, State College, PA")
         
+        geocoder.getCoordinates(forAddress: "100 East Beaver Ave, State College, PA") { result in
+            print(result!)
+        }
+        //Result should be the following
+        //CLLocationCoordinate2D(latitude: 40.793598, longitude: -77.860119)
     }
     
     private func initializeMap() {
