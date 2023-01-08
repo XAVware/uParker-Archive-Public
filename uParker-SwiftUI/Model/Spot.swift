@@ -16,14 +16,14 @@ class Spot {
     var spotTitle: String!
     var price: String!
     var rating: String!
-    
-    var coordinate: CLLocationCoordinate2D?
-    
+        
     init(streetAdress: String, title: String, price: String, rating: String) {
         self.streetAddress = streetAdress
         self.spotTitle = title
         self.price = price
         self.rating = rating
+        
+        
     }
     
     

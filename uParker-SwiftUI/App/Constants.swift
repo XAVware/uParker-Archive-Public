@@ -11,3 +11,5 @@ let primaryColor: Color = Color("uParkerBlue")
 let secondaryColor: Color = .white
 let gradientEnd: Color = Color("GradientEnd")
 let backgroundGradient: LinearGradient = LinearGradient(colors: [gradientEnd, primaryColor, primaryColor, gradientEnd], startPoint: .topLeading, endPoint: .bottomTrailing)
+
+let MBAccessKey: String = "pk.eyJ1IjoicnlzbWV0IiwiYSI6ImNrZXZ5OHU4bDBoMG8ycmw5YWdjcG11bnkifQ.uREplVHezS8CYP4djva__Q"
