@@ -13,10 +13,6 @@ struct ParkerView: View {
     
     @State var isShowingLoginModal: Bool = true
     
-    let tabBarHeight: CGFloat = 49
-    let tabViewDividerPadding: CGFloat = 10
-    let searchBarHeight: CGFloat = 50
-    
     
     // MARK: - BODY
     var body: some View {
@@ -97,15 +93,12 @@ struct ParkerView: View {
                                 }
                                 .frame(width: 15)
                                 
-                                
                             } //: VStack
                             .frame(width: 35, height: 70)
                             .background(Color.white)
                             .cornerRadius(5)
                             .shadow(radius: 5)
                             .padding()
-                            
-                            
                         }
                         
                         Spacer()
@@ -169,12 +162,10 @@ struct ParkerView: View {
                 
             } //: TabView
             .overlay(
-                Rectangle()
+                Color.gray
                     .frame(height: 1)
-                    .offset(y: (geo.size.height / 2) - geo.safeAreaInsets.top - tabViewDividerPadding - 1)
-                    .foregroundColor(.gray)
+                    .offset(y: geo.size.height / 2 - tabBarHeight - tabViewDividerPadding)
                     .opacity(0.7)
-                
             )
             
         } //: Geometry Reader

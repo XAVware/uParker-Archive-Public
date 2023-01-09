@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SearchField: View {
     let iconSize: CGFloat = 15
-    let searchBarHeight: CGFloat = 50
     
     var body: some View {
         HStack {
