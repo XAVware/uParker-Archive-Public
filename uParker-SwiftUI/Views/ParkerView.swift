@@ -14,8 +14,9 @@ struct ParkerView: View {
     @State var isShowingLoginModal: Bool = true
     
     let tabViewDividerPadding: CGFloat = 10
+    let searchBarHeight: CGFloat = 40
     
-        
+    
     // MARK: - BODY
     var body: some View {
         GeometryReader { geo in
@@ -24,12 +25,72 @@ struct ParkerView: View {
                     MapViewWrapper()
                         .edgesIgnoringSafeArea(.all)
                     
+                    VStack(spacing: 0) {
+                        Rectangle()
+                            .frame(height: geo.safeAreaInsets.top + 90)
+                            .foregroundColor(.white)
+                        
+                        Path { path in
+                            path.move(to: CGPoint(x: 0, y: 0))
+                            path.addLine(to: CGPoint(x: 30, y: 30))
+                            path.addLine(to: CGPoint(x: geo.size.width - 30, y: 30))
+                            path.addLine(to: CGPoint(x: geo.size.width, y: 0))
+                        }
+                        .fill(.white)
+                        .shadow(radius: 5)
+                        .mask(Rectangle().padding(.bottom, -20))
+                        .frame(height: 30)
+                        
+                        HStack {
+                            Spacer()
+                            
+                            VStack(spacing: 10) {
+                                Button {
+                                    //Ask for location or center on location
+                                } label: {
+                                    Image(systemName: "location.fill")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 15)
+                                }
+                                .frame(width: 15)
+                                
+                                Divider()
+                                
+                                Button {
+                                    //Open Map Settings
+                                } label: {
+                                    Image(systemName: "gear")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 15)
+                                }
+                                .frame(width: 15)
+                                
+                                
+                            } //: VStack
+                            .frame(width: 35, height: 70)
+                            .background(Color.white)
+                            .cornerRadius(5)
+                            .shadow(radius: 5)
+                            .padding()
+                            
+                            
+                        }
+                        
+                        Spacer()
+                    } //: VStack
+                    .frame(width: geo.size.width, height: geo.size.height + geo.safeAreaInsets.top + geo.safeAreaInsets.bottom)
+                    
                     Rectangle()
-                    .frame(height: geo.size.height + geo.safeAreaInsets.bottom + tabViewDividerPadding)
-                    .foregroundColor(.white)
-                    .offset(y: geo.size.height - tabViewDividerPadding)
-                    .opacity(0.9)
-                    .shadow(radius: 2)
+                        .frame(height: geo.size.height + geo.safeAreaInsets.bottom + tabViewDividerPadding)
+                        .foregroundColor(.white)
+                        .offset(y: geo.size.height - tabViewDividerPadding)
+                        .opacity(0.9)
+                        .shadow(radius: 2)
+                        .onTapGesture {
+                            print(geo.size.height + geo.safeAreaInsets.bottom + tabViewDividerPadding)
+                        }
                 } //: ZStack
                 .edgesIgnoringSafeArea(.all)
                 .tabItem {

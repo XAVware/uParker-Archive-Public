@@ -31,7 +31,7 @@ public class MapViewController: UIViewController {
                 return
             }
             
-            self.addViewAnnotation(at: result!)
+//            self.addViewAnnotation(at: result!)
         }
     }
     
@@ -49,31 +49,31 @@ public class MapViewController: UIViewController {
         self.view.addSubview(mapView)
         self.view.sendSubviewToBack(mapView)
         
-        //Add Annotation to map
-        self.addViewAnnotation(at: pennStateCoordinates)
+//        self.addViewAnnotation(at: pennStateCoordinates)
     }
     
     
     private func createSampleView(withText text: String) -> UIView {
-        let backgroundFrame                         = CGRect(x: 0, y: 0, width: 100, height: 40)
+        let backgroundFrame = CGRect(x: 0, y: 0, width: 100, height: 40)
         
-        let backgroundView: UIView                  = UIView()
-        let priceLabel: UILabel                     = UILabel()
+        let backgroundView: UIView = UIView()
+        let priceLabel: UILabel = UILabel()
         
-        let unselectedBackgroundColor: UIColor      = UIColor(named: "uParkerBlue")!
+        let unselectedBackgroundColor: UIColor = UIColor(named: "uParkerBlue")!
 
-        backgroundView.frame                    = backgroundFrame
-        backgroundView.backgroundColor          = unselectedBackgroundColor
-        backgroundView.layer.cornerRadius       = backgroundFrame.height / 2
+        backgroundView.frame = backgroundFrame
+        backgroundView.backgroundColor = unselectedBackgroundColor
+        backgroundView.layer.cornerRadius = backgroundFrame.height / 2
+    
+        backgroundView.layer.shadowRadius = 2
+        backgroundView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        backgroundView.layer.shadowOpacity = 0.3
         
-        backgroundView.layer.shadowRadius                      = 2
-        backgroundView.layer.shadowOffset                      = CGSize(width: 0, height: 1)
-        backgroundView.layer.shadowOpacity                     = 0.3
-        
-        priceLabel.frame                        = backgroundFrame
-        priceLabel.text                         = "$ \(text)"
-        priceLabel.textAlignment                = .center
-        priceLabel.adjustsFontSizeToFitWidth    = true
+        priceLabel.frame = backgroundFrame
+        priceLabel.textColor = .white
+        priceLabel.text = "$ \(text)"
+        priceLabel.textAlignment = .center
+        priceLabel.adjustsFontSizeToFitWidth = true
         
         backgroundView.addSubview(priceLabel)
 

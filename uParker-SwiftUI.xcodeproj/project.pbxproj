@@ -10,6 +10,7 @@
 		800772E72969ED3A00E7FEED /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772E62969ED3A00E7FEED /* Spot.swift */; };
 		800772EA2969F23000E7FEED /* MapboxGeocoder in Frameworks */ = {isa = PBXBuildFile; productRef = 800772E92969F23000E7FEED /* MapboxGeocoder */; };
 		800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772EB2969F27F00E7FEED /* MBGeocoder.swift */; };
+		800772EE296B78DB00E7FEED /* HexagonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772ED296B78DB00E7FEED /* HexagonParameters.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		800772E62969ED3A00E7FEED /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		800772EB2969F27F00E7FEED /* MBGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBGeocoder.swift; sourceTree = "<group>"; };
+		800772ED296B78DB00E7FEED /* HexagonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonParameters.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +164,7 @@
 				800772EB2969F27F00E7FEED /* MBGeocoder.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
 				80EAC1D329691D1C00F4DC09 /* ToDos */,
+				800772ED296B78DB00E7FEED /* HexagonParameters.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800772EE296B78DB00E7FEED /* HexagonParameters.swift in Sources */,
 				80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */,
 				80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */,
 				80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */,
