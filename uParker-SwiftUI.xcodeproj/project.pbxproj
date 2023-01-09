@@ -11,6 +11,7 @@
 		800772EA2969F23000E7FEED /* MapboxGeocoder in Frameworks */ = {isa = PBXBuildFile; productRef = 800772E92969F23000E7FEED /* MapboxGeocoder */; };
 		800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772EB2969F27F00E7FEED /* MBGeocoder.swift */; };
 		800772EE296B78DB00E7FEED /* HexagonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772ED296B78DB00E7FEED /* HexagonParameters.swift */; };
+		800772F1296C61C600E7FEED /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772F0296C61C600E7FEED /* SearchField.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
@@ -46,6 +47,7 @@
 		800772E62969ED3A00E7FEED /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		800772EB2969F27F00E7FEED /* MBGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBGeocoder.swift; sourceTree = "<group>"; };
 		800772ED296B78DB00E7FEED /* HexagonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonParameters.swift; sourceTree = "<group>"; };
+		800772F0296C61C600E7FEED /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		800772EF296C61AA00E7FEED /* MapComponents */ = {
+			isa = PBXGroup;
+			children = (
+				800772F0296C61C600E7FEED /* SearchField.swift */,
+			);
+			path = MapComponents;
+			sourceTree = "<group>";
+		};
 		80A649F9294D6490001317DD = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				80EAC1C32968CB6600F4DC09 /* Buttons */,
+				800772EF296C61AA00E7FEED /* MapComponents */,
 				80EAC1C22968CB5F00F4DC09 /* TextFields */,
 				80EAC1C62968CE8C00F4DC09 /* View Components */,
 			);
@@ -325,6 +336,7 @@
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
+				800772F1296C61C600E7FEED /* SearchField.swift in Sources */,
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
 				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
