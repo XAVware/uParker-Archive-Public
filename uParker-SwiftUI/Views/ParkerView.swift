@@ -18,7 +18,6 @@ struct ParkerView: View {
     let searchBarHeight: CGFloat = 50
     
     
-    
     // MARK: - BODY
     var body: some View {
 
@@ -41,17 +40,36 @@ struct ParkerView: View {
                                     .padding(.top)
                         }
                             
-                        
-                        Path { path in
-                            path.move(to: CGPoint(x: 0, y: 0))
-                            path.addLine(to: CGPoint(x: 30, y: 30))
-                            path.addLine(to: CGPoint(x: geo.size.width - 30, y: 30))
-                            path.addLine(to: CGPoint(x: geo.size.width, y: 0))
+                        ZStack {
+                            Path { path in
+                                path.move(to: CGPoint(x: 0, y: 0))
+                                path.addLine(to: CGPoint(x: 30, y: 30))
+                                path.addLine(to: CGPoint(x: geo.size.width - 30, y: 30))
+                                path.addLine(to: CGPoint(x: geo.size.width, y: 0))
+                            }
+                            .fill(.white)
+                            .frame(height: 30)
+                            .shadow(radius: 5)
+                            .mask(Rectangle().padding(.bottom, -20))
+                            
+                            Button {
+                                //
+                            } label: {
+                                Image(systemName: "chevron.down")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                                    
+                                Spacer().frame(width: 12)
+                                
+                                Text("List View")
+                                    .font(.footnote)
+                            }
+                            .frame(width: geo.size.width - 100, height: 20)
+                            .background(Color.white)
+                            .fontWeight(.semibold)
+                            .fontDesign(.rounded)
                         }
-                        .fill(.white)
-                        .frame(height: 30)
-                        .shadow(radius: 5)
-                        .mask(Rectangle().padding(.bottom, -20))
                         
                         HStack {
                             Spacer()
