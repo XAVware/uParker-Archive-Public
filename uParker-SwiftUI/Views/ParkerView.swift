@@ -18,7 +18,7 @@ struct ParkerView: View {
         GeometryReader { geo in
             TabView {
                 VStack(spacing: 0) {
-                    SpotsView()
+                    SpotMapView()
                     Divider()
                 }
                 .tabItem {

@@ -1,5 +1,5 @@
 //
-//  SpotsView.swift
+//  SpotMapView.swift
 //  uParker-SwiftUI
 //
 //  Created by Smetana, Ryan on 1/9/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 //The final version needs to be removed from tabview and vstack
-struct SpotsView: View {
+struct SpotMapView: View {
     
     @State var displayMode: DisplayMode = .map
     enum DisplayMode { case map, list }
@@ -100,6 +100,6 @@ struct SpotsView: View {
 
 struct SpotsView_Previews: PreviewProvider {
     static var previews: some View {
-        SpotsView()
+        SpotMapView()
     }
 }
