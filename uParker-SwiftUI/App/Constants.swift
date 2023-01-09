@@ -19,3 +19,4 @@ let MBAccessKey: String = "pk.eyJ1IjoicnlzbWV0IiwiYSI6ImNrZXZ5OHU4bDBoMG8ycmw5YW
 let tabBarHeight: CGFloat = 49
 let tabViewDividerPadding: CGFloat = 8
 let searchBarHeight: CGFloat = 50
+

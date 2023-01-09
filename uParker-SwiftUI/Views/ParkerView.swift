@@ -13,10 +13,20 @@ struct ParkerView: View {
     
     @State var isShowingLoginModal: Bool = true
     
+    @State var height: CGFloat = 0
+    @State var width: CGFloat = 0
+    @State var safeAreaTop: CGFloat = 0
+    @State var safeAreaBottom: CGFloat = 0
+    var fullHeight: CGFloat {
+        return height + width + safeAreaTop + safeAreaBottom
+    }
+    
+    var fullTabBarHeight: CGFloat {
+        return tabBarHeight + tabViewDividerPadding
+    }
     
     // MARK: - BODY
     var body: some View {
-
         GeometryReader { geo in
             TabView {
                 ZStack {
@@ -67,39 +77,7 @@ struct ParkerView: View {
                             .fontDesign(.rounded)
                         }
                         
-                        HStack {
-                            Spacer()
-                            
-                            VStack(spacing: 10) {
-                                Button {
-                                    //Ask for location or center on location
-                                } label: {
-                                    Image(systemName: "location.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 15)
-                                }
-                                .frame(width: 15)
-                                
-                                Divider()
-                                
-                                Button {
-                                    //Open Map Settings
-                                } label: {
-                                    Image(systemName: "gear")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 15)
-                                }
-                                .frame(width: 15)
-                                
-                            } //: VStack
-                            .frame(width: 35, height: 70)
-                            .background(Color.white)
-                            .cornerRadius(5)
-                            .shadow(radius: 5)
-                            .padding()
-                        }
+                        MapButtonPanel()
                         
                         Spacer()
                         

@@ -16,6 +16,8 @@ struct uParker_SwiftUIApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(SessionManager())
+                
+                
         }
     }
 }
