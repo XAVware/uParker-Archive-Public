@@ -14,7 +14,7 @@ struct ParkerView: View {
     @State var isShowingLoginModal: Bool = true
     
     let tabViewDividerPadding: CGFloat = 10
-    let searchBarHeight: CGFloat = 40
+    let searchBarHeight: CGFloat = 50
     
     
     // MARK: - BODY
@@ -27,8 +27,61 @@ struct ParkerView: View {
                     
                     VStack(spacing: 0) {
                         Rectangle()
-                            .frame(height: geo.safeAreaInsets.top + 90)
+                            .frame(height: geo.safeAreaInsets.top)
                             .foregroundColor(.white)
+                        
+                        Rectangle()
+                            .frame(height: searchBarHeight)
+                            .foregroundColor(.white)
+                            .padding(.top, 30)
+                            .overlay(
+                                HStack() {
+                                    Image(systemName: "magnifyingglass")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 15)
+                                        .padding(.horizontal)
+                                    
+                                    VStack(alignment: .leading) {
+                                        Text("Where to?")
+                                            .font(.title3)
+                                            .fontWeight(.semibold)
+                                            .fontDesign(.rounded)
+                                        
+                                        Text("Beaver Stadium - Today")
+                                            .font(.caption)
+                                    } //: VStack
+                                    
+                                    Spacer()
+                                    
+                                    Button {
+                                        //
+                                    } label: {
+                                        Image(systemName: "slider.horizontal.3")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 15)
+                                            .padding(.horizontal)
+                                    }
+                                    .frame(width: 35, height: 35)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(.gray)
+                                    )
+                                    .padding(.trailing)
+                                    
+
+                                } //: HStack
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: searchBarHeight)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: searchBarHeight)
+                                            .stroke(.gray)
+                                    )
+                                    .padding(.horizontal)
+                                    .background(.white)
+                                    .shadow(radius: 5)
+                            )
                         
                         Path { path in
                             path.move(to: CGPoint(x: 0, y: 0))
@@ -79,18 +132,14 @@ struct ParkerView: View {
                         }
                         
                         Spacer()
+                        
+                        Rectangle()
+                            .foregroundColor(.white)
+                            .frame(height: 46 + geo.safeAreaInsets.bottom + tabViewDividerPadding)
                     } //: VStack
+                    .edgesIgnoringSafeArea(.bottom)
                     .frame(width: geo.size.width, height: geo.size.height + geo.safeAreaInsets.top + geo.safeAreaInsets.bottom)
                     
-                    Rectangle()
-                        .frame(height: geo.size.height + geo.safeAreaInsets.bottom + tabViewDividerPadding)
-                        .foregroundColor(.white)
-                        .offset(y: geo.size.height - tabViewDividerPadding)
-                        .opacity(0.9)
-                        .shadow(radius: 2)
-                        .onTapGesture {
-                            print(geo.size.height + geo.safeAreaInsets.bottom + tabViewDividerPadding)
-                        }
                 } //: ZStack
                 .edgesIgnoringSafeArea(.all)
                 .tabItem {
