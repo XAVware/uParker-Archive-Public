@@ -40,11 +40,14 @@ struct LoginSignUpView: View {
             VStack {
                 switch(loginMethod) {
                 case .phone:
-                    AnimatedTextField(boundTo:$phoneNumber, placeholder: "Phone Number")
+                    AnimatedTextField(boundTo: $phoneNumber, placeholder: "Phone Number")
                         .padding(.top, 20)
                         .keyboardType(.numberPad)
                         .focused($focusField, equals: .phoneEmail)
                         .submitLabel(.continue)
+                        .onChange(of: phoneNumber, perform: { newValue in
+                            phoneNumber = newValue.applyPatternOnNumbers(pattern: "+1 (###) ###-####", replacementCharacter: "#")
+                        })
                         .onSubmit {
                             focusField = nil
                         }
