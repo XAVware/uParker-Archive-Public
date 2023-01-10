@@ -40,7 +40,7 @@ struct MapButtonPanel: View {
             .background(Color.white)
             .cornerRadius(5)
             .shadow(radius: 5)
-            .padding()
+            .padding(.horizontal)
         } //: HStack
     }
 }

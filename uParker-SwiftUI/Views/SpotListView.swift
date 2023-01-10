@@ -11,14 +11,25 @@ struct SpotListView: View {
     // MARK: - PROPERTIES
     @State var isExpanded: Bool = false
     @State private var isDragging = false
-    
-    @State private var viewHeight: CGFloat = 120
-    
-    let minHeight: CGFloat = 120
-    let maxHeight: CGFloat = 650
-    let threshold: CGFloat = 420
-    
     @State private var prevDragTranslation: CGSize = CGSize.zero
+    
+    @Binding var viewHeight: CGFloat
+    let minHeight: CGFloat
+    let maxHeight: CGFloat
+    private var threshold: CGFloat {
+        return (maxHeight - minHeight) / 2
+    }
+     
+    private var cornerRad: CGFloat {
+        if viewHeight == minHeight {
+            return 30
+        } else if viewHeight < maxHeight {
+            
+            return 30 * (minHeight / viewHeight)
+        } else {
+            return 0
+        }
+    }
     
     var dragGesture: some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .global)
@@ -31,10 +42,12 @@ struct SpotListView: View {
                 
                 if viewHeight < minHeight {
                     viewHeight += dragAmount / 10
+                } else if viewHeight > maxHeight {
+                    viewHeight += 0
                 } else {
                     viewHeight += dragAmount
                 }
-                
+                print("\(30 * (viewHeight / maxHeight)) = \(cornerRad)")
                 prevDragTranslation = val.translation
             }
             .onEnded { val in
@@ -106,7 +119,7 @@ struct SpotListView: View {
             .frame(maxWidth: .infinity)
             .background (
                 Color.white
-                    .cornerRadius(30, corners: [.bottomLeft, .bottomRight])
+                    .cornerRadius(cornerRad, corners: [.bottomLeft, .bottomRight])
                     .shadow(radius: 5)
                     .mask(Rectangle().padding(.bottom, -20))
             )
@@ -121,12 +134,15 @@ struct SpotListView: View {
 } //: Struct
 
 struct SpotListView_Previews: PreviewProvider {
+    @State static var viewHeight: CGFloat = 120
+    static let minHeight: CGFloat = 120
+    static let maxHeight: CGFloat = 650
     static var previews: some View {
         ZStack {
             Color.white
                 .edgesIgnoringSafeArea(.all)
             
-            SpotListView()
+            SpotListView(viewHeight: $viewHeight, minHeight: minHeight, maxHeight: maxHeight)
         }
     }
 }
