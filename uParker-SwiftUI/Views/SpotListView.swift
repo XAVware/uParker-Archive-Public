@@ -9,14 +9,13 @@ import SwiftUI
 
 struct SpotListView: View {
     // MARK: - PROPERTIES
-    @State var initialHeight: CGFloat = 170
     @State var isExpanded: Bool = false
     @State private var isDragging = false
     
-    @State private var viewHeight: CGFloat = 170
+    @State private var viewHeight: CGFloat = 120
     
-    let minHeight: CGFloat = 400
-    let maxHeight: CGFloat = 700
+    let minHeight: CGFloat = 120
+    let maxHeight: CGFloat = 650
     let threshold: CGFloat = 420
     
     @State private var prevDragTranslation: CGSize = CGSize.zero
@@ -30,7 +29,7 @@ struct SpotListView: View {
                 
                 let dragAmount = val.translation.height - prevDragTranslation.height
                 
-                if viewHeight < initialHeight {
+                if viewHeight < minHeight {
                     viewHeight += dragAmount / 10
                 } else {
                     viewHeight += dragAmount
@@ -43,83 +42,83 @@ struct SpotListView: View {
                 isDragging = false
                 
                 if viewHeight >= threshold {
-                    withAnimation {
-                        viewHeight = 750
-                        self.isExpanded = true
-                    }
+                    expandList()
                 } else if viewHeight < threshold {
-                    withAnimation {
-                        viewHeight = initialHeight
-                        self.isExpanded = false
-                    }
+                    compressList()
                 }
                 
             }
     }
     
+    // MARK: - FUNCTIONS
+    func expandList() {
+        withAnimation {
+            viewHeight = maxHeight
+            self.isExpanded = true
+        }
+    }
+    
+    func compressList() {
+        withAnimation {
+            viewHeight = minHeight
+            self.isExpanded = false
+        }
+    }
+    
     // MARK: - BODY
     var body: some View {
         ZStack(alignment: .top) {
-            
-            VStack(spacing: 0) {
+            VStack(spacing: 8) {
                 Spacer()
                 
                 Button {
-                    withAnimation {
-                        if self.isExpanded {
-                            viewHeight = initialHeight
-                            self.isExpanded = false
-                        } else {
-                            viewHeight = 750
-                            self.isExpanded = true
-                        }
-                        
+                    if self.isExpanded {
+                        compressList()
+                    } else {
+                        expandList()
                     }
                 } label: {
-                    Image(systemName: "chevron.down")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 15)
-                    
-                    Spacer().frame(width: 12)
-                    
+
                     Text("List View")
                         .font(.footnote)
+                        .onTapGesture {
+                            if self.isExpanded {
+                                compressList()
+                            } else {
+                                expandList()
+                            }
+                        }
+                        .gesture(dragGesture)
                 }
                 .frame(height: 20)
                 .frame(maxWidth: .infinity)
                 .fontWeight(.semibold)
                 .fontDesign(.rounded)
-                .offset(y: 7)
                 
-                ZStack {
-                    Capsule()
-                        .frame(width: 40, height: 6)
-                        .opacity(0.6)
-                } //: ZStack
-                .frame(height: 35)
-                .frame(maxWidth: .infinity)
-                .background(Color.white.opacity(0.00001))
-                .gesture(dragGesture)
-                
+                Capsule()
+                    .frame(width: 40, height: 6)
+                    .opacity(0.6)
+                    .padding(.bottom, 10)
+                    .gesture(dragGesture)
+
             } //: VStack
             .frame(height: viewHeight)
             .frame(maxWidth: .infinity)
             .background (
-                RoundedRectangle(cornerRadius: 30)
-                    .foregroundColor(Color.white)
+                Color.white
+                    .cornerRadius(30, corners: [.bottomLeft, .bottomRight])
                     .shadow(radius: 5)
+                    .mask(Rectangle().padding(.bottom, -20))
             )
             .animation(self.isDragging ? nil : .easeInOut(duration: 0.45), value: true)
             .transition(.move(edge: .top))
-            
+            .gesture(dragGesture)
+            .animation(.easeInOut, value: true)
         } //: ZStack
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .ignoresSafeArea()
-        .animation(.easeInOut, value: true)
-        
-    }
-}
+
+    } //: Body
+} //: Struct
 
 struct SpotListView_Previews: PreviewProvider {
     static var previews: some View {

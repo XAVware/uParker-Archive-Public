@@ -15,6 +15,7 @@
 		800772F7296C901D00E7FEED /* MapButtonPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772F6296C901D00E7FEED /* MapButtonPanel.swift */; };
 		800772F9296C97DA00E7FEED /* SpotMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772F8296C97DA00E7FEED /* SpotMapView.swift */; };
 		800772FB296CCF3D00E7FEED /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772FA296CCF3D00E7FEED /* SpotListView.swift */; };
+		8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036CB2D296DA2A300B1A2B9 /* Extensions.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
@@ -54,6 +55,7 @@
 		800772F6296C901D00E7FEED /* MapButtonPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonPanel.swift; sourceTree = "<group>"; };
 		800772F8296C97DA00E7FEED /* SpotMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMapView.swift; sourceTree = "<group>"; };
 		800772FA296CCF3D00E7FEED /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
+		8036CB2D296DA2A300B1A2B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 			children = (
 				80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */,
 				80A64A1C294D6859001317DD /* Constants.swift */,
+				8036CB2D296DA2A300B1A2B9 /* Extensions.swift */,
 				800772EB2969F27F00E7FEED /* MBGeocoder.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
 				80EAC1D329691D1C00F4DC09 /* ToDos */,
@@ -356,6 +359,7 @@
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,
+				8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
