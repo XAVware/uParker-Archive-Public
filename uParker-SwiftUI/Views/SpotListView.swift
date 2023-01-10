@@ -17,7 +17,7 @@ struct SpotListView: View {
     
     let minHeight: CGFloat = 400
     let maxHeight: CGFloat = 700
-    let threshold: CGFloat = 300
+    let threshold: CGFloat = 420
     
     @State private var prevDragTranslation: CGSize = CGSize.zero
     
@@ -42,6 +42,17 @@ struct SpotListView: View {
                 prevDragTranslation = CGSize.zero
                 isDragging = false
                 
+                if viewHeight >= threshold {
+                    withAnimation {
+                        viewHeight = 750
+                        self.isExpanded = true
+                    }
+                } else if viewHeight < threshold {
+                    withAnimation {
+                        viewHeight = initialHeight
+                        self.isExpanded = false
+                    }
+                }
                 
             }
     }
@@ -54,7 +65,16 @@ struct SpotListView: View {
                 Spacer()
                 
                 Button {
-                    withAnimation { self.isExpanded.toggle() }
+                    withAnimation {
+                        if self.isExpanded {
+                            viewHeight = initialHeight
+                            self.isExpanded = false
+                        } else {
+                            viewHeight = 750
+                            self.isExpanded = true
+                        }
+                        
+                    }
                 } label: {
                     Image(systemName: "chevron.down")
                         .resizable()
@@ -70,6 +90,7 @@ struct SpotListView: View {
                 .frame(maxWidth: .infinity)
                 .fontWeight(.semibold)
                 .fontDesign(.rounded)
+                .offset(y: 7)
                 
                 ZStack {
                     Capsule()

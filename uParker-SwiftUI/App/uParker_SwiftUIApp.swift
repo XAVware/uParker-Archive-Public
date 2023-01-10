@@ -17,7 +17,6 @@ struct uParker_SwiftUIApp: App {
             MainView()
                 .environmentObject(SessionManager())
                 
-                
         }
     }
 }
