@@ -46,7 +46,7 @@ struct LoginSignUpView: View {
                         .focused($focusField, equals: .phoneEmail)
                         .submitLabel(.continue)
                         .onChange(of: phoneNumber, perform: { newValue in
-                            phoneNumber = newValue.applyPatternOnNumbers(pattern: "+1 (###) ###-####", replacementCharacter: "#")
+                            phoneNumber = newValue.applyPatternOnNumbers(pattern: "(###) ###-####", replacementCharacter: "#")
                         })
                         .onSubmit {
                             focusField = nil
