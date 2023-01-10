@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SearchField: View {
+    // MARK: - PROPERTIES
     let iconSize: CGFloat = 15
     
+    // MARK: - BODY
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -57,6 +59,7 @@ struct SearchField: View {
     }
 }
 
+// MARK: - PREVIEW
 struct SearchField_Previews: PreviewProvider {
     static var previews: some View {
         SearchField()

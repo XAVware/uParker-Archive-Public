@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct AnimatedTextField: View {
+    // MARK: - PROPERTIES
     @Binding var boundTo: String
     @State var placeholder: String
     @State private var isSelected: Bool = false
+    
+    // MARK: - BODY
     var body: some View {
         ZStack(alignment: .leading) {
             Text(placeholder)
@@ -35,8 +38,10 @@ struct AnimatedTextField: View {
     }
 }
 
-//struct AnimatedTextField_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AnimatedTextField()
-//    }
-//}
+// MARK: - PREVIEW
+struct AnimatedTextField_Previews: PreviewProvider {
+    @State static var username: String = ""
+    static var previews: some View {
+        AnimatedTextField(boundTo: $username, placeholder: "Username")
+    }
+}

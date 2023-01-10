@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContinueWithButton: View {
+    // MARK: - PROPERTIES
     let icon: Image
     let text: String
     let action: () -> Void
     
+    // MARK: - BODY
     var body: some View {
         Button {
             action()
@@ -41,8 +43,15 @@ struct ContinueWithButton: View {
     }
 }
 
-//struct ContinueWithButton_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContinueWithButton()
-//    }
-//}
+// MARK: - PREVIEW
+struct ContinueWithButton_Previews: PreviewProvider {
+    static let icon: Image = Image(systemName: "envelope")
+    static let text: String = "Continue"
+    static func action() {
+        //
+    }
+    
+    static var previews: some View {
+        ContinueWithButton(icon: icon, text: text, action: action)
+    }
+}

@@ -39,7 +39,7 @@ struct SettingsButton: View {
     }
 }
 
-// MARK: - PREVIEWS
+// MARK: - PREVIEW
 struct SettingsButton_Previews: PreviewProvider {
     static let image: Image = Image(systemName: "info.circle")
     

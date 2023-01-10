@@ -1,5 +1,5 @@
 //
-//  ParkerReservationsView.swift
+//  ParkerChatView.swift
 //  uParker-SwiftUI
 //
 //  Created by Smetana, Ryan on 1/6/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ParkerReservationsView: View {
+struct ParkerChatView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
 
@@ -16,7 +16,7 @@ struct ParkerReservationsView: View {
         VStack {
             HeaderView(leftItem: nil, title: nil, rightItem: nil)
             
-            NeedLoginView(title: "Reservations", mainHeadline: "Login to view your reservations", mainDetail: "Once you login, your upcoming and past reservations will appear here.")
+            NeedLoginView(title: "Chat", mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
             
             Spacer()
         } //: VStack
@@ -24,11 +24,10 @@ struct ParkerReservationsView: View {
     }
 }
 
-// MARK: - PREVIEWS
-struct ParkerReservationsView_Previews: PreviewProvider {
+// MARK: - PREVIEW
+struct ParkerChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ParkerReservationsView()
+        ParkerChatView()
             .environmentObject(SessionManager())
-
     }
 }

@@ -43,7 +43,6 @@ struct SpotMapView: View {
                     
                     Spacer()
                 } //: VStack
-
                  
             } //: ZStack
             

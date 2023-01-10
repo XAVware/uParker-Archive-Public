@@ -62,6 +62,7 @@ struct HeaderView: View {
     }
 }
 
+// MARK: - PREVIEW
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
         HeaderView(leftItem: .xmark, title: "Log In or Sign Up", rightItem: nil)

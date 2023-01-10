@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MapButtonPanel: View {
+    // MARK: - PROPERTIES
+    
+    // MARK: - BODY
     var body: some View {
         HStack {
             Spacer()
@@ -45,6 +48,7 @@ struct MapButtonPanel: View {
     }
 }
 
+// MARK: - PREVIEW
 struct MapButtonPanel_Previews: PreviewProvider {
     static var previews: some View {
         MapButtonPanel()

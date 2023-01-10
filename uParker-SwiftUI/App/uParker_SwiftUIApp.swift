@@ -11,7 +11,6 @@ import SwiftUI
 struct uParker_SwiftUIApp: App {
     @EnvironmentObject var sessionManager: SessionManager
     
-    
     var body: some Scene {
         WindowGroup {
             MainView()

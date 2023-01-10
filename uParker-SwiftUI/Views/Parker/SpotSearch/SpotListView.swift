@@ -56,6 +56,14 @@ struct SpotListView: View {
                     self.isDragging = true
                 }
                 
+                let velocity: CGFloat = val.predictedEndLocation.y - val.location.y
+
+                if velocity > 500 {
+                    expandList()
+                } else if velocity < -500 {
+                    compressList()
+                }
+                
                 let dragAmount = val.translation.height - prevDragTranslation.height
                 
                 if viewHeight >= maxHeight && dragAmount > 0 {
@@ -71,14 +79,6 @@ struct SpotListView: View {
             .onEnded { val in
                 prevDragTranslation = CGSize.zero
                 isDragging = false
-                
-                let velocity: CGFloat = val.predictedEndLocation.y - val.location.y
-                
-                if velocity > 400 {
-                    expandList()
-                } else if velocity < -400 {
-                    compressList()
-                }
                 
                 if viewHeight >= threshold {
                     expandList()
@@ -172,6 +172,7 @@ struct SpotListView: View {
     } //: Body
 } //: Struct
 
+// MARK: - PREVIEW
 struct SpotListView_Previews: PreviewProvider {
     @State static var viewHeight: CGFloat = 650
     static let minHeight: CGFloat = 120

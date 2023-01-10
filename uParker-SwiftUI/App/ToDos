@@ -8,21 +8,6 @@
 
 4. Can I make geometry reader a constant if I'm only allowing portrait mode?
 
-My iPhone:
-Geometry Height: 845.0
-Geometry Width: 428.0
-Geometry Size: (428.0, 845.0)
-Geometry Safe Area - Bottom: 34.0
-Geometry Safe Area - Top: 47.0
-Geometry Safe Area - Leading: 0.0
-Geometry Safe Area - Trailing: 0.0
 
-
-iPhone 13 Pro
-Geometry Height: 763.0
-Geometry Width: 390.0
-Geometry Size: (390.0, 763.0)
-Geometry Safe Area - Bottom: 34.0
-Geometry Safe Area - Top: 47.0
-Geometry Safe Area - Leading: 0.0
-Geometry Safe Area - Trailing: 0.0
+1/10/23
+5. Learn more about @escaping keyword
