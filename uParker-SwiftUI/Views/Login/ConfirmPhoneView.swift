@@ -12,13 +12,14 @@ struct ConfirmPhoneView: View {
     @Environment(\.dismiss) var dismiss
     @State var phoneNumber: String
     @State var code: String = ""
-    
+    @FocusState private var focusField: FocusText?
+    private let haptic = UIImpactFeedbackGenerator(style: .medium)
+    enum FocusText { case confirmationCode }
     // MARK: - BODY
     var body: some View {
         VStack() {
             HeaderView(leftItem: .chevron, title: "Confirm Phone", rightItem: nil)
                 .padding(.bottom)
-            
             
             VStack(spacing: 5) {
                 Text("A confirmation code has been sent to:")
@@ -41,6 +42,15 @@ struct ConfirmPhoneView: View {
                 .tracking(25)
                 .padding()
                 .frame(width: 275, height: 60)
+                .keyboardType(.numberPad)
+                .focused($focusField, equals: .confirmationCode)
+                .submitLabel(.continue)
+//                .onChange(of: code, perform: {
+//                    phoneNumber = String($0.prefix(14)).applyPatternOnNumbers(pattern: "(###) ###-####", replacementCharacter: "#")
+//                })
+                .onSubmit {
+                    focusField = nil
+                }
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(Color.accentColor, lineWidth: 2)
@@ -55,20 +65,18 @@ struct ConfirmPhoneView: View {
                                 Spacer()
                                     .frame(width: 25, height: 3)
                             }
-                            
                         }
-                        
-                        
                     }
                     .foregroundColor(.accentColor)
                     .opacity(0.7)
                     .frame(maxWidth: .infinity)
                 )
-            
-            
             Spacer()
-        }
+        } //: VStack
         .padding()
+        .onAppear {
+            focusField = .confirmationCode
+        }
     }
 }
 

@@ -79,6 +79,7 @@ struct LoginSignUpView: View {
                 }
                 
                 ContinueButton(text: "Continue") {
+                    focusField = nil
                     isShowingConfirmation = true
                 }
                 
@@ -137,6 +138,7 @@ struct LoginSignUpView: View {
         .sheet(isPresented: $isShowingConfirmation) {
             if self.loginMethod == .phone {
                 ConfirmPhoneView(phoneNumber: phoneNumber)
+                    .environmentObject(sessionManager)
             } else {
                 ConfirmPhoneView(phoneNumber: phoneNumber)
             }
