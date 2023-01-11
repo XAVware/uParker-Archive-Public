@@ -22,7 +22,7 @@ struct ConfirmPhoneView: View {
                 .padding(.bottom)
             
             VStack(spacing: 5) {
-                Text("A confirmation code has been sent to:")
+                Text("A 6-digit confirmation code has been sent to:")
                     .font(.footnote)
                     .fontDesign(.rounded)
                 
@@ -35,42 +35,42 @@ struct ConfirmPhoneView: View {
             
             
             TextField("", text: $code)
+                .multilineTextAlignment(.center)
+                .frame(width: 275, height: 60)
                 .foregroundColor(.accentColor)
                 .font(.title)
                 .fontWeight(.semibold)
                 .fontDesign(.rounded)
                 .tracking(25)
-                .padding()
-                .frame(width: 275, height: 60)
                 .keyboardType(.numberPad)
                 .focused($focusField, equals: .confirmationCode)
                 .submitLabel(.continue)
-//                .onChange(of: code, perform: {
-//                    phoneNumber = String($0.prefix(14)).applyPatternOnNumbers(pattern: "(###) ###-####", replacementCharacter: "#")
-//                })
+                .onChange(of: code, perform: {
+                    code = String($0.prefix(6))
+                })
                 .onSubmit {
                     focusField = nil
                 }
                 .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.accentColor, lineWidth: 2)
-                )
-                .overlay(
-                    HStack(spacing: 21) {
-                        ForEach(0 ..< 6) { charIndex in
-                            if code.count <= charIndex {
-                                Rectangle()
-                                    .frame(width: 22, height: 3)
-                            } else {
-                                Spacer()
-                                    .frame(width: 25, height: 3)
-                            }
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.accentColor, lineWidth: 2)
+                        
+                        if code.isEmpty {
+                            Text("6-Digit Code")
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .fontDesign(.rounded)
+                                .foregroundColor(.accentColor)
+                                .opacity(0.3)
+                                .frame(maxWidth: .infinity)
                         }
+                    } //: ZStack
+                    .onTapGesture {
+                        focusField = .confirmationCode
                     }
-                    .foregroundColor(.accentColor)
-                    .opacity(0.7)
-                    .frame(maxWidth: .infinity)
                 )
+            
             Spacer()
         } //: VStack
         .padding()
