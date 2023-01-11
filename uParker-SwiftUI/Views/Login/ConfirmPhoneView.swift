@@ -10,16 +10,20 @@ import SwiftUI
 struct ConfirmPhoneView: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
+    @FocusState private var focusField: FocusText?
     @State var phoneNumber: String
     @State var code: String = ""
-    @FocusState private var focusField: FocusText?
+    @State var timeRemaining: Int = 0
     private let haptic = UIImpactFeedbackGenerator(style: .medium)
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     enum FocusText { case confirmationCode }
+    
+    
+    
     // MARK: - BODY
     var body: some View {
-        VStack() {
+        VStack(spacing: 15) {
             HeaderView(leftItem: .chevron, title: "Confirm Phone", rightItem: nil)
-                .padding(.bottom)
             
             VStack(spacing: 5) {
                 Text("A 6-digit confirmation code has been sent to:")
@@ -32,7 +36,6 @@ struct ConfirmPhoneView: View {
                     .fontDesign(.rounded)
             }
             .padding(.vertical)
-            
             
             TextField("", text: $code)
                 .multilineTextAlignment(.center)
@@ -70,6 +73,47 @@ struct ConfirmPhoneView: View {
                         focusField = .confirmationCode
                     }
                 )
+            
+            HStack(spacing: 15) {
+                Text("Didn't receive a text?")
+                    .font(.footnote)
+                    .fontDesign(.rounded)
+                
+                if timeRemaining == 0 {
+                    Button {
+                        timeRemaining = 15
+                    } label: {
+                        Text("Send Again")
+                            .font(.callout)
+                    }
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+                    .fontDesign(.rounded)
+                    .frame(width: 130, height: 30)
+                    .background(backgroundGradient)
+                    .opacity(0.9)
+                    .clipShape(Capsule())
+                    .shadow(radius: 2)
+                } else {
+                    Text("Please wait \(timeRemaining) seconds")
+                        .font(.footnote)
+                        .fontDesign(.rounded)
+                        .foregroundColor(.gray)
+                        .onReceive(timer) { _ in
+                            if timeRemaining > 0 {
+                                timeRemaining -= 1
+                            }
+                        }
+                }
+                
+            } //: HStack
+            .padding(.vertical)
+            .frame(height: 30)
+            
+            ContinueButton(text: "Continue") {
+                //
+            }
+            .padding(.top)
             
             Spacer()
         } //: VStack
