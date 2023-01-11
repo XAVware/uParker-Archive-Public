@@ -20,7 +20,7 @@ struct ConfirmPhoneView: View {
 
 // MARK: - PREVIEW
 struct ConfirmPhoneView_Previews: PreviewProvider {
-    @State var phoneNumber = "(123) 456-7894"
+    @State static var phoneNumber = "(123) 456-7894"
     static var previews: some View {
         ConfirmPhoneView(phoneNumber: phoneNumber)
     }
