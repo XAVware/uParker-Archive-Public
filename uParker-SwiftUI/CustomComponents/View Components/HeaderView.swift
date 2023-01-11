@@ -42,6 +42,7 @@ struct HeaderView: View {
                         .resizable()
                         .scaledToFit()
                         .fontWeight(.light)
+                        .frame(height: 20)
                         .frame(width: sideItemWidth)
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -65,7 +66,7 @@ struct HeaderView: View {
 // MARK: - PREVIEW
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView(leftItem: .xmark, title: "Log In or Sign Up", rightItem: nil)
+        HeaderView(leftItem: .chevron, title: "Log In or Sign Up", rightItem: nil)
             .previewLayout(.sizeThatFits)
     }
 }

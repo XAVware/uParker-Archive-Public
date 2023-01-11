@@ -13,13 +13,21 @@ struct AnimatedTextField: View {
     @State var placeholder: String
     @State private var isSelected: Bool = false
     
+    var isSmall: Bool {
+        if isSelected || !boundTo.isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: - BODY
     var body: some View {
         ZStack(alignment: .leading) {
             Text(placeholder)
                 .foregroundColor(.gray)
-                .offset(y: self.isSelected ? -14 : 0)
-                .font(self.isSelected ? .footnote : .body)
+                .offset(y: isSmall ? -14 : 0)
+                .font(isSmall ? .footnote : .body)
                 
             TextField("", text: $boundTo) { isSelected in
                 withAnimation { self.isSelected = isSelected }

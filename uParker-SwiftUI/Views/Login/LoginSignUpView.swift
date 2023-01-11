@@ -79,7 +79,7 @@ struct LoginSignUpView: View {
                 }
                 
                 ContinueButton(text: "Continue") {
-                    //
+                    isShowingConfirmation = true
                 }
                 
                 // MARK: - DIVIDER
@@ -136,9 +136,9 @@ struct LoginSignUpView: View {
         }
         .sheet(isPresented: $isShowingConfirmation) {
             if self.loginMethod == .phone {
-                ConfirmPhoneView()
+                ConfirmPhoneView(phoneNumber: phoneNumber)
             } else {
-                ConfirmPhoneView()
+                ConfirmPhoneView(phoneNumber: phoneNumber)
             }
         }
     } //: Body

@@ -264,8 +264,8 @@
 		80EAC1C62968CE8C00F4DC09 /* View Components */ = {
 			isa = PBXGroup;
 			children = (
-				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
 				80EAC1C92968F2E400F4DC09 /* HeaderView.swift */,
+				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
