@@ -16,6 +16,7 @@ struct LoginSignUpView: View {
     @State private var phoneNumber: String = ""
     @State private var email: String = ""
     @State private var loginMethod: LoginMethod = .phone
+    @State private var isShowingConfirmation: Bool = false
     
     enum FocusText { case phoneEmail }
     enum LoginMethod { case phone, email }
@@ -132,6 +133,13 @@ struct LoginSignUpView: View {
         } //: VStack
         .onTapGesture {
             focusField = nil
+        }
+        .sheet(isPresented: $isShowingConfirmation) {
+            if self.loginMethod == .phone {
+                ConfirmPhoneView()
+            } else {
+                ConfirmPhoneView()
+            }
         }
     } //: Body
 } //: Struct

@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct ConfirmPhoneView: View {
+    // MARK: - PROPERTIES
+    @Environment(\.dismiss) var dismiss
+    @State var phoneNumber: String
+    
+    // MARK: - BODY
     var body: some View {
         Text("Hello, World!")
     }
 }
 
+// MARK: - PREVIEW
 struct ConfirmPhoneView_Previews: PreviewProvider {
+    @State var phoneNumber = "(123) 456-7894"
     static var previews: some View {
-        ConfirmPhoneView()
+        ConfirmPhoneView(phoneNumber: phoneNumber)
     }
 }
