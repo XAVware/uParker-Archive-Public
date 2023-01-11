@@ -45,8 +45,8 @@ struct LoginSignUpView: View {
                         .keyboardType(.numberPad)
                         .focused($focusField, equals: .phoneEmail)
                         .submitLabel(.continue)
-                        .onChange(of: phoneNumber, perform: { newValue in
-                            phoneNumber = newValue.applyPatternOnNumbers(pattern: "(###) ###-####", replacementCharacter: "#")
+                        .onChange(of: phoneNumber, perform: {
+                            phoneNumber = String($0.prefix(14)).applyPatternOnNumbers(pattern: "(###) ###-####", replacementCharacter: "#")
                         })
                         .onSubmit {
                             focusField = nil
@@ -54,6 +54,7 @@ struct LoginSignUpView: View {
                         .onTapGesture {
                             focusField = .phoneEmail
                         }
+                        
                     
                     Text("We'll call or text to confirm your number. Standard message and data rates apply.")
                         .font(.caption)
