@@ -13,6 +13,7 @@ struct AnimatedTextField: View {
     @State var placeholder: String
     
     @State var placeholderOffset: CGFloat = 0
+    @State var textFieldOffset: CGFloat = 0
     @State var placeholderScale: CGFloat = 1
     
     @State var isSecure: Bool = false
@@ -29,10 +30,12 @@ struct AnimatedTextField: View {
                 SecureField("", text: $boundTo)
                     .foregroundColor(.black)
                     .frame(height: 36)
+                    .offset(y: textFieldOffset)
             } else {
                 TextField("", text: $boundTo)
                     .foregroundColor(.black)
                     .frame(height: 36)
+                    .offset(y: textFieldOffset)
             }
 
             
@@ -42,11 +45,13 @@ struct AnimatedTextField: View {
                 withAnimation {
                     placeholderOffset = 0
                     placeholderScale = 1
+                    textFieldOffset = 0
                 }
             } else {
                 withAnimation {
                     placeholderOffset = -25
                     placeholderScale = 0.75
+                    textFieldOffset = 5
                 }
             }
         })

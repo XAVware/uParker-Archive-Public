@@ -27,13 +27,13 @@ struct ConfirmEmailView: View {
                     .font(.callout)
                     .fontDesign(.rounded)
                 
-                Text("Please sign in.")
+                Text("Please sign in. \(email)")
                     .font(.footnote)
                     .fontDesign(.rounded)
             }
             .padding(.vertical)
             
-            AnimatedTextField(boundTo: $email, placeholder: "Email")
+//            AnimatedTextField(boundTo: $email, placeholder: "Email")
             
             AnimatedTextField(boundTo: $password, placeholder: "Password", isSecure: true)
             

@@ -80,6 +80,7 @@ struct LoginSignUpView: View {
                 
                 ContinueButton(text: "Continue") {
                     focusField = nil
+                    print(email)
                     isShowingConfirmation = true
                 }
                 
