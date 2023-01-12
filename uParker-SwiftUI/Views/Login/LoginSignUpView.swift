@@ -140,7 +140,8 @@ struct LoginSignUpView: View {
                 ConfirmPhoneView(phoneNumber: phoneNumber)
                     .environmentObject(sessionManager)
             } else {
-                ConfirmPhoneView(phoneNumber: phoneNumber)
+                ConfirmEmailView(email: email)
+                    .environmentObject(sessionManager)
             }
         }
     } //: Body

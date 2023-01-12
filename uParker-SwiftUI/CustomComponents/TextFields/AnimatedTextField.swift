@@ -11,33 +11,46 @@ struct AnimatedTextField: View {
     // MARK: - PROPERTIES
     @Binding var boundTo: String
     @State var placeholder: String
-    @State private var isSelected: Bool = false
     
-    var isSmall: Bool {
-        if isSelected || !boundTo.isEmpty {
-            return true
-        } else {
-            return false
-        }
-    }
+    @State var placeholderOffset: CGFloat = 0
+    @State var placeholderScale: CGFloat = 1
+    
+    @State var isSecure: Bool = false
     
     // MARK: - BODY
     var body: some View {
         ZStack(alignment: .leading) {
             Text(placeholder)
                 .foregroundColor(.gray)
-                .offset(y: isSmall ? -14 : 0)
-                .font(isSmall ? .footnote : .body)
-                
-            TextField("", text: $boundTo) { isSelected in
-                withAnimation { self.isSelected = isSelected }
+                .offset(y: placeholderOffset)
+                .scaleEffect(placeholderScale, anchor: .leading)
+            
+            if isSecure {
+                SecureField("", text: $boundTo)
+                    .foregroundColor(.black)
+                    .frame(height: 36)
+            } else {
+                TextField("", text: $boundTo)
+                    .foregroundColor(.black)
+                    .frame(height: 36)
             }
-                .foregroundColor(.black)
-                .frame(height: 36)
-                .offset(y: 7)
+
             
         } //: ZStack
-        .frame(height: 60)
+        .onChange(of: boundTo.isEmpty, perform: { newValue in
+            if newValue == true {
+                withAnimation {
+                    placeholderOffset = 0
+                    placeholderScale = 1
+                }
+            } else {
+                withAnimation {
+                    placeholderOffset = -25
+                    placeholderScale = 0.75
+                }
+            }
+        })
+        .frame(height: 55)
         .padding(.horizontal)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
