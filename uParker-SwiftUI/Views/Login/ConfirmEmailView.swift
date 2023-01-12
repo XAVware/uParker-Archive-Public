@@ -26,13 +26,16 @@ struct ConfirmEmailView: View {
                     .font(.callout)
                     .fontDesign(.rounded)
                 
-                Text("Please sign in. \(emailAddress)")
+                Text("Please sign in.")
                     .font(.footnote)
                     .fontDesign(.rounded)
             } //: VStack
             .padding(.vertical)
             
             AnimatedTextField(boundTo: $emailAddress, placeholder: "Email Address")
+            
+            AnimatedTextField(boundTo: $password, placeholder: "Password", isSecure: true)
+            
             Spacer()
         } //: VStack
         .padding()

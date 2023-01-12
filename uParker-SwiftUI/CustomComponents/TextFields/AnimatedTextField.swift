@@ -18,6 +18,23 @@ struct AnimatedTextField: View {
     
     @State var isSecure: Bool = false
     
+    // MARK: - FUNCTIONS
+    func setPlacholderSize() {
+        if boundTo.isEmpty {
+            withAnimation {
+                placeholderOffset = 0
+                placeholderScale = 1
+                textFieldOffset = 0
+            }
+        } else {
+            withAnimation {
+                placeholderOffset = -25
+                placeholderScale = 0.75
+                textFieldOffset = 5
+            }
+        }
+    }
+    
     // MARK: - BODY
     var body: some View {
         ZStack(alignment: .leading) {
@@ -39,20 +56,8 @@ struct AnimatedTextField: View {
             }
 
         } //: ZStack
-        .onChange(of: boundTo.isEmpty, perform: { newValue in
-            if newValue == true {
-                withAnimation {
-                    placeholderOffset = 0
-                    placeholderScale = 1
-                    textFieldOffset = 0
-                }
-            } else {
-                withAnimation {
-                    placeholderOffset = -25
-                    placeholderScale = 0.75
-                    textFieldOffset = 5
-                }
-            }
+        .onChange(of: boundTo.isEmpty, perform: { _ in
+            setPlacholderSize()
         })
         .frame(height: 55)
         .padding(.horizontal)
@@ -60,6 +65,9 @@ struct AnimatedTextField: View {
             RoundedRectangle(cornerRadius: 5)
                 .stroke(.gray, lineWidth: 2)
         )
+        .onAppear {
+            setPlacholderSize()
+        }
     }
 }
 
