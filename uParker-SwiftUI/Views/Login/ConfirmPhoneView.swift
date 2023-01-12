@@ -10,10 +10,11 @@ import SwiftUI
 struct ConfirmPhoneView: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var sessionManager: SessionManager
     @FocusState private var focusField: FocusText?
     @State var phoneNumber: String
     @State var code: String = ""
-    @State var timeRemaining: Int = 0
+    @State var timeRemaining: Int = 15
     private let haptic = UIImpactFeedbackGenerator(style: .medium)
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     enum FocusText { case confirmationCode }
@@ -111,7 +112,8 @@ struct ConfirmPhoneView: View {
             .frame(height: 30)
             
             ContinueButton(text: "Continue") {
-                //
+                dismiss.callAsFunction()
+                sessionManager.isLoggedIn = true
             }
             .padding(.top)
             
