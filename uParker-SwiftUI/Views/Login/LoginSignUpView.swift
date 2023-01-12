@@ -23,10 +23,6 @@ struct LoginSignUpView: View {
     
     private let haptic = UIImpactFeedbackGenerator(style: .medium)
     
-    var isOptingPhone: Bool {
-        return loginMethod == .phone ? true : false
-    }
-    
     // MARK: - BODY
     var body: some View {
         VStack {
@@ -80,7 +76,6 @@ struct LoginSignUpView: View {
                 
                 ContinueButton(text: "Continue") {
                     focusField = nil
-                    print(email)
                     isShowingConfirmation = true
                 }
                 
@@ -138,10 +133,10 @@ struct LoginSignUpView: View {
         }
         .sheet(isPresented: $isShowingConfirmation) {
             if self.loginMethod == .phone {
-                ConfirmPhoneView(phoneNumber: phoneNumber)
+                ConfirmPhoneView(phoneNumber: $phoneNumber)
                     .environmentObject(sessionManager)
             } else {
-                ConfirmEmailView(email: email)
+                ConfirmEmailView(emailAddress: $email)
                     .environmentObject(sessionManager)
             }
         }

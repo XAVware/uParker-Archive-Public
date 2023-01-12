@@ -38,7 +38,6 @@ struct AnimatedTextField: View {
                     .offset(y: textFieldOffset)
             }
 
-            
         } //: ZStack
         .onChange(of: boundTo.isEmpty, perform: { newValue in
             if newValue == true {

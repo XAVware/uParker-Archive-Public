@@ -12,11 +12,14 @@ struct ConfirmPhoneView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sessionManager: SessionManager
     @FocusState private var focusField: FocusText?
-    @State var phoneNumber: String
+    
+    @Binding var phoneNumber: String
     @State var code: String = ""
     @State var timeRemaining: Int = 15
+    
     private let haptic = UIImpactFeedbackGenerator(style: .medium)
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     enum FocusText { case confirmationCode }
     
     
@@ -130,6 +133,6 @@ struct ConfirmPhoneView: View {
 struct ConfirmPhoneView_Previews: PreviewProvider {
     @State static var phoneNumber = "(123) 456-7894"
     static var previews: some View {
-        ConfirmPhoneView(phoneNumber: phoneNumber)
+        ConfirmPhoneView(phoneNumber: $phoneNumber)
     }
 }

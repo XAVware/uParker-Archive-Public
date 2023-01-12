@@ -30,7 +30,7 @@
 		80A64A28294E4C61001317DD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A27294E4C61001317DD /* SignUpView.swift */; };
 		80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2A2953FFCB001317DD /* SessionManager.swift */; };
 		80A64A2E2953FFF0001317DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D2953FFF0001317DD /* User.swift */; };
-		80AE3FAB2970567100A654E0 /* ConfirmEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE3FAA2970567100A654E0 /* ConfirmEmailView.swift */; };
+		80AE3FAF2970989000A654E0 /* ConfirmEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */; };
 		80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1BE2968C38900F4DC09 /* ProfileView.swift */; };
 		80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */; };
 		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
@@ -72,7 +72,7 @@
 		80A64A292953FB46001317DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80A64A2A2953FFCB001317DD /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		80A64A2D2953FFF0001317DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		80AE3FAA2970567100A654E0 /* ConfirmEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailView.swift; sourceTree = "<group>"; };
+		80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailView.swift; sourceTree = "<group>"; };
 		80EAC1BE2968C38900F4DC09 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 			children = (
 				80EE94322964E93400A85CEF /* LoginSignUpView.swift */,
 				8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */,
-				80AE3FAA2970567100A654E0 /* ConfirmEmailView.swift */,
+				80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -391,7 +391,7 @@
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
 				80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */,
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,
-				80AE3FAB2970567100A654E0 /* ConfirmEmailView.swift in Sources */,
+				80AE3FAF2970989000A654E0 /* ConfirmEmailView.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
 				8047EDB8296E0BC600AF3896 /* ConfirmPhoneView.swift in Sources */,
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,

@@ -11,11 +11,10 @@ struct ConfirmEmailView: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sessionManager: SessionManager
-    @FocusState private var focusField: FocusText?
-    @State var email: String
+    
+    @Binding var emailAddress: String
     @State var password: String = ""
     
-    enum FocusText { case confirmationCode }
     
     // MARK: - BODY
     var body: some View {
@@ -27,27 +26,22 @@ struct ConfirmEmailView: View {
                     .font(.callout)
                     .fontDesign(.rounded)
                 
-                Text("Please sign in. \(email)")
+                Text("Please sign in. \(emailAddress)")
                     .font(.footnote)
                     .fontDesign(.rounded)
-            }
+            } //: VStack
             .padding(.vertical)
             
-//            AnimatedTextField(boundTo: $email, placeholder: "Email")
-            
-            AnimatedTextField(boundTo: $password, placeholder: "Password", isSecure: true)
-            
+            AnimatedTextField(boundTo: $emailAddress, placeholder: "Email Address")
             Spacer()
-            
-            
-        }
+        } //: VStack
         .padding()
     }
 }
 
-// MARK: - PREVIEW
 struct ConfirmEmailView_Previews: PreviewProvider {
+    @State static var email: String = "ryansmetana@gmail.com"
     static var previews: some View {
-        ConfirmEmailView(email: "ryansmetana@gmail.com")
+        ConfirmEmailView(emailAddress: $email)
     }
 }
