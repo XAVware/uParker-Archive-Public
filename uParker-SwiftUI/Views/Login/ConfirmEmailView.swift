@@ -18,26 +18,41 @@ struct ConfirmEmailView: View {
     
     // MARK: - BODY
     var body: some View {
-        VStack {
+        VStack(spacing: 25) {
             HeaderView(leftItem: .chevron, title: "Log In", rightItem: nil)
             
-            VStack(alignment: .leading) {
-                Text("Email Address:")
-                    .foregroundColor(.gray)
+            VStack {
+                Text("We found your account!")
                     .font(.callout)
                     .fontDesign(.rounded)
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(emailAddress)
-                    .font(.title3)
+                Text("Please sign in below.")
+                    .font(.footnote)
                     .fontDesign(.rounded)
-                    .fontWeight(.semibold)
+            }
+            
+            VStack {
+                VStack(alignment: .leading) {
+                    Text("Email Address:")
+                        .foregroundColor(.gray)
+                        .font(.callout)
+                        .fontDesign(.rounded)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Text(emailAddress)
+                        .font(.title3)
+                        .fontDesign(.rounded)
+                        .fontWeight(.semibold)
+                } //: VStack
+                .padding()
+                
+                AnimatedTextField(boundTo: $password, placeholder: "Password", isSecure: true)
             } //: VStack
-            .padding()
             
-//            AnimatedTextField(boundTo: $emailAddress, placeholder: "Email Address")
-            
-            AnimatedTextField(boundTo: $password, placeholder: "Password", isSecure: true)
+            ContinueButton(text: "Log In") {
+                dismiss.callAsFunction()
+                sessionManager.isLoggedIn = true
+            }
             
             Spacer()
         } //: VStack
