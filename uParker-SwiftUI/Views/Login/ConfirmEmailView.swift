@@ -32,7 +32,7 @@ struct ConfirmEmailView: View {
             }
             
             VStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text("Email Address:")
                         .foregroundColor(.gray)
                         .font(.callout)
@@ -50,8 +50,7 @@ struct ConfirmEmailView: View {
             } //: VStack
             
             ContinueButton(text: "Log In") {
-                dismiss.callAsFunction()
-                sessionManager.isLoggedIn = true
+                sessionManager.logIn()
             }
             
             Spacer()

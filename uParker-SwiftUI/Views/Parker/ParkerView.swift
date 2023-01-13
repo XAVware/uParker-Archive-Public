@@ -10,9 +10,7 @@ import SwiftUI
 struct ParkerView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
-    
-    @State var isShowingLoginModal: Bool = true
-    
+        
     // MARK: - BODY
     var body: some View {
         GeometryReader { geo in

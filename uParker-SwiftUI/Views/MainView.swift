@@ -11,20 +11,20 @@ struct MainView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
-    @State var isShowingLoginModal: Bool = true
+//    @State var isShowingLoginModal: Bool = true
     
     // MARK: - BODY
     var body: some View {
         if sessionManager.userType == .parker {
             ParkerView()
-                .sheet(isPresented: $isShowingLoginModal) {
+                .sheet(isPresented: $sessionManager.isShowingLoginModal) {
                     LoginSignUpView()
                         .environmentObject(sessionManager)
                         .ignoresSafeArea(.keyboard)
                 }
                 .onChange(of: sessionManager.isLoggedIn) { loggedIn in
                     if loggedIn {
-                        self.isShowingLoginModal = false
+                        sessionManager.isShowingLoginModal = false
                     }
                 }
         } else {

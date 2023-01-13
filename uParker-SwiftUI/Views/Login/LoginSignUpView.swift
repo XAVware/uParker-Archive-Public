@@ -16,7 +16,6 @@ struct LoginSignUpView: View {
     @State private var phoneNumber: String = ""
     @State private var email: String = ""
     @State private var loginMethod: LoginMethod = .phone
-    @State private var isShowingConfirmation: Bool = false
     
     enum FocusText { case phoneEmail }
     enum LoginMethod { case phone, email }
@@ -76,7 +75,7 @@ struct LoginSignUpView: View {
                 
                 ContinueButton(text: "Continue") {
                     focusField = nil
-                    isShowingConfirmation = true
+                    sessionManager.isShowingConfirmation = true
                 }
                 
                 // MARK: - DIVIDER
@@ -131,7 +130,7 @@ struct LoginSignUpView: View {
         .onTapGesture {
             focusField = nil
         }
-        .sheet(isPresented: $isShowingConfirmation) {
+        .sheet(isPresented: $sessionManager.isShowingConfirmation) {
             if self.loginMethod == .phone {
                 ConfirmPhoneView(phoneNumber: $phoneNumber)
                     .environmentObject(sessionManager)

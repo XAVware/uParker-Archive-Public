@@ -10,7 +10,6 @@ import SwiftUI
 struct NeedLoginView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
-    @State var isShowingLoginModal: Bool = false
     
     let title: String
     let mainHeadline: String
@@ -35,7 +34,7 @@ struct NeedLoginView: View {
             
             VStack(spacing: 20) {
                 ContinueButton(text: "Log In") {
-                    self.isShowingLoginModal.toggle()
+                    sessionManager.isShowingLoginModal = true
                 }
                 
                 HStack(spacing: 8) {
@@ -44,7 +43,7 @@ struct NeedLoginView: View {
                         .fontDesign(.rounded)
                     
                     Button {
-                        self.isShowingLoginModal.toggle()
+                        sessionManager.isShowingLoginModal = true
                     } label: {
                         Text("Sign Up").underline()
                             .font(.callout)
@@ -54,7 +53,7 @@ struct NeedLoginView: View {
                 } //: VStack - Sign Up
             } //: VStack - Login/Sign up
         } //: VStack
-        .sheet(isPresented: self.$isShowingLoginModal) {
+        .sheet(isPresented: $sessionManager.isShowingLoginModal) {
             LoginSignUpView()
                 .environmentObject(sessionManager)
         }
