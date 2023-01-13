@@ -21,18 +21,21 @@ struct ConfirmEmailView: View {
         VStack {
             HeaderView(leftItem: .chevron, title: "Log In", rightItem: nil)
             
-            VStack {
-                Text("We found your account!")
+            VStack(alignment: .leading) {
+                Text("Email Address:")
+                    .foregroundColor(.gray)
                     .font(.callout)
                     .fontDesign(.rounded)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("Please sign in.")
-                    .font(.footnote)
+                Text(emailAddress)
+                    .font(.title3)
                     .fontDesign(.rounded)
+                    .fontWeight(.semibold)
             } //: VStack
-            .padding(.vertical)
+            .padding()
             
-            AnimatedTextField(boundTo: $emailAddress, placeholder: "Email Address")
+//            AnimatedTextField(boundTo: $emailAddress, placeholder: "Email Address")
             
             AnimatedTextField(boundTo: $password, placeholder: "Password", isSecure: true)
             
