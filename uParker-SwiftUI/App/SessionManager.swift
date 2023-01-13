@@ -14,7 +14,7 @@ class SessionManager: ObservableObject {
     @Published var userType: UserType = .parker
     
     @Published var isShowingLoginModal: Bool = true
-    @Published var isShowingConfirmation: Bool = false
+//    @Published var isShowingConfirmation: Bool = false
     
     enum UserType { case parker, host}
     
@@ -22,7 +22,7 @@ class SessionManager: ObservableObject {
     
     func logIn() {
         self.isLoggedIn = true
-        self.isShowingConfirmation = false
+//        self.isShowingConfirmation = false
         self.isShowingLoginModal = false
     }
 }

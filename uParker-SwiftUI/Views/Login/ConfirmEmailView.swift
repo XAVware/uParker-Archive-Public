@@ -50,6 +50,7 @@ struct ConfirmEmailView: View {
             } //: VStack
             
             ContinueButton(text: "Log In") {
+                dismiss.callAsFunction()
                 sessionManager.logIn()
             }
             

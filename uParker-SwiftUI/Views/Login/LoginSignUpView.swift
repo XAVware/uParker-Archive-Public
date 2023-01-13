@@ -16,6 +16,7 @@ struct LoginSignUpView: View {
     @State private var phoneNumber: String = ""
     @State private var email: String = ""
     @State private var loginMethod: LoginMethod = .phone
+    @State private var isShowingConfirmation: Bool = false
     
     enum FocusText { case phoneEmail }
     enum LoginMethod { case phone, email }
@@ -39,6 +40,8 @@ struct LoginSignUpView: View {
                     AnimatedTextField(boundTo: $phoneNumber, placeholder: "Phone Number")
                         .padding(.top, 20)
                         .keyboardType(.numberPad)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
                         .focused($focusField, equals: .phoneEmail)
                         .submitLabel(.continue)
                         .onChange(of: phoneNumber, perform: {
@@ -63,6 +66,8 @@ struct LoginSignUpView: View {
                     AnimatedTextField(boundTo: $email, placeholder: "Email Address")
                         .padding(.vertical, 20)
                         .keyboardType(.emailAddress)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
                         .focused($focusField, equals: .phoneEmail)
                         .submitLabel(.continue)
                         .onSubmit {
@@ -75,7 +80,7 @@ struct LoginSignUpView: View {
                 
                 ContinueButton(text: "Continue") {
                     focusField = nil
-                    sessionManager.isShowingConfirmation = true
+                    isShowingConfirmation = true
                 }
                 
                 // MARK: - DIVIDER
@@ -130,7 +135,7 @@ struct LoginSignUpView: View {
         .onTapGesture {
             focusField = nil
         }
-        .sheet(isPresented: $sessionManager.isShowingConfirmation) {
+        .sheet(isPresented: $isShowingConfirmation) {
             if self.loginMethod == .phone {
                 ConfirmPhoneView(phoneNumber: $phoneNumber)
                     .environmentObject(sessionManager)

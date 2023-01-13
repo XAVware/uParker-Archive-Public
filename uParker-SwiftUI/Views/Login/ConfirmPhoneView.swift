@@ -115,6 +115,7 @@ struct ConfirmPhoneView: View {
             .frame(height: 30)
             
             ContinueButton(text: "Continue") {
+                dismiss.callAsFunction()
                 sessionManager.logIn()
             }
             .padding(.top)

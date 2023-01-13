@@ -10,9 +10,7 @@ import SwiftUI
 struct MainView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
-    
-//    @State var isShowingLoginModal: Bool = true
-    
+        
     // MARK: - BODY
     var body: some View {
         if sessionManager.userType == .parker {
@@ -22,11 +20,7 @@ struct MainView: View {
                         .environmentObject(sessionManager)
                         .ignoresSafeArea(.keyboard)
                 }
-                .onChange(of: sessionManager.isLoggedIn) { loggedIn in
-                    if loggedIn {
-                        sessionManager.isShowingLoginModal = false
-                    }
-                }
+
         } else {
             HostView()
                 .environmentObject(sessionManager)
