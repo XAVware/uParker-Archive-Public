@@ -10,19 +10,30 @@ import SwiftUI
 struct ParkerReservationsView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
-
+    
     @State var selection: Int = 1
     let options: [String] = ["Past", "Current", "Upcoming"]
     
     let currentReservation: Reservation = reservations[0]
     
+    //Timer
+    @State var timeRemaining: Int = 15
+    @State var isTimerRunning: Bool = false
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
     //Ring
     @State private var drawingStroke = false
     
-    let animation = Animation
-        .easeOut(duration: 3)
-        .repeatForever(autoreverses: false)
-        .delay(0.5)
+//    let animation = Animation
+//        .easeOut(duration: 3)
+//        .repeatForever(autoreverses: false)
+//        .delay(0.5)
+    
+    var ringAnimation: Animation {
+//        let secondsRemaining: Double = Double(timeRemaining - (timeRemaining / Int(trim)))
+        let secondsRemaining: Double = Double(timeRemaining) - 2.4
+        return Animation.linear(duration: Double(secondsRemaining))
+    }
     
     let trim: CGFloat = 16
     
@@ -46,23 +57,53 @@ struct ParkerReservationsView: View {
                 ReservationsPicker(selectedIndex: $selection, options: self.options)
                 
                 VStack(spacing: 20) {
-                    // MARK: - RING
-                    Circle()
-                        .trim(from: (trim * 0.01), to: 1)
-                        .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round))
-                        .foregroundStyle(.tertiary)
-                        .overlay {
-                            Circle()
-                                .trim(from: (trim * 0.01), to: drawingStroke ? 0 : 1)
-                                .stroke(primaryColor.gradient,
-                                        style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                    ZStack {
+                        // MARK: - RING
+                        Circle()
+                            .trim(from: (trim * 0.01), to: 1)
+                            .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                            .foregroundStyle(.tertiary)
+                            .overlay {
+                                Circle()
+                                    .trim(from: (trim * 0.01), to: drawingStroke ? 0 : 1)
+                                    .stroke(primaryColor.gradient,
+                                            style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                            }
+                            .rotationEffect(.degrees(rotationDegrees))
+                            .frame(width: 150)
+                            .animation(ringAnimation, value: drawingStroke)
+//                            .onAppear {
+//                                drawingStroke.toggle()
+//                            }
+                        
+                        if isTimerRunning {
+                            Text("\(timeRemaining)")
+                                .foregroundColor(primaryColor)
+                                .font(.largeTitle)
+                                .fontWeight(.semibold)
+                                .fontDesign(.rounded)
+                                .onReceive(timer) { _ in
+                                    if self.isTimerRunning && timeRemaining > 0{
+                                        timeRemaining -= 1
+                                    }
+                                }
+                        } else {
+                            Button {
+                                self.isTimerRunning = true
+                                self.drawingStroke = true
+                            } label: {
+                                Text("Arrive")
+                            }
+                            .foregroundColor(primaryColor)
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .fontDesign(.rounded)
+
                         }
-                        .rotationEffect(.degrees(rotationDegrees))
-                        .frame(width: 150)
-                        .animation(animation, value: drawingStroke)
-                        .onAppear {
-                            drawingStroke.toggle()
-                        }
+                        
+                        
+                        
+                    } //: ZStack
                     
                     // MARK: - ADDRESS
                     VStack {
