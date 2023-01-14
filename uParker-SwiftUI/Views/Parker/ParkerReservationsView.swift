@@ -10,9 +10,7 @@ import SwiftUI
 struct ParkerReservationsView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
-    
-    
-    
+
     @State var selection: Int = 1
     let options: [String] = ["Past", "Current", "Upcoming"]
     
@@ -83,8 +81,6 @@ struct ParkerReservationsView: View {
                     
                 } //: VStack
                 .padding(.vertical)
-                
-
             } //: If-Else
             
             Spacer()

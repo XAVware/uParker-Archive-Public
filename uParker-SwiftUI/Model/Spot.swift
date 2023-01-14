@@ -26,28 +26,5 @@ class Spot {
         
     }
     
-    
-// ~~~~~~~~~~~~~~~~~~~~ Not working ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//    func getCoordinates(for address: String) -> CLLocationCoordinate2D {
-//        var safeCoordinate: CLLocationCoordinate2D!
-//        let geocoder = Geocoder.shared
-//        let options = ForwardGeocodeOptions(query: address)
-//        let task = geocoder.geocode(options) { (placemarks, attribution, error) in
-//
-//            guard let placemark = placemarks?.first else {
-//                print("error getting spot coordinate")
-//                return
-//            }
-//            safeCoordinate = placemark.location?.coordinate
-//
-//        }
-//        task.resume()
-//
-//        guard safeCoordinate != nil else {
-//            return CLLocationCoordinate2D(latitude: 30, longitude: 60)
-//        }
-//
-//        return safeCoordinate
-//    }
 }
 

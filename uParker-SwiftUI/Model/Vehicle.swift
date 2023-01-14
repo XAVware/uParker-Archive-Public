@@ -19,13 +19,4 @@ class Vehicle {
         self.licensePlate = licensePlate
     }
     
-    
-    func saveVehicle() {
-        
-    }
-    
-    func deleteVehicle() {
-        
-    }
-    
 }

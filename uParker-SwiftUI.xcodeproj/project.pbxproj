@@ -25,6 +25,7 @@
 		8065484D2972EF6400943B72 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548492972EF6400943B72 /* PaymentMethod.swift */; };
 		8065484E2972EF6400943B72 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065484A2972EF6400943B72 /* Review.swift */; };
 		806548502972F05600943B72 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065484F2972F05600943B72 /* Data.swift */; };
+		8065485229730D1B00943B72 /* LineCount in Resources */ = {isa = PBXBuildFile; fileRef = 8065485129730D1B00943B72 /* LineCount */; };
 		80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */; };
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		806548492972EF6400943B72 /* PaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		8065484A2972EF6400943B72 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		8065484F2972F05600943B72 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		8065485129730D1B00943B72 /* LineCount */ = {isa = PBXFileReference; lastKnownFileType = text; path = LineCount; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uParker_SwiftUIApp.swift; sourceTree = "<group>"; };
 		80A64A09294D6491001317DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				800772EB2969F27F00E7FEED /* MBGeocoder.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
 				80EAC1D329691D1C00F4DC09 /* ToDos */,
+				8065485129730D1B00943B72 /* LineCount */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 			files = (
 				80EAC1D429691D1C00F4DC09 /* ToDos in Resources */,
 				80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */,
+				8065485229730D1B00943B72 /* LineCount in Resources */,
 				80A64A0A294D6491001317DD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
