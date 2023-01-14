@@ -16,10 +16,7 @@ struct ProfileView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 HeaderView(leftItem: nil, title: nil, rightItem: nil)
-                
-//                Text("Profile")
-//                    .modifier(PageTitleModifier())
-//                    .padding(.bottom, 20)
+
                 
                 if sessionManager.isLoggedIn == false {
                     NeedLoginView(title: "Profile", mainHeadline: "Tell us about yourself", mainDetail: "You need to log in before you can reserve parking")
