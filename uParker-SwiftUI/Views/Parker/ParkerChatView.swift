@@ -15,7 +15,6 @@ struct ParkerChatView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HeaderView(leftItem: nil, title: nil, rightItem: nil)
-
             
             if sessionManager.isLoggedIn == false {
                 NeedLoginView(title: "Chat", mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
