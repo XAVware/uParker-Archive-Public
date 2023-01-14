@@ -47,8 +47,8 @@ struct ParkerReservationsView: View {
                 
                 ReservationsPicker(selectedIndex: $selection, options: self.options)
                 
-                // MARK: - Ring
-                VStack {
+                VStack(spacing: 20) {
+                    // MARK: - RING
                     Circle()
                         .trim(from: (trim * 0.01), to: 1)
                         .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round))
@@ -64,21 +64,26 @@ struct ParkerReservationsView: View {
                         .animation(animation, value: drawingStroke)
                         .onAppear {
                             drawingStroke.toggle()
-                    }
+                        }
+                    
+                    // MARK: - ADDRESS
+                    VStack {
+                        Text(currentReservation.streetAddress)
+                            .foregroundColor(primaryColor)
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .fontDesign(.rounded)
+                        
+                        Text("\(currentReservation.city) \(currentReservation.state), \(currentReservation.zipCode)")
+                            .foregroundColor(primaryColor)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .fontDesign(.rounded)
+                    } //: VStack
+                    
                 } //: VStack
                 .padding(.vertical)
                 
-                Text(currentReservation.streetAddress)
-                    .foregroundColor(primaryColor)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
-                
-                Text("\(currentReservation.city) \(currentReservation.state), \(currentReservation.zipCode)")
-                    .foregroundColor(primaryColor)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
 
             } //: If-Else
             
