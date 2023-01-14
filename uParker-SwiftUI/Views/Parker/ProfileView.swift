@@ -14,15 +14,15 @@ struct ProfileView: View {
     // MARK: - BODY
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .leading) {
                 HeaderView(leftItem: nil, title: nil, rightItem: nil)
                 
-                Text("Profile")
-                    .modifier(PageTitleModifier())
-                    .padding(.bottom, 20)
+//                Text("Profile")
+//                    .modifier(PageTitleModifier())
+//                    .padding(.bottom, 20)
                 
                 if sessionManager.isLoggedIn == false {
-                    NeedLoginView(mainHeadline: "Tell us about yourself", mainDetail: "You need to log in before you can reserve parking")
+                    NeedLoginView(title: "Profile", mainHeadline: "Tell us about yourself", mainDetail: "You need to log in before you can reserve parking")
                     
                     Spacer().frame(maxHeight: .infinity)
                     

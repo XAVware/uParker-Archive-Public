@@ -12,6 +12,7 @@ struct SpotListView: View {
     @State private var isExpanded: Bool = false
     @State private var isDragging = false
     @State private var prevDragTranslation: CGSize = CGSize.zero
+    @State private var velocity: CGFloat = 0
     @GestureState var isDetectingLongPress = false
     
     @Binding var viewHeight: CGFloat
@@ -56,13 +57,9 @@ struct SpotListView: View {
                     self.isDragging = true
                 }
                 
-                let velocity: CGFloat = val.predictedEndLocation.y - val.location.y
+                velocity = val.predictedEndLocation.y - val.location.y
 
-                if velocity > 500 {
-                    expandList()
-                } else if velocity < -500 {
-                    compressList()
-                }
+                
                 
                 let dragAmount = val.translation.height - prevDragTranslation.height
                 
@@ -79,6 +76,12 @@ struct SpotListView: View {
             .onEnded { val in
                 prevDragTranslation = CGSize.zero
                 isDragging = false
+                
+                if velocity > 200 {
+                    expandList()
+                } else if velocity < -200 {
+                    compressList()
+                }
                 
                 if viewHeight >= threshold {
                     expandList()
@@ -162,10 +165,9 @@ struct SpotListView: View {
                     .shadow(radius: listShadowRad)
                     .mask(Rectangle().padding(.bottom, -20))
             )
-            .animation(self.isDragging ? nil : .easeInOut(duration: 0.45), value: true)
             .transition(.move(edge: .top))
             .gesture(dragGesture)
-            .animation(.easeInOut, value: true)
+            .animation(.linear, value: true)
         } //: ZStack
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         

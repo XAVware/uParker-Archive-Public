@@ -13,15 +13,15 @@ struct ParkerChatView: View {
 
     // MARK: - BODY
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HeaderView(leftItem: nil, title: nil, rightItem: nil)
             
-            Text("Chat")
-                .modifier(PageTitleModifier())
-                .padding(.bottom, 20)
+//            Text("Chat")
+//                .modifier(PageTitleModifier())
+//                .padding(.bottom, 20)
             
             if sessionManager.isLoggedIn == false {
-                NeedLoginView(mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
+                NeedLoginView(title: "Chat", mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
             }
             
             Spacer()

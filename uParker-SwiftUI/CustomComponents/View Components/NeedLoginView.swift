@@ -11,6 +11,7 @@ struct NeedLoginView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
+    let title: String
     let mainHeadline: String
     let mainDetail: String
     
@@ -18,6 +19,10 @@ struct NeedLoginView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 40) {
             VStack(alignment: .leading, spacing: 10) {
+                Text(title)
+                    .modifier(PageTitleModifier())
+                    .padding(.bottom, 20)
+                
                 Text(mainHeadline)
                     .font(.headline)
                     .fontDesign(.rounded)
@@ -57,12 +62,12 @@ struct NeedLoginView: View {
 
 // MARK: - PREVIEW
 struct NeedLoginView_Previews: PreviewProvider {
-//    static let title: String = "Profile"
+    static let title: String = "Profile"
     static let headline: String = "Tell us about yourself"
     static let subheadline: String = "You need to log in before you can reserve parking"
     
     static var previews: some View {
-        NeedLoginView(mainHeadline: headline, mainDetail: subheadline)
+        NeedLoginView(title: title, mainHeadline: headline, mainDetail: subheadline)
             .environmentObject(SessionManager())
             .previewLayout(.sizeThatFits)
     }

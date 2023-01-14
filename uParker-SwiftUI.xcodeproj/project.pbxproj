@@ -19,6 +19,12 @@
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
+		806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548452972EBFC00943B72 /* ReservationsPicker.swift */; };
+		8065484B2972EF6400943B72 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548472972EF6400943B72 /* Reservation.swift */; };
+		8065484C2972EF6400943B72 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548482972EF6400943B72 /* Vehicle.swift */; };
+		8065484D2972EF6400943B72 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548492972EF6400943B72 /* PaymentMethod.swift */; };
+		8065484E2972EF6400943B72 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065484A2972EF6400943B72 /* Review.swift */; };
+		806548502972F05600943B72 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065484F2972F05600943B72 /* Data.swift */; };
 		80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */; };
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
@@ -59,6 +65,12 @@
 		8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneView.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
+		806548452972EBFC00943B72 /* ReservationsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsPicker.swift; sourceTree = "<group>"; };
+		806548472972EF6400943B72 /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		806548482972EF6400943B72 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		806548492972EF6400943B72 /* PaymentMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		8065484A2972EF6400943B72 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		8065484F2972F05600943B72 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uParker_SwiftUIApp.swift; sourceTree = "<group>"; };
 		80A64A09294D6491001317DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,6 +231,7 @@
 			children = (
 				80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */,
 				80A64A1C294D6859001317DD /* Constants.swift */,
+				8065484F2972F05600943B72 /* Data.swift */,
 				8036CB2D296DA2A300B1A2B9 /* Extensions.swift */,
 				800772EB2969F27F00E7FEED /* MBGeocoder.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
@@ -240,6 +253,10 @@
 			isa = PBXGroup;
 			children = (
 				80A64A2D2953FFF0001317DD /* User.swift */,
+				806548492972EF6400943B72 /* PaymentMethod.swift */,
+				806548472972EF6400943B72 /* Reservation.swift */,
+				8065484A2972EF6400943B72 /* Review.swift */,
+				806548482972EF6400943B72 /* Vehicle.swift */,
 				800772E62969ED3A00E7FEED /* Spot.swift */,
 			);
 			path = Model;
@@ -269,6 +286,7 @@
 			children = (
 				80EAC1C92968F2E400F4DC09 /* HeaderView.swift */,
 				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
+				806548452972EBFC00943B72 /* ReservationsPicker.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -365,19 +383,23 @@
 			files = (
 				800772F9296C97DA00E7FEED /* SpotMapView.swift in Sources */,
 				80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */,
+				8065484B2972EF6400943B72 /* Reservation.swift in Sources */,
 				80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */,
 				80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */,
 				80EE94312964E8C500A85CEF /* HostView.swift in Sources */,
 				800772F7296C901D00E7FEED /* MapButtonPanel.swift in Sources */,
 				80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */,
+				8065484E2972EF6400943B72 /* Review.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
 				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,
 				800772FB296CCF3D00E7FEED /* SpotListView.swift in Sources */,
 				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
 				80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */,
+				806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */,
 				80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */,
 				806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */,
 				80607353296662F600C4E136 /* MainView.swift in Sources */,
+				8065484D2972EF6400943B72 /* PaymentMethod.swift in Sources */,
 				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
 				80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */,
 				80A64A1A294D66C0001317DD /* LoginView-OG.swift in Sources */,
@@ -390,8 +412,10 @@
 				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
 				80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */,
+				806548502972F05600943B72 /* Data.swift in Sources */,
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,
 				80AE3FAF2970989000A654E0 /* ConfirmEmailView.swift in Sources */,
+				8065484C2972EF6400943B72 /* Vehicle.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
 				8047EDB8296E0BC600AF3896 /* ConfirmPhoneView.swift in Sources */,
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,
