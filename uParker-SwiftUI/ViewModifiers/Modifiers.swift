@@ -35,3 +35,14 @@ struct SettingsButtonModifier: ViewModifier {
             .fontDesign(.rounded)
     }
 }
+
+struct SettingsCategoryHeader: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+            .padding(.top, 30)
+    }
+}
+

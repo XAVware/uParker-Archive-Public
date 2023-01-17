@@ -21,19 +21,22 @@ struct SettingsButton: View {
                 destination
             }
         } label: {
-            if image != nil {
-                image!
-                    .padding(.trailing, 8)
-            }
-            
-            Text(text)
+            HStack(spacing: 12) {
+                if image != nil {
+                    image!
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 22)
+                }
                 
-            Spacer()
-            
-            Image(systemName: "chevron.right")
+                Text(text)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                Image(systemName: "chevron.right")
+            }
         }
-        .padding()
         .buttonStyle(PlainButtonStyle())
+        .padding(.horizontal)
         .font(.title3)
         .fontDesign(.rounded)
         .frame(height: 40)
@@ -45,7 +48,7 @@ struct SettingsButton_Previews: PreviewProvider {
     static let image: Image = Image(systemName: "info.circle")
     
     static var previews: some View {
-        SettingsButton(image: nil, text: "More Info")
+        SettingsButton(image: image, text: "More Info")
             .previewLayout(.sizeThatFits)
     }
 }
