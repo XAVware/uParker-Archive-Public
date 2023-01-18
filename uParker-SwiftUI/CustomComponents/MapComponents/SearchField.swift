@@ -11,49 +11,118 @@ struct SearchField: View {
     // MARK: - PROPERTIES
     let iconSize: CGFloat = 15
     
+    @State var isExpanded: Bool = true
+    @State var destination: String = "Current Location"
+    @State var date: String = "Today"
+    
     // MARK: - BODY
     var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .resizable()
-                .scaledToFit()
-                .frame(width: iconSize)
-            
-            VStack(alignment: .leading) {
-                Text("Where to?")
-                    .font(.title3)
-                    .fontWeight(.semibold)
+        if self.isExpanded {
+            VStack(spacing: 20) {
+                HStack {
+                    Button {
+                        withAnimation {
+                            self.isExpanded = false
+                        }
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: iconSize)
+                    }
+                    .frame(width: 30, height: 30)
+                    .overlay(Circle().stroke(.gray))
+                    
+                    Text("Search")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .fontDesign(.rounded)
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
+                    
+                    Spacer().frame(width: 30)
+                } //: HStack
                 
-                Text("Beaver Stadium - Today")
-                    .font(.caption)
+                VStack(alignment: .leading) {
+                    Text("Where to?")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    
+                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
+                } //: VStack
+                .padding(.horizontal)
+                .frame(height: 140)
+                .background(Color.white)
+                .clipShape(
+                    RoundedRectangle(cornerRadius: 15)
+                )
+                .shadow(radius: 4)
+                
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("When?")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Text(date)
+                    }
+                    
+//                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
+                } //: VStack
+                .padding(.horizontal)
+                .frame(height: 80)
+                .background(Color.white)
+                .clipShape(
+                    RoundedRectangle(cornerRadius: 15)
+                )
+                .shadow(radius: 4)
             } //: VStack
-            .fontDesign(.rounded)
-            .padding(.horizontal)
-            
-            Spacer()
-            
-            Button {
-                //
-            } label: {
-                Image(systemName: "slider.horizontal.3")
+        } else {
+            // MARK: - SEARCH BAR
+            HStack {
+                Image(systemName: "magnifyingglass")
                     .resizable()
                     .scaledToFit()
                     .frame(width: iconSize)
+                
+                VStack(alignment: .leading) {
+                    Text("Where to?")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    
+                    Text("Beaver Stadium - Today")
+                        .font(.caption)
+                } //: VStack
+                .fontDesign(.rounded)
+                .padding(.horizontal)
+                
+                Spacer()
+                
+                Button {
+                    //
+                } label: {
+                    Image(systemName: "slider.horizontal.3")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: iconSize)
+                }
+                .frame(width: 35, height: 35)
+                .overlay(Circle().stroke(.gray))
+            } //: HStack
+            .padding(.horizontal)
+            .frame(height: searchBarHeight)
+            .background(Color.white)
+            .clipShape(
+                RoundedRectangle(cornerRadius: searchBarHeight)
+            )
+            .shadow(radius: 4)
+            .onTapGesture {
+                withAnimation {
+                    self.isExpanded = true
+                }
             }
-            .frame(width: 35, height: 35)
-            .overlay(Circle().stroke(.gray))
-        } //: HStack
-        .padding(.horizontal)
-        .frame(height: searchBarHeight)
-        .background(Color.white)
-        .clipShape(Capsule())
-        .shadow(radius: 4)
-        .overlay(
-            RoundedRectangle(cornerRadius: searchBarHeight)
-                .stroke(.gray, lineWidth: 0.5)
-        )
-        .onTapGesture {
-            print("Search Field Clicked")
+            
         }
         
     }
@@ -64,7 +133,7 @@ struct SearchField_Previews: PreviewProvider {
     static var previews: some View {
         SearchField()
             .previewLayout(.sizeThatFits)
-//            .background(.blue)
+        //            .background(.blue)
             .padding()
     }
 }
