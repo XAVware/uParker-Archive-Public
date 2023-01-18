@@ -11,9 +11,11 @@ struct SearchField: View {
     // MARK: - PROPERTIES
     let iconSize: CGFloat = 15
     
-    @State var searchIsExpanded: Bool = false
-    @State var destination: String = "Current Location"
-    @State var date: String = "Today"
+    @State private var searchIsExpanded: Bool = false
+    @State private var destinationIsExpanded = true
+    @State private var dateIsExpanded = false
+    @State private var destination: String = "Beaver Stadium"
+    @State private var date: String = "Today"
     
     // MARK: - BODY
     var body: some View {
@@ -66,9 +68,10 @@ struct SearchField: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         Text(date)
+                            .font(.footnote)
                     }
                     
-                    //                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
+//                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
                 } //: VStack
                 .padding(.horizontal)
                 .frame(height: 60)
@@ -80,6 +83,9 @@ struct SearchField: View {
                 
                 Spacer()
             } //: VStack
+            .padding()
+            .transition(.move(edge: .top))
+            .animation(.linear, value: true)
             .background(.ultraThinMaterial)
         } else {
             // MARK: - SEARCH BAR
@@ -95,7 +101,7 @@ struct SearchField: View {
                             .font(.title3)
                             .fontWeight(.semibold)
                         
-                        Text("Beaver Stadium - Today")
+                        Text("\(destination) - \(date)")
                             .font(.caption)
                     } //: VStack
                     .fontDesign(.rounded)

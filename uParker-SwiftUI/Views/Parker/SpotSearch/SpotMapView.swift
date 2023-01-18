@@ -31,10 +31,6 @@ struct SpotMapView: View {
                 
 
                 VStack(spacing: 0) {
-//                    SearchField()
-//                        .padding(.horizontal)
-//                        .padding(.top)
-                    
                     Spacer().frame(height: initialListHeight - geo.safeAreaInsets.top + searchBarHeight)
                         .padding(.top)
                         
