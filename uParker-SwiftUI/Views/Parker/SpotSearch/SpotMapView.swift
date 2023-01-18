@@ -31,11 +31,13 @@ struct SpotMapView: View {
                 
 
                 VStack(spacing: 0) {
-                    SearchField()
-                        .padding(.horizontal)
-                        .padding(.top)
+//                    SearchField()
+//                        .padding(.horizontal)
+//                        .padding(.top)
                     
-                    Spacer().frame(height: initialListHeight - geo.safeAreaInsets.top)
+                    Spacer().frame(height: initialListHeight - geo.safeAreaInsets.top + searchBarHeight)
+                        .padding(.top)
+                        
 
                     MapButtonPanel()
                         .opacity(buttonPanelOpacity)
@@ -43,6 +45,9 @@ struct SpotMapView: View {
                     
                     Spacer()
                 } //: VStack
+                .overlay(
+                    SearchField()
+                )
                  
             } //: ZStack
             
