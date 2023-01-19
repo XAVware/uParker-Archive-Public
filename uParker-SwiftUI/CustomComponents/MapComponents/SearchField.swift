@@ -26,6 +26,8 @@ struct SearchField: View {
                         withAnimation {
                             self.searchIsExpanded = false
                         }
+                        self.destinationIsExpanded = true
+                        self.dateIsExpanded = false
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
@@ -46,24 +48,40 @@ struct SearchField: View {
                 } //: HStack
                 
                 VStack(alignment: .leading) {
-                    Text("Where to?")
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                    HStack {
+                        Text("Where to?")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        if !destinationIsExpanded {
+                            Text(destination)
+                                .font(.footnote)
+                        }
+                    }
                     
-                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
+                    if destinationIsExpanded {
+                        AnimatedTextField(boundTo: $destination, placeholder: "Destination")
+                    }
                 } //: VStack
                 .padding(.horizontal)
-                .frame(height: 140)
+                .frame(height: self.destinationIsExpanded ? 140 : 60)
                 .background(Color.white)
                 .clipShape(
                     RoundedRectangle(cornerRadius: 15)
                 )
                 .shadow(radius: 4)
+                .onTapGesture {
+                    withAnimation {
+                        self.destinationIsExpanded = true
+                        self.dateIsExpanded = false
+                    }
+                }
                 
                 VStack(alignment: .leading) {
                     HStack {
                         Text("When?")
-                            .font(.title3)
+                            .font(.headline)
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
@@ -71,22 +89,27 @@ struct SearchField: View {
                             .font(.footnote)
                     }
                     
-//                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
                 } //: VStack
                 .padding(.horizontal)
-                .frame(height: 60)
+                .frame(height: self.dateIsExpanded ? 140 : 60)
                 .background(Color.white)
                 .clipShape(
                     RoundedRectangle(cornerRadius: 15)
                 )
                 .shadow(radius: 4)
+                .onTapGesture {
+                    withAnimation {
+                        self.destinationIsExpanded = false
+                        self.dateIsExpanded = true
+                    }
+                }
                 
                 Spacer()
             } //: VStack
             .padding()
-            .transition(.move(edge: .top))
             .animation(.linear, value: true)
             .background(.ultraThinMaterial)
+            .opacity(self.searchIsExpanded ? 1 : 0)
         } else {
             // MARK: - SEARCH BAR
             VStack {
@@ -136,7 +159,7 @@ struct SearchField: View {
                 Spacer()
             } //: VStack
             .padding()
-            
+            .opacity(self.searchIsExpanded ? 0 : 1)
         }
         
     }
