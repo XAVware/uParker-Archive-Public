@@ -11,11 +11,27 @@ struct SearchField: View {
     // MARK: - PROPERTIES
     let iconSize: CGFloat = 15
     
-    @State private var searchIsExpanded: Bool = false
+    @State private var searchIsExpanded: Bool = true
     @State private var destinationIsExpanded = true
     @State private var dateIsExpanded = false
     @State private var destination: String = "Beaver Stadium"
-    @State private var date: String = "Today"
+    @State private var date: Date = Date()
+    
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        
+        return formatter
+    }
+    
+    // MARK: - FUNCTIONS
+//    private func convertDateToString(_ date: Date) -> {
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .long
+//
+//        return formatter.string(from: date)
+//
+//    }
     
     // MARK: - BODY
     var body: some View {
@@ -85,13 +101,18 @@ struct SearchField: View {
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Text(date)
+                        Text(dateFormatter.string(from: date) == dateFormatter.string(from: Date()) ? "Today" : dateFormatter.string(from: date))
                             .font(.footnote)
+                    }
+                    
+                    if dateIsExpanded {
+                        DatePicker( "Pick a date", selection: $date, in: Date()..., displayedComponents: [.date])
+                            .datePickerStyle(.graphical)
                     }
                     
                 } //: VStack
                 .padding(.horizontal)
-                .frame(height: self.dateIsExpanded ? 140 : 60)
+                .frame(height: self.dateIsExpanded ? 380 : 60)
                 .background(Color.white)
                 .clipShape(
                     RoundedRectangle(cornerRadius: 15)
