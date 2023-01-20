@@ -76,7 +76,7 @@ struct SpotMapView: View {
                 } //: VStack
                 .overlay(
                     SearchField()
-                        .environmentObject(locationManager)
+                        .environmentObject(locationManager), alignment: .top
                 )
                  
                 
@@ -91,32 +91,5 @@ struct SpotMapView: View {
 struct SpotMapView_Previews: PreviewProvider {
     static var previews: some View {
         SpotMapView()
-    }
-}
-
-// MARK: - VIEW WRAPPER
-struct SearchViewWrapper: UIViewControllerRepresentable {
-    typealias UIViewControllerType = SearchViewController
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext< SearchViewWrapper >) -> SearchViewController {
-        return SearchViewController()
-    }
-    
-    func updateUIViewController(_ searchViewController: SearchViewController, context: UIViewControllerRepresentableContext< SearchViewWrapper >) {
-    }
-}
-
-public class SearchViewController: UIViewController {
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let background = UIView(frame: view.bounds)
-        background.backgroundColor = .white
-        
-        background.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        // Pass options when initializing the map
-        self.view.addSubview(background)
-        self.view.sendSubviewToBack(background)
     }
 }
