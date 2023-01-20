@@ -11,7 +11,7 @@ struct SearchField: View {
     // MARK: - PROPERTIES
     let iconSize: CGFloat = 15
     
-    @State private var searchIsExpanded: Bool = true
+    @State private var searchIsExpanded: Bool = false
     @State private var destinationIsExpanded = true
     @State private var dateIsExpanded = false
     @State private var destination: String = "Beaver Stadium"
@@ -38,13 +38,33 @@ struct SearchField: View {
     }
     
     // MARK: - FUNCTIONS
-//    private func convertDateToString(_ date: Date) -> {
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .long
-//
-//        return formatter.string(from: date)
-//
-//    }
+    private func searchBarTapped() {
+        withAnimation {
+            self.searchIsExpanded = true
+        }
+    }
+    
+    private func closeSearch() {
+        withAnimation {
+            self.searchIsExpanded = false
+        }
+        self.destinationIsExpanded = true
+        self.dateIsExpanded = false
+    }
+    
+    private func searchTapped() {
+        closeSearch()
+    }
+    
+    private func resetTapped() {
+        self.destination = "Beaver Stadium"
+        self.date = Date()
+        
+        withAnimation {
+            self.destinationIsExpanded = true
+            self.dateIsExpanded = false
+        }
+    }
     
     // MARK: - BODY
     var body: some View {
@@ -52,11 +72,7 @@ struct SearchField: View {
             VStack(spacing: 20) {
                 HStack {
                     Button {
-                        withAnimation {
-                            self.searchIsExpanded = false
-                        }
-                        self.destinationIsExpanded = true
-                        self.dateIsExpanded = false
+                        closeSearch()
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
@@ -74,9 +90,12 @@ struct SearchField: View {
                     Spacer().frame(width: 30)
                 } //: HStack
                 
+                // MARK: - DESTINATION
                 DisclosureGroup(isExpanded: $destinationIsExpanded) {
                     AnimatedTextField(boundTo: $destination, placeholder: "Destination")
                         .padding(.top)
+                        .padding(.horizontal, 8)
+                        .padding(.bottom, 8)
                 } label: {
                     HStack {
                         Text("Where to?")
@@ -88,49 +107,76 @@ struct SearchField: View {
                             Text(destination)
                                 .font(.footnote)
                         }
-                    }
-                }
+                    } //: HStack
+                } //: Disclosure Group
                 .modifier(SearchCardMod())
                 
-                VStack(alignment: .leading) {
+                // MARK: - DATE
+                DisclosureGroup(isExpanded: $dateIsExpanded) {
+                    DatePicker( "Pick a date", selection: $date, in: dateClosedRange, displayedComponents: [.date])
+                        .datePickerStyle(.graphical)
+                        .padding(.top)
+                        .padding(.horizontal, 8)
+                        .padding(.bottom, 8)
+                        .clipped()
+                } label: {
                     HStack {
                         Text("When?")
                             .font(.headline)
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Text(dateText)
-                            .font(.footnote)
-                    }
-                    
-                    if dateIsExpanded {
-                        DatePicker( "Pick a date", selection: $date, in: dateClosedRange, displayedComponents: [.date])
-                            .datePickerStyle(.graphical)
-                    }
-                    
-                } //: VStack
-                .padding(.horizontal)
-                .frame(height: self.dateIsExpanded ? 380 : 60)
-                .background(Color.white)
-                .clipShape(
-                    RoundedRectangle(cornerRadius: 15)
-                )
-                .shadow(radius: 4)
-                .onTapGesture {
-                    withAnimation {
-                        self.destinationIsExpanded = false
-                        self.dateIsExpanded = true
-                    }
-                }
-                
-                
-                
+                        if !dateIsExpanded {
+                            Text(dateText)
+                                .font(.footnote)
+                        }
+                    } //: HStack
+                } //: Disclosure Group
+                .modifier(SearchCardMod())
+
                 Spacer()
             } //: VStack
             .padding()
-            .animation(.linear, value: true)
             .background(.ultraThinMaterial)
             .opacity(self.searchIsExpanded ? 1 : 0)
+            .overlay(
+                HStack {
+                    Button {
+                        resetTapped()
+                    } label: {
+                        Text("Reset")
+                            .underline()
+                            .font(.callout)
+                            .padding()
+                    }
+//                    .background(.ultraThinMaterial)
+                    .frame(maxWidth: 100)
+                    
+                    Spacer()
+                    
+                    Button {
+                        searchTapped()
+                    } label: {
+                        HStack(spacing: 15) {
+                            Text("Search")
+                            
+                            Image(systemName: "magnifyingglass")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: iconSize)
+                        }
+                    }
+                    .foregroundColor(.white)
+                    .fontWeight(.semibold)
+                    .fontDesign(.rounded)
+                    .frame(width: 150, height: 45)
+                    .background(backgroundGradient)
+                    .clipShape(Capsule())
+                    .shadow(radius: 4)
+
+                } //: HStack
+                    .padding()
+                , alignment: .bottom)
         } else {
             // MARK: - SEARCH BAR
             VStack {
@@ -142,10 +188,9 @@ struct SearchField: View {
                     
                     VStack(alignment: .leading) {
                         Text("Where to?")
-                            .font(.title3)
-                            .fontWeight(.semibold)
+                            .modifier(SmallTitleMod())
                         
-                        Text("\(destination) - \(date)")
+                        Text("\(destination) - \(dateText)")
                             .font(.caption)
                     } //: VStack
                     .fontDesign(.rounded)
@@ -167,14 +212,10 @@ struct SearchField: View {
                 .padding(.horizontal)
                 .frame(height: searchBarHeight)
                 .background(Color.white)
-                .clipShape(
-                    RoundedRectangle(cornerRadius: searchBarHeight)
-                )
+                .clipShape(RoundedRectangle(cornerRadius: searchBarHeight))
                 .shadow(radius: 4)
                 .onTapGesture {
-                    withAnimation {
-                        self.searchIsExpanded = true
-                    }
+                    searchBarTapped()
                 }
                 
                 Spacer()
@@ -191,7 +232,6 @@ struct SearchField_Previews: PreviewProvider {
     static var previews: some View {
         SearchField()
             .previewLayout(.sizeThatFits)
-        //            .background(.blue)
             .padding()
     }
 }

@@ -45,9 +45,7 @@ struct ConfirmPhoneView: View {
                 .multilineTextAlignment(.center)
                 .frame(width: 275, height: 60)
                 .foregroundColor(.accentColor)
-                .font(.title)
-                .fontWeight(.semibold)
-                .fontDesign(.rounded)
+                .modifier(BigTitleMod())
                 .tracking(25)
                 .keyboardType(.numberPad)
                 .focused($focusField, equals: .confirmationCode)
@@ -65,9 +63,7 @@ struct ConfirmPhoneView: View {
                         
                         if code.isEmpty {
                             Text("6-Digit Code")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                                .fontDesign(.rounded)
+                                .modifier(BigTitleMod())
                                 .foregroundColor(.accentColor)
                                 .opacity(0.3)
                                 .frame(maxWidth: .infinity)

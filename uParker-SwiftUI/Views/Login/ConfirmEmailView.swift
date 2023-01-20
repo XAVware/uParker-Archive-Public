@@ -24,12 +24,11 @@ struct ConfirmEmailView: View {
             VStack {
                 Text("We found your account!")
                     .font(.callout)
-                    .fontDesign(.rounded)
                 
                 Text("Please sign in below.")
                     .font(.footnote)
-                    .fontDesign(.rounded)
-            }
+            } //: VStack
+            .fontDesign(.rounded)
             
             VStack {
                 VStack(alignment: .leading, spacing: 8) {
@@ -40,9 +39,7 @@ struct ConfirmEmailView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Text(emailAddress)
-                        .font(.title3)
-                        .fontDesign(.rounded)
-                        .fontWeight(.semibold)
+                        .modifier(SmallTitleMod())
                 } //: VStack
                 .padding()
                 

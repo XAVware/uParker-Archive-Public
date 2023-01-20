@@ -10,7 +10,7 @@ import SwiftUI
 struct ParkerChatView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
-
+    
     // MARK: - BODY
     var body: some View {
         VStack(alignment: .leading) {
