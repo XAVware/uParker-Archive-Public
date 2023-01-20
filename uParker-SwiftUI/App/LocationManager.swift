@@ -58,12 +58,11 @@ class LocationManager: NSObject, ObservableObject {
     override init() {
         super.init()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.delegate = self
     }
     
     func requestLocation() {
-        print("Called")
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -75,13 +74,6 @@ extension LocationManager: CLLocationManagerDelegate {
             self.location = location
             //5000 is a little over 3 miles
             self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
-//            DispatchQueue.main.async {
-//                self.location = location.coordinate
-//                self.region = MKCoordinateRegion(
-//                    center: location.coordinate,
-//                    span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-//                )
-//            }
         }
     
         func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

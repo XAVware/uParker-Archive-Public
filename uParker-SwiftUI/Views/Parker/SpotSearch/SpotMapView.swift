@@ -15,6 +15,7 @@ struct SpotMapView: View {
     
     
     private let initialListHeight: CGFloat = 120
+    
     private var buttonPanelOpacity: CGFloat {
         if listHeight == initialListHeight {
             return 1
@@ -38,11 +39,43 @@ struct SpotMapView: View {
                         .padding(.top)
                         
 
-                    MapButtonPanel()
-                        .environmentObject(locationManager)
+//                    MapButtonPanel()
+//                        .environmentObject(locationManager)
+//                        .opacity(buttonPanelOpacity)
+                    HStack {
+                        Spacer()
+                        
+                        VStack(spacing: 10) {
+                            Button {
+                                locationManager.requestLocation()
+                            } label: {
+                                Image(systemName: "location.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                            }
+                            .frame(width: 15)
+                            
+                            Divider()
+                            
+                            Button {
+                                //Open Map Settings
+                            } label: {
+                                Image(systemName: "gear")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                            }
+                            .frame(width: 15)
+                            
+                        } //: VStack
+                        .frame(width: 35, height: 70)
+                        .background(Color.white)
+                        .cornerRadius(5)
+                        .shadow(radius: 5)
+                        .padding(.horizontal)
                         .opacity(buttonPanelOpacity)
-                    
-                    
+                    } //: HStack
                     Spacer()
                 } //: VStack
                 .overlay(

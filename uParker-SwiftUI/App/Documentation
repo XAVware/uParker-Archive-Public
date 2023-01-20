@@ -1,0 +1,3 @@
+
+1/20/23
+Starting work on binding spot map. The map & pins, spot list, search bar, map button panel will all be synced. UIViewControllerRepresentable combines UIKit and Swift.
