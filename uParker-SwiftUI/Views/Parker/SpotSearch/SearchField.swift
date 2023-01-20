@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import MapboxSearch
+import MapboxSearchUI
 
 struct SearchField: View {
     // MARK: - PROPERTIES
+    @EnvironmentObject var locationManager: LocationManager
     let iconSize: CGFloat = 15
     
     @State private var searchIsExpanded: Bool = false
