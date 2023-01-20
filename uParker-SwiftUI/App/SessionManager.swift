@@ -14,15 +14,12 @@ class SessionManager: ObservableObject {
     @Published var userType: UserType = .parker
     
     @Published var isShowingLoginModal: Bool = true
-//    @Published var isShowingConfirmation: Bool = false
     
     enum UserType { case parker, host}
     
-    let isErrorHandling: Bool = false
     
     func logIn() {
         self.isLoggedIn = true
-//        self.isShowingConfirmation = false
         self.isShowingLoginModal = false
     }
 }

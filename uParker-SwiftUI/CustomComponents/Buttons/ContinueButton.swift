@@ -21,9 +21,7 @@ struct ContinueButton: View {
         } label: {
             Text(text)
                 .foregroundColor(.white)
-                .font(.title2)
-                .fontDesign(.rounded)
-                .fontWeight(.semibold)
+                .modifier(MidTitleMod())
                 .frame(maxWidth: .infinity)
         }
         .padding()

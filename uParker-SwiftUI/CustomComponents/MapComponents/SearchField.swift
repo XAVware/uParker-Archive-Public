@@ -54,16 +54,17 @@ struct SearchField: View {
                     .overlay(Circle().stroke(.gray))
                     
                     Text("Search")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .fontDesign(.rounded)
+                        .modifier(SmallTitleMod())
                         .foregroundColor(.gray)
                         .frame(maxWidth: .infinity)
                     
                     Spacer().frame(width: 30)
                 } //: HStack
                 
-                VStack(alignment: .leading) {
+                DisclosureGroup(isExpanded: $destinationIsExpanded) {
+                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
+                        .padding(.top)
+                } label: {
                     HStack {
                         Text("Where to?")
                             .font(.headline)
@@ -75,24 +76,8 @@ struct SearchField: View {
                                 .font(.footnote)
                         }
                     }
-                    
-                    if destinationIsExpanded {
-                        AnimatedTextField(boundTo: $destination, placeholder: "Destination")
-                    }
-                } //: VStack
-                .padding(.horizontal)
-                .frame(height: self.destinationIsExpanded ? 140 : 60)
-                .background(Color.white)
-                .clipShape(
-                    RoundedRectangle(cornerRadius: 15)
-                )
-                .shadow(radius: 4)
-                .onTapGesture {
-                    withAnimation {
-                        self.destinationIsExpanded = true
-                        self.dateIsExpanded = false
-                    }
                 }
+                .modifier(SearchCardMod())
                 
                 VStack(alignment: .leading) {
                     HStack {
@@ -124,6 +109,8 @@ struct SearchField: View {
                         self.dateIsExpanded = true
                     }
                 }
+                
+                
                 
                 Spacer()
             } //: VStack

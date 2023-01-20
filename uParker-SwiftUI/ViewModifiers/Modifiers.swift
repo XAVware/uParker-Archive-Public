@@ -27,7 +27,7 @@ struct PageTitleModifier: ViewModifier {
 }
 
 // MARK: - SETTINGS BUTTON LABEL MOD
-struct SettingsButtonModifier: ViewModifier {
+struct SettingsButtonMod: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.title2)
@@ -36,7 +36,7 @@ struct SettingsButtonModifier: ViewModifier {
     }
 }
 
-struct SettingsCategoryHeader: ViewModifier {
+struct SettingsCategoryHeaderMod: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.title)
@@ -46,3 +46,41 @@ struct SettingsCategoryHeader: ViewModifier {
     }
 }
 
+struct SearchCardMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .shadow(radius: 4)
+    }
+}
+
+struct BigTitleMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}
+
+
+struct MidTitleMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title2)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}
+
+
+struct SmallTitleMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title3)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}

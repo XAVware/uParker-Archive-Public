@@ -89,7 +89,7 @@ struct ProfileView: View {
                             // MARK: - ACCOUNT
                             Group {
                                 Text("Account")
-                                    .modifier(SettingsCategoryHeader())
+                                    .modifier(SettingsCategoryHeaderMod())
                                 
                                 SettingsButton(image: Image(systemName: "person.circle"), text: "Personal Information")
                                 
@@ -109,7 +109,7 @@ struct ProfileView: View {
                             // MARK: - HOST
                             Group {
                                 Text("Host")
-                                    .modifier(SettingsCategoryHeader())
+                                    .modifier(SettingsCategoryHeaderMod())
                                 
                                 SettingsButton(image: Image(systemName: "arrowshape.zigzag.right"), text: "Switch to Hosting")
                                 
@@ -121,7 +121,7 @@ struct ProfileView: View {
                             // MARK: - SUPPORT
                             Group {
                                 Text("Support")
-                                    .modifier(SettingsCategoryHeader())
+                                    .modifier(SettingsCategoryHeaderMod())
                                 
                                 SettingsButton(image: Image(systemName: "info.circle"), text: "More Info")
                                 
@@ -131,7 +131,7 @@ struct ProfileView: View {
                             // MARK: - LEGAL
                             Group {
                                 Text("Legal")
-                                    .modifier(SettingsCategoryHeader())
+                                    .modifier(SettingsCategoryHeaderMod())
                                 
                                 
                                 
