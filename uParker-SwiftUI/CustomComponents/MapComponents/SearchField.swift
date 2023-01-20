@@ -20,8 +20,21 @@ struct SearchField: View {
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
-        
         return formatter
+    }
+    
+    var dateClosedRange: ClosedRange<Date> {
+      let min = Calendar.current.date(byAdding: .day, value: 0, to: Date())!
+      let max = Calendar.current.date(byAdding: .day, value: 180, to: Date())!
+      return min...max
+    }
+    
+    var dateText: String {
+        if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {
+            return "Today"
+        } else {
+            return dateFormatter.string(from: date)
+        }
     }
     
     // MARK: - FUNCTIONS
@@ -86,12 +99,12 @@ struct SearchField: View {
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Text(dateFormatter.string(from: date) == dateFormatter.string(from: Date()) ? "Today" : dateFormatter.string(from: date))
+                        Text(dateText)
                             .font(.footnote)
                     }
                     
                     if dateIsExpanded {
-                        DatePicker( "Pick a date", selection: $date, in: Date()..., displayedComponents: [.date])
+                        DatePicker( "Pick a date", selection: $date, in: dateClosedRange, displayedComponents: [.date])
                             .datePickerStyle(.graphical)
                     }
                     
