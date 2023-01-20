@@ -9,7 +9,7 @@ import SwiftUI
 //The final version needs to be removed from tabview and vstack
 struct SpotMapView: View {
     // MARK: - PROPERTIES
-    @StateObject var locationManager: LocationManager = LocationManager()
+    @ObservedObject var locationManager: LocationManager = LocationManager()
     
     @State var listHeight: CGFloat = 120
     
@@ -28,7 +28,7 @@ struct SpotMapView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                MapViewWrapper()
+                MapViewWrapper(center: $locationManager.location)
                 
                 SpotListView(viewHeight: $listHeight, minHeight: initialListHeight, maxHeight: geo.size.height)
                     .edgesIgnoringSafeArea(.bottom)
@@ -38,10 +38,6 @@ struct SpotMapView: View {
                     Spacer().frame(height: initialListHeight - geo.safeAreaInsets.top + searchBarHeight)
                         .padding(.top)
                         
-
-//                    MapButtonPanel()
-//                        .environmentObject(locationManager)
-//                        .opacity(buttonPanelOpacity)
                     HStack {
                         Spacer()
                         

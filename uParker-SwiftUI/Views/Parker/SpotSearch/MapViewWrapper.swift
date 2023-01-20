@@ -14,15 +14,32 @@ public class MapViewController: UIViewController {
     internal var mapView: MapView!
     
     var geocoder: MBGeocoder = MBGeocoder()
+    var centerLocation: CLLocationCoordinate2D {
+        didSet {
+            mapView.camera.fly(to: cameraOptions)
+        }
+    }
     
     let pennStateCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)
     
+    var cameraOptions: CameraOptions {
+        return CameraOptions(center: centerLocation, zoom: 12, bearing: -17.6, pitch: 0)
+    }
+    
     // MARK: - INITIALIZER
+    init(center: CLLocation) {
+        centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
         initializeMap()
-        addPins()
+//        addPins()
     }
     
     private func addPins() {
@@ -39,7 +56,6 @@ public class MapViewController: UIViewController {
     
     private func initializeMap() {
         let myResourceOptions = ResourceOptions(accessToken: MBAccessKey)
-        let cameraOptions = CameraOptions(center: pennStateCoordinates, zoom: 12, bearing: -17.6, pitch: 0)
         
         // Pass camera options to map init options
         let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions)
@@ -84,15 +100,17 @@ public class MapViewController: UIViewController {
     }
 }
 
+
 // MARK: - VIEW WRAPPER
-//Use UIViewControllerRepresentable to display MapBox map in SwiftUI app.
 struct MapViewWrapper: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> some UIViewController {
-        return MapViewController()
+    @Binding var center: CLLocation
+    typealias UIViewControllerType = MapViewController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext< MapViewWrapper >) -> MapViewController {
+        return MapViewController(center: center)
     }
     
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        //
+    func updateUIViewController(_ mapViewController: MapViewController, context: UIViewControllerRepresentableContext< MapViewWrapper >) {
+        mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
     }
 }
-

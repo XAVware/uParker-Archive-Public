@@ -13,7 +13,7 @@ class SessionManager: ObservableObject {
     
     @Published var userType: UserType = .parker
     
-    @Published var isShowingLoginModal: Bool = true
+    @Published var isShowingLoginModal: Bool = false
     
     enum UserType { case parker, host}
     
