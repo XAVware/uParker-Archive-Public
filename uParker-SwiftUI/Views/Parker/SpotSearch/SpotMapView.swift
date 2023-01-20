@@ -9,7 +9,9 @@ import SwiftUI
 //The final version needs to be removed from tabview and vstack
 struct SpotMapView: View {
     // MARK: - PROPERTIES
+    @StateObject var locationManager: LocationManager = LocationManager()
     @State var listHeight: CGFloat = 120
+    
     
     private let initialListHeight: CGFloat = 120
     private var buttonPanelOpacity: CGFloat {
@@ -35,7 +37,7 @@ struct SpotMapView: View {
                         .padding(.top)
                         
 
-                    MapButtonPanel()
+                    MapButtonPanel(locationManager: self.locationManager)
                         .opacity(buttonPanelOpacity)
                     
                     

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MapButtonPanel: View {
     // MARK: - PROPERTIES
+    @StateObject var locationManager: LocationManager
     
     // MARK: - BODY
     var body: some View {
@@ -17,7 +18,7 @@ struct MapButtonPanel: View {
             
             VStack(spacing: 10) {
                 Button {
-                    //Ask for location or center on location
+                    locationManager.requestLocation()
                 } label: {
                     Image(systemName: "location.fill")
                         .resizable()
@@ -50,7 +51,8 @@ struct MapButtonPanel: View {
 
 // MARK: - PREVIEW
 struct MapButtonPanel_Previews: PreviewProvider {
+    @StateObject static var locationManager: LocationManager = LocationManager()
     static var previews: some View {
-        MapButtonPanel()
+        MapButtonPanel(locationManager: locationManager)
     }
 }
