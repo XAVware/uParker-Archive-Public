@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MapButtonPanel: View {
     // MARK: - PROPERTIES
-    @StateObject var locationManager: LocationManager
+    @EnvironmentObject var locationManager: LocationManager
     
     // MARK: - BODY
     var body: some View {
@@ -51,8 +51,9 @@ struct MapButtonPanel: View {
 
 // MARK: - PREVIEW
 struct MapButtonPanel_Previews: PreviewProvider {
-    @StateObject static var locationManager: LocationManager = LocationManager()
+//    @StateObject static var locationManager: LocationManager = LocationManager()
     static var previews: some View {
-        MapButtonPanel(locationManager: locationManager)
+        MapButtonPanel()
+            .environmentObject(LocationManager())
     }
 }

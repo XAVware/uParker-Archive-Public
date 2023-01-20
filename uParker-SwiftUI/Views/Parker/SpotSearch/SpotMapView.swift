@@ -10,6 +10,7 @@ import SwiftUI
 struct SpotMapView: View {
     // MARK: - PROPERTIES
     @StateObject var locationManager: LocationManager = LocationManager()
+    
     @State var listHeight: CGFloat = 120
     
     
@@ -37,7 +38,8 @@ struct SpotMapView: View {
                         .padding(.top)
                         
 
-                    MapButtonPanel(locationManager: self.locationManager)
+                    MapButtonPanel()
+                        .environmentObject(locationManager)
                         .opacity(buttonPanelOpacity)
                     
                     
