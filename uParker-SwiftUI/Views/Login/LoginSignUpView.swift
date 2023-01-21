@@ -12,13 +12,13 @@ struct LoginSignUpView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var sessionManager: SessionManager
     @FocusState private var focusField: FocusText?
+    enum FocusText { case phoneEmail }
     
     @State private var phoneNumber: String = ""
     @State private var email: String = ""
     @State private var loginMethod: LoginMethod = .phone
     @State private var isShowingConfirmation: Bool = false
     
-    enum FocusText { case phoneEmail }
     enum LoginMethod { case phone, email }
     
     private let haptic = UIImpactFeedbackGenerator(style: .medium)

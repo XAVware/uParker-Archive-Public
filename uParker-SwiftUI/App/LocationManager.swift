@@ -46,7 +46,5 @@ extension LocationManager: CLLocationManagerDelegate {
             print(error)
         }
     
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("Auth Status: \(status)")
-    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {}
 }

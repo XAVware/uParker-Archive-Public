@@ -45,9 +45,9 @@ class SearchViewController: UIViewController, SearchEngineDelegate {
         
         searchEngine.delegate = self
         
-        responseTextView.isEditable = false
+//        responseTextView.isEditable = false
         responseTextView.frame = CGRect(x: 0, y: 0, width: 350, height: 300)
-        responseTextView.backgroundColor = .green
+//        responseTextView.backgroundColor = .green
         view.addSubview(responseTextView)
     }
     
@@ -70,7 +70,7 @@ class SearchViewController: UIViewController, SearchEngineDelegate {
 //            return suggestionString + "\n"
 //        }.joined(separator: "\n")
 
-        let buttonHeight: CGFloat = 60
+        let buttonHeight: CGFloat = 50
         
         suggestions.enumerated().forEach { (index, name) in
             let sugBtn: UIButton = UIButton()

@@ -19,6 +19,11 @@ struct SearchField: View {
     @State private var dateIsExpanded = false
     @State private var destination: String = "Beaver Stadium"
     @State private var date: Date = Date()
+    @State private var isShowingSuggestions: Bool = false
+    
+    @FocusState private var focusField: FocusText?
+    
+    enum FocusText { case destination }
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -95,35 +100,53 @@ struct SearchField: View {
                 
                 // MARK: - DESTINATION
                 
-                VStack {
+                VStack(spacing: 8) {
                     Text("Where to?")
                         .font(.headline)
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(primaryColor)
                     
                     AnimatedTextField(boundTo: $destination, placeholder: "Destination")
                         .padding(.top)
                         .padding(.horizontal, 8)
                         .padding(.bottom, 8)
+                        .focused($focusField, equals: .destination)
                     
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Suggestions")
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                        
-                        Divider()
-                    } //: VStack
-                    .padding(.horizontal)
-                    
-                    SearchViewWrapper(searchText: $destination)
+                    if isShowingSuggestions {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Suggestions")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                            Divider()
+                        } //: VStack
                         .padding(.horizontal)
-                    
-                    
-                }
+                        
+                        ScrollView(showsIndicators: false) {
+                            SearchViewWrapper(searchText: $destination)
+                                .padding(.horizontal)
+                        } //: Scroll
+                    }
+                  
+                } //: VStack
                 .frame(maxWidth: .infinity)
-                .frame(height: 500)
+                .frame(height: isShowingSuggestions ? 350 : 110)
                 .background(.white)
                 .modifier(SearchCardMod())
+                .onChange(of: focusField) { newValue in
+                    if newValue == .destination {
+                        withAnimation {
+                            isShowingSuggestions = true
+                            dateIsExpanded = false
+                        }
+                    } else if newValue == nil {
+                        withAnimation {
+                            isShowingSuggestions = false
+                        }
+                    } else {
+                        print("Error: Different focusField value in Search field.")
+                    }
+                }
                 
                 // MARK: - DATE
                 DisclosureGroup(isExpanded: $dateIsExpanded) {
@@ -133,6 +156,7 @@ struct SearchField: View {
                         .padding(.horizontal, 8)
                         .padding(.bottom, 8)
                         .clipped()
+                    
                 } label: {
                     HStack {
                         Text("When?")
@@ -147,6 +171,11 @@ struct SearchField: View {
                     } //: HStack
                 } //: Disclosure Group
                 .modifier(SearchCardMod())
+                .onChange(of: dateIsExpanded) { newValue in
+                    if newValue == true {
+                        focusField = nil
+                    }
+                }
                 
                 Spacer()
             } //: VStack
@@ -190,6 +219,11 @@ struct SearchField: View {
                 } //: HStack
                     .padding()
                 , alignment: .bottom)
+            .ignoresSafeArea(.keyboard)
+            .onTapGesture {
+                focusField = nil
+            }
+            .animation(.linear, value: true)
         } else {
             // MARK: - SEARCH BAR
             VStack {
@@ -199,9 +233,11 @@ struct SearchField: View {
                         .scaledToFit()
                         .frame(width: iconSize)
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 2) {
                         Text("Where to?")
-                            .modifier(SmallTitleMod())
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .fontDesign(.rounded)
                         
                         Text("\(destination) - \(dateText)")
                             .font(.caption)

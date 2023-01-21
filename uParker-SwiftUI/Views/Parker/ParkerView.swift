@@ -70,6 +70,7 @@ struct ParkerView: View {
                     .offset(y: (geo.size.height / 2) - tabBarHeight - 0.5)
                     .opacity(0.7)
             )
+            .ignoresSafeArea(.keyboard)
             
         } //: Geometry Reader
     }
