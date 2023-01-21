@@ -106,33 +106,24 @@ struct SearchField: View {
                         .padding(.horizontal, 8)
                         .padding(.bottom, 8)
                     
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Suggestions")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        
+                        Divider()
+                    } //: VStack
+                    .padding(.horizontal)
+                    
                     SearchViewWrapper(searchText: $destination)
+                        .padding(.horizontal)
                     
                     
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 500)
                 .background(.white)
-                
-//                DisclosureGroup(isExpanded: $destinationIsExpanded) {
-//                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
-//                        .padding(.top)
-//                        .padding(.horizontal, 8)
-//                        .padding(.bottom, 8)
-//                } label: {
-//                    HStack {
-//                        Text("Where to?")
-//                            .font(.headline)
-//                            .fontWeight(.semibold)
-//                            .frame(maxWidth: .infinity, alignment: .leading)
-//
-//                        if !destinationIsExpanded {
-//                            Text(destination)
-//                                .font(.footnote)
-//                        }
-//                    } //: HStack
-//                } //: Disclosure Group
-//                .modifier(SearchCardMod())
+                .modifier(SearchCardMod())
                 
                 // MARK: - DATE
                 DisclosureGroup(isExpanded: $dateIsExpanded) {

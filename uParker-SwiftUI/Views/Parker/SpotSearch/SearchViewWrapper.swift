@@ -46,49 +46,55 @@ class SearchViewController: UIViewController, SearchEngineDelegate {
         searchEngine.delegate = self
         
         responseTextView.isEditable = false
-        responseTextView.frame = CGRect(x: 0, y: 0, width: 250, height: 300)
-        view.addSubview(responseTextView)
-        
-        let textViewConstraints = [
-            responseTextView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 16),
-            responseTextView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -16),
-            responseTextView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -16),
-            responseTextView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
-        ]
-        responseTextView.translatesAutoresizingMaskIntoConstraints = false
+        responseTextView.frame = CGRect(x: 0, y: 0, width: 350, height: 300)
         responseTextView.backgroundColor = .green
-        
-        
-        NSLayoutConstraint.activate(textViewConstraints)
+        view.addSubview(responseTextView)
     }
     
     // MARK: - TEXT VIEW LOGGER METHODS
-    func logUI(_ message: String) {
-        responseTextView.text = message
-    }
+    var suggestionList: [SearchSuggestion]?
     
     func dumpSuggestions(_ suggestions: [SearchSuggestion], query: String) {
-        print("Number of search results: \(suggestions.count) for query: \(query)")
-        let headerText = "query: \(query), count: \(suggestions.count)"
+        self.suggestionList = suggestions
+//        print("Number of search results: \(suggestions.count) for query: \(query)")
+//        let suggestionsLog = suggestions.map { suggestion in
+//            var suggestionString = "\(suggestion.name)"
+//            if let description = suggestion.descriptionText {
+//                suggestionString += "\n\tdescription: \(description)"
+//            } else if let address = suggestion.address?.formattedAddress(style: .medium) {
+//                suggestionString += "\n\taddress: \(address)"
+//            }
+//            if let distance = suggestion.distance {
+//                suggestionString += "\n\tdistance: \(Int(distance / 1000)) km"
+//            }
+//            return suggestionString + "\n"
+//        }.joined(separator: "\n")
+
+        let buttonHeight: CGFloat = 60
         
-        let suggestionsLog = suggestions.map { suggestion in
-            var suggestionString = "\(suggestion.name)"
-            if let description = suggestion.descriptionText {
-                suggestionString += "\n\tdescription: \(description)"
-            } else if let address = suggestion.address?.formattedAddress(style: .medium) {
-                suggestionString += "\n\taddress: \(address)"
-            }
-            if let distance = suggestion.distance {
-                suggestionString += "\n\tdistance: \(Int(distance / 1000)) km"
-            }
-            return suggestionString + "\n"
-        }.joined(separator: "\n")
-        
-        logUI(headerText + "\n\n" + suggestionsLog)
+        suggestions.enumerated().forEach { (index, name) in
+            let sugBtn: UIButton = UIButton()
+            sugBtn.frame = CGRect(x: 0, y: buttonHeight * CGFloat(index), width: view.bounds.width, height: buttonHeight)
+            sugBtn.tintColor = .black
+            sugBtn.setTitle(suggestions[index].name, for: .normal)
+            
+            sugBtn.contentHorizontalAlignment = .left
+            sugBtn.setTitleColor(.black, for: .normal)
+            sugBtn.backgroundColor = .white
+            sugBtn.tag = index
+            
+            sugBtn.addTarget(self, action: #selector(suggestionTapped), for: .touchUpInside)
+            
+            responseTextView.addSubview(sugBtn)
+        }
     }
     
-    @objc
-    func updateQuery(text: String) {
+    @objc func suggestionTapped(_ sender: UIButton) {
+        print("Tapped \(sender.tag)")
+        print("\(suggestionList?[sender.tag].name ?? "No suggestion") selected")
+    }
+    
+    @objc func updateQuery(text: String) {
         searchEngine.query = text
     }
     
@@ -106,17 +112,9 @@ class SearchViewController: UIViewController, SearchEngineDelegate {
     }
     
     // MARK: - SEARCH CONTROLLER DELEGATE FUNCTIONS
-    public func searchResultSelected(_ searchResult: MapboxSearch.SearchResult) {
-        //
-    }
-    
-    public func categorySearchResultsReceived(category: MapboxSearchUI.SearchCategory, results: [MapboxSearch.SearchResult]) {
-        //
-    }
-    
-    public func userFavoriteSelected(_ userFavorite: MapboxSearch.FavoriteRecord) {
-        //
-    }
+    public func searchResultSelected(_ searchResult: MapboxSearch.SearchResult) {}
+    public func categorySearchResultsReceived(category: MapboxSearchUI.SearchCategory, results: [MapboxSearch.SearchResult]) {}
+    public func userFavoriteSelected(_ userFavorite: MapboxSearch.FavoriteRecord) {}
     
 }
 
