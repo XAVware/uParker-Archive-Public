@@ -16,7 +16,7 @@ public class MapViewController: UIViewController {
     var geocoder: MBGeocoder = MBGeocoder()
     var centerLocation: CLLocationCoordinate2D {
         didSet {
-            mapView.camera.fly(to: cameraOptions)
+            mapView.camera.fly(to: cameraOptions, duration: 1)
         }
     }
     
