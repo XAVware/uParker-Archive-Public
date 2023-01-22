@@ -122,10 +122,8 @@ struct SearchField: View {
                         } //: VStack
                         .padding(.horizontal)
                         
-                        ScrollView(showsIndicators: false) {
-                            SearchViewWrapper(searchText: $destination)
-                                .padding(.horizontal)
-                        } //: Scroll
+                        SearchViewWrapper(searchText: $destination)
+                            .padding(.horizontal)
                     }
                   
                 } //: VStack
@@ -220,9 +218,6 @@ struct SearchField: View {
                     .padding()
                 , alignment: .bottom)
             .ignoresSafeArea(.keyboard)
-            .onTapGesture {
-                focusField = nil
-            }
             .animation(.linear, value: true)
         } else {
             // MARK: - SEARCH BAR
