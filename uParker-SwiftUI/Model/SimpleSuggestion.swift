@@ -9,7 +9,7 @@ import Foundation
 import MapboxSearch
 import CoreLocation
 
-struct SimpleSuggestion {
+struct SimpleSuggestion: Equatable {
     let name: String
     let address: Address?
     let coordinate: CLLocationCoordinate2D

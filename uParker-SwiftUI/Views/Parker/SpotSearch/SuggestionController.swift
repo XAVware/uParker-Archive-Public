@@ -44,6 +44,7 @@ class SuggestionController: SearchEngineDelegate, ObservableObject {
     func resultResolved(result: SearchResult, searchEngine: SearchEngine) {
 //        print("Dumping resolved result:", dump(result))
         lastSelectedSuggestion = SimpleSuggestion(name: result.name, address: result.address, coordinate: result.coordinate, categories: result.categories)
+        print("Result Resolved Called. Suggestion: \(lastSelectedSuggestion?.name)")
     }
     
     func searchErrorHappened(searchError: SearchError, searchEngine: SearchEngine) {

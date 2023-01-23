@@ -21,6 +21,8 @@ struct SearchField: View {
     @State private var date: Date = Date()
     @State private var isShowingSuggestions: Bool = false
     
+    var selectedSuggestion: SimpleSuggestion?
+    
     @FocusState private var focusField: FocusText?
     
     @ObservedObject var suggestionController: SuggestionController = SuggestionController()
@@ -63,6 +65,7 @@ struct SearchField: View {
     }
     
     private func searchTapped() {
+        print(suggestionController.lastSelectedSuggestion)
         closeSearch()
     }
     
@@ -122,6 +125,8 @@ struct SearchField: View {
                                     ForEach(suggestionController.suggestionList, id: \.id) { suggestion in
                                         Button {
                                             suggestionController.selectSuggestion(suggestion)
+                                            destination = suggestion.name
+                                            focusField = nil
                                         } label: {
                                             VStack(alignment: .leading) {
                                                 Text(suggestion.name)
@@ -165,6 +170,7 @@ struct SearchField: View {
                         }
                         suggestionController.updateQuery(text: destination)
                     } else if newValue == nil {
+                        print(suggestionController.lastSelectedSuggestion?.name)
                         withAnimation {
                             isShowingSuggestions = false
                         }
@@ -172,6 +178,7 @@ struct SearchField: View {
                         print("Error: Different focusField value in Search field.")
                     }
                 }
+                
                 
                 // MARK: - DATE
                 DisclosureGroup(isExpanded: $dateIsExpanded) {
@@ -250,10 +257,7 @@ struct SearchField: View {
             // MARK: - SEARCH BAR
             VStack {
                 CompressedSearchBar(destination: $destination, date: $date)
-                    .onTapGesture {
-                        searchBarTapped()
-                    }
-                
+                    .onTapGesture { searchBarTapped() }
                 Spacer()
             } //: VStack
             .padding()
