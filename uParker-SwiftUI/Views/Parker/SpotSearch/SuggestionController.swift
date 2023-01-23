@@ -43,4 +43,5 @@ class SuggestionController: SearchEngineDelegate, ObservableObject {
         print("Error during search: \(searchError)")
     }
     
+    
 }
