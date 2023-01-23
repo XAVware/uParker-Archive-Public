@@ -29,22 +29,22 @@ class LocationManager: NSObject, ObservableObject {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
-
+    
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let location = locations.last else { return }
-            self.location = location
-            //5000 is a little over 3 miles
-            print(location)
-            self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
-            locationManager.stopUpdatingLocation()
-        }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        self.location = location
+        //5000 is a little over 3 miles
+        print(location)
+        self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
+        locationManager.stopUpdatingLocation()
+    }
     
-        func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-            print(error)
-        }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {}
 }

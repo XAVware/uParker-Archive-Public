@@ -20,8 +20,13 @@ class SuggestionController: SearchEngineDelegate, ObservableObject {
         searchEngine.delegate = self
     }
     
-    func selectSuggestion(_ suggestion: SearchSuggestion) {
+    func selectSuggestion(_ suggestion: SearchSuggestion, completion: @escaping (SimpleSuggestion?) -> Void) {
         searchEngine.select(suggestion: suggestion)
+        
+        DispatchQueue.main.async {
+            guard self.lastSelectedSuggestion != nil else {return}
+            completion(self.lastSelectedSuggestion)
+        }
     }
     
     @objc func updateQuery(text: String) {
@@ -42,9 +47,7 @@ class SuggestionController: SearchEngineDelegate, ObservableObject {
     }
     
     func resultResolved(result: SearchResult, searchEngine: SearchEngine) {
-//        print("Dumping resolved result:", dump(result))
         lastSelectedSuggestion = SimpleSuggestion(name: result.name, address: result.address, coordinate: result.coordinate, categories: result.categories)
-        print("Result Resolved Called. Suggestion: \(lastSelectedSuggestion?.name)")
     }
     
     func searchErrorHappened(searchError: SearchError, searchEngine: SearchEngine) {

@@ -8,11 +8,14 @@
 import SwiftUI
 import MapboxSearch
 import MapboxSearchUI
+import CoreLocation
 
 struct SearchField: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var locationManager: LocationManager
     let iconSize: CGFloat = 15
+    
+    @State private var originalDestination: String = "Beaver Stadium"
     
     @State private var searchIsExpanded: Bool = false
     @State private var destinationIsExpanded = true
@@ -21,7 +24,7 @@ struct SearchField: View {
     @State private var date: Date = Date()
     @State private var isShowingSuggestions: Bool = false
     
-    var selectedSuggestion: SimpleSuggestion?
+    @State var selectedSuggestion: SimpleSuggestion?
     
     @FocusState private var focusField: FocusText?
     
@@ -65,12 +68,17 @@ struct SearchField: View {
     }
     
     private func searchTapped() {
-        print(suggestionController.lastSelectedSuggestion)
+        guard self.selectedSuggestion != nil else {
+            print("Search tapped but suggestion nil")
+            return
+        }
+        let location: CLLocation = CLLocation(latitude: selectedSuggestion!.coordinate.latitude, longitude: selectedSuggestion!.coordinate.longitude)
+        locationManager.location = location
         closeSearch()
     }
     
     private func resetTapped() {
-        self.destination = "Beaver Stadium"
+        self.destination = self.originalDestination
         self.date = Date()
         
         withAnimation {
@@ -78,7 +86,6 @@ struct SearchField: View {
             self.dateIsExpanded = false
         }
     }
-    
     
     // MARK: - BODY
     var body: some View {
@@ -124,7 +131,9 @@ struct SearchField: View {
                                 VStack(alignment: .leading) {
                                     ForEach(suggestionController.suggestionList, id: \.id) { suggestion in
                                         Button {
-                                            suggestionController.selectSuggestion(suggestion)
+                                            suggestionController.selectSuggestion(suggestion) { sug in
+                                                self.selectedSuggestion = sug
+                                            }
                                             destination = suggestion.name
                                             focusField = nil
                                         } label: {
@@ -170,7 +179,6 @@ struct SearchField: View {
                         }
                         suggestionController.updateQuery(text: destination)
                     } else if newValue == nil {
-                        print(suggestionController.lastSelectedSuggestion?.name)
                         withAnimation {
                             isShowingSuggestions = false
                         }
