@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//The final version needs to be removed from tabview and vstack
+
 struct SpotMapView: View {
     // MARK: - PROPERTIES
     @ObservedObject var locationManager: LocationManager = LocationManager()

@@ -24,11 +24,10 @@ struct SearchField: View {
     @State private var date: Date = Date()
     @State private var isShowingSuggestions: Bool = false
     
-    @State var selectedSuggestion: SimpleSuggestion?
+//    @State var selectedSuggestion: SimpleSuggestion?
     
     @FocusState private var focusField: FocusText?
     
-    @ObservedObject var suggestionController: SuggestionController = SuggestionController()
     
     enum FocusText { case destination }
     
@@ -129,9 +128,9 @@ struct SearchField: View {
                             
                             ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading) {
-                                    ForEach(suggestionController.suggestionList, id: \.id) { suggestion in
+                                    ForEach(locationManager.suggestionList, id: \.id) { suggestion in
                                         Button {
-                                            suggestionController.selectSuggestion(suggestion) { sug in
+                                            locationManager.selectSuggestion(suggestion) { sug in
                                                 self.selectedSuggestion = sug
                                             }
                                             destination = suggestion.name
@@ -169,7 +168,7 @@ struct SearchField: View {
                 } //: Disclosure Group
                 .modifier(SearchCardMod())
                 .onChange(of: destination, perform: { newValue in
-                    suggestionController.updateQuery(text: newValue)
+                    locationManager.updateQuery(text: newValue)
                 })
                 .onChange(of: focusField) { newValue in
                     if newValue == .destination {
@@ -177,7 +176,7 @@ struct SearchField: View {
                             isShowingSuggestions = true
                             dateIsExpanded = false
                         }
-                        suggestionController.updateQuery(text: destination)
+                        locationManager.updateQuery(text: destination)
                     } else if newValue == nil {
                         withAnimation {
                             isShowingSuggestions = false
