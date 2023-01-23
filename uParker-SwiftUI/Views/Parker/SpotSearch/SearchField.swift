@@ -105,9 +105,7 @@ struct SearchField: View {
                 
                 DisclosureGroup(isExpanded: $destinationIsExpanded) {
                     AnimatedTextField(boundTo: $destination, placeholder: "Destination")
-                        .padding(.top)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 8)
+                        .padding(8)
                         .focused($focusField, equals: .destination)
                     
                     if isShowingSuggestions {
@@ -153,18 +151,7 @@ struct SearchField: View {
                     } //: If-Else
                     
                 } label: {
-                    HStack {
-                        Text("Where to?")
-                            .font(.headline)
-                            .fontWeight(.semibold)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .foregroundColor(primaryColor)
-                        
-                        if !destinationIsExpanded {
-                            Text(destination)
-                                .font(.footnote)
-                        }
-                    } //: HStack
+                    SearchGroupHeader(header: "Where to?", isExpanded: $destinationIsExpanded, subtitle: $destination)
                 } //: Disclosure Group
                 .modifier(SearchCardMod())
                 .onChange(of: destination, perform: { newValue in
@@ -188,7 +175,7 @@ struct SearchField: View {
                 
                 // MARK: - DATE
                 DisclosureGroup(isExpanded: $dateIsExpanded) {
-                    DatePicker( "Pick a date", selection: $date, in: dateClosedRange, displayedComponents: [.date])
+                    DatePicker("", selection: $date, in: dateClosedRange, displayedComponents: [.date])
                         .datePickerStyle(.graphical)
                         .padding(.top)
                         .padding(.horizontal, 8)
@@ -262,45 +249,10 @@ struct SearchField: View {
         } else {
             // MARK: - SEARCH BAR
             VStack {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: iconSize)
-                    
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Where to?")
-                            .font(.headline)
-                            .fontWeight(.semibold)
-                            .fontDesign(.rounded)
-                        
-                        Text("\(destination) - \(dateText)")
-                            .font(.caption)
-                    } //: VStack
-                    .fontDesign(.rounded)
-                    .padding(.horizontal)
-                    
-                    Spacer()
-                    
-                    Button {
-                        //
-                    } label: {
-                        Image(systemName: "slider.horizontal.3")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: iconSize)
+                CompressedSearchBar(destination: $destination, date: $date)
+                    .onTapGesture {
+                        searchBarTapped()
                     }
-                    .frame(width: 35, height: 35)
-                    .overlay(Circle().stroke(.gray))
-                } //: HStack
-                .padding(.horizontal)
-                .frame(height: searchBarHeight)
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: searchBarHeight))
-                .shadow(radius: 4)
-                .onTapGesture {
-                    searchBarTapped()
-                }
                 
                 Spacer()
             } //: VStack
@@ -312,10 +264,10 @@ struct SearchField: View {
 }
 
 // MARK: - PREVIEW
-struct SearchField_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchField()
-            .previewLayout(.sizeThatFits)
-            .padding()
-    }
-}
+//struct SearchField_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchField()
+//            .previewLayout(.sizeThatFits)
+//            .padding()
+//    }
+//}

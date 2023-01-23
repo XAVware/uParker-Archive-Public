@@ -63,6 +63,9 @@
 		80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A32965FECB004A2570 /* ContinueWithButton.swift */; };
 		80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A529660309004A2570 /* AnimatedTextField.swift */; };
 		80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7260B296758DB00ABE49B /* UIKitMapVC.swift */; };
+		80FC112C297E1D2900C5102A /* CompressedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */; };
+		80FC112E297E203300C5102A /* SearchGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112D297E203300C5102A /* SearchGroupHeader.swift */; };
+		80FC1130297E23D300C5102A /* SimpleSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112F297E23D300C5102A /* SimpleSuggestion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +123,9 @@
 		80F372A32965FECB004A2570 /* ContinueWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithButton.swift; sourceTree = "<group>"; };
 		80F372A529660309004A2570 /* AnimatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
 		80F7260B296758DB00ABE49B /* UIKitMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMapVC.swift; sourceTree = "<group>"; };
+		80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressedSearchBar.swift; sourceTree = "<group>"; };
+		80FC112D297E203300C5102A /* SearchGroupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupHeader.swift; sourceTree = "<group>"; };
+		80FC112F297E23D300C5102A /* SimpleSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSuggestion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,7 @@
 		8047EDB3296E013100AF3896 /* SpotSearch */ = {
 			isa = PBXGroup;
 			children = (
+				80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */,
 				800772F6296C901D00E7FEED /* MapButtonPanel.swift */,
 				806073572966B70B00C4E136 /* MapViewWrapper.swift */,
 				800772F0296C61C600E7FEED /* SearchField.swift */,
@@ -288,6 +295,7 @@
 				8065484A2972EF6400943B72 /* Review.swift */,
 				806548482972EF6400943B72 /* Vehicle.swift */,
 				800772E62969ED3A00E7FEED /* Spot.swift */,
+				80FC112F297E23D300C5102A /* SimpleSuggestion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,6 +326,7 @@
 				80EAC1C92968F2E400F4DC09 /* HeaderView.swift */,
 				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
 				806548452972EBFC00943B72 /* ReservationsPicker.swift */,
+				80FC112D297E203300C5102A /* SearchGroupHeader.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -436,6 +445,7 @@
 				806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */,
 				806A376F297A3F3D00068FEA /* LocationManager.swift in Sources */,
 				80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */,
+				80FC1130297E23D300C5102A /* SimpleSuggestion.swift in Sources */,
 				80654857297321EA00943B72 /* CurrentReservationView.swift in Sources */,
 				806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */,
 				80607353296662F600C4E136 /* MainView.swift in Sources */,
@@ -449,10 +459,12 @@
 				804DAD76297DED0D00B89AC6 /* SuggestionController.swift in Sources */,
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
 				800772F1296C61C600E7FEED /* SearchField.swift in Sources */,
+				80FC112E297E203300C5102A /* SearchGroupHeader.swift in Sources */,
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
 				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
 				80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */,
+				80FC112C297E1D2900C5102A /* CompressedSearchBar.swift in Sources */,
 				806548502972F05600943B72 /* Data.swift in Sources */,
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,
 				80654859297322A500943B72 /* PastReservationsView.swift in Sources */,
