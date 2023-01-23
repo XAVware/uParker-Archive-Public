@@ -20,6 +20,7 @@
 		804DAD56297B369D00B89AC6 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 804DAD55297B369D00B89AC6 /* MapboxSearch */; };
 		804DAD58297B369D00B89AC6 /* MapboxSearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = 804DAD57297B369D00B89AC6 /* MapboxSearchUI */; };
 		804DAD5A297B8E3600B89AC6 /* SearchViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804DAD59297B8E3600B89AC6 /* SearchViewWrapper.swift */; };
+		804DAD76297DED0D00B89AC6 /* SuggestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804DAD75297DED0D00B89AC6 /* SuggestionController.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
@@ -75,6 +76,7 @@
 		8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneView.swift; sourceTree = "<group>"; };
 		804DAD52297A616C00B89AC6 /* Documentation */ = {isa = PBXFileReference; lastKnownFileType = text; path = Documentation; sourceTree = "<group>"; };
 		804DAD59297B8E3600B89AC6 /* SearchViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewWrapper.swift; sourceTree = "<group>"; };
+		804DAD75297DED0D00B89AC6 /* SuggestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionController.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
 		806548452972EBFC00943B72 /* ReservationsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsPicker.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				804DAD59297B8E3600B89AC6 /* SearchViewWrapper.swift */,
 				800772F8296C97DA00E7FEED /* SpotMapView.swift */,
 				800772FA296CCF3D00E7FEED /* SpotListView.swift */,
+				804DAD75297DED0D00B89AC6 /* SuggestionController.swift */,
 			);
 			path = SpotSearch;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				80A64A2E2953FFF0001317DD /* User.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
+				804DAD76297DED0D00B89AC6 /* SuggestionController.swift in Sources */,
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
 				800772F1296C61C600E7FEED /* SearchField.swift in Sources */,
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,

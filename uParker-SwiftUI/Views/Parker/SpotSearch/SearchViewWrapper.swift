@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MapboxSearch
-import MapboxSearchUI
+//import MapboxSearchUI
 
 
 // MARK: - VIEW WRAPPER
@@ -45,14 +45,12 @@ class SearchViewController: UIViewController, SearchEngineDelegate {
         
         searchEngine.delegate = self
         
-//        responseTextView.isEditable = false
         responseTextView.frame = CGRect(x: 0, y: 0, width: 350, height: 300)
-//        responseTextView.backgroundColor = .green
         view.addSubview(responseTextView)
     }
     
     // MARK: - TEXT VIEW LOGGER METHODS
-    var suggestionList: [SearchSuggestion]?
+    var suggestionList: [SearchSuggestion] = .init()
     
     func dumpSuggestions(_ suggestions: [SearchSuggestion], query: String) {
         self.suggestionList = suggestions
@@ -90,8 +88,9 @@ class SearchViewController: UIViewController, SearchEngineDelegate {
     }
     
     @objc func suggestionTapped(_ sender: UIButton) {
-        print("Tapped \(sender.tag)")
-        print("\(suggestionList?[sender.tag].name ?? "No suggestion") selected")
+//        print("Selected \(suggestionList?[sender.tag].name ?? "No suggestion") selected")
+        print("Selected \(suggestionList[sender.tag].name)")
+        print("\(searchEngine.select(suggestion: suggestionList[sender.tag]))")
     }
     
     @objc func updateQuery(text: String) {
@@ -113,7 +112,6 @@ class SearchViewController: UIViewController, SearchEngineDelegate {
     
     // MARK: - SEARCH CONTROLLER DELEGATE FUNCTIONS
     public func searchResultSelected(_ searchResult: MapboxSearch.SearchResult) {}
-    public func categorySearchResultsReceived(category: MapboxSearchUI.SearchCategory, results: [MapboxSearch.SearchResult]) {}
     public func userFavoriteSelected(_ userFavorite: MapboxSearch.FavoriteRecord) {}
     
 }

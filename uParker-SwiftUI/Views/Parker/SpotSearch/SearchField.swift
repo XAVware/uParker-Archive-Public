@@ -17,11 +17,13 @@ struct SearchField: View {
     @State private var searchIsExpanded: Bool = false
     @State private var destinationIsExpanded = true
     @State private var dateIsExpanded = false
-    @State private var destination: String = "Beaver Stadium"
+    @State var destination: String = "Beaver Stadium"
     @State private var date: Date = Date()
     @State private var isShowingSuggestions: Bool = false
     
     @FocusState private var focusField: FocusText?
+    
+    @ObservedObject var suggestionController: SuggestionController = SuggestionController()
     
     enum FocusText { case destination }
     
@@ -100,13 +102,7 @@ struct SearchField: View {
                 
                 // MARK: - DESTINATION
                 
-                VStack(spacing: 8) {
-                    Text("Where to?")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(primaryColor)
-                    
+                DisclosureGroup(isExpanded: $destinationIsExpanded) {
                     AnimatedTextField(boundTo: $destination, placeholder: "Destination")
                         .padding(.top)
                         .padding(.horizontal, 8)
@@ -118,25 +114,68 @@ struct SearchField: View {
                             Text("Suggestions")
                                 .font(.caption)
                                 .foregroundColor(.gray)
+                            
                             Divider()
+                                .padding(.bottom, 5)
+                            
+                            ScrollView(showsIndicators: false) {
+                                VStack(alignment: .leading) {
+                                    ForEach(suggestionController.suggestionList, id: \.id) { suggestion in
+                                        Button {
+                                            //
+                                        } label: {
+                                            VStack(alignment: .leading) {
+                                                Text(suggestion.name)
+                                                    .font(.footnote)
+                                                    .fontWeight(.semibold)
+                                                    .foregroundColor(.black)
+                                                
+                                                Text("\(suggestion.address?.formattedAddress(style: .medium) ?? "")")
+                                                    .font(.caption)
+                                                    .foregroundColor(.gray)
+                                            }
+                                            .background(.white)
+                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                                        }
+                                        
+                                        Divider()
+                                        
+                                    } //: ForEach
+                                }
+                                .padding(.horizontal, 8)
+                                Spacer()
+                            }
+                            
                         } //: VStack
+                        .frame(height: 260)
                         .padding(.horizontal)
+                    } //: If-Else
+                    
+                } label: {
+                    HStack {
+                        Text("Where to?")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(primaryColor)
                         
-                        SearchViewWrapper(searchText: $destination)
-                            .padding(.horizontal)
-                    }
-                  
-                } //: VStack
-                .frame(maxWidth: .infinity)
-                .frame(height: isShowingSuggestions ? 350 : 110)
-                .background(.white)
+                        if !destinationIsExpanded {
+                            Text(destination)
+                                .font(.footnote)
+                        }
+                    } //: HStack
+                } //: Disclosure Group
                 .modifier(SearchCardMod())
+                .onChange(of: destination, perform: { newValue in
+                    suggestionController.updateQuery(text: newValue)
+                })
                 .onChange(of: focusField) { newValue in
                     if newValue == .destination {
                         withAnimation {
                             isShowingSuggestions = true
                             dateIsExpanded = false
                         }
+                        suggestionController.updateQuery(text: destination)
                     } else if newValue == nil {
                         withAnimation {
                             isShowingSuggestions = false
@@ -279,4 +318,3 @@ struct SearchField_Previews: PreviewProvider {
             .padding()
     }
 }
-
