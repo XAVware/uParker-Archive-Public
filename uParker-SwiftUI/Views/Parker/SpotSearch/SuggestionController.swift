@@ -7,15 +7,22 @@
 
 import SwiftUI
 import MapboxSearch
+import MapboxSearchUI
 
 class SuggestionController: SearchEngineDelegate, ObservableObject {
 
     @Published var suggestionList: [SearchSuggestion] = []
     let searchEngine = SearchEngine()
+//    let searchController = MapboxSearchController()
     var searchText: String = ""
     
     init() {
+//        searchController.delegate = self
         searchEngine.delegate = self
+    }
+    
+    func selectSuggestion(_ suggestion: SearchSuggestion) {
+        searchEngine.select(suggestion: suggestion)
     }
     
     @objc func updateQuery(text: String) {
@@ -36,6 +43,7 @@ class SuggestionController: SearchEngineDelegate, ObservableObject {
     }
     
     func resultResolved(result: SearchResult, searchEngine: SearchEngine) {
+        print("Result Tapped --")
         print("Dumping resolved result:", dump(result))
     }
     

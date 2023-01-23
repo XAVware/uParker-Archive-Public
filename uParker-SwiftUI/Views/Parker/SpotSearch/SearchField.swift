@@ -76,10 +76,6 @@ struct SearchField: View {
         }
     }
     
-    private func selectSuggestion(_ sug: SearchSuggestion) {
-        
-        print(suggestionController.searchEngine.select(suggestion: sug))
-    }
     
     // MARK: - BODY
     var body: some View {
@@ -127,7 +123,7 @@ struct SearchField: View {
                                 VStack(alignment: .leading) {
                                     ForEach(suggestionController.suggestionList, id: \.id) { suggestion in
                                         Button {
-                                            self.selectSuggestion(suggestion)
+                                            suggestionController.selectSuggestion(suggestion)
                                         } label: {
                                             VStack(alignment: .leading) {
                                                 Text(suggestion.name)
