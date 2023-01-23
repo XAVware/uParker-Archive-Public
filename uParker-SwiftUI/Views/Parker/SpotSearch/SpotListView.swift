@@ -59,8 +59,6 @@ struct SpotListView: View {
                 
                 velocity = val.predictedEndLocation.y - val.location.y
 
-                
-                
                 let dragAmount = val.translation.height - prevDragTranslation.height
                 
                 if viewHeight >= maxHeight && dragAmount > 0 {
@@ -114,9 +112,7 @@ struct SpotListView: View {
                 
                 if viewHeight < threshold {
                     Text("List View")
-                        .font(.footnote)
-                        .fontWeight(.semibold)
-                        .fontDesign(.rounded)
+                        .modifier(FootTextMod())
                         .opacity(viewButtonOpacity)
                         .onTapGesture {
                             expandList()
@@ -132,12 +128,10 @@ struct SpotListView: View {
                             .frame(width: 15)
                         
                         Text("Map")
-                            .font(.footnote)
+                            .modifier(FootTextMod())
                     }
                     .padding(.horizontal)
                     .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
                     .frame(height: 30)
                     .background(backgroundGradient)
                     .clipShape(Capsule())

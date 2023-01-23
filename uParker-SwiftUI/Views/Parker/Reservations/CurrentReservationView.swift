@@ -52,9 +52,7 @@ struct CurrentReservationView: View {
                 if isTimerRunning {
                     Text("\(timeRemaining)")
                         .foregroundColor(primaryColor)
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
-                        .fontDesign(.rounded)
+                        .modifier(LargeTitleMod())
                         .onReceive(timer) { _ in
                             if self.timeRemaining <= 0 {
                                 self.isTimerRunning = false
@@ -74,9 +72,7 @@ struct CurrentReservationView: View {
                         Text("Arrive")
                     }
                     .foregroundColor(primaryColor)
-                    .font(.title)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
+                    .modifier(BigTitleMod())
 
                 }
 
@@ -88,9 +84,7 @@ struct CurrentReservationView: View {
             VStack {
                 Text(currentReservation.streetAddress)
                     .foregroundColor(primaryColor)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
+                    .modifier(MidTitleMod())
                 
                 Text("\(currentReservation.city) \(currentReservation.state), \(currentReservation.zipCode)")
                     .foregroundColor(primaryColor)

@@ -15,8 +15,7 @@ struct SearchGroupHeader: View {
     var body: some View {
         HStack {
             Text(header)
-                .font(.headline)
-                .fontWeight(.semibold)
+                .modifier(HeadlineMod())
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(primaryColor)
             

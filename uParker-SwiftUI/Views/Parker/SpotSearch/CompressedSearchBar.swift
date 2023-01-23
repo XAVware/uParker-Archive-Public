@@ -38,7 +38,6 @@ struct CompressedSearchBar: View {
                 Text("Where to?")
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .fontDesign(.rounded)
                 
                 Text("\(destination) - \(dateText)")
                     .font(.caption)

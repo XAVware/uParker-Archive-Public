@@ -84,3 +84,51 @@ struct SmallTitleMod: ViewModifier {
             .fontDesign(.rounded)
     }
 }
+
+struct FootTextMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.footnote)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}
+
+struct CaptionTextMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.caption)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}
+
+struct CalloutTextMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.callout)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}
+
+struct HeadlineMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.headline)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}
+
+struct LargeTitleMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .fontWeight(.semibold)
+            .fontDesign(.rounded)
+    }
+}
+
+
+    

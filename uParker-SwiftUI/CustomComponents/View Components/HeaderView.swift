@@ -52,8 +52,7 @@ struct HeaderView: View {
             }
 
             Text(title ?? " ")
-                .font(.title3)
-                .fontDesign(.rounded)
+                .modifier(SmallTitleMod())
                 .frame(maxWidth: .infinity)
             
             rightItem ?? AnyView(Spacer().frame(width: sideItemWidth))

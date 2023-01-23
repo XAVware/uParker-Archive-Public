@@ -76,7 +76,6 @@ struct SpotMapView: View {
                 } //: VStack
                 .overlay(
                     SearchField()
-//                        .environmentObject(locationManager), alignment: .top
                 )
                  
                 

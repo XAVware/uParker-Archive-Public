@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import MapboxSearch
-import MapboxSearchUI
 
 struct ParkerChatView: View {
     // MARK: - PROPERTIES
@@ -20,8 +18,6 @@ struct ParkerChatView: View {
             
             if sessionManager.isLoggedIn == false {
                 NeedLoginView(title: "Chat", mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
-            } else {
-                SearchControllerWrapper()
             }
             
             Spacer()
@@ -38,41 +34,3 @@ struct ParkerChatView_Previews: PreviewProvider {
     }
 }
 
-
-class SearchController: UIViewController {
-    let searchController = MapboxSearchController()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        searchController.delegate = self
-        
-        let panelController = MapboxPanelController(rootViewController: searchController)
-        addChild(panelController)
-    }
-}
-
-extension SearchController: SearchControllerDelegate {
-    func categorySearchResultsReceived(category: MapboxSearchUI.SearchCategory, results: [MapboxSearch.SearchResult]) {
-        //
-    }
-    
-    func searchResultSelected(_ searchResult: SearchResult) {
-        print("Called")
-    }
-    func categorySearchResultsReceived(results: [SearchResult]) { }
-    func userFavoriteSelected(_ userFavorite: FavoriteRecord) { }
-}
-
-struct SearchControllerWrapper: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> SearchController {
-        SearchController()
-    }
-    
-    func updateUIViewController(_ uiViewController: SearchController, context: Context) {
-        //
-    }
-    
-    typealias UIViewControllerType = SearchController
-    
-    
-}

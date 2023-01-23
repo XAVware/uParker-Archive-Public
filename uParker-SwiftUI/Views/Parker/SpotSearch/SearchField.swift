@@ -12,9 +12,6 @@ import CoreLocation
 
 struct SearchField: View {
     // MARK: - PROPERTIES
-//    @EnvironmentObject var locationManager: LocationManager
-    let iconSize: CGFloat = 15
-    
     @State private var originalDestination: String = "Beaver Stadium"
     
     @State private var searchIsExpanded: Bool = false
@@ -97,7 +94,7 @@ struct SearchField: View {
                         Image(systemName: "xmark")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: iconSize)
+                            .frame(width: 15)
                     }
                     .frame(width: 30, height: 30)
                     .overlay(Circle().stroke(.gray))
@@ -138,8 +135,7 @@ struct SearchField: View {
                                         } label: {
                                             VStack(alignment: .leading) {
                                                 Text(suggestion.name)
-                                                    .font(.footnote)
-                                                    .fontWeight(.semibold)
+                                                    .modifier(FootTextMod())
                                                     .foregroundColor(.black)
                                                 
                                                 Text("\(suggestion.address?.formattedAddress(style: .medium) ?? "")")
@@ -240,16 +236,15 @@ struct SearchField: View {
                     } label: {
                         HStack(spacing: 15) {
                             Text("Search")
+                                .modifier(CalloutTextMod())
                             
                             Image(systemName: "magnifyingglass")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: iconSize)
+                                .frame(width: 15)
                         }
                     }
                     .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
                     .frame(width: 150, height: 45)
                     .background(backgroundGradient)
                     .clipShape(Capsule())

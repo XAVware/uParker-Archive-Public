@@ -15,7 +15,7 @@ struct ConfirmPhoneView: View {
     
     @Binding var phoneNumber: String
     @State var code: String = ""
-    @State var timeRemaining: Int = 15
+    @State var timeRemaining: Int = 5
     
     private let haptic = UIImpactFeedbackGenerator(style: .medium)
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -35,9 +35,7 @@ struct ConfirmPhoneView: View {
                     .fontDesign(.rounded)
                 
                 Text(phoneNumber)
-                    .font(.callout)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
+                    .modifier(CalloutTextMod())
             }
             .padding(.vertical)
             
@@ -81,14 +79,12 @@ struct ConfirmPhoneView: View {
                 
                 if timeRemaining == 0 {
                     Button {
-                        timeRemaining = 15
+                        timeRemaining = 5
                     } label: {
                         Text("Send Again")
-                            .font(.callout)
+                            .modifier(CalloutTextMod())
                     }
                     .foregroundColor(.white)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
                     .frame(width: 130, height: 30)
                     .background(backgroundGradient)
                     .opacity(0.9)

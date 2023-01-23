@@ -11,7 +11,6 @@
 		800772EA2969F23000E7FEED /* MapboxGeocoder in Frameworks */ = {isa = PBXBuildFile; productRef = 800772E92969F23000E7FEED /* MapboxGeocoder */; };
 		800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772EB2969F27F00E7FEED /* MBGeocoder.swift */; };
 		800772F1296C61C600E7FEED /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772F0296C61C600E7FEED /* SearchField.swift */; };
-		800772F7296C901D00E7FEED /* MapButtonPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772F6296C901D00E7FEED /* MapButtonPanel.swift */; };
 		800772F9296C97DA00E7FEED /* SpotMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772F8296C97DA00E7FEED /* SpotMapView.swift */; };
 		800772FB296CCF3D00E7FEED /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772FA296CCF3D00E7FEED /* SpotListView.swift */; };
 		8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036CB2D296DA2A300B1A2B9 /* Extensions.swift */; };
@@ -37,12 +36,9 @@
 		80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */; };
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
-		80A64A18294D665B001317DD /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A17294D665B001317DD /* ViewManager.swift */; };
-		80A64A1A294D66C0001317DD /* LoginView-OG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A19294D66C0001317DD /* LoginView-OG.swift */; };
 		80A64A1D294D6859001317DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1C294D6859001317DD /* Constants.swift */; };
 		80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */; };
 		80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A25294D8F77001317DD /* ButtonModifier.swift */; };
-		80A64A28294E4C61001317DD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A27294E4C61001317DD /* SignUpView.swift */; };
 		80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2A2953FFCB001317DD /* SessionManager.swift */; };
 		80A64A2E2953FFF0001317DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D2953FFF0001317DD /* User.swift */; };
 		80AE3FAF2970989000A654E0 /* ConfirmEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */; };
@@ -60,7 +56,6 @@
 		80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginSignUpView.swift */; };
 		80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A32965FECB004A2570 /* ContinueWithButton.swift */; };
 		80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A529660309004A2570 /* AnimatedTextField.swift */; };
-		80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F7260B296758DB00ABE49B /* UIKitMapVC.swift */; };
 		80FC112C297E1D2900C5102A /* CompressedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */; };
 		80FC112E297E203300C5102A /* SearchGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112D297E203300C5102A /* SearchGroupHeader.swift */; };
 		80FC1130297E23D300C5102A /* SimpleSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112F297E23D300C5102A /* SimpleSuggestion.swift */; };
@@ -70,7 +65,6 @@
 		800772E62969ED3A00E7FEED /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		800772EB2969F27F00E7FEED /* MBGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBGeocoder.swift; sourceTree = "<group>"; };
 		800772F0296C61C600E7FEED /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
-		800772F6296C901D00E7FEED /* MapButtonPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonPanel.swift; sourceTree = "<group>"; };
 		800772F8296C97DA00E7FEED /* SpotMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMapView.swift; sourceTree = "<group>"; };
 		800772FA296CCF3D00E7FEED /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
 		8036CB2D296DA2A300B1A2B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -94,12 +88,9 @@
 		80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uParker_SwiftUIApp.swift; sourceTree = "<group>"; };
 		80A64A09294D6491001317DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80A64A0C294D6491001317DD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		80A64A17294D665B001317DD /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
-		80A64A19294D66C0001317DD /* LoginView-OG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginView-OG.swift"; sourceTree = "<group>"; };
 		80A64A1C294D6859001317DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		80A64A25294D8F77001317DD /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
-		80A64A27294E4C61001317DD /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		80A64A292953FB46001317DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		80A64A2A2953FFCB001317DD /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		80A64A2D2953FFF0001317DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -118,7 +109,6 @@
 		80EE94322964E93400A85CEF /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
 		80F372A32965FECB004A2570 /* ContinueWithButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueWithButton.swift; sourceTree = "<group>"; };
 		80F372A529660309004A2570 /* AnimatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
-		80F7260B296758DB00ABE49B /* UIKitMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitMapVC.swift; sourceTree = "<group>"; };
 		80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressedSearchBar.swift; sourceTree = "<group>"; };
 		80FC112D297E203300C5102A /* SearchGroupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupHeader.swift; sourceTree = "<group>"; };
 		80FC112F297E23D300C5102A /* SimpleSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSuggestion.swift; sourceTree = "<group>"; };
@@ -143,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */,
-				800772F6296C901D00E7FEED /* MapButtonPanel.swift */,
 				806073572966B70B00C4E136 /* MapViewWrapper.swift */,
 				800772F0296C61C600E7FEED /* SearchField.swift */,
 				800772F8296C97DA00E7FEED /* SpotMapView.swift */,
@@ -218,7 +207,6 @@
 				80A64A2C2953FFE7001317DD /* Model */,
 				80A64A1B294D6716001317DD /* Views */,
 				80A64A24294D8A57001317DD /* ViewModifiers */,
-				80F372A729662059004A2570 /* Unused */,
 				80A64A09294D6491001317DD /* Assets.xcassets */,
 				80A64A0B294D6491001317DD /* Preview Content */,
 			);
@@ -325,17 +313,6 @@
 			path = "View Components";
 			sourceTree = "<group>";
 		};
-		80F372A729662059004A2570 /* Unused */ = {
-			isa = PBXGroup;
-			children = (
-				80A64A19294D66C0001317DD /* LoginView-OG.swift */,
-				80A64A17294D665B001317DD /* ViewManager.swift */,
-				80A64A27294E4C61001317DD /* SignUpView.swift */,
-				80F7260B296758DB00ABE49B /* UIKitMapVC.swift */,
-			);
-			path = Unused;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -426,14 +403,12 @@
 				80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */,
 				80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */,
 				80EE94312964E8C500A85CEF /* HostView.swift in Sources */,
-				800772F7296C901D00E7FEED /* MapButtonPanel.swift in Sources */,
 				80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */,
 				8065485429731D4200943B72 /* ReservationPanelButton.swift in Sources */,
 				8065484E2972EF6400943B72 /* Review.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
 				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,
 				800772FB296CCF3D00E7FEED /* SpotListView.swift in Sources */,
-				80A64A18294D665B001317DD /* ViewManager.swift in Sources */,
 				80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */,
 				8065485B297322B900943B72 /* UpcomingReservationsView.swift in Sources */,
 				806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */,
@@ -444,9 +419,7 @@
 				806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */,
 				80607353296662F600C4E136 /* MainView.swift in Sources */,
 				8065484D2972EF6400943B72 /* PaymentMethod.swift in Sources */,
-				80A64A28294E4C61001317DD /* SignUpView.swift in Sources */,
 				80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */,
-				80A64A1A294D66C0001317DD /* LoginView-OG.swift in Sources */,
 				80A64A2E2953FFF0001317DD /* User.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
@@ -456,7 +429,6 @@
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
 				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
-				80F7260C296758DB00ABE49B /* UIKitMapVC.swift in Sources */,
 				80FC112C297E1D2900C5102A /* CompressedSearchBar.swift in Sources */,
 				806548502972F05600943B72 /* Data.swift in Sources */,
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,

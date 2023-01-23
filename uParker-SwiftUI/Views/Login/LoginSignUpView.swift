@@ -89,8 +89,7 @@ struct LoginSignUpView: View {
                         .frame(height: 1)
                     
                     Text("OR")
-                        .font(.footnote)
-                        .fontDesign(.rounded)
+                        .modifier(FootTextMod())
                     
                     Rectangle()
                         .frame(height: 1)
