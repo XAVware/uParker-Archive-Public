@@ -12,7 +12,7 @@ import CoreLocation
 
 struct SearchField: View {
     // MARK: - PROPERTIES
-    @EnvironmentObject var locationManager: LocationManager
+//    @EnvironmentObject var locationManager: LocationManager
     let iconSize: CGFloat = 15
     
     @State private var originalDestination: String = "Beaver Stadium"
@@ -24,7 +24,7 @@ struct SearchField: View {
     @State private var date: Date = Date()
     @State private var isShowingSuggestions: Bool = false
     
-//    @State var selectedSuggestion: SimpleSuggestion?
+    @State var selectedSuggestion: SimpleSuggestion?
     
     @FocusState private var focusField: FocusText?
     
@@ -72,7 +72,7 @@ struct SearchField: View {
             return
         }
         let location: CLLocation = CLLocation(latitude: selectedSuggestion!.coordinate.latitude, longitude: selectedSuggestion!.coordinate.longitude)
-        locationManager.location = location
+        LocationManager.shared.location = location
         closeSearch()
     }
     
@@ -128,9 +128,9 @@ struct SearchField: View {
                             
                             ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading) {
-                                    ForEach(locationManager.suggestionList, id: \.id) { suggestion in
+                                    ForEach(LocationManager.shared.suggestionList, id: \.id) { suggestion in
                                         Button {
-                                            locationManager.selectSuggestion(suggestion) { sug in
+                                            LocationManager.shared.selectSuggestion(suggestion) { sug in
                                                 self.selectedSuggestion = sug
                                             }
                                             destination = suggestion.name
@@ -168,7 +168,7 @@ struct SearchField: View {
                 } //: Disclosure Group
                 .modifier(SearchCardMod())
                 .onChange(of: destination, perform: { newValue in
-                    locationManager.updateQuery(text: newValue)
+                    LocationManager.shared.updateQuery(text: newValue)
                 })
                 .onChange(of: focusField) { newValue in
                     if newValue == .destination {
@@ -176,7 +176,7 @@ struct SearchField: View {
                             isShowingSuggestions = true
                             dateIsExpanded = false
                         }
-                        locationManager.updateQuery(text: destination)
+                        LocationManager.shared.updateQuery(text: destination)
                     } else if newValue == nil {
                         withAnimation {
                             isShowingSuggestions = false

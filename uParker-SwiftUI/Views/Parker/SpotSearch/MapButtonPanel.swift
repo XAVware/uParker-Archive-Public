@@ -4,7 +4,7 @@
 //
 //  Created by Smetana, Ryan on 1/9/23.
 //
-
+/*
 import SwiftUI
 
 struct MapButtonPanel: View {
@@ -57,3 +57,4 @@ struct MapButtonPanel_Previews: PreviewProvider {
             .environmentObject(LocationManager())
     }
 }
+*/

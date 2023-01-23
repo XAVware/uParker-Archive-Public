@@ -9,10 +9,9 @@ import SwiftUI
 
 struct SpotMapView: View {
     // MARK: - PROPERTIES
-    @ObservedObject var locationManager: LocationManager = LocationManager()
+    @StateObject var locationManager = LocationManager.shared
     
     @State var listHeight: CGFloat = 120
-    
     
     private let initialListHeight: CGFloat = 120
     
@@ -23,6 +22,7 @@ struct SpotMapView: View {
             return 1 - ((listHeight - initialListHeight) / 10)
         }
     }
+    
     
     // MARK: - BODY
     var body: some View {
@@ -43,7 +43,7 @@ struct SpotMapView: View {
                         
                         VStack(spacing: 10) {
                             Button {
-                                locationManager.requestLocation()
+                                LocationManager.shared.requestLocation()
                             } label: {
                                 Image(systemName: "location.fill")
                                     .resizable()
@@ -76,7 +76,7 @@ struct SpotMapView: View {
                 } //: VStack
                 .overlay(
                     SearchField()
-                        .environmentObject(locationManager), alignment: .top
+//                        .environmentObject(locationManager), alignment: .top
                 )
                  
                 

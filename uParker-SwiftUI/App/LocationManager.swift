@@ -11,7 +11,6 @@ import CoreLocationUI
 import MapKit
 import MapboxSearch
 
-@MainActor
 class LocationManager: NSObject, ObservableObject {
     @Published var location: CLLocation = CLLocation(latitude: 40.7934, longitude: -77.8600)
     @Published var region = MKCoordinateRegion()
@@ -23,6 +22,8 @@ class LocationManager: NSObject, ObservableObject {
     let searchEngine = SearchEngine()
     var searchText: String = ""
     
+    static let shared = LocationManager()
+    
     
     override init() {
         super.init()
@@ -30,6 +31,7 @@ class LocationManager: NSObject, ObservableObject {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.delegate = self
         searchEngine.delegate = self
+        print("Location Manager Initialized")
     }
     
     //May not need
@@ -40,6 +42,10 @@ class LocationManager: NSObject, ObservableObject {
     func requestLocation() {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+    }
+    
+    func setCenter(newLocation: CLLocation) {
+        self.location = newLocation
     }
     
 }
