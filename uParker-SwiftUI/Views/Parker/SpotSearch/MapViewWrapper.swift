@@ -63,16 +63,6 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
     private var pointList: [Feature] = []
     var markerID = 0
     
-    private enum Constants {
-        static let BLUE_ICON_ID = "blue"
-        static let SOURCE_ID = "source_id"
-        static let LAYER_ID = "layer_id"
-        static let TERRAIN_SOURCE = "TERRAIN_SOURCE"
-        static let TERRAIN_URL_TILE_RESOURCE = "mapbox://mapbox.mapbox-terrain-dem-v1"
-        static let MARKER_ID_PREFIX = "view_annotation_"
-        static let SELECTED_ADD_COEF_PX: CGFloat = 50
-    }
-    
     private let image = UIImage(named: "red_pin")!
     private lazy var markerHeight: CGFloat = image.size.height
     
@@ -114,7 +104,7 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
     
     @objc private func onMapClick(_ sender: UITapGestureRecognizer) {
         let screenPoint = sender.location(in: mapView)
-        let queryOptions = RenderedQueryOptions(layerIds: [Constants.LAYER_ID], filter: nil)
+        let queryOptions = RenderedQueryOptions(layerIds: ["layer_id"], filter: nil)
         mapView.mapboxMap.queryRenderedFeatures(with: screenPoint, options: queryOptions) { [weak self] result in
             if case let .success(queriedFeatures) = result,
                let self = self,
@@ -146,30 +136,29 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
     
     private func prepareStyle() {
         let style = mapView.mapboxMap.style
-        try? style.addImage(image, id: Constants.BLUE_ICON_ID)
+        try? style.addImage(image, id: "blue")
         
         var source = GeoJSONSource()
         source.data = .featureCollection(FeatureCollection(features: pointList))
-        try? mapView.mapboxMap.style.addSource(source, id: Constants.SOURCE_ID)
+        try? mapView.mapboxMap.style.addSource(source, id: "source_id")
         
         if style.uri == .satelliteStreets {
             var demSource = RasterDemSource()
-            demSource.url = Constants.TERRAIN_URL_TILE_RESOURCE
-            try? mapView.mapboxMap.style.addSource(demSource, id: Constants.TERRAIN_SOURCE)
-            let terrain = Terrain(sourceId: Constants.TERRAIN_SOURCE)
+            demSource.url = "mapbox://mapbox.mapbox-terrain-dem-v1"
+            try? mapView.mapboxMap.style.addSource(demSource, id: "TERRAIN_SOURCE")
+            let terrain = Terrain(sourceId: "TERRAIN_SOURCE")
             try? mapView.mapboxMap.style.setTerrain(terrain)
         }
         
-        var layer = SymbolLayer(id: Constants.LAYER_ID)
-        layer.source = Constants.SOURCE_ID
-        layer.iconImage = .constant(.name(Constants.BLUE_ICON_ID))
+        var layer = SymbolLayer(id: "layer_id")
+        layer.source = "source_id"
+        layer.iconImage = .constant(.name("blue"))
         layer.iconAnchor = .constant(.bottom)
         layer.iconAllowOverlap = .constant(true)
         try? mapView.mapboxMap.style.addLayer(layer)
     }
     
     // MARK: - Annotation management
-    
     private func addMarkerAndAnnotation(at coordinate: CLLocationCoordinate2D) {
         let point = Point(coordinate)
         let markerId = addMarker(at: point)
@@ -180,13 +169,13 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
     // This is an optional step to demonstrate the automatic alignment of view annotations
     // with features in a data source
     private func addMarker(at point: Point) -> String {
-        let currentId = "\(Constants.MARKER_ID_PREFIX)\(markerID)"
+        let currentId = "\("view_annotation_")\(markerID)"
         markerID += 1
         var feature = Feature(geometry: point)
         feature.identifier = .string(currentId)
         pointList.append(feature)
-        if (try? mapView.mapboxMap.style.source(withId: Constants.SOURCE_ID)) != nil {
-            try? mapView.mapboxMap.style.updateGeoJSONSource(withId: Constants.SOURCE_ID, geoJSON: .featureCollection(FeatureCollection(features: pointList)))
+        if (try? mapView.mapboxMap.style.source(withId: "source_id")) != nil {
+            try? mapView.mapboxMap.style.updateGeoJSONSource(withId: "source_id", geoJSON: .featureCollection(FeatureCollection(features: pointList)))
         }
         return currentId
     }
@@ -195,124 +184,71 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
     private func addViewAnnotation(at coordinate: CLLocationCoordinate2D, withMarkerId markerId: String? = nil) {
         let options = ViewAnnotationOptions(
             geometry: Point(coordinate),
-            width: 128,
-            height: 64,
+            width: 60,
+            height: 25,
             associatedFeatureId: markerId,
             allowOverlap: false,
             anchor: .bottom
         )
         
-        let annotationView = AnnotationView(frame: CGRect(x: 0, y: 0, width: 128, height: 64))
+        let pinView = SpotAnnotationView(frame: CGRect(x: 0, y: 0, width: 60, height: 25))
+        pinView.title = "$3.00"
+        pinView.delegate = self
         
-        annotationView.title = String(format: "lat=%.2f\nlon=%.2f", coordinate.latitude, coordinate.longitude)
-        annotationView.delegate = self
-        
-        try? mapView.viewAnnotations.add(annotationView, options: options)
+        try? mapView.viewAnnotations.add(pinView, options: options)
         
         // Set the vertical offset of the annotation view to be placed above the marker
-        try? mapView.viewAnnotations.update(annotationView, options: ViewAnnotationOptions(offsetY: markerHeight))
+        try? mapView.viewAnnotations.update(pinView, options: ViewAnnotationOptions(offsetY: markerHeight))
     }
-    
-    //    private func addViewAnnotation(at coordinate: CLLocationCoordinate2D) {
-    //        let pinWidth: CGFloat = 60
-    //        let pinHeight: CGFloat = 25
-    //
-    //        let options = ViewAnnotationOptions(
-    //            geometry: Point(coordinate),
-    //            width: pinWidth,
-    //            height: pinHeight,
-    //            allowOverlap: true,
-    //            anchor: .bottom
-    //        )
-    //
-    //        let frame = CGRect(x: 0, y: 0, width: pinWidth, height: pinHeight)
-    //
-    //        let pinView: UILabel = UILabel(frame: frame)
-    //        pinView.textColor = .white
-    //        pinView.text = "$3.00"
-    //        pinView.font = .systemFont(ofSize: 12, weight: .semibold)
-    //        pinView.textAlignment = .center
-    //        pinView.adjustsFontSizeToFitWidth = true
-    //        pinView.backgroundColor = UIColor(named: "uParkerBlue")!
-    //        pinView.layer.masksToBounds = true
-    //        pinView.layer.cornerRadius = pinHeight / 2
-    //        pinView.layer.shadowRadius = 2
-    //        pinView.layer.shadowOffset = CGSize(width: 0, height: 1)
-    //        pinView.layer.shadowOpacity = 0.5
-    //
-    //        try? mapView.viewAnnotations.add(pinView, options: options)
-    //    }
+
 }
 
-protocol AnnotationViewDelegate: AnyObject {
-    func annotationViewDidSelect(_ annotationView: AnnotationView)
-    func annotationViewDidUnselect(_ annotationView: AnnotationView)
-    func annotationViewDidPressClose(_ annotationView: AnnotationView)
-}
-
-// `AnnotationView` is a custom `UIView` subclass which is used only for annotation demonstration
-final class AnnotationView: UIView {
-    
-    weak var delegate: AnnotationViewDelegate?
+final class SpotAnnotationView: UIView {
+    weak var delegate: SpotAnnotationViewDelegate?
     
     var selected: Bool = false {
         didSet {
-            selectButton.setTitle(selected ? "Deselect" : "Select", for: .normal)
+            self.backgroundColor = selected ? UIColor.white : UIColor(named: "uParkerBlue")!
+            self.priceLabel.textColor = selected ? UIColor(named: "uParkerBlue")! : UIColor.white
         }
     }
     
     var title: String? {
-        get { centerLabel.text }
-        set { centerLabel.text = newValue }
+        get { priceLabel.text }
+        set { priceLabel.text = newValue }
     }
     
-    lazy var centerLabel: UILabel = {
+    lazy var priceLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = UIColor(Color.white)
+        label.textAlignment = .center
         label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
         return label
-    }()
-    
-    lazy var closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitleColor(.black, for: .normal)
-        button.setTitle("X", for: .normal)
-        return button
-    }()
-    
-    lazy var selectButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 0.9882352941, alpha: 1)
-        button.layer.cornerRadius = 8
-        button.clipsToBounds = true
-        button.setTitle("Select", for: .normal)
-        return button
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .green
+        self.backgroundColor = UIColor(named: "uParkerBlue")!
         
-        closeButton.addTarget(self, action: #selector(closePressed(sender:)), for: .touchUpInside)
-        selectButton.addTarget(self, action: #selector(selectPressed(sender:)), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        self.addGestureRecognizer(tap)
         
-        [centerLabel, closeButton, selectButton].forEach { item in
-            item.translatesAutoresizingMaskIntoConstraints = false
-            self.addSubview(item)
-        }
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(priceLabel)
+        
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
+        self.layer.shadowRadius = 2
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowOpacity = 0.5
         
         NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            closeButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -4),
-            
-            centerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            centerLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -4),
-            centerLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 4),
-            
-            selectButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
-            selectButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -4),
-            selectButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 4)
+            priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            priceLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
+            priceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: 0)
         ])
     }
     
@@ -320,12 +256,7 @@ final class AnnotationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Action handlers
-    @objc private func closePressed(sender: UIButton) {
-        delegate?.annotationViewDidPressClose(self)
-    }
-    
-    @objc private func selectPressed(sender: UIButton) {
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         if selected {
             selected = false
             delegate?.annotationViewDidUnselect(self)
@@ -336,32 +267,160 @@ final class AnnotationView: UIView {
     }
 }
 
-extension MapViewController: AnnotationViewDelegate {
-    func annotationViewDidSelect(_ annotationView: AnnotationView) {
+protocol SpotAnnotationViewDelegate: AnyObject {
+    func annotationViewDidSelect(_ annotationView: SpotAnnotationView)
+    func annotationViewDidUnselect(_ annotationView: SpotAnnotationView)
+    func annotationViewDidPressClose(_ annotationView: SpotAnnotationView)
+    
+}
+
+//protocol AnnotationViewDelegate: AnyObject {
+//    func annotationViewDidSelect(_ annotationView: AnnotationView)
+//    func annotationViewDidUnselect(_ annotationView: AnnotationView)
+//    func annotationViewDidPressClose(_ annotationView: AnnotationView)
+//
+//}
+
+// `AnnotationView` is a custom `UIView` subclass which is used only for annotation demonstration
+//final class AnnotationView: UIView {
+//
+//    weak var delegate: AnnotationViewDelegate?
+//
+//    var selected: Bool = false {
+//        didSet {
+//            selectButton.setTitle(selected ? "Deselect" : "Select", for: .normal)
+//        }
+//    }
+//
+//    var title: String? {
+//        get { centerLabel.text }
+//        set { centerLabel.text = newValue }
+//    }
+//
+//    lazy var centerLabel: UILabel = {
+//        let label = UILabel(frame: .zero)
+//        label.font = UIFont.systemFont(ofSize: 10)
+//        label.numberOfLines = 0
+//        return label
+//    }()
+//
+//    lazy var closeButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitleColor(.black, for: .normal)
+//        button.setTitle("X", for: .normal)
+//        return button
+//    }()
+//
+//    lazy var selectButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitleColor(.white, for: .normal)
+//        button.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 0.9882352941, alpha: 1)
+//        button.layer.cornerRadius = 8
+//        button.clipsToBounds = true
+//        button.setTitle("Select", for: .normal)
+//        return button
+//    }()
+//
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        self.backgroundColor = .green
+//
+//        closeButton.addTarget(self, action: #selector(closePressed(sender:)), for: .touchUpInside)
+//        selectButton.addTarget(self, action: #selector(selectPressed(sender:)), for: .touchUpInside)
+//
+//        [centerLabel, closeButton, selectButton].forEach { item in
+//            item.translatesAutoresizingMaskIntoConstraints = false
+//            self.addSubview(item)
+//        }
+//
+//        NSLayoutConstraint.activate([
+//            closeButton.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+//            closeButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -4),
+//
+//            centerLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+//            centerLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -4),
+//            centerLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 4),
+//
+//            selectButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4),
+//            selectButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -4),
+//            selectButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 4)
+//        ])
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//
+//    // MARK: - Action handlers
+//    @objc private func closePressed(sender: UIButton) {
+//        delegate?.annotationViewDidPressClose(self)
+//    }
+//
+//    @objc private func selectPressed(sender: UIButton) {
+//        if selected {
+//            selected = false
+//            delegate?.annotationViewDidUnselect(self)
+//        } else {
+//            selected = true
+//            delegate?.annotationViewDidSelect(self)
+//        }
+//    }
+//}
+
+//extension MapViewController: AnnotationViewDelegate {
+//    func annotationViewDidSelect(_ annotationView: AnnotationView) {
+//        guard let options = self.mapView.viewAnnotations.options(for: annotationView) else { return }
+//
+//        let updateOptions = ViewAnnotationOptions(
+//            width: (options.width ?? 0.0) + 50,
+//            height: (options.height ?? 0.0) + 50,
+//            selected: true
+//        )
+//        try? self.mapView.viewAnnotations.update(annotationView, options: updateOptions)
+//    }
+//
+//    func annotationViewDidUnselect(_ annotationView: AnnotationView) {
+//        guard let options = self.mapView.viewAnnotations.options(for: annotationView) else { return }
+//
+//        let updateOptions = ViewAnnotationOptions(
+//            width: (options.width ?? 0.0) - 50,
+//            height: (options.height ?? 0.0) - 50,
+//            selected: false
+//        )
+//        try? self.mapView.viewAnnotations.update(annotationView, options: updateOptions)
+//    }
+//
+//    // Handle the actions for the button clicks inside the `SampleView` instance
+//    func annotationViewDidPressClose(_ annotationView: AnnotationView) {
+//        mapView.viewAnnotations.remove(annotationView)
+//    }
+//}
+
+extension MapViewController: SpotAnnotationViewDelegate {
+    func annotationViewDidSelect(_ annotationView: SpotAnnotationView) {
         guard let options = self.mapView.viewAnnotations.options(for: annotationView) else { return }
         
         let updateOptions = ViewAnnotationOptions(
-            width: (options.width ?? 0.0) + Constants.SELECTED_ADD_COEF_PX,
-            height: (options.height ?? 0.0) + Constants.SELECTED_ADD_COEF_PX,
+            width: (options.width ?? 0.0) + 5,
+            height: (options.height ?? 0.0) + 3,
             selected: true
         )
         try? self.mapView.viewAnnotations.update(annotationView, options: updateOptions)
     }
     
-    func annotationViewDidUnselect(_ annotationView: AnnotationView) {
+    func annotationViewDidUnselect(_ annotationView: SpotAnnotationView) {
         guard let options = self.mapView.viewAnnotations.options(for: annotationView) else { return }
         
         let updateOptions = ViewAnnotationOptions(
-            width: (options.width ?? 0.0) - Constants.SELECTED_ADD_COEF_PX,
-            height: (options.height ?? 0.0) - Constants.SELECTED_ADD_COEF_PX,
+            width: (options.width ?? 0.0) - 5,
+            height: (options.height ?? 0.0) - 3,
             selected: false
         )
         try? self.mapView.viewAnnotations.update(annotationView, options: updateOptions)
     }
     
-    // Handle the actions for the button clicks inside the `SampleView` instance
-    func annotationViewDidPressClose(_ annotationView: AnnotationView) {
-        mapView.viewAnnotations.remove(annotationView)
+    func annotationViewDidPressClose(_ annotationView: SpotAnnotationView) {
+//        mapView.viewAnnotations.remove(annotationView)
     }
 }
 
