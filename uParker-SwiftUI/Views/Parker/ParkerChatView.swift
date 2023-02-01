@@ -32,18 +32,35 @@ struct ParkerChatView: View {
 }
 
 // MARK: - PREVIEW
-//struct ParkerChatView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ParkerChatView()
-//            .environmentObject(SessionManager())
-//    }
-//}
+struct ParkerChatView_Previews: PreviewProvider {
+    static var previews: some View {
+        ParkerChatView()
+            .environmentObject(SessionManager())
+    }
+}
 
 
 
 public class MapViewController: UIViewController, AnnotationInteractionDelegate {
     public func annotationManager(_ manager: MapboxMaps.AnnotationManager, didDetectTappedAnnotations annotations: [MapboxMaps.Annotation]) {
         print("Annotation Tapped: \(annotations[0])")
+        
+        guard pointAnnotationManager != nil else {
+            print("PointAnnotationManager is Nil")
+            return
+        }
+        
+        if var selectedAnnotation: PointAnnotation = annotations[0] as? PointAnnotation {
+            pointAnnotationManager!.annotations.removeAll(where: { annotation in
+                annotation.id == selectedAnnotation.id
+            })
+            
+            selectedAnnotation.image = .init(image: SpotAnnotationView(isSelected: true).asImage(), name: "red_pin")
+            pointAnnotationManager!.annotations = [selectedAnnotation]
+            
+        }
+        
+//        mapView.annotations.removeAnnotationManager(withId: annotations[0].id)
     }
     
     // MARK: - PROPERTIES
@@ -59,10 +76,14 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
         return CameraOptions(center: centerLocation, zoom: 12, bearing: -17.6, pitch: 0)
     }
     
+    var pointAnnotationManager: PointAnnotationManager?
+    
     // MARK: - INITIALIZER
     init(center: CLLocation) {
         centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -92,18 +113,28 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
 
 
         // Make the annotation show a red pin
-        pointAnnotation.image = .init(image: SpotAnnotationView().asImage(), name: "red_pin")
-        pointAnnotation.textField = "$3.00"
-        pointAnnotation.textAnchor = .center
-        pointAnnotation.textColor = StyleColor(UIColor.white)
-        pointAnnotation.iconAnchor = .bottom
-
+        pointAnnotation.image = .init(image: SpotAnnotationView(isSelected: false).asImage(), name: "red_pin")
+        
+        
+//        pointAnnotation.textField = "$300.00"
+//        pointAnnotation.textAnchor = .bottom
+//        pointAnnotation.textColor = StyleColor(UIColor.white)
+//        pointAnnotation.textJustify = .center
+//        pointAnnotation.iconAnchor = .bottom
+//        pointAnnotation.textOffset = [0, -0.20]
+        
         // Create the `PointAnnotationManager` which will be responsible for handling this annotation
-        let pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
-        pointAnnotationManager.delegate = self
+        pointAnnotationManager = mapView.annotations.makePointAnnotationManager()
+        
+        guard pointAnnotationManager != nil else {
+            print("PointAnnotationManager is Nil")
+            return
+        }
+        
+        pointAnnotationManager!.delegate = self
 
         // Add the annotation to the manager in order to render it on the map.
-        pointAnnotationManager.annotations = [pointAnnotation]
+        pointAnnotationManager!.annotations = [pointAnnotation]
         
         mapView.mapboxMap.onNext(event: .mapLoaded) { [weak self] _ in
             guard let self = self else { return }
@@ -118,19 +149,24 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
 
 
 class SpotAnnotationView: UIView {
-    let annotationFrame: CGRect = CGRect(x: 0, y: 0, width: 60, height: 25)
+    let annotationFrame: CGRect = CGRect(x: 0, y: 0, width: 75, height: 30)
     
-    init() {
+    init(isSelected: Bool) {
         super.init(frame: annotationFrame)
 
-        self.backgroundColor = UIColor(named: "uParkerBlue")!
+        self.backgroundColor = isSelected ? UIColor.white : UIColor(named: "uParkerBlue")!
 
+        let label = UILabel(frame: annotationFrame)
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = UIColor(Color.white)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "$3.00"
+        
+        self.addSubview(label)
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 10
-        self.layer.shadowRadius = 2
-        self.layer.shadowOffset = CGSize(width: 0, height: 1)
-        self.layer.shadowOpacity = 0.5
-
+        self.layer.cornerRadius = 15
     }
     
     required init?(coder: NSCoder) {
