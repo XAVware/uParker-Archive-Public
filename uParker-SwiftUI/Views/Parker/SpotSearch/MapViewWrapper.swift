@@ -8,7 +8,7 @@
 import SwiftUI
 import MapboxMaps
 import CoreLocation
-
+/*
 public class MapViewController: UIViewController, AnnotationInteractionDelegate {
     public func annotationManager(_ manager: MapboxMaps.AnnotationManager, didDetectTappedAnnotations annotations: [MapboxMaps.Annotation]) {
         print(annotations[0])
@@ -438,3 +438,4 @@ struct MapViewWrapper: UIViewControllerRepresentable {
         mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
     }
 }
+*/
