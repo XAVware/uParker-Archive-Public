@@ -8,6 +8,185 @@
 import SwiftUI
 import MapboxMaps
 import CoreLocation
+
+public class MapViewController: UIViewController {
+    // MARK: - PROPERTIES
+    internal var mapView: MapView!
+    var selectedSpotId: String?
+    
+    
+    var cameraOptions: CameraOptions {
+        return CameraOptions(center: centerLocation, zoom: 12, bearing: -17.6, pitch: 0)
+    }
+        
+    var centerLocation: CLLocationCoordinate2D {
+        didSet { mapView.camera.fly(to: cameraOptions, duration: 1) }
+    }
+    
+    lazy var pointAnnotationManager: PointAnnotationManager = {
+        print("AnnotationManager Initialized")
+        let annotationManager: PointAnnotationManager = self.mapView.annotations.makePointAnnotationManager()
+        annotationManager.delegate = self
+        return annotationManager
+    }()
+    
+//    var annotationBackground: UIImage {
+//        return SpotAnnotationView(isSelected: false).asImage()
+//    }
+    
+    private func getBackground(isSelected: Bool) -> UIImage {
+        return SpotAnnotationView(isSelected: isSelected).asImage()
+    }
+    
+    
+    
+    // MARK: - INITIALIZER
+    init(center: CLLocation) {
+        centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        print("MapViewController Initialized")
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Map must initialize first - pointAnnotationManagerRequires it
+        initializeMap()
+        updateAnnotations()
+    }
+    
+    private func updateAnnotations() {
+        var pointAnnotation = PointAnnotation(id: "Spot_ID", coordinate: CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600))
+
+        pointAnnotation.image = .init(image: getBackground(isSelected: false), name: "red_pin")
+        
+        var pointAnnotation2 = PointAnnotation(id: "Spot_ID2", coordinate: CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505))
+
+        pointAnnotation2.image = .init(image: getBackground(isSelected: false), name: "red_pin")
+        
+        
+        
+//        pointAnnotation.textField = "$300.00"
+//        pointAnnotation.textAnchor = .bottom
+//        pointAnnotation.textColor = StyleColor(UIColor.white)
+//        pointAnnotation.textJustify = .center
+//        pointAnnotation.iconAnchor = .bottom
+//        pointAnnotation.textOffset = [0, -0.20]
+
+
+        // Add the annotation to the manager in order to render it on the map.
+        pointAnnotationManager.annotations = [pointAnnotation, pointAnnotation2]
+    }
+    
+    private func initializeMap() {
+        let myResourceOptions = ResourceOptions(accessToken: MBAccessKey)
+        
+        // Pass camera options to map init options
+        let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions)
+        
+        mapView = MapView(frame: view.bounds, mapInitOptions: options)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.view.addSubview(mapView)
+        
+//        mapView.mapboxMap.onNext(event: .mapLoaded) { [weak self] _ in
+//            guard let self = self else { return }
+//            print("Called")
+//            Seems to only call once. Maybe wait to add annotations until here?
+//            self.finish()
+//        }
+      
+    }
+    
+}
+
+// MARK: - ANNOTATION INTERACTION DELEGATE
+extension MapViewController: AnnotationInteractionDelegate {
+    public func annotationManager(_ manager: MapboxMaps.AnnotationManager, didDetectTappedAnnotations annotations: [MapboxMaps.Annotation]) {
+        //On tap needs to store the tapped spot, display it in a horizontal page, and center it on the map through locationManager
+        
+        print("Annotation Tapped: \(annotations[0])")
+        
+        self.selectedSpotId = annotations[0].id
+        
+        
+//        if let selectedAnnotation: PointAnnotation = annotations[0] as? PointAnnotation {
+//            let selectedId: String = selectedAnnotation.id
+//            let selectedCoordinates: CLLocationCoordinate2D = selectedAnnotation.point.coordinates
+//            let selected: Bool = selectedAnnotation.isSelected
+//
+//            print(selectedId, selectedCoordinates, selected)
+            
+//            pointAnnotationManager.annotations[0].image = .init(image: SpotAnnotationView(isSelected: true).asImage(), name: "red_pin")
+            
+//            var newAnnotation = PointAnnotation(id: selectedId, coordinate: selectedCoordinates)
+
+//            newAnnotation.image = .init(image: SpotAnnotationView(isSelected: selected).asImage(), name: "red_pin")
+//
+//            pointAnnotationManager.annotations.removeAll(where: { annotation in
+//                annotation.id == selectedAnnotation.id
+//            })
+//
+//            pointAnnotationManager.annotations.append(newAnnotation)
+//            mapView.reloadInputViews()
+//        } else {
+//
+//            print("Error casting selected annotation in MapViewController")
+//            return
+//        }
+    }
+}
+
+
+class SpotAnnotationView: UIView {
+    let annotationFrame: CGRect = CGRect(x: 0, y: 0, width: 75, height: 30)
+
+    init(isSelected: Bool) {
+        super.init(frame: annotationFrame)
+
+        self.backgroundColor = isSelected ? UIColor.white : UIColor(named: "uParkerBlue")!
+
+        let label = UILabel(frame: annotationFrame)
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.textColor = UIColor(Color.white)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "$3.00"
+
+        self.addSubview(label)
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 15
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+}
+
+
+// MARK: - VIEW WRAPPER
+struct MapViewWrapper: UIViewControllerRepresentable {
+    @Binding var center: CLLocation
+    typealias UIViewControllerType = MapViewController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext< MapViewWrapper >) -> MapViewController {
+        return MapViewController(center: center)
+    }
+    
+    func updateUIViewController(_ mapViewController: MapViewController, context: UIViewControllerRepresentableContext< MapViewWrapper >) {
+        mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+    }
+}
+
+
+
 /*
 public class MapViewController: UIViewController, AnnotationInteractionDelegate {
     public func annotationManager(_ manager: MapboxMaps.AnnotationManager, didDetectTappedAnnotations annotations: [MapboxMaps.Annotation]) {
