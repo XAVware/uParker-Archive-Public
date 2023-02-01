@@ -30,12 +30,8 @@ public class MapViewController: UIViewController {
         return annotationManager
     }()
     
-//    var annotationBackground: UIImage {
-//        return SpotAnnotationView(isSelected: false).asImage()
-//    }
-    
-    private func getBackground(isSelected: Bool) -> UIImage {
-        return SpotAnnotationView(isSelected: isSelected).asImage()
+    private func getBackground(isSelected: Bool, price: Double) -> UIImage {
+        return SpotAnnotationView(isSelected: isSelected, price: price).asImage()
     }
     
     
@@ -63,21 +59,12 @@ public class MapViewController: UIViewController {
     private func updateAnnotations() {
         var pointAnnotation = PointAnnotation(id: "Spot_ID", coordinate: CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600))
 
-        pointAnnotation.image = .init(image: getBackground(isSelected: false), name: "red_pin")
+        pointAnnotation.image = .init(image: getBackground(isSelected: false, price: 400.00), name: pointAnnotation.id)
         
         var pointAnnotation2 = PointAnnotation(id: "Spot_ID2", coordinate: CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505))
 
-        pointAnnotation2.image = .init(image: getBackground(isSelected: false), name: "red_pin")
+        pointAnnotation2.image = .init(image: getBackground(isSelected: false, price: 30.00), name: pointAnnotation2.id)
         
-        
-        
-//        pointAnnotation.textField = "$300.00"
-//        pointAnnotation.textAnchor = .bottom
-//        pointAnnotation.textColor = StyleColor(UIColor.white)
-//        pointAnnotation.textJustify = .center
-//        pointAnnotation.iconAnchor = .bottom
-//        pointAnnotation.textOffset = [0, -0.20]
-
 
         // Add the annotation to the manager in order to render it on the map.
         pointAnnotationManager.annotations = [pointAnnotation, pointAnnotation2]
@@ -108,60 +95,71 @@ public class MapViewController: UIViewController {
 // MARK: - ANNOTATION INTERACTION DELEGATE
 extension MapViewController: AnnotationInteractionDelegate {
     public func annotationManager(_ manager: MapboxMaps.AnnotationManager, didDetectTappedAnnotations annotations: [MapboxMaps.Annotation]) {
-        //On tap needs to store the tapped spot, display it in a horizontal page, and center it on the map through locationManager
-        
+        guard let tappedAnnotation = annotations.first as? PointAnnotation else {
+            print("Issue casting selected annotation to PointAnnotation")
+            return
+        }
+        DispatchQueue.main.async {
+            if let index = self.pointAnnotationManager.annotations.firstIndex(where: { $0.id == tappedAnnotation.id }) {
+                var annotation = self.pointAnnotationManager.annotations[index]
+                annotation.image = .init(image: self.getBackground(isSelected: tappedAnnotation.isSelected, price: 3.00), name: "\(tappedAnnotation.id)_\(tappedAnnotation.isSelected)")
+                self.pointAnnotationManager.annotations[index] = annotation
+            }
+        }
         print("Annotation Tapped: \(annotations[0])")
         
-        self.selectedSpotId = annotations[0].id
-        
-        
-//        if let selectedAnnotation: PointAnnotation = annotations[0] as? PointAnnotation {
-//            let selectedId: String = selectedAnnotation.id
-//            let selectedCoordinates: CLLocationCoordinate2D = selectedAnnotation.point.coordinates
-//            let selected: Bool = selectedAnnotation.isSelected
-//
-//            print(selectedId, selectedCoordinates, selected)
-            
-//            pointAnnotationManager.annotations[0].image = .init(image: SpotAnnotationView(isSelected: true).asImage(), name: "red_pin")
-            
-//            var newAnnotation = PointAnnotation(id: selectedId, coordinate: selectedCoordinates)
-
-//            newAnnotation.image = .init(image: SpotAnnotationView(isSelected: selected).asImage(), name: "red_pin")
-//
-//            pointAnnotationManager.annotations.removeAll(where: { annotation in
-//                annotation.id == selectedAnnotation.id
-//            })
-//
-//            pointAnnotationManager.annotations.append(newAnnotation)
-//            mapView.reloadInputViews()
-//        } else {
-//
-//            print("Error casting selected annotation in MapViewController")
-//            return
-//        }
     }
 }
 
 
 class SpotAnnotationView: UIView {
-    let annotationFrame: CGRect = CGRect(x: 0, y: 0, width: 75, height: 30)
-
-    init(isSelected: Bool) {
-        super.init(frame: annotationFrame)
-
-        self.backgroundColor = isSelected ? UIColor.white : UIColor(named: "uParkerBlue")!
-
+    let annotationFrame: CGRect = CGRect(x: 0, y: 0, width: 60, height: 26)
+    let selected: Bool
+    
+    lazy var priceLabel: UILabel = {
         let label = UILabel(frame: annotationFrame)
-        label.font = UIFont.systemFont(ofSize: 10)
-        label.textColor = UIColor(Color.white)
+        label.textColor = self.selected ? UIColor(named: "uParkerBlue")! : UIColor.white
         label.textAlignment = .center
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
-        label.text = "$3.00"
-
-        self.addSubview(label)
+        return label
+    }()
+    
+    func getFormattedPrice(price: Double) -> NSMutableAttributedString {
+        //Returns a String that has a small & offset dollar sign, a small space to act as padding between the dollar sign and the price, and the price in bold which automatically adjusts its font size based on the length of the price. With a frame that is 60 wide and 26 tall, the price label touches the edges if the price has 3 digits before the decimal.
+        let dollarSignFont: UIFont = UIFont.systemFont(ofSize: 10)
+        let spaceFont: UIFont = UIFont.systemFont(ofSize: 6)
+        let priceFont: UIFont = UIFont.boldSystemFont(ofSize: price < 100.0 ? 14 : 12)
+        
+        let labelText = "$ \(String(format: "%.2f", price))"
+        
+        let attString = NSMutableAttributedString(string: labelText)
+        attString.addAttribute(.font, value: dollarSignFont, range: NSRange(location: 0, length: 1))
+        attString.addAttribute(.font, value: spaceFont, range: NSRange(location: 1, length: 1))
+        attString.addAttribute(.font, value: priceFont, range: NSRange(location: 2, length: labelText.count - 2))
+        attString.addAttribute(.baselineOffset, value: 2, range: NSRange(location: 0, length: 1))
+        
+        return attString
+    }
+    
+    func initializeBackground() {
+        self.backgroundColor = selected ? UIColor.white : UIColor(named: "uParkerBlue")!
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = annotationFrame.height / 2
+        self.layer.borderColor = UIColor(named: "uParkerBlue")!.cgColor
+        self.layer.borderWidth = 1
+    }
+    
+    init(isSelected: Bool, price: Double) {
+        selected = isSelected
+        super.init(frame: annotationFrame)
+        
+        initializeBackground()
+        
+        priceLabel.attributedText = getFormattedPrice(price: price)
+        
+        self.addSubview(priceLabel)
+        
     }
 
     required init?(coder: NSCoder) {
