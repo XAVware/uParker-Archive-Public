@@ -12,11 +12,12 @@ struct HeaderView: View {
     @Environment(\.dismiss) var dismiss
     
     enum BackButtonType { case xmark, chevron }
+    enum TrailingButtonType { case settings }
     
     var sideItemWidth: CGFloat = 16
     let leftItem: BackButtonType?
     let title: String?
-    let rightItem: AnyView?
+    let rightItem: TrailingButtonType?
     
     // MARK: - BODY
     var body: some View {
@@ -47,15 +48,31 @@ struct HeaderView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
             default:
-                Spacer()
-                    .frame(width: sideItemWidth)
+                Spacer().frame(width: sideItemWidth)
             }
 
             Text(title ?? " ")
                 .modifier(SmallTitleMod())
                 .frame(maxWidth: .infinity)
             
-            rightItem ?? AnyView(Spacer().frame(width: sideItemWidth))
+            switch self.rightItem {
+            case .settings:
+                Button {
+//                    dismiss.callAsFunction()
+                } label: {
+                    Image(systemName: "gear")
+                        .resizable()
+                        .scaledToFit()
+                        .fontWeight(.light)
+                        .frame(width: sideItemWidth + 5)
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+            default:
+                Spacer().frame(width: sideItemWidth)
+            }
+            
+//            rightItem ?? AnyView(Spacer().frame(width: sideItemWidth))
                         
         } //: HStack
         .frame(height: 30)
