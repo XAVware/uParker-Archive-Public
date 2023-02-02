@@ -19,6 +19,7 @@
 		804DAD56297B369D00B89AC6 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 804DAD55297B369D00B89AC6 /* MapboxSearch */; };
 		804DAD58297B369D00B89AC6 /* MapboxSearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = 804DAD57297B369D00B89AC6 /* MapboxSearchUI */; };
 		8055257F298B1BA200216586 /* SpotAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055257E298B1BA200216586 /* SpotAnnotationView.swift */; };
+		80552582298B1EE300216586 /* ChatLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80552581298B1EE300216586 /* ChatLogView.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
@@ -72,6 +73,7 @@
 		8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneView.swift; sourceTree = "<group>"; };
 		804DAD52297A616C00B89AC6 /* Documentation */ = {isa = PBXFileReference; lastKnownFileType = text; path = Documentation; sourceTree = "<group>"; };
 		8055257E298B1BA200216586 /* SpotAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotAnnotationView.swift; sourceTree = "<group>"; };
+		80552581298B1EE300216586 /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
 		806548452972EBFC00943B72 /* ReservationsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsPicker.swift; sourceTree = "<group>"; };
@@ -165,13 +167,22 @@
 		8047EDB6296E014C00AF3896 /* Parker */ = {
 			isa = PBXGroup;
 			children = (
+				80552580298B1EBB00216586 /* Chat */,
 				80654855297321D100943B72 /* Reservations */,
 				8047EDB3296E013100AF3896 /* SpotSearch */,
-				80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */,
 				80EE942E2964E8A200A85CEF /* ParkerView.swift */,
 				80EAC1BE2968C38900F4DC09 /* ProfileView.swift */,
 			);
 			path = Parker;
+			sourceTree = "<group>";
+		};
+		80552580298B1EBB00216586 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */,
+				80552581298B1EE300216586 /* ChatLogView.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		80654855297321D100943B72 /* Reservations */ = {
@@ -411,6 +422,7 @@
 				8065485429731D4200943B72 /* ReservationPanelButton.swift in Sources */,
 				8065484E2972EF6400943B72 /* Review.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
+				80552582298B1EE300216586 /* ChatLogView.swift in Sources */,
 				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,
 				800772FB296CCF3D00E7FEED /* SpotListView.swift in Sources */,
 				80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */,
