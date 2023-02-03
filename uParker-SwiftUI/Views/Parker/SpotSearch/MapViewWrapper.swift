@@ -12,14 +12,17 @@ import CoreLocation
 // MARK: - VIEW WRAPPER
 struct MapViewWrapper: UIViewControllerRepresentable {
     @Binding var center: CLLocation
+    @Binding var mapStyle: StyleURI
+    
     typealias UIViewControllerType = MapViewController
     
     func makeUIViewController(context: UIViewControllerRepresentableContext< MapViewWrapper >) -> MapViewController {
-        return MapViewController(center: center)
+        return MapViewController(center: center, mapStyle: mapStyle)
     }
     
     func updateUIViewController(_ mapViewController: MapViewController, context: UIViewControllerRepresentableContext< MapViewWrapper >) {
         mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        mapViewController.changeMapStyle(to: mapStyle)
     }
 }
 
@@ -29,7 +32,7 @@ public class MapViewController: UIViewController {
     // MARK: - PROPERTIES
     internal var mapView: MapView!
     var selectedPin: PinView?
-    
+    var mapStyle: StyleURI
     let markers: [PinModel] = [PinModel(id: "Spot_ID", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)), price: 3.00),
                                       PinModel(id: "Spot_ID2", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505)), price: 40.00)]
     
@@ -42,8 +45,9 @@ public class MapViewController: UIViewController {
     }
     
     // MARK: - INITIALIZER
-    init(center: CLLocation) {
+    init(center: CLLocation, mapStyle: StyleURI) {
         centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        self.mapStyle = mapStyle
         super.init(nibName: nil, bundle: nil)
         print("MapViewController Initialized")
     }
@@ -70,13 +74,16 @@ public class MapViewController: UIViewController {
             try? mapView.viewAnnotations.add(pin, options: options)
         }
     }
-
     
+    func changeMapStyle(to style: StyleURI) {
+        self.mapStyle = style
+        mapView.mapboxMap.loadStyleURI(mapStyle)
+    }
+
     private func initializeMap() {
         let myResourceOptions = ResourceOptions(accessToken: MBAccessKey)
-        
         // Pass camera options to map init options
-        let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions)
+        let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleURI: self.mapStyle)
         
         mapView = MapView(frame: view.bounds, mapInitOptions: options)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

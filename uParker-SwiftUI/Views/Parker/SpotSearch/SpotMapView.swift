@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import MapboxMaps
 
 struct SpotMapView: View {
     // MARK: - PROPERTIES
     @StateObject var locationManager = LocationManager.shared
     
     @State var listHeight: CGFloat = 120
+    @State var mapStyle: StyleURI = .streets
     
     private let initialListHeight: CGFloat = 120
     
@@ -28,7 +30,7 @@ struct SpotMapView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                MapViewWrapper(center: $locationManager.location)
+                MapViewWrapper(center: $locationManager.location, mapStyle: $mapStyle)
                 
                 SpotListView(viewHeight: $listHeight, minHeight: initialListHeight, maxHeight: geo.size.height)
                     .edgesIgnoringSafeArea(.bottom)
@@ -55,7 +57,8 @@ struct SpotMapView: View {
                             Divider()
                             
                             Button {
-                                //Open Map Settings
+                                mapStyle = mapStyle == .streets ? .dark : .streets
+                                print("\(mapStyle)")
                             } label: {
                                 Image(systemName: "gear")
                                     .resizable()
