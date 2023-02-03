@@ -1,3 +1,7 @@
 
 1/20/23
 Starting work on binding spot map. The map & pins, spot list, search bar, map button panel will all be synced. UIViewControllerRepresentable combines UIKit and Swift.
+
+
+Good info on View Controller Representable flow: https://stackoverflow.com/questions/64959542/pass-data-from-viewcontroller-to-representable-swiftui
+
