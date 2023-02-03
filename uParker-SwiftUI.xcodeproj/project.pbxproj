@@ -144,11 +144,11 @@
 			children = (
 				80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */,
 				806073572966B70B00C4E136 /* MapViewWrapper.swift */,
+				80903DC7298D928C0078881C /* MapSettingsView.swift */,
 				800772F0296C61C600E7FEED /* SearchField.swift */,
 				800772F8296C97DA00E7FEED /* SpotMapView.swift */,
 				800772FA296CCF3D00E7FEED /* SpotListView.swift */,
 				8055257E298B1BA200216586 /* PinView.swift */,
-				80903DC7298D928C0078881C /* MapSettingsView.swift */,
 			);
 			path = SpotSearch;
 			sourceTree = "<group>";

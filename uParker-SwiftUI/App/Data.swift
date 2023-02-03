@@ -8,5 +8,5 @@
 import Foundation
 
 let reservations: [Reservation] = [
-Reservation(streetAddress: "123 Main Street", city: "State College", state: "PA", zipCode: "16801")
-]
+    Reservation(streetAddress: "123 Main Street", city: "State College", state: "PA", zipCode: "16801")
+    ]

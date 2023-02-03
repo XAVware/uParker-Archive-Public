@@ -14,6 +14,7 @@ struct SpotMapView: View {
     
     @State var listHeight: CGFloat = 120
     @State var mapStyle: StyleURI = .streets
+    @State var isShowingSettings: Bool = false
     
     private let initialListHeight: CGFloat = 120
     
@@ -80,7 +81,13 @@ struct SpotMapView: View {
                 .overlay(
                     SearchField()
                 )
-                 
+                .sheet(isPresented: $isShowingSettings) {
+                            MapSettingsView()
+                                .presentationDetents([.medium, .large])
+//                                .presentationDetents([.height(300)])
+//                                .presentationDetents([.fraction(0.15)])
+//                                .presentationDragIndicator(.hidden)
+                        }
                 
             } //: ZStack
             
