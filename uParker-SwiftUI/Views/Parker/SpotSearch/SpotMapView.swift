@@ -58,8 +58,9 @@ struct SpotMapView: View {
                             Divider()
                             
                             Button {
-                                mapStyle = mapStyle == .streets ? .dark : .streets
-                                print("\(mapStyle)")
+//                                mapStyle = mapStyle == .streets ? .dark : .streets
+//                                print("\(mapStyle)")
+                                self.isShowingSettings.toggle()
                             } label: {
                                 Image(systemName: "gear")
                                     .resizable()
@@ -86,7 +87,8 @@ struct SpotMapView: View {
                                 .presentationDetents([.medium, .large])
 //                                .presentationDetents([.height(300)])
 //                                .presentationDetents([.fraction(0.15)])
-//                                .presentationDragIndicator(.hidden)
+                                .presentationDragIndicator(.hidden)
+                                .edgesIgnoringSafeArea(.bottom)
                         }
                 
             } //: ZStack
