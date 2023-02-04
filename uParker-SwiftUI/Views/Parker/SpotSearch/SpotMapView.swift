@@ -36,11 +36,11 @@ struct SpotMapView: View {
                 SpotListView(viewHeight: $listHeight, minHeight: initialListHeight, maxHeight: geo.size.height)
                     .edgesIgnoringSafeArea(.bottom)
                 
-
+                
                 VStack(spacing: 0) {
                     Spacer().frame(height: initialListHeight - geo.safeAreaInsets.top + searchBarHeight)
                         .padding(.top)
-                        
+                    
                     HStack {
                         Spacer()
                         
@@ -58,8 +58,6 @@ struct SpotMapView: View {
                             Divider()
                             
                             Button {
-//                                mapStyle = mapStyle == .streets ? .dark : .streets
-//                                print("\(mapStyle)")
                                 self.isShowingSettings.toggle()
                             } label: {
                                 Image(systemName: "gear")
@@ -83,13 +81,11 @@ struct SpotMapView: View {
                     SearchField()
                 )
                 .sheet(isPresented: $isShowingSettings) {
-                            MapSettingsView()
-                                .presentationDetents([.medium, .large])
-//                                .presentationDetents([.height(300)])
-//                                .presentationDetents([.fraction(0.15)])
-                                .presentationDragIndicator(.hidden)
-                                .edgesIgnoringSafeArea(.bottom)
-                        }
+                    MapSettingsView(mapStyle: $mapStyle)
+                        .presentationDetents([.fraction(0.65)])
+                        .presentationDragIndicator(.hidden)
+                        .edgesIgnoringSafeArea(.bottom)
+                }
                 
             } //: ZStack
             

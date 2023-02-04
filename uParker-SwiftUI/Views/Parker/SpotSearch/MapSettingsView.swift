@@ -9,34 +9,49 @@ import SwiftUI
 import MapboxMaps
 
 struct MapSettingsView: View {
-    let stylesDict: [String : String] = ["Streets" : "Style.streets", "Outdoors" : "Style.outdoors", "Light" : "Style.light", "Dark" : "Style.dark", "Satellite" : "Style.satellite"]
+    // MARK: - PROPERTIES
+    @Environment(\.dismiss) var dismiss
+    @Binding var mapStyle: StyleURI
     
-    let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
+    // MARK: - BODY
     var body: some View {
         GeometryReader { geo in
             VStack(alignment: .leading) {
-                Text("Map Settings")
-                    .modifier(BigTitleMod())
+                HStack {
+                    Text("Map Settings")
+                        .modifier(BigTitleMod())
+                    
+                    Spacer()
+                    
+                    Button {
+                        self.dismiss.callAsFunction()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20)
+                            .foregroundColor(Color(.systemGray4))
+                    }
+
+                } //: HStacl
                 
                 
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(stylesDict.sorted(by: >), id: \.key) { styleName, imageName in
-
+                        ForEach(mapStyles) { style in
                             ZStack {
-                                Image(imageName)
+                                Image(style.imageName)
                                     .resizable()
                                     .scaledToFill()
 
                                 VStack {
                                     Spacer()
 
-                                    Text(styleName)
+                                    Text(style.labelName)
                                         .font(.callout)
+                                        .fontWeight(self.mapStyle == style.styleURI ? .bold : .regular)
                                         .padding()
                                         .frame(height: 45)
                                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -46,8 +61,10 @@ struct MapSettingsView: View {
                             } //: ZStack
                             .frame(width: geo.size.width / 2 - 24, height: (geo.size.width / 2 - 24) * 0.70)
                             .clipShape(RoundedRectangle(cornerRadius: 10))
-                            //If selected 1 else 0
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(primaryColor, lineWidth: 1))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(primaryColor, lineWidth: self.mapStyle == style.styleURI ? 1 : 0))
+                            .onTapGesture {
+                                self.mapStyle = style.styleURI
+                            }
 
                         } //: ForEach
                     } //: VGrid
@@ -62,9 +79,11 @@ struct MapSettingsView: View {
     }
 }
 
+// MARK: - PREVEIW
 struct MapSettingsView_Previews: PreviewProvider {
+    @State static var style: StyleURI = StyleURI.streets
     static var previews: some View {
-        MapSettingsView()
+        MapSettingsView(mapStyle: $style)
     }
 }
 
@@ -77,11 +96,12 @@ let mapStyles: [MapStyle] = [
     MapStyle(labelName: "Satellite Streets", imageName: "Style.streets")
 ]
 
-struct MapStyle {
+struct MapStyle: Identifiable {
+    let id: UUID = UUID()
     let labelName: String
     let imageName: String
     
-    var style: StyleURI {
+    var styleURI: StyleURI {
         switch labelName {
         case "Streets":
             return StyleURI.streets
