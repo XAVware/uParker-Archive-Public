@@ -22,4 +22,9 @@ class SessionManager: ObservableObject {
         self.isLoggedIn = true
         self.isShowingLoginModal = false
     }
+    
+    func logOut() {
+        self.isLoggedIn = false
+        self.isShowingLoginModal = true
+    }
 }

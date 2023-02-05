@@ -93,17 +93,18 @@ struct ProfileView: View {
                             
                             SettingsButton(image: Image(systemName: "car.rear.road.lane"), text: "Host your spot")
                         } //: Group - Host
-                    }
+                        
+                    } //: If Is logged in
                     
                     // MARK: - SUPPORT
                     Group {
                         Text("Support")
                             .modifier(SettingsCategoryHeaderMod())
-                        
+
                         SettingsButton(image: Image(systemName: "info.circle"), text: "More Info")
-                        
+
                         Divider()
-                        
+
                         SettingsButton(image: Image(systemName: "phone"), text: "Contact Support")
                     } //: Group - Support
                     
@@ -111,14 +112,24 @@ struct ProfileView: View {
                     Group {
                         Text("Legal")
                             .modifier(SettingsCategoryHeaderMod())
-                        
+
                         SettingsButton(image: Image(systemName: "doc.text.magnifyingglass"), text: "Privacy Policy")
-                        
+
                         Divider()
-                        
+
                         SettingsButton(image: Image(systemName: "doc.text.magnifyingglass"), text: "Terms & Conditions")
                         
                         Divider()
+                        
+                        if self.sessionManager.isLoggedIn {
+                            Button {
+                                self.sessionManager.logOut()
+                            } label: {
+                                Text("Log Out").underline()
+                                    .foregroundColor(.black)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
                         
                         Text("Version 2.0.1")
                             .font(.title3)
@@ -126,6 +137,7 @@ struct ProfileView: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: 40)
                     } //: Group - Legal
+                    
                 } //: VStack
                 .padding()
             } //: ScrollView

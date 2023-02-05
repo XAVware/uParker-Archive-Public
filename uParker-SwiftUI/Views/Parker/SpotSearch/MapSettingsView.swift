@@ -92,8 +92,7 @@ let mapStyles: [MapStyle] = [
     MapStyle(labelName: "Satellite", imageName: "Style.satellite"),
     MapStyle(labelName: "Outdoors", imageName: "Style.outdoors"),
     MapStyle(labelName: "Light", imageName: "Style.light"),
-    MapStyle(labelName: "Dark", imageName: "Style.dark"),
-    MapStyle(labelName: "Satellite Streets", imageName: "Style.streets")
+    MapStyle(labelName: "Dark", imageName: "Style.dark")
 ]
 
 struct MapStyle: Identifiable {

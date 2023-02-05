@@ -149,10 +149,10 @@ struct SearchField: View {
                                         Divider()
                                         
                                     } //: ForEach
-                                }
+                                } //: VStack
                                 .padding(.horizontal, 8)
                                 Spacer()
-                            }
+                            } //: ScrollView
                             
                         } //: VStack
                         .frame(height: 260)
