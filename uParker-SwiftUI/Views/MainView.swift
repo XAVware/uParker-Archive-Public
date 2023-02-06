@@ -20,6 +20,11 @@ struct MainView: View {
                         .environmentObject(sessionManager)
                         .ignoresSafeArea(.keyboard)
                 }
+                .sheet(isPresented: $sessionManager.isShowingSignUpModal) {
+                    SignUpView()
+                        .environmentObject(sessionManager)
+                        .ignoresSafeArea(.keyboard)
+                }
 
         } else {
             HostView()

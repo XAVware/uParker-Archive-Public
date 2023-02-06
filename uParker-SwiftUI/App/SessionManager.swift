@@ -9,22 +9,20 @@ import SwiftUI
 
 class SessionManager: ObservableObject {
     @Published var isLoggedIn: Bool = true
-    @Published var isShowingSignUp: Bool = false
+    @Published var isShowingLoginModal: Bool = false
+    @Published var isShowingSignUpModal: Bool = false
     
     @Published var userType: UserType = .parker
     
-    @Published var isShowingLoginModal: Bool = false
-    
     enum UserType { case parker, host}
-    
     
     func logIn() {
         self.isLoggedIn = true
         self.isShowingLoginModal = false
+        self.isShowingSignUpModal = false
     }
     
     func logOut() {
         self.isLoggedIn = false
-        self.isShowingLoginModal = true
     }
 }

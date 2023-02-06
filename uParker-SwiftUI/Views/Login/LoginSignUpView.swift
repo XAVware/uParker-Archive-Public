@@ -65,11 +65,8 @@ struct LoginSignUpView: View {
                 case .email:
                     AnimatedTextField(boundTo: $email, placeholder: "Email Address")
                         .padding(.vertical, 20)
-                        .keyboardType(.emailAddress)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
+                        .modifier(EmailFieldMod())
                         .focused($focusField, equals: .phoneEmail)
-                        .submitLabel(.continue)
                         .onSubmit {
                             focusField = nil
                         }

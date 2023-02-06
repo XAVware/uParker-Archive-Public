@@ -130,5 +130,15 @@ struct LargeTitleMod: ViewModifier {
     }
 }
 
+// MARK: - TEMPLATE
+struct EmailFieldMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .keyboardType(.emailAddress)
+            .autocorrectionDisabled()
+            .textInputAutocapitalization(.never)
+            .submitLabel(.continue)
 
+    }
+}
     

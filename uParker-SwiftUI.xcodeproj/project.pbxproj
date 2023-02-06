@@ -38,6 +38,7 @@
 		806A376F297A3F3D00068FEA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A376E297A3F3D00068FEA /* LocationManager.swift */; };
 		80903DC6298D6F070078881C /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC5298D6F070078881C /* Pin.swift */; };
 		80903DC8298D928C0078881C /* MapSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC7298D928C0078881C /* MapSettingsView.swift */; };
+		80A013442991999B004DBE4E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A013432991999B004DBE4E /* SignUpView.swift */; };
 		80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */; };
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
@@ -94,6 +95,7 @@
 		806A376E297A3F3D00068FEA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		80903DC5298D6F070078881C /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		80903DC7298D928C0078881C /* MapSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettingsView.swift; sourceTree = "<group>"; };
+		80A013432991999B004DBE4E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uParker_SwiftUIApp.swift; sourceTree = "<group>"; };
 		80A64A09294D6491001317DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				80EE94322964E93400A85CEF /* LoginSignUpView.swift */,
 				8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */,
 				80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */,
+				80A013432991999B004DBE4E /* SignUpView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */,
 				80A64A2E2953FFF0001317DD /* User.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
+				80A013442991999B004DBE4E /* SignUpView.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
 				800772F1296C61C600E7FEED /* SearchField.swift in Sources */,
