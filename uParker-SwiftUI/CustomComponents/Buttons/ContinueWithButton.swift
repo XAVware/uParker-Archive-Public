@@ -17,28 +17,25 @@ struct ContinueWithButton: View {
     var body: some View {
         Button {
             action()
-        } label: {
-            icon
-                .resizable()
-                .scaledToFit()
-                .frame(width: 22, height: 22)
-                .padding(.leading)
-                                
+        } label: {             
             Text(text)
                 .foregroundColor(.black)
                 .font(.title3)
                 .fontDesign(.rounded)
                 .frame(maxWidth: .infinity)
-            
-            Spacer()
-                .frame(width: 22)
-                .padding(.trailing)
         }
         .frame(maxWidth: .infinity)
         .frame(height: 45)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.gray)
+        )
+        .overlay(
+            icon
+                .resizable()
+                .scaledToFit()
+                .frame(width: 22, height: 22)
+                .padding(.leading), alignment: .leading
         )
     }
 }

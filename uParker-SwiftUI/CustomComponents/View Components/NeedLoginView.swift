@@ -33,9 +33,17 @@ struct NeedLoginView: View {
             } //: VStack
             
             VStack(spacing: 20) {
-                ContinueButton(text: "Log In") {
-                    sessionManager.isShowingLoginModal = true
+                Button {
+                    sessionManager.isShowingLoginView = true
+                } label: {
+                    Text("Continue")
+                        .frame(maxWidth: .infinity)
                 }
+                .modifier(RoundedButtonMod())
+                
+//                ContinueButton(text: "Log In") {
+//                    sessionManager.isShowingLoginView = true
+//                }
                 
                 HStack(spacing: 8) {
                     Text("Don't have an account?")
@@ -43,7 +51,7 @@ struct NeedLoginView: View {
                         .fontDesign(.rounded)
                     
                     Button {
-                        sessionManager.isShowingLoginModal = true
+                        sessionManager.isShowingSignUpView = true
                     } label: {
                         Text("Sign Up").underline()
                             .font(.callout)
@@ -53,9 +61,15 @@ struct NeedLoginView: View {
                 } //: VStack - Sign Up
             } //: VStack - Login/Sign up
         } //: VStack
-        .sheet(isPresented: $sessionManager.isShowingLoginModal) {
-            LoginSignUpView()
+        .fullScreenCover(isPresented: $sessionManager.isShowingLoginView) {
+            LoginView()
                 .environmentObject(sessionManager)
+                .ignoresSafeArea(.keyboard)
+        }
+        .fullScreenCover(isPresented: $sessionManager.isShowingSignUpView) {
+            SignUpView()
+                .environmentObject(sessionManager)
+                .ignoresSafeArea(.keyboard)
         }
     }
 }

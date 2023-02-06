@@ -130,7 +130,7 @@ struct LargeTitleMod: ViewModifier {
     }
 }
 
-// MARK: - TEMPLATE
+// MARK: - Email Field Mod
 struct EmailFieldMod: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -139,6 +139,20 @@ struct EmailFieldMod: ViewModifier {
             .textInputAutocapitalization(.never)
             .submitLabel(.continue)
 
+    }
+}
+    
+
+// MARK: - Rounded Button
+struct RoundedButtonMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .modifier(MidTitleMod())
+            .padding()
+            .frame(height: 50)
+            .background(backgroundGradient)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
     

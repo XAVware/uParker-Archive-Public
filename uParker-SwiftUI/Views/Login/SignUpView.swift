@@ -20,34 +20,46 @@ struct SignUpView: View {
     
     // MARK: - BODY
     var body: some View {
-        VStack(spacing: 32) {
-            HeaderView(leftItem: .xmark, title: "Sign Up", rightItem: nil)
-                .padding(.top)
-                .ignoresSafeArea(.keyboard)
-            
-            VStack(spacing: 16) {
-                HStack(spacing: 16) {
-                    AnimatedTextField(boundTo: $firstName, placeholder: "First Name")
+        NavigationView {
+            VStack(spacing: 24) {
+                HeaderView(leftItem: .xmark, title: "Sign Up", rightItem: nil)
+                    .padding(.top)
+                    .ignoresSafeArea(.keyboard)
+                
+                VStack(spacing: 16) {
+                    HStack(spacing: 16) {
+                        AnimatedTextField(boundTo: $firstName, placeholder: "First Name")
+                        
+                        AnimatedTextField(boundTo: $lastName, placeholder: "Last Name")
+                    } //: HStack
                     
-                    AnimatedTextField(boundTo: $lastName, placeholder: "Last Name")
-                } //: HStack
+                    AnimatedTextField(boundTo: $email, placeholder: "Email Address")
+                        .modifier(EmailFieldMod())
+                        .focused($focusField, equals: .email)
+                    
+                    AnimatedTextField(boundTo: $password, placeholder: "Password", isSecure: true)
+                } //: VStack
+                .padding(.vertical)
                 
-                AnimatedTextField(boundTo: $email, placeholder: "Email Address")
-                    .modifier(EmailFieldMod())
-                    .focused($focusField, equals: .email)
+                NavigationLink {
+                    AddPhoneView()
+                        .environmentObject(sessionManager)
+                } label: {
+                    Text("Continue")
+                        .frame(maxWidth: .infinity)
+                }
+                .modifier(RoundedButtonMod())
                 
-                AnimatedTextField(boundTo: $password, placeholder: "Password", isSecure: true)
+                AuthOptionsPanel()
+                
+                Spacer()
+                
             } //: VStack
-            
-            ContinueButton(text: "Continue") {
+            .padding(.horizontal)
+            .onTapGesture {
                 focusField = nil
             }
-            .padding(.vertical)
-            
-            Spacer()
-            
-        } //: VStack
-        .padding(.horizontal)
+        } //: NavigationView
     }
 }
 

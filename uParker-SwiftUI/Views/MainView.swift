@@ -15,16 +15,17 @@ struct MainView: View {
     var body: some View {
         if sessionManager.userType == .parker {
             ParkerView()
-                .sheet(isPresented: $sessionManager.isShowingLoginModal) {
-                    LoginSignUpView()
-                        .environmentObject(sessionManager)
-                        .ignoresSafeArea(.keyboard)
-                }
-                .sheet(isPresented: $sessionManager.isShowingSignUpModal) {
-                    SignUpView()
-                        .environmentObject(sessionManager)
-                        .ignoresSafeArea(.keyboard)
-                }
+                .environmentObject(sessionManager)
+//                .sheet(isPresented: $sessionManager.isShowingLoginModal) {
+//                    LoginSignUpView()
+//                        .environmentObject(sessionManager)
+//                        .ignoresSafeArea(.keyboard)
+//                }
+//                .sheet(isPresented: $sessionManager.isShowingSignUpModal) {
+//                    SignUpView()
+//                        .environmentObject(sessionManager)
+//                        .ignoresSafeArea(.keyboard)
+//                }
 
         } else {
             HostView()

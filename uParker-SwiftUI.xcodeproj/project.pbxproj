@@ -19,6 +19,9 @@
 		804DAD53297A616C00B89AC6 /* Documentation in Resources */ = {isa = PBXBuildFile; fileRef = 804DAD52297A616C00B89AC6 /* Documentation */; };
 		804DAD56297B369D00B89AC6 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 804DAD55297B369D00B89AC6 /* MapboxSearch */; };
 		804DAD58297B369D00B89AC6 /* MapboxSearchUI in Frameworks */ = {isa = PBXBuildFile; productRef = 804DAD57297B369D00B89AC6 /* MapboxSearchUI */; };
+		8050951C2991ACC20035BE56 /* AuthOptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050951B2991ACC20035BE56 /* AuthOptionsPanel.swift */; };
+		8050951E2991AF100035BE56 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050951D2991AF100035BE56 /* LoginView.swift */; };
+		805095202991B54B0035BE56 /* AddPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050951F2991B54B0035BE56 /* AddPhoneView.swift */; };
 		8055257F298B1BA200216586 /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055257E298B1BA200216586 /* PinView.swift */; };
 		80552582298B1EE300216586 /* ChatLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80552581298B1EE300216586 /* ChatLogView.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
@@ -77,6 +80,9 @@
 		8036F4DB298C4110009A9566 /* Unused */ = {isa = PBXFileReference; lastKnownFileType = text; path = Unused; sourceTree = "<group>"; };
 		8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneView.swift; sourceTree = "<group>"; };
 		804DAD52297A616C00B89AC6 /* Documentation */ = {isa = PBXFileReference; lastKnownFileType = text; path = Documentation; sourceTree = "<group>"; };
+		8050951B2991ACC20035BE56 /* AuthOptionsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOptionsPanel.swift; sourceTree = "<group>"; };
+		8050951D2991AF100035BE56 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8050951F2991B54B0035BE56 /* AddPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneView.swift; sourceTree = "<group>"; };
 		8055257E298B1BA200216586 /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		80552581298B1EE300216586 /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -158,9 +164,9 @@
 		8047EDB4296E013D00AF3896 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				80EE94322964E93400A85CEF /* LoginSignUpView.swift */,
-				8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */,
-				80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */,
+				8050951F2991B54B0035BE56 /* AddPhoneView.swift */,
+				8050951B2991ACC20035BE56 /* AuthOptionsPanel.swift */,
+				8050951D2991AF100035BE56 /* LoginView.swift */,
 				80A013432991999B004DBE4E /* SignUpView.swift */,
 			);
 			path = Login;
@@ -184,6 +190,18 @@
 				80EAC1BE2968C38900F4DC09 /* ProfileView.swift */,
 			);
 			path = Parker;
+			sourceTree = "<group>";
+		};
+		805095212991B7190035BE56 /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */,
+				80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */,
+				80A64A25294D8F77001317DD /* ButtonModifier.swift */,
+				80EE94322964E93400A85CEF /* LoginSignUpView.swift */,
+				80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 		80552580298B1EBB00216586 /* Chat */ = {
@@ -225,12 +243,12 @@
 		80A64A04294D6490001317DD /* uParker-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				805095212991B7190035BE56 /* Unused */,
 				80A64A292953FB46001317DD /* Info.plist */,
 				80A64A23294D8A49001317DD /* App */,
 				80A64A22294D8A2C001317DD /* CustomComponents */,
 				80A64A2C2953FFE7001317DD /* Model */,
 				80A64A1B294D6716001317DD /* Views */,
-				80A64A24294D8A57001317DD /* ViewModifiers */,
 				80A64A09294D6491001317DD /* Assets.xcassets */,
 				80A64A0B294D6491001317DD /* Preview Content */,
 			);
@@ -275,6 +293,7 @@
 				8036CB2D296DA2A300B1A2B9 /* Extensions.swift */,
 				806A376E297A3F3D00068FEA /* LocationManager.swift */,
 				800772EB2969F27F00E7FEED /* MBGeocoder.swift */,
+				80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
 				80EAC1D329691D1C00F4DC09 /* ToDos */,
 				8065485129730D1B00943B72 /* LineCount */,
@@ -282,15 +301,6 @@
 				8036F4DB298C4110009A9566 /* Unused */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		80A64A24294D8A57001317DD /* ViewModifiers */ = {
-			isa = PBXGroup;
-			children = (
-				80A64A25294D8F77001317DD /* ButtonModifier.swift */,
-				80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */,
-			);
-			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
 		80A64A2C2953FFE7001317DD /* Model */ = {
@@ -320,7 +330,6 @@
 		80EAC1C32968CB6600F4DC09 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */,
 				80F372A32965FECB004A2570 /* ContinueWithButton.swift */,
 				80EAC1D12969190D00F4DC09 /* SettingsButton.swift */,
 				8065485329731D4200943B72 /* ReservationPanelButton.swift */,
@@ -440,6 +449,7 @@
 				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,
 				800772FB296CCF3D00E7FEED /* SpotListView.swift in Sources */,
 				80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */,
+				8050951C2991ACC20035BE56 /* AuthOptionsPanel.swift in Sources */,
 				8065485B297322B900943B72 /* UpcomingReservationsView.swift in Sources */,
 				806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */,
 				806A376F297A3F3D00068FEA /* LocationManager.swift in Sources */,
@@ -451,6 +461,7 @@
 				8065484D2972EF6400943B72 /* PaymentMethod.swift in Sources */,
 				80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */,
 				80A64A2E2953FFF0001317DD /* User.swift in Sources */,
+				805095202991B54B0035BE56 /* AddPhoneView.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80A013442991999B004DBE4E /* SignUpView.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
@@ -461,6 +472,7 @@
 				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
 				80FC112C297E1D2900C5102A /* CompressedSearchBar.swift in Sources */,
+				8050951E2991AF100035BE56 /* LoginView.swift in Sources */,
 				806548502972F05600943B72 /* Data.swift in Sources */,
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,
 				80654859297322A500943B72 /* PastReservationsView.swift in Sources */,
