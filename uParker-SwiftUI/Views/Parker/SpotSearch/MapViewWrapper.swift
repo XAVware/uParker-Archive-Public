@@ -13,6 +13,7 @@ import CoreLocation
 struct MapViewWrapper: UIViewControllerRepresentable {
     @Binding var center: CLLocation
     @Binding var mapStyle: StyleURI
+    @Binding var selectedSpotId: String?
     
     typealias UIViewControllerType = MapViewController
     
@@ -23,9 +24,12 @@ struct MapViewWrapper: UIViewControllerRepresentable {
     func updateUIViewController(_ mapViewController: MapViewController, context: UIViewControllerRepresentableContext< MapViewWrapper >) {
         mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
         mapViewController.changeMapStyle(to: mapStyle)
+        if let pin = mapViewController.selectedPin {
+            guard self.selectedSpotId != pin.data.id else { return }
+            self.selectedSpotId = pin.data.id
+        }
     }
 }
-
 
 // MARK: - CONTROLLER
 public class MapViewController: UIViewController {
@@ -49,7 +53,6 @@ public class MapViewController: UIViewController {
         centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
         self.mapStyle = mapStyle
         super.init(nibName: nil, bundle: nil)
-        print("MapViewController Initialized")
     }
     
     required init?(coder: NSCoder) {

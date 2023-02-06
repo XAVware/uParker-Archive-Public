@@ -67,10 +67,6 @@ struct ProfileView: View {
                             Text("Account")
                                 .modifier(SettingsCategoryHeaderMod())
                             
-                            SettingsButton(image: Image(systemName: "person.circle"), text: "Personal Information")
-                            
-                            Divider()
-                            
                             SettingsButton(image: Image(systemName: "dollarsign.circle"), text: "Payment Methods")
                             
                             Divider()

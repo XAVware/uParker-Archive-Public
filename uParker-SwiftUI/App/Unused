@@ -11,7 +11,6 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
     // MARK: - PROPERTIES
     internal var mapView: MapView!
     
-    //    var geocoder: MBGeocoder = MBGeocoder()
     
     var centerLocation: CLLocationCoordinate2D {
         didSet {
@@ -42,17 +41,7 @@ public class MapViewController: UIViewController, AnnotationInteractionDelegate 
         //        addPins()
     }
     
-    //    private func addPins() {
-    //        geocoder.setFocalArea(pennStateCoordinates)
-    //        geocoder.getCoordinates(forAddress: "100 East Beaver Ave, State College, PA") { result in
-    //            guard result != nil else {
-    //                print("Result is empty")
-    //                return
-    //            }
-    //
-    //            self.addViewAnnotation(at: result!)
-    //        }
-    //    }
+    
     
     private var pointList: [Feature] = []
     var markerID = 0

@@ -15,6 +15,9 @@ struct SpotMapView: View {
     @State var listHeight: CGFloat = 120
     @State var mapStyle: StyleURI = .streets
     @State var isShowingSettings: Bool = false
+    @State var selectedSpotId: String?
+    
+    @State var spots: [Spot] = []
     
     private let initialListHeight: CGFloat = 120
     
@@ -31,7 +34,10 @@ struct SpotMapView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                MapViewWrapper(center: $locationManager.location, mapStyle: $mapStyle)
+                MapViewWrapper(center: $locationManager.location, mapStyle: $mapStyle, selectedSpotId: $selectedSpotId)
+                    .onChange(of: self.selectedSpotId) { newValue in
+                        print("Changed to: \(newValue)")
+                    }
                 
                 SpotListView(viewHeight: $listHeight, minHeight: initialListHeight, maxHeight: geo.size.height)
                     .edgesIgnoringSafeArea(.bottom)
@@ -88,6 +94,11 @@ struct SpotMapView: View {
                 }
                 
             } //: ZStack
+//            .onAppear{
+//                self.spots = [Spot(streetAdress: "123 East Beaver Ave, State College, PA 16801", title: "Spot 1", price: 3.00, rating: 4.0),
+//                                  Spot(streetAdress: "100 Waupelani Drive, State College, PA 16801", title: "Spot 2", price: 40.00, rating: 5.0)]
+//                
+//            }
             
         } //: Geometry Reader
     }
