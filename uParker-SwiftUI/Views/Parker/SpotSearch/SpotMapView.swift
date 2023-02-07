@@ -81,7 +81,21 @@ struct SpotMapView: View {
                         .padding(.horizontal)
                         .opacity(buttonPanelOpacity)
                     } //: HStack
+                    
                     Spacer()
+                    
+                    TabView {
+                        ForEach(1..<5) { spot in
+                            SpotPageView()
+                                .padding()
+                            
+                        }
+                    } //: Tab
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .frame(height: 130)
+
+                    
+                    
                 } //: VStack
                 .overlay(
                     SearchField()

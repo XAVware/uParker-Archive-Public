@@ -28,9 +28,9 @@ struct AnimatedTextField: View {
             }
         } else {
             withAnimation {
-                placeholderOffset = -20
-                placeholderScale = 0.75
-                textFieldOffset = 8
+                placeholderOffset = -19
+                placeholderScale = 0.70
+                textFieldOffset = 7
             }
         }
     }
@@ -59,11 +59,11 @@ struct AnimatedTextField: View {
         .onChange(of: boundTo.isEmpty, perform: { _ in
             setPlacholderSize()
         })
-        .frame(height: 55)
+        .frame(height: 48)
         .padding(.horizontal)
         .overlay(
             RoundedRectangle(cornerRadius: 5)
-                .stroke(.gray, lineWidth: 2)
+                .stroke(.gray, lineWidth: 1)
         )
         .onAppear {
             setPlacholderSize()

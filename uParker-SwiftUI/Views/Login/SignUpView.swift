@@ -59,6 +59,8 @@ struct SignUpView: View {
             .onTapGesture {
                 focusField = nil
             }
+            .toolbar(.hidden)
+            .navigationBarBackButtonHidden()
         } //: NavigationView
     }
 }

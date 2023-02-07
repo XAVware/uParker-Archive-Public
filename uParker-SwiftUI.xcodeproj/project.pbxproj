@@ -22,6 +22,7 @@
 		8050951C2991ACC20035BE56 /* AuthOptionsPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050951B2991ACC20035BE56 /* AuthOptionsPanel.swift */; };
 		8050951E2991AF100035BE56 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050951D2991AF100035BE56 /* LoginView.swift */; };
 		805095202991B54B0035BE56 /* AddPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050951F2991B54B0035BE56 /* AddPhoneView.swift */; };
+		8050952329920E860035BE56 /* SpotPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8050952229920E860035BE56 /* SpotPageView.swift */; };
 		8055257F298B1BA200216586 /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8055257E298B1BA200216586 /* PinView.swift */; };
 		80552582298B1EE300216586 /* ChatLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80552581298B1EE300216586 /* ChatLogView.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
@@ -83,6 +84,7 @@
 		8050951B2991ACC20035BE56 /* AuthOptionsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOptionsPanel.swift; sourceTree = "<group>"; };
 		8050951D2991AF100035BE56 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8050951F2991B54B0035BE56 /* AddPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneView.swift; sourceTree = "<group>"; };
+		8050952229920E860035BE56 /* SpotPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotPageView.swift; sourceTree = "<group>"; };
 		8055257E298B1BA200216586 /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		80552581298B1EE300216586 /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -154,8 +156,9 @@
 				806073572966B70B00C4E136 /* MapViewWrapper.swift */,
 				80903DC7298D928C0078881C /* MapSettingsView.swift */,
 				800772F0296C61C600E7FEED /* SearchField.swift */,
-				800772F8296C97DA00E7FEED /* SpotMapView.swift */,
 				800772FA296CCF3D00E7FEED /* SpotListView.swift */,
+				800772F8296C97DA00E7FEED /* SpotMapView.swift */,
+				8050952229920E860035BE56 /* SpotPageView.swift */,
 				8055257E298B1BA200216586 /* PinView.swift */,
 			);
 			path = SpotSearch;
@@ -195,6 +198,7 @@
 		805095212991B7190035BE56 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
 				8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */,
 				80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */,
 				80A64A25294D8F77001317DD /* ButtonModifier.swift */,
@@ -321,7 +325,6 @@
 		80EAC1C22968CB5F00F4DC09 /* TextFields */ = {
 			isa = PBXGroup;
 			children = (
-				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
 				80F372A529660309004A2570 /* AnimatedTextField.swift */,
 			);
 			path = TextFields;
@@ -480,6 +483,7 @@
 				8065484C2972EF6400943B72 /* Vehicle.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
 				8047EDB8296E0BC600AF3896 /* ConfirmPhoneView.swift in Sources */,
+				8050952329920E860035BE56 /* SpotPageView.swift in Sources */,
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,
 				80903DC6298D6F070078881C /* Pin.swift in Sources */,
 				8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */,
