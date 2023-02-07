@@ -21,18 +21,27 @@ struct AnimatedTextField: View {
     // MARK: - FUNCTIONS
     func setPlacholderSize() {
         if boundTo.isEmpty {
-            withAnimation {
-                placeholderOffset = 0
-                placeholderScale = 1
-                textFieldOffset = 0
-            }
+            placeholderOffset = 0
+            placeholderScale = 1
+            textFieldOffset = 0
         } else {
-            withAnimation {
-                placeholderOffset = -19
-                placeholderScale = 0.70
-                textFieldOffset = 7
-            }
+            placeholderOffset = -19
+            placeholderScale = 0.70
+            textFieldOffset = 7
         }
+    }
+    
+    init(boundTo: Binding<String>, placeholder: String) {
+        self._boundTo = boundTo
+        self.placeholder = placeholder
+        setPlacholderSize()
+    }
+    
+    init(boundTo: Binding<String>, placeholder: String, isSecure: Bool) {
+        self._boundTo = boundTo
+        self.placeholder = placeholder
+        self.isSecure = isSecure
+        setPlacholderSize()
     }
     
     // MARK: - BODY
@@ -57,7 +66,9 @@ struct AnimatedTextField: View {
 
         } //: ZStack
         .onChange(of: boundTo.isEmpty, perform: { _ in
-            setPlacholderSize()
+            withAnimation {
+                setPlacholderSize()
+            }
         })
         .frame(height: 48)
         .padding(.horizontal)

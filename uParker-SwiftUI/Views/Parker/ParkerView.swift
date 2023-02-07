@@ -50,7 +50,7 @@ struct ParkerView: View {
                             .padding(.top)
                     } //: Tab Item
                 
-                ProfileView()
+                ParkerSettingsView()
                     .environmentObject(sessionManager)
                     .tabItem {
                         Text(sessionManager.isLoggedIn ? "Profile" : "Login")

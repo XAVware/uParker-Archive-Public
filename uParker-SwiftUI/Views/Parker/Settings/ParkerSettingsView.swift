@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  ParkerSettingsView.swift
 //  uParker-SwiftUI
 //
 //  Created by Smetana, Ryan on 1/6/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+struct ParkerSettingsView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
@@ -29,23 +29,25 @@ struct ProfileView: View {
                                 .modifier(PageTitleModifier())
                             
                             NavigationLink {
-                                //
+                                ProfileView()
                             } label: {
                                 Image(systemName: "person.fill")
                                     .resizable()
-                                    .scaledToFit()
+                                    .scaledToFill()
+                                    .padding(10)
                                     .foregroundColor(.gray)
-                                    .padding(15)
-                                    .frame(width: 65)
+                                    .frame(width: 55, height: 55, alignment: .center)
                                     .clipShape(Circle())
                                     .overlay(
                                         Circle()
                                             .stroke(.gray, lineWidth: 0.5)
                                     )
                                 
-                                VStack(alignment: .leading) {
+                                VStack(alignment: .leading, spacing: 10) {
                                     Text("Ryan")
                                         .font(.title3)
+                                    
+                                    
                                     
                                     Text("Show Profile")
                                         .font(.callout)
@@ -137,14 +139,15 @@ struct ProfileView: View {
                 } //: VStack
                 .padding()
             } //: ScrollView
+            .navigationBarBackButtonHidden()
             
         } //: Navigation View
     }
 }
 // MARK: - PREVIEW
-struct ProfileView_Previews: PreviewProvider {
+struct ParkerSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ParkerSettingsView()
             .environmentObject(SessionManager())
     }
 }

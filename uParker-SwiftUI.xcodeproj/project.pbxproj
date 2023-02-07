@@ -52,7 +52,9 @@
 		80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2A2953FFCB001317DD /* SessionManager.swift */; };
 		80A64A2E2953FFF0001317DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D2953FFF0001317DD /* User.swift */; };
 		80AE3FAF2970989000A654E0 /* ConfirmEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */; };
-		80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1BE2968C38900F4DC09 /* ProfileView.swift */; };
+		80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAB2992A92000B6F598 /* ImagePicker.swift */; };
+		80BA6AAF2992ACAC00B6F598 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */; };
+		80EAC1BF2968C38900F4DC09 /* ParkerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */; };
 		80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */; };
 		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
 		80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */; };
@@ -115,7 +117,9 @@
 		80A64A2A2953FFCB001317DD /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		80A64A2D2953FFF0001317DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmEmailView.swift; sourceTree = "<group>"; };
-		80EAC1BE2968C38900F4DC09 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		80BA6AAB2992A92000B6F598 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerSettingsView.swift; sourceTree = "<group>"; };
 		80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedLoginView.swift; sourceTree = "<group>"; };
@@ -188,9 +192,9 @@
 			children = (
 				80552580298B1EBB00216586 /* Chat */,
 				80654855297321D100943B72 /* Reservations */,
+				80BA6AAD2992AC9C00B6F598 /* Settings */,
 				8047EDB3296E013100AF3896 /* SpotSearch */,
 				80EE942E2964E8A200A85CEF /* ParkerView.swift */,
-				80EAC1BE2968C38900F4DC09 /* ProfileView.swift */,
 			);
 			path = Parker;
 			sourceTree = "<group>";
@@ -281,6 +285,7 @@
 		80A64A22294D8A2C001317DD /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
+				80BA6AAB2992A92000B6F598 /* ImagePicker.swift */,
 				80EAC1C32968CB6600F4DC09 /* Buttons */,
 				80EAC1C22968CB5F00F4DC09 /* TextFields */,
 				80EAC1C62968CE8C00F4DC09 /* View Components */,
@@ -320,6 +325,15 @@
 				806548482972EF6400943B72 /* Vehicle.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		80BA6AAD2992AC9C00B6F598 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */,
+				80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		80EAC1C22968CB5F00F4DC09 /* TextFields */ = {
@@ -464,6 +478,7 @@
 				8065484D2972EF6400943B72 /* PaymentMethod.swift in Sources */,
 				80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */,
 				80A64A2E2953FFF0001317DD /* User.swift in Sources */,
+				80BA6AAF2992ACAC00B6F598 /* ProfileView.swift in Sources */,
 				805095202991B54B0035BE56 /* AddPhoneView.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80A013442991999B004DBE4E /* SignUpView.swift in Sources */,
@@ -472,7 +487,7 @@
 				800772F1296C61C600E7FEED /* SearchField.swift in Sources */,
 				80FC112E297E203300C5102A /* SearchGroupHeader.swift in Sources */,
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
-				80EAC1BF2968C38900F4DC09 /* ProfileView.swift in Sources */,
+				80EAC1BF2968C38900F4DC09 /* ParkerSettingsView.swift in Sources */,
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
 				80FC112C297E1D2900C5102A /* CompressedSearchBar.swift in Sources */,
 				8050951E2991AF100035BE56 /* LoginView.swift in Sources */,
@@ -487,6 +502,7 @@
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,
 				80903DC6298D6F070078881C /* Pin.swift in Sources */,
 				8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */,
+				80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

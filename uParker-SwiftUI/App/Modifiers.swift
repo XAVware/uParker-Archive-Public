@@ -156,3 +156,14 @@ struct RoundedButtonMod: ViewModifier {
     }
 }
     
+// MARK: - Rounded Image
+struct RoundedImageMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .clipShape(Circle())
+            .overlay(
+                Circle()
+                    .stroke(.gray, lineWidth: 0.5)
+            )
+    }
+}
