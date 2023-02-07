@@ -139,8 +139,6 @@ struct ParkerSettingsView: View {
                 } //: VStack
                 .padding()
             } //: ScrollView
-            .navigationBarBackButtonHidden()
-            
         } //: Navigation View
     }
 }
