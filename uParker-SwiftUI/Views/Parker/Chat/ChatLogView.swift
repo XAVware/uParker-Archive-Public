@@ -9,9 +9,10 @@ import SwiftUI
 
 
 struct ChatLogView: View {
-    
+    // MARK: - PROPERTIES
     @State var chatText: String = ""
     
+    // MARK: - BODY
     var body: some View {
         VStack {
             messagesView
@@ -19,6 +20,7 @@ struct ChatLogView: View {
             chatBottomBar
             
         } //: VStack
+        .toolbar(.hidden, for: .tabBar)
 //        .navigationTitle(chatUser?.email ?? "")
         .navigationBarTitleDisplayMode(.inline)
     }
