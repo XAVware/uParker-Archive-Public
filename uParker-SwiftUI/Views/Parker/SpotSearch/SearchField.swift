@@ -232,7 +232,7 @@ struct SearchField: View {
                     } label: {
                         HStack(spacing: 15) {
                             Text("Search")
-                                .modifier(TextMod(.callout, .semibold))
+                                .modifier(TextMod(.callout, .semibold, .white))
                             
                             Image(systemName: "magnifyingglass")
                                 .resizable()

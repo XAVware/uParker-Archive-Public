@@ -130,9 +130,7 @@ struct AddPhoneView: View {
                             .shadow(radius: 2)
                         } else {
                             Text("Please wait \(timeRemaining) seconds")
-                                .font(.footnote)
-                                .fontDesign(.rounded)
-                                .foregroundColor(.gray)
+                                .modifier(TextMod(.footnote, .regular, .gray))
                                 .onReceive(timer) { _ in
                                     if timeRemaining > 0 {
                                         timeRemaining -= 1

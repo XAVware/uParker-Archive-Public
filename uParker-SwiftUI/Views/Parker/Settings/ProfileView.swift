@@ -63,11 +63,10 @@ struct ProfileView: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 Text("Hi \(firstName)!")
-                                    .modifier(BigTitleMod())
+                                    .modifier(TextMod(.title, .semibold))
                                 
                                 Text("Joined 2023")
-                                    .modifier(MidTitleMod())
-                                    .foregroundColor(.gray)
+                                    .modifier(TextMod(.title2, .semibold, .gray))
                             } //: VStack
                             Spacer()
                             VStack {
@@ -79,7 +78,7 @@ struct ProfileView: View {
                                         .foregroundColor(primaryColor)
                                     
                                     Text("0 Reviews")
-                                        .modifier(CalloutTextMod())
+                                        .modifier(TextMod(.callout, .semibold))
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 } //: HStack
                                 
@@ -91,7 +90,7 @@ struct ProfileView: View {
                                         .foregroundColor(primaryColor)
                                     
                                     Text("Not Verified")
-                                        .modifier(CalloutTextMod())
+                                        .modifier(TextMod(.callout, .semibold))
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 } //: HStack
                             } //: VStack
@@ -106,7 +105,7 @@ struct ProfileView: View {
                         if !self.isEditing {
                             HStack {
                                 Text("Personal Information")
-                                    .modifier(MidTitleMod())
+                                    .modifier(TextMod(.title2, .semibold))
                                 
                                 Spacer()
                                 
@@ -140,7 +139,7 @@ struct ProfileView: View {
                         Divider().padding(.vertical, 8)
                         
                         Text("Reviews")
-                            .modifier(MidTitleMod())
+                            .modifier(TextMod(.title2, .semibold))
                     }
                 } //: VStack
                 
@@ -193,7 +192,7 @@ struct ProfileFieldView: View {
                 AnimatedTextField(boundTo: $detail, placeholder: header)
             } else {
                 Text(header)
-                    .modifier(FootTextMod())
+                    .modifier(TextMod(.footnote, .semibold))
                 
                 Text(detail)
                     .font(.title3)

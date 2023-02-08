@@ -198,7 +198,7 @@ struct ParkerSettingsView: View {
     private var profileSection: some View {
         VStack(alignment: .leading) {
             Text("Profile")
-                .modifier(PageTitleModifier())
+                .modifier(TextMod(.largeTitle, .semibold))
             
             NavigationLink {
                 ProfileView()

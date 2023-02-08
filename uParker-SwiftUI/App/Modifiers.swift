@@ -15,28 +15,6 @@ import SwiftUI
 //    }
 //}
 
-
-// MARK: - PAGE TITLE MOD
-struct PageTitleModifier: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.largeTitle)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
-    }
-}
-
 struct SearchCardMod: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -44,148 +22,6 @@ struct SearchCardMod: ViewModifier {
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .shadow(radius: 4)
-    }
-}
-
-struct BigTitleMod: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.title)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
-    }
-}
-
-
-struct MidTitleMod: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.title2)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
-    }
-}
-
-
-struct SmallTitleMod: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.title3)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
-    }
-}
-
-struct FootTextMod: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.footnote)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
-    }
-}
-
-struct CaptionTextMod: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.caption)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
-    }
-}
-
-struct CalloutTextMod: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.callout)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
-    }
-}
-
-struct HeadlineMod: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.headline)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
     }
 }
 
@@ -218,26 +54,6 @@ struct TextMod: ViewModifier {
             .fontWeight(self.weight)
             .foregroundColor(self.fgColor)
             .fontDesign(.rounded)
-    }
-}
-
-struct LargeTitleMod: ViewModifier {
-    let weight: Font.Weight
-    
-    init() {
-        weight = .semibold
-    }
-    
-    init(weight: Font.Weight) {
-        self.weight = weight
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .font(.largeTitle)
-            .fontWeight(weight)
-            .fontDesign(.rounded)
-            .foregroundColor(.black)
     }
 }
 
