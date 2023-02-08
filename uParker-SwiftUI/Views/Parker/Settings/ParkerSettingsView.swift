@@ -11,6 +11,243 @@ struct ParkerSettingsView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
+    
+    
+    // MARK: - ACCOUNT SECTION
+    private var accountSection: some View {
+        VStack(alignment: .leading) {
+            Text("Account")
+                .modifier(TextMod(.title2, .semibold))
+            
+            //Payment Methods
+            NavigationLink {
+                //
+            } label: {
+                Image(systemName: "creditcard")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                
+                Text("Payment Methods")
+                    .padding(.horizontal, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
+                        
+            Divider()
+            
+            //Vehicles
+            NavigationLink {
+                //
+            } label: {
+                Image(systemName: "car")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                
+                Text("Vehicles")
+                    .padding(.horizontal, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
+                        
+            Divider()
+            
+            //Notifications
+            NavigationLink {
+                //
+            } label: {
+                Image(systemName: "bell")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                
+                Text("Notifications")
+                    .padding(.horizontal, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
+        } //: VStack
+    } //: Account Section
+    
+    // MARK: - FOOTER SECTION
+    private var footerSection: some View {
+        VStack(spacing: 20) {
+            if self.sessionManager.isLoggedIn {
+                Button {
+                    self.sessionManager.logOut()
+                } label: {
+                    Text("Log Out").underline()
+                        .foregroundColor(.black)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            
+            Text("Version 2.0.1")
+                .modifier(TextMod(.footnote, .regular))
+                .frame(maxWidth: .infinity, alignment: .leading)
+        } //: VStack
+        .padding(.top)
+    } //: FooterSection
+    
+    // MARK: - HOST SECTION
+    private var hostSection: some View {
+        VStack(alignment: .leading) {
+            Text("Host")
+                .modifier(TextMod(.title2, .semibold))
+            
+            //Switch to Hosting
+            NavigationLink {
+                //
+            } label: {
+                Image(systemName: "arrowshape.zigzag.right")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                
+                Text("Switch to Hosting")
+                    .padding(.horizontal, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
+            
+            Divider()
+            
+            //Host your Spot
+            NavigationLink {
+                //
+            } label: {
+                Image(systemName: "car.rear.road.lane")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22)
+                    .offset(x: -2)
+                
+                Text("Host your Spot")
+                    .padding(.leading, 6)
+                    .padding(.trailing, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
+        } //: VStack
+    } //: HostSection
+    
+    private var legalSection: some View {
+        VStack(alignment: .leading) {
+            Text("Legal")
+                .modifier(TextMod(.title2, .semibold))
+
+            //Privacy Policy
+            NavigationLink {
+                //
+            } label: {
+                Image(systemName: "doc.text.magnifyingglass")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                
+                Text("Privacy Policy")
+                    .padding(.horizontal, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
+            
+            Divider()
+
+            //Terms & Conditions
+            NavigationLink {
+                //
+            } label: {
+                Image(systemName: "doc.text.magnifyingglass")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                
+                Text("Terms & Conditions")
+                    .padding(.horizontal, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
+                        
+            Divider()
+        } //: VStack
+    } //: LegalSection
+    
+    // MARK: - PROFILE SECTION
+    private var profileSection: some View {
+        VStack(alignment: .leading) {
+            Text("Profile")
+                .modifier(PageTitleModifier())
+            
+            NavigationLink {
+                ProfileView()
+            } label: {
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .scaledToFill()
+                    .padding(10)
+                    .foregroundColor(.gray)
+                    .frame(width: 55, height: 55, alignment: .center)
+                    .clipShape(Circle())
+                    .overlay(
+                        Circle()
+                            .stroke(.gray, lineWidth: 0.5)
+                    )
+                
+                VStack(alignment: .leading) {
+                    Text("Ryan")
+                        .modifier(TextMod(.title3, .regular))
+                    
+                    Text("Show Profile")
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                } //: VStack
+                .padding(.horizontal, 10)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            } //: NavLink
+        } //: VStack
+    } //: ProfileSection
+    
+    // MARK: - SUPPORT SECTION
+    private var supportSection: some View {
+        VStack(alignment: .leading) {
+            Text("Support")
+                .modifier(TextMod(.title2, .semibold))
+
+            //More Info
+            SettingsButton(image: Image(systemName: "info.circle"), text: "More Info")
+
+            Divider()
+
+            //Contact Support
+            SettingsButton(image: Image(systemName: "phone"), text: "Contact Support")
+        } //: VStack
+    } //: SupportSection
+    
     // MARK: - BODY
     var body: some View {
         NavigationView {
@@ -23,119 +260,24 @@ struct ParkerSettingsView: View {
                     }
                     
                     if sessionManager.isLoggedIn {
-                        // MARK: - PROFLIE
-                        Group {
-                            Text("Profile")
-                                .modifier(PageTitleModifier())
-                            
-                            NavigationLink {
-                                ProfileView()
-                            } label: {
-                                Image(systemName: "person.fill")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .padding(10)
-                                    .foregroundColor(.gray)
-                                    .frame(width: 55, height: 55, alignment: .center)
-                                    .clipShape(Circle())
-                                    .overlay(
-                                        Circle()
-                                            .stroke(.gray, lineWidth: 0.5)
-                                    )
-                                
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Text("Ryan")
-                                        .font(.title3)
-                                    
-                                    
-                                    
-                                    Text("Show Profile")
-                                        .font(.callout)
-                                        .foregroundColor(.gray)
-                                } //: VStack
-                                .padding(.horizontal, 10)
-                                
-                                Spacer()
-                                
-                                Image(systemName: "chevron.right")
-                            }
-                            .padding(.horizontal)
-                            
-                            Divider()
-                        } //: Group - Profile
+                        profileSection
+                                                
+                        accountSection
+                            .padding(.top)
                         
-                        // MARK: - ACCOUNT
-                        Group {
-                            Text("Account")
-                                .modifier(SettingsCategoryHeaderMod())
-                            
-                            SettingsButton(image: Image(systemName: "dollarsign.circle"), text: "Payment Methods")
-                            
-                            Divider()
-                            
-                            SettingsButton(image: Image(systemName: "car"), text: "Vehicles")
-                            
-                            Divider()
-                            
-                            SettingsButton(image: Image(systemName: "bell"), text: "Notifications")
-                        } //: Group - Account
-                        
-                        // MARK: - HOST
-                        Group {
-                            Text("Host")
-                                .modifier(SettingsCategoryHeaderMod())
-                            
-                            SettingsButton(image: Image(systemName: "arrowshape.zigzag.right"), text: "Switch to Hosting")
-                            
-                            Divider()
-                            
-                            SettingsButton(image: Image(systemName: "car.rear.road.lane"), text: "Host your spot")
-                        } //: Group - Host
-                        
+                        hostSection
+                            .padding(.top)
                     } //: If Is logged in
                     
-                    // MARK: - SUPPORT
-                    Group {
-                        Text("Support")
-                            .modifier(SettingsCategoryHeaderMod())
-
-                        SettingsButton(image: Image(systemName: "info.circle"), text: "More Info")
-
-                        Divider()
-
-                        SettingsButton(image: Image(systemName: "phone"), text: "Contact Support")
-                    } //: Group - Support
+                    supportSection
+                        .padding(.top)
                     
-                    // MARK: - LEGAL
-                    Group {
-                        Text("Legal")
-                            .modifier(SettingsCategoryHeaderMod())
-
-                        SettingsButton(image: Image(systemName: "doc.text.magnifyingglass"), text: "Privacy Policy")
-
-                        Divider()
-
-                        SettingsButton(image: Image(systemName: "doc.text.magnifyingglass"), text: "Terms & Conditions")
-                        
-                        Divider()
-                        
-                        if self.sessionManager.isLoggedIn {
-                            Button {
-                                self.sessionManager.logOut()
-                            } label: {
-                                Text("Log Out").underline()
-                                    .foregroundColor(.black)
-                            }
-                            .frame(maxWidth: .infinity)
-                        }
-                        
-                        Text("Version 2.0.1")
-                            .font(.title3)
-                            .fontDesign(.rounded)
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 40)
-                    } //: Group - Legal
+                    legalSection
+                        .padding(.top)
                     
+                    footerSection
+                        .padding(.top)
+                        
                 } //: VStack
                 .padding()
             } //: ScrollView

@@ -18,31 +18,22 @@ import SwiftUI
 
 // MARK: - PAGE TITLE MOD
 struct PageTitleModifier: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.largeTitle)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
             .fontDesign(.rounded)
-    }
-}
-
-// MARK: - SETTINGS BUTTON LABEL MOD
-struct SettingsButtonMod: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.title2)
-            .fontWeight(.semibold)
-            .fontDesign(.rounded)
-    }
-}
-
-struct SettingsCategoryHeaderMod: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.title)
-            .fontWeight(.semibold)
-            .fontDesign(.rounded)
-            .padding(.top, 30)
+            .foregroundColor(.black)
     }
 }
 
@@ -57,76 +48,196 @@ struct SearchCardMod: ViewModifier {
 }
 
 struct BigTitleMod: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.title)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
             .fontDesign(.rounded)
+            .foregroundColor(.black)
     }
 }
 
 
 struct MidTitleMod: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.title2)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
             .fontDesign(.rounded)
+            .foregroundColor(.black)
     }
 }
 
 
 struct SmallTitleMod: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.title3)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
             .fontDesign(.rounded)
+            .foregroundColor(.black)
     }
 }
 
 struct FootTextMod: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.footnote)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
             .fontDesign(.rounded)
+            .foregroundColor(.black)
     }
 }
 
 struct CaptionTextMod: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.caption)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
             .fontDesign(.rounded)
+            .foregroundColor(.black)
     }
 }
 
 struct CalloutTextMod: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.callout)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
             .fontDesign(.rounded)
+            .foregroundColor(.black)
     }
 }
 
 struct HeadlineMod: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.headline)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
+            .fontDesign(.rounded)
+            .foregroundColor(.black)
+    }
+}
+
+struct TextMod: ViewModifier {
+    let font: Font
+    let weight: Font.Weight
+    let fgColor: Color
+    
+    init() {
+        self.font = .body
+        self.weight = .semibold
+        self.fgColor = .black
+    }
+    
+    init(_ font: Font, _ weight: Font.Weight) {
+        self.font = font
+        self.weight = weight
+        self.fgColor = .black
+    }
+    
+    init(_ font: Font, _ weight: Font.Weight, _ fgColor: Color) {
+        self.font = font
+        self.weight = weight
+        self.fgColor = fgColor
+    }
+    
+    func body(content: Content) -> some View {
+        content
+            .font(self.font)
+            .fontWeight(self.weight)
+            .foregroundColor(self.fgColor)
             .fontDesign(.rounded)
     }
 }
 
 struct LargeTitleMod: ViewModifier {
+    let weight: Font.Weight
+    
+    init() {
+        weight = .semibold
+    }
+    
+    init(weight: Font.Weight) {
+        self.weight = weight
+    }
+    
     func body(content: Content) -> some View {
         content
             .font(.largeTitle)
-            .fontWeight(.semibold)
+            .fontWeight(weight)
             .fontDesign(.rounded)
+            .foregroundColor(.black)
     }
 }
 
@@ -141,7 +252,18 @@ struct EmailFieldMod: ViewModifier {
 
     }
 }
-    
+
+// MARK: - Settings Button Mod
+struct SettingsButtonMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .buttonStyle(PlainButtonStyle())
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .font(.callout)
+            .fontDesign(.rounded)
+            .frame(height: 30)
+    }
+}
 
 // MARK: - Rounded Button
 struct RoundedButtonMod: ViewModifier {

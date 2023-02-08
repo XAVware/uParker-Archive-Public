@@ -26,7 +26,7 @@ struct SettingsButton: View {
                     image!
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 22)
+                        .frame(width: 18)
                 }
                 
                 Text(text)
@@ -36,8 +36,6 @@ struct SettingsButton: View {
             }
         }
         .buttonStyle(PlainButtonStyle())
-        .padding(.horizontal)
-        .font(.title3)
         .fontDesign(.rounded)
         .frame(height: 40)
     }
