@@ -20,47 +20,79 @@ struct ProfileView: View {
     @State private var shouldShowImagePicker: Bool = false
     @State private var image: UIImage?
     
+    @State var toolBarVisibility: Visibility = .hidden
+    
     private func imageTapped() {
         if self.isEditing {
             self.shouldShowImagePicker.toggle()
         }
     }
     
+    private var profileImage: some View {
+        VStack {
+            if let image = self.image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: isEditing ? 140 : 70, height: isEditing ? 140 : 70, alignment: .center)
+                    
+            } else {
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.gray)
+                    .frame(width: isEditing ? 140 : 70, height: isEditing ? 140 : 70, alignment: .center)
+                    .animation(.interactiveSpring(), value: isEditing)
+                    .padding(isEditing ? 24 : 16)
+            }
+        } //: VStack
+        .animation(.interactiveSpring(), value: isEditing)
+        .overlay(
+            ZStack {
+                Circle().stroke(.gray, lineWidth: 0.5)
+                
+                if self.isEditing {
+                    VStack {
+                        Spacer()
+                        
+                        HStack {
+                            Image(systemName: "pencil")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 12)
+                                .foregroundColor(.white)
+                            
+                            Text("Change")
+                                .modifier(TextMod(.footnote, .semibold, .white))
+                        
+                        }
+                        .padding(.top, 3)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 30, alignment: .top)
+                        .background(primaryColor)
+                    } //: VStack
+                    .opacity(self.isEditing ? 1 : 0)
+                    .clipShape(Circle())
+                }
+            } //: ZStack
+        )
+        .padding(.vertical)
+        .onTapGesture {
+            self.imageTapped()
+        }
+        .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
+            ImagePicker(image: $image)
+        }
+    } //: Profile Image
+    
     var body: some View {
         GeometryReader { geo in
             ScrollView {
-                VStack(alignment: .leading) {
-                    VStack {
-                        if let image = self.image {
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: isEditing ? 140 : 70, height: isEditing ? 140 : 70, alignment: .center)
-                                .clipShape(Circle())
-                        } else {
-                            Image(systemName: "person.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(.gray)
-                                .frame(width: isEditing ? 140 : 70, height: isEditing ? 140 : 70, alignment: .center)
-                                .padding(isEditing ? 24 : 16)
-                        }
-                    } //: VStack
-                    .frame(width: 400)
-                    .overlay(
-                        Circle().stroke(.gray, lineWidth: 0.5)
-                    )
-                    .padding(.vertical)
-                    .onTapGesture {
-                        self.imageTapped()
-                    }
-                    .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-                        ImagePicker(image: $image)
-                    }
-                    
-                    if !self.isEditing {
-                        // MARK: - PROFILE OVERVIEW
-                        HStack {
+                VStack(alignment: isEditing ? .center : .leading) {
+                    HStack {
+                        profileImage
+                        
+                        if !self.isEditing {
                             VStack(alignment: .leading) {
                                 Text("Hi \(firstName)!")
                                     .modifier(TextMod(.title, .semibold))
@@ -68,34 +100,37 @@ struct ProfileView: View {
                                 Text("Joined 2023")
                                     .modifier(TextMod(.title2, .semibold, .gray))
                             } //: VStack
-                            Spacer()
-                            VStack {
-                                HStack {
-                                    Image(systemName: "star.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 15)
-                                        .foregroundColor(primaryColor)
-                                    
-                                    Text("0 Reviews")
-                                        .modifier(TextMod(.callout, .semibold))
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                } //: HStack
+                            .padding(.horizontal)
+                        }
+                    }
+                    
+                    if !self.isEditing {
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Image(systemName: "star.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                                    .foregroundColor(primaryColor)
                                 
-                                HStack {
-                                    Image(systemName: "minus.circle.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 15)
-                                        .foregroundColor(primaryColor)
-                                    
-                                    Text("Not Verified")
-                                        .modifier(TextMod(.callout, .semibold))
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                } //: HStack
-                            } //: VStack
-                            .frame(width: 120, alignment: .leading)
-                        } //: HStack
+                                Text("0 Reviews")
+                                    .modifier(TextMod(.callout, .semibold))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            } //: HStack
+                            
+                            HStack {
+                                Image(systemName: "minus.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                                    .foregroundColor(primaryColor)
+                                
+                                Text("Not Verified")
+                                    .modifier(TextMod(.callout, .semibold))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            } //: HStack
+                        } //: VStack
+                        .padding(.horizontal)
                         
                         Divider().padding(.vertical, 8)
                     }
@@ -110,7 +145,9 @@ struct ProfileView: View {
                                 Spacer()
                                 
                                 Button {
-                                    withAnimation { self.isEditing.toggle() }
+                                    withAnimation(.interactiveSpring(blendDuration: 1)) {
+                                        isEditing.toggle()
+                                    }
                                 } label: {
                                     Text("Edit")
                                         .font(.footnote)
@@ -134,6 +171,18 @@ struct ProfileView: View {
                         ProfileFieldView(header: "Phone Number", detail: $phoneNumber, isEditing: $isEditing)
                     } //: VStack
                     
+                    if self.isEditing {
+                        Button {
+                            self.isEditing.toggle()
+                        } label: {
+                            Text("Save")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .modifier(RoundedButtonMod())
+                        .padding()
+
+                    }
+                    
                     
                     if !self.isEditing {
                         Divider().padding(.vertical, 8)
@@ -148,14 +197,16 @@ struct ProfileView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(isEditing ? "Edit Profile" : "Profile")
+            .toolbar(toolBarVisibility, for: .tabBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         if self.isEditing {
-                            withAnimation {
+                            withAnimation(.interactiveSpring(blendDuration: 1)) {
                                 isEditing.toggle()
                             }
                         } else {
+                            toolBarVisibility = .visible
                             dismiss.callAsFunction()
                         }
                     } label: {
@@ -199,6 +250,6 @@ struct ProfileFieldView: View {
                     .foregroundColor(.gray)
             }
         } //: VStack
-        
+        .padding(.horizontal)
     }
 }

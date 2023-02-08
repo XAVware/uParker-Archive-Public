@@ -37,6 +37,7 @@ struct ParkerView: View {
                             .frame(width: 30)
                             .padding(.top)
                     } //: Tab Item
+                    
                 
                 ParkerChatView()
                     .environmentObject(sessionManager)
@@ -64,12 +65,12 @@ struct ParkerView: View {
                     } //: Tab Item
                 
             } //: TabView
-            .overlay(
-                Color.gray
-                    .frame(height: 1)
-                    .offset(y: (geo.size.height / 2) - tabBarHeight - 0.5)
-                    .opacity(0.7)
-            )
+//            .overlay(
+//                Color.gray
+//                    .frame(height: 1)
+//                    .offset(y: (geo.size.height / 2) - tabBarHeight - 0.5)
+//                    .opacity(0.7)
+//            )
             .ignoresSafeArea(.keyboard)
             
         } //: Geometry Reader
