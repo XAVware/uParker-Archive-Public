@@ -20,16 +20,14 @@ struct NeedLoginView: View {
         VStack(alignment: .leading, spacing: 40) {
             VStack(alignment: .leading, spacing: 10) {
                 Text(title)
-                    .modifier(PageTitleModifier())
+                    .modifier(TextMod(.largeTitle, .semibold))
                     .padding(.bottom, 20)
                 
                 Text(mainHeadline)
-                    .font(.headline)
-                    .fontDesign(.rounded)
+                    .modifier(TextMod(.headline, .semibold))
                 
                 Text(mainDetail)
-                    .font(.subheadline)
-                    .fontDesign(.rounded)
+                    .modifier(TextMod(.callout, .regular))
             } //: VStack
             
             VStack(spacing: 20) {
@@ -41,21 +39,15 @@ struct NeedLoginView: View {
                 }
                 .modifier(RoundedButtonMod())
                 
-//                ContinueButton(text: "Log In") {
-//                    sessionManager.isShowingLoginView = true
-//                }
-                
                 HStack(spacing: 8) {
                     Text("Don't have an account?")
-                        .font(.callout)
-                        .fontDesign(.rounded)
+                        .modifier(TextMod(.callout, .regular))
                     
                     Button {
                         sessionManager.isShowingSignUpView = true
                     } label: {
                         Text("Sign Up").underline()
-                            .font(.callout)
-                            .fontDesign(.rounded)
+                            .modifier(TextMod(.callout, .regular))
                     }
                     .buttonStyle(PlainButtonStyle())
                 } //: VStack - Sign Up

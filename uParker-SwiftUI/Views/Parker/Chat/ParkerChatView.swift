@@ -47,11 +47,10 @@ struct ParkerChatView: View {
                                         
                                         VStack(alignment: .leading) {
                                             Text("<<Host Name>>")
-                                                .foregroundColor(.black)
+                                                .modifier(TextMod(.title3, .regular))
                                             
                                             Text("Sample message preview ...")
-                                                .font(.callout)
-                                                .foregroundColor(.gray)
+                                                .modifier(TextMod(.callout, .regular, .gray))
                                         } //: VStack
                                         .padding(.horizontal, 10)
                                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -63,8 +62,7 @@ struct ParkerChatView: View {
                                                 .frame(width: 10)
                                             
                                             Text("5d")
-                                                .font(.caption)
-                                                .fontWeight(.bold)
+                                                .modifier(TextMod(.caption, .bold))
                                         } //: VStack
                                         .foregroundColor(.black)
                                     } //: HStack

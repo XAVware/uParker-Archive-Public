@@ -52,7 +52,7 @@ struct CurrentReservationView: View {
                 if isTimerRunning {
                     Text("\(timeRemaining)")
                         .foregroundColor(primaryColor)
-                        .modifier(LargeTitleMod())
+                        .modifier(TextMod(.largeTitle, .semibold))
                         .onReceive(timer) { _ in
                             if self.timeRemaining <= 0 {
                                 self.isTimerRunning = false
@@ -72,7 +72,7 @@ struct CurrentReservationView: View {
                         Text("Arrive")
                     }
                     .foregroundColor(primaryColor)
-                    .modifier(BigTitleMod())
+                    .modifier(TextMod(.title, .semibold))
 
                 }
 
@@ -83,13 +83,10 @@ struct CurrentReservationView: View {
             // MARK: - ADDRESS
             VStack {
                 Text(currentReservation.streetAddress)
-                    .foregroundColor(primaryColor)
-                    .modifier(MidTitleMod())
+                    .modifier(TextMod(.title2, .semibold, primaryColor))
                 
                 Text("\(currentReservation.city) \(currentReservation.state), \(currentReservation.zipCode)")
-                    .foregroundColor(primaryColor)
-                    .font(.title3)
-                    .fontDesign(.rounded)
+                    .modifier(TextMod(.title3, .regular, primaryColor))
             } //: VStack
             
             Spacer()

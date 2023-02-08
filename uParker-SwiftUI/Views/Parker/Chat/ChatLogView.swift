@@ -28,9 +28,10 @@ struct ChatLogView: View {
             ForEach(0..<10) { num in
                 HStack {
                     Spacer()
+                    
                     HStack {
                         Text("Fake")
-                            .foregroundColor(.white)
+                            .modifier(TextMod(.callout, .regular, .white))
                     } //: HStack
                     .padding()
                     .background(.blue)
@@ -59,14 +60,14 @@ struct ChatLogView: View {
                 if chatText.isEmpty {
                     Text("Description")
                         .padding(.leading, 6)
-                        .foregroundColor(Color(.darkGray))
+                        .modifier(TextMod(.callout, .regular, Color(.darkGray)))
                 }
             }
             Button {
                 //
             } label: {
                 Text("Send")
-                    .foregroundColor(.white)
+                    .modifier(TextMod(.callout, .semibold, .white))
             }
             .padding(.horizontal)
             .padding(.vertical, 8)

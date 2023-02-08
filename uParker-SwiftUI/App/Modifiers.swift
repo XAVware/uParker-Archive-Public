@@ -270,7 +270,7 @@ struct RoundedButtonMod: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(.white)
-            .modifier(MidTitleMod())
+            .modifier(TextMod(.title2, .semibold))
             .padding()
             .frame(height: 50)
             .background(backgroundGradient)

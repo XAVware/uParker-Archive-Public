@@ -202,6 +202,8 @@
 		805095212991B7190035BE56 /* Unused */ = {
 			isa = PBXGroup;
 			children = (
+				80F372A32965FECB004A2570 /* ContinueWithButton.swift */,
+				80EAC1D12969190D00F4DC09 /* SettingsButton.swift */,
 				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
 				8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */,
 				80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */,
@@ -285,10 +287,13 @@
 		80A64A22294D8A2C001317DD /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
+				80F372A529660309004A2570 /* AnimatedTextField.swift */,
+				80EAC1C92968F2E400F4DC09 /* HeaderView.swift */,
 				80BA6AAB2992A92000B6F598 /* ImagePicker.swift */,
-				80EAC1C32968CB6600F4DC09 /* Buttons */,
-				80EAC1C22968CB5F00F4DC09 /* TextFields */,
-				80EAC1C62968CE8C00F4DC09 /* View Components */,
+				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
+				8065485329731D4200943B72 /* ReservationPanelButton.swift */,
+				806548452972EBFC00943B72 /* ReservationsPicker.swift */,
+				80FC112D297E203300C5102A /* SearchGroupHeader.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -334,35 +339,6 @@
 				80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */,
 			);
 			path = Settings;
-			sourceTree = "<group>";
-		};
-		80EAC1C22968CB5F00F4DC09 /* TextFields */ = {
-			isa = PBXGroup;
-			children = (
-				80F372A529660309004A2570 /* AnimatedTextField.swift */,
-			);
-			path = TextFields;
-			sourceTree = "<group>";
-		};
-		80EAC1C32968CB6600F4DC09 /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				80F372A32965FECB004A2570 /* ContinueWithButton.swift */,
-				80EAC1D12969190D00F4DC09 /* SettingsButton.swift */,
-				8065485329731D4200943B72 /* ReservationPanelButton.swift */,
-			);
-			path = Buttons;
-			sourceTree = "<group>";
-		};
-		80EAC1C62968CE8C00F4DC09 /* View Components */ = {
-			isa = PBXGroup;
-			children = (
-				80EAC1C92968F2E400F4DC09 /* HeaderView.swift */,
-				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
-				806548452972EBFC00943B72 /* ReservationsPicker.swift */,
-				80FC112D297E203300C5102A /* SearchGroupHeader.swift */,
-			);
-			path = "View Components";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

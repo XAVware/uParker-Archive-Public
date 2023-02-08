@@ -15,26 +15,59 @@ struct AuthOptionsPanel: View {
         VStack(spacing: 16) {
             // MARK: - DIVIDER
             HStack {
-                Rectangle().frame(height: 1)
+                Rectangle().frame(height: 0.5)
                 
                 Text("OR")
-                    .modifier(FootTextMod())
+                    .modifier(TextMod(.footnote, .light, .gray))
                 
-                Rectangle().frame(height: 1)
+                Rectangle().frame(height: 0.5)
             } //: HStack
             .foregroundColor(.gray)
             .padding(.horizontal)
             .padding(.bottom, 8)
             
             // MARK: - AUTH W/ APPLE BTN
-            ContinueWithButton(icon: Image(systemName: "apple.logo"), text: "Continue with Apple") {
+            Button {
                 //
+            } label: {
+                Text("Continue with Apple")
+                    .modifier(TextMod(.title3, .regular))
+                    .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: 45)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10).stroke(.gray)
+            )
+            .overlay(
+                Image(systemName: "apple.logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
+                    .padding(.leading), alignment: .leading
+            )
             
             // MARK: - AUTH W/ GOOGLE BTN
-            ContinueWithButton(icon: Image("GoogleIcon"), text: "Continue with Google") {
+            Button {
                 //
+            } label: {
+                Text("Continue with Google")
+                    .modifier(TextMod(.title3, .regular))
+                    .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: 45)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10).stroke(.gray)
+            )
+            .overlay(
+                Image("GoogleIcon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
+                    .padding(.leading), alignment: .leading
+            )
+            
         } //: VStack
     }
 }

@@ -21,7 +21,7 @@ struct MapSettingsView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Text("Map Settings")
-                        .modifier(BigTitleMod())
+                        .modifier(TextMod(.title, .semibold))
                     
                     Spacer()
                     
@@ -50,8 +50,7 @@ struct MapSettingsView: View {
                                     Spacer()
 
                                     Text(style.labelName)
-                                        .font(.callout)
-                                        .fontWeight(self.mapStyle == style.styleURI ? .bold : .regular)
+                                        .modifier(TextMod(.callout, self.mapStyle == style.styleURI ? .bold : .regular))
                                         .padding()
                                         .frame(height: 45)
                                         .frame(maxWidth: .infinity, alignment: .leading)

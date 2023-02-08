@@ -24,13 +24,17 @@ struct SpotPageView: View {
 
             VStack(alignment: .leading) {
                 Text("$8.00 / Day")
+                    .modifier(TextMod(.footnote, .semibold))
+                    .frame(maxWidth: .infinity, alignment:.leading)
 
                 Text(" 4.5 Stars")
+                    .modifier(TextMod(.footnote, .semibold))
+                    .frame(maxWidth: .infinity, alignment:.leading)
                 
                 Spacer()
 
                 Text("Spot Name")
-                    .font(.caption)
+                    .modifier(TextMod(.caption, .regular))
 
             } //: VStack
             .padding(8)

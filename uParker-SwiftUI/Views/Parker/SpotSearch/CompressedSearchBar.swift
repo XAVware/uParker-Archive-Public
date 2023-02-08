@@ -36,13 +36,11 @@ struct CompressedSearchBar: View {
             
             VStack(alignment: .leading, spacing: 2) {
                 Text("Where to?")
-                    .font(.headline)
-                    .fontWeight(.semibold)
+                    .modifier(TextMod(.headline, .semibold))
                 
                 Text("\(destination) - \(dateText)")
-                    .font(.caption)
+                    .modifier(TextMod(.caption, .regular))
             } //: VStack
-            .fontDesign(.rounded)
             .padding(.horizontal)
             
             Spacer()

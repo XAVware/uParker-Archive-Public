@@ -22,9 +22,7 @@ struct ParkerReservationsView: View {
                 NeedLoginView(title: "Reservations", mainHeadline: "Login to view your reservations", mainDetail: "Once you login, your upcoming and past reservations will appear here.")
             } else {
                 Text("Reservations")
-                    .font(.title3)
-                    .fontWeight(.semibold)
-                    .fontDesign(.rounded)
+                    .modifier(TextMod(.title3, .semibold))
                 
                 ReservationsPicker(selectedIndex: $selection, options: self.options)
                 

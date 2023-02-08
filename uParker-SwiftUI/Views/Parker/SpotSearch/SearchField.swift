@@ -100,8 +100,7 @@ struct SearchField: View {
                     .overlay(Circle().stroke(.gray))
                     
                     Text("Search")
-                        .modifier(SmallTitleMod())
-                        .foregroundColor(.gray)
+                        .modifier(TextMod(.title3, .semibold, .gray))
                         .frame(maxWidth: .infinity)
                     
                     Spacer().frame(width: 30)
@@ -135,12 +134,10 @@ struct SearchField: View {
                                         } label: {
                                             VStack(alignment: .leading) {
                                                 Text(suggestion.name)
-                                                    .modifier(FootTextMod())
-                                                    .foregroundColor(.black)
+                                                    .modifier(TextMod(.footnote, .semibold))
                                                 
                                                 Text("\(suggestion.address?.formattedAddress(style: .medium) ?? "")")
-                                                    .font(.caption)
-                                                    .foregroundColor(.gray)
+                                                    .modifier(TextMod(.caption, .regular, .gray))
                                             }
                                             .background(.white)
                                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -195,8 +192,7 @@ struct SearchField: View {
                 } label: {
                     HStack {
                         Text("When?")
-                            .font(.headline)
-                            .fontWeight(.semibold)
+                            .modifier(TextMod(.headline, .semibold))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         if !dateIsExpanded {
@@ -236,7 +232,7 @@ struct SearchField: View {
                     } label: {
                         HStack(spacing: 15) {
                             Text("Search")
-                                .modifier(CalloutTextMod())
+                                .modifier(TextMod(.callout, .semibold))
                             
                             Image(systemName: "magnifyingglass")
                                 .resizable()

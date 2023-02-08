@@ -32,9 +32,7 @@ struct ReservationsPicker: View {
                 }
                 .overlay(
                     Text(options[index])
-                        .foregroundColor(selectedIndex == index ? .white : .black)
-                        .fontWeight(selectedIndex == index ? .semibold : .regular)
-                        .fontDesign(.rounded)
+                        .modifier(TextMod(.body, selectedIndex == index ? .semibold : .regular, selectedIndex == index ? .white : .black))
                 )
             }
         }

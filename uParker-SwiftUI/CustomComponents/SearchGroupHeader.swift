@@ -15,13 +15,12 @@ struct SearchGroupHeader: View {
     var body: some View {
         HStack {
             Text(header)
-                .modifier(HeadlineMod())
+                .modifier(TextMod(.headline, .semibold, primaryColor))
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(primaryColor)
             
             if !isExpanded {
                 Text(subtitle)
-                    .font(.footnote)
+                    .modifier(TextMod(.footnote, .regular))
             }
         } //: HStack
     }

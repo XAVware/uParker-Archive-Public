@@ -51,18 +51,15 @@ struct AddPhoneView: View {
                         }
                     
                     Text("We'll call or text to confirm your number. Standard message and data rates apply.")
-                        .font(.caption)
-                        .foregroundColor(.black)
-                        .opacity(0.7)
+                        .modifier(TextMod(.caption, .light, .gray))
                         .multilineTextAlignment(.center)
                         .padding(.vertical)
-                    
                     
                     Button {
                         focusField = nil
                         isConfirming = true
-                        //                    dismiss.callAsFunction()
-                        //                    sessionManager.logIn()
+//                    dismiss.callAsFunction()
+//                    sessionManager.logIn()
                     } label: {
                         Text("Continue")
                             .frame(maxWidth: .infinity)
@@ -75,11 +72,10 @@ struct AddPhoneView: View {
                     
                     VStack(spacing: 5) {
                         Text("A 6-digit confirmation code has been sent to:")
-                            .font(.footnote)
-                            .fontDesign(.rounded)
+                            .modifier(TextMod(.footnote, .regular))
                         
                         Text(phoneNumber)
-                            .modifier(CalloutTextMod())
+                            .modifier(TextMod(.callout, .semibold))
                     }
                     .padding(.vertical)
                     
@@ -87,7 +83,7 @@ struct AddPhoneView: View {
                         .multilineTextAlignment(.center)
                         .frame(width: 275, height: 60)
                         .foregroundColor(primaryColor)
-                        .modifier(BigTitleMod())
+                        .modifier(TextMod(.title, .semibold))
                         .tracking(25)
                         .keyboardType(.numberPad)
                         .focused($focusField, equals: .confirmationCode)
@@ -105,8 +101,7 @@ struct AddPhoneView: View {
                                 
                                 if code.isEmpty {
                                     Text("6-Digit Code")
-                                        .modifier(BigTitleMod())
-                                        .foregroundColor(.accentColor)
+                                        .modifier(TextMod(.title, .semibold, primaryColor))
                                         .opacity(0.3)
                                         .frame(maxWidth: .infinity)
                                 }
@@ -118,15 +113,14 @@ struct AddPhoneView: View {
                     
                     HStack(spacing: 15) {
                         Text("Didn't receive a text?")
-                            .font(.footnote)
-                            .fontDesign(.rounded)
+                            .modifier(TextMod(.footnote, .regular))
                         
                         if timeRemaining == 0 {
                             Button {
                                 timeRemaining = 5
                             } label: {
                                 Text("Send Again")
-                                    .modifier(CalloutTextMod())
+                                    .modifier(TextMod(.callout, .semibold))
                             }
                             .foregroundColor(.white)
                             .frame(width: 130, height: 30)

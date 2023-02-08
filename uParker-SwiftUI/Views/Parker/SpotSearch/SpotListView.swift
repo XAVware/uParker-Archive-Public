@@ -112,7 +112,7 @@ struct SpotListView: View {
                 
                 if viewHeight < threshold {
                     Text("List View")
-                        .modifier(FootTextMod())
+                        .modifier(TextMod(.footnote, .semibold))
                         .opacity(viewButtonOpacity)
                         .onTapGesture {
                             expandList()
@@ -128,7 +128,7 @@ struct SpotListView: View {
                             .frame(width: 15)
                         
                         Text("Map")
-                            .modifier(FootTextMod())
+                            .modifier(TextMod(.footnote, .semibold, .white))
                     }
                     .padding(.horizontal)
                     .foregroundColor(.white)

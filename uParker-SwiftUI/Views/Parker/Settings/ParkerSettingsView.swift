@@ -239,12 +239,42 @@ struct ParkerSettingsView: View {
                 .modifier(TextMod(.title2, .semibold))
 
             //More Info
-            SettingsButton(image: Image(systemName: "info.circle"), text: "More Info")
+            NavigationLink {
+                
+            } label: {
+                Image(systemName: "info.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                
+                Text("More Info")
+                    .padding(.horizontal, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
 
             Divider()
 
             //Contact Support
-            SettingsButton(image: Image(systemName: "phone"), text: "Contact Support")
+            NavigationLink {
+                //
+            } label: {
+                Image(systemName: "phone")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 18)
+                
+                Text("Contact Support")
+                    .padding(.horizontal, 8)
+                    
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+            }
+            .modifier(SettingsButtonMod())
         } //: VStack
     } //: SupportSection
     

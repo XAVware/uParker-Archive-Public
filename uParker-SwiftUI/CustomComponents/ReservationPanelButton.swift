@@ -25,13 +25,10 @@ struct ReservationPanelButton: View {
                     .frame(width: 35)
                 
                 Text(text)
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.black)
+                    .modifier(TextMod(.subheadline, .semibold))
             } //: VStack
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .fontDesign(.rounded)
         .background(Color.white)
     }
 }

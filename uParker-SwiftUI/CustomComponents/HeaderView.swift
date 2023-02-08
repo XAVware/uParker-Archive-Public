@@ -52,7 +52,7 @@ struct HeaderView: View {
             }
 
             Text(title ?? " ")
-                .modifier(SmallTitleMod())
+                .modifier(TextMod(.title3, .semibold))
                 .frame(maxWidth: .infinity)
             
             switch self.rightItem {
