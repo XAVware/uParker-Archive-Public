@@ -105,3 +105,18 @@ struct RoundedImageMod: ViewModifier {
             )
     }
 }
+
+
+// MARK: - OUTLINED BUTTON
+struct OutlinedButtonMod: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .modifier(TextMod(.title3, .regular))
+            .frame(height: 45)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10).stroke(.gray)
+            )
+    }
+}
+
+    

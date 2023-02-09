@@ -31,14 +31,9 @@ struct AuthOptionsPanel: View {
                 //
             } label: {
                 Text("Continue with Apple")
-                    .modifier(TextMod(.title3, .regular))
                     .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 45)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10).stroke(.gray)
-            )
+            .modifier(OutlinedButtonMod())
             .overlay(
                 Image(systemName: "apple.logo")
                     .resizable()
@@ -52,14 +47,9 @@ struct AuthOptionsPanel: View {
                 //
             } label: {
                 Text("Continue with Google")
-                    .modifier(TextMod(.title3, .regular))
                     .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 45)
-            .overlay(
-                RoundedRectangle(cornerRadius: 10).stroke(.gray)
-            )
+            .modifier(OutlinedButtonMod())
             .overlay(
                 Image("GoogleIcon")
                     .resizable()

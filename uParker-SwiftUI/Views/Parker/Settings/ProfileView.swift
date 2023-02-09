@@ -217,8 +217,8 @@ struct ProfileView: View {
                             .resizable()
                             .scaledToFit()
                             .fontWeight(.light)
-                            .frame(height: 20)
-                            .frame(width: 15)
+                            .background(.white)
+                            .frame(width: 30, height: 20, alignment: .leading)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
