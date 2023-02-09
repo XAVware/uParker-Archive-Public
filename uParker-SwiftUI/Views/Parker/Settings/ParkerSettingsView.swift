@@ -310,7 +310,8 @@ struct ParkerSettingsView: View {
                         
                 } //: VStack
                 .padding()
-            } //: ScrollView            
+            } //: ScrollView
+            
         } //: Navigation View
     }
 }

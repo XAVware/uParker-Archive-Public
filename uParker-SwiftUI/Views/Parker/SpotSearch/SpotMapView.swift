@@ -84,15 +84,17 @@ struct SpotMapView: View {
                     
                     Spacer()
                     
-                    TabView {
-                        ForEach(1..<5) { spot in
-                            SpotPageView()
-                                .padding()
-                            
-                        }
-                    } //: Tab
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .frame(height: 130)
+                    if self.selectedSpotId != nil {
+                        TabView {
+                            ForEach(1..<5) { spot in
+                                SpotPageView()
+                                    .padding()
+                                
+                            }
+                        } //: Tab
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .frame(height: 130)
+                    }
 
                     
                     

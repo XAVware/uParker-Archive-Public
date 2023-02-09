@@ -40,6 +40,7 @@ extension String {
     }
 }
 
+//Render UIView as an image
 extension UIView {
     // Using a function since `var image` might conflict with an existing variable
     // (like on `UIImageView`)
@@ -59,3 +60,14 @@ extension UIView {
     }
 }
 
+//Allows back swipe gesture in navigation view with custom back button
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
+    }
+}

@@ -198,6 +198,9 @@ struct ProfileView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(isEditing ? "Edit Profile" : "Profile")
             .toolbar(toolBarVisibility, for: .tabBar)
+            .onDisappear {
+                toolBarVisibility = .visible
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
