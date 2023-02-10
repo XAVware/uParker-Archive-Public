@@ -99,6 +99,7 @@ struct VehiclesView: View {
     
     
     private func fetchVehicle()  {
+        print("Fetch Vehicle Started")
 //        guard self.selectedState != states[0] else {
 //            print("No State Selected")
 //            return
@@ -109,50 +110,46 @@ struct VehiclesView: View {
 //            return
 //        }
         
+        
         guard let url = URL(string: "https://platetovin.net/api/convert") else {
             print("Issue accessing URL")
             return
         }
-        
+
         var request = URLRequest(url: url)
         request.setValue("GLrgFHToBcOX8uU", forHTTPHeaderField: "Authorization")
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpMethod = "POST"
-        
-        let parameters: [String: Any] = [
+
+        let parameters: [String: AnyHashable] = [
             "plate": "S71JCY",
             "state": "NJ"
         ]
-        request.httpBody = parameters.percentEncoded()
+        request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .fragmentsAllowed)
+        
+        
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                error == nil
-            else {
-                // check for fundamental networking error
-                print("error", error ?? URLError(.badServerResponse))
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else {
+                print("Failed 1")
                 return
             }
             
-            guard (200 ... 299) ~= response.statusCode else {
-                // check for http errors
-                print("statusCode should be 2xx, but is \(response.statusCode)")
-                print("response = \(response)")
-                return
+            do {
+                let response = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                print("Response:")
+                print(response)
+            } catch {
+                print(error)
             }
-            print("Data:")
-            print(data)
-            print("Response:")
-            print(response)
         }
+        task.resume()
         
         //From Youtube
         
 //        do {
-//            let (data, _) = try await URLSession.shared.data(from: url)
+//            let (data, _) = try await URLSession.shared.data((from: url))
 //
 //            if let decodedResponse = try? JSONDecoder().decode([Vehicle].self, from: data) {
 //                vehicles = decodedResponse
@@ -160,6 +157,7 @@ struct VehiclesView: View {
 //        } catch {
 //            print("error fetching data")
 //        }
+//        print("Fetch Vehicle Ended")
     }
     
     // MARK: - VIEW VARIABLES
