@@ -9,23 +9,28 @@
 import SwiftUI
 
 class Vehicle: Codable {
-    let vin: String
-    let year: String
+    let color: VehicleColor
+    let driveType: String
+    let engine: String
+    let fuel: String
     let make: String
     let model: String
-    let trim: String
     let name: String
-    let engine: String
     let style: String
     let transmission: String
-    let driveType: String
-    let fuel: String
-    let color: [VehicleColor]
+    let trim: String
+    let vin: String
+    let year: String
 }
 
 struct VehicleColor: Codable {
-    let name: String
     let abbreviation: String
+    let name: String
+}
+
+struct PTVResponse: Codable {
+    let success: Bool
+    let vin: Vehicle
 }
 
 /*
@@ -48,4 +53,30 @@ struct VehicleColor: Codable {
      }
  }
  
+ */
+
+
+/*
+ Actual Response:
+ {
+     success = 1;
+     vin =     {
+         color =         {
+             abbreviation = UNK;
+             name = Unknown;
+         };
+         driveType = AWD;
+         engine = "2.5L H4 DOHC 16V TURBO";
+         fuel = Gasoline;
+         make = Subaru;
+         model = Impreza;
+         name = "2007 Subaru Impreza";
+         style = Sedan;
+         transmission = Manual;
+         trim = WRX;
+         vin = JF1GD74657G507090;
+         year = 2007;
+     };
+ }
+
  */

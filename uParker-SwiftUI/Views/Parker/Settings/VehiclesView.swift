@@ -140,24 +140,15 @@ struct VehiclesView: View {
                 let response = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                 print("Response:")
                 print(response)
+                
+                let decodedResponse = try JSONDecoder().decode(PTVResponse.self, from: data)
+                print("Decoded Response: \(decodedResponse.vin)")
             } catch {
                 print(error)
             }
         }
         task.resume()
         
-        //From Youtube
-        
-//        do {
-//            let (data, _) = try await URLSession.shared.data((from: url))
-//
-//            if let decodedResponse = try? JSONDecoder().decode([Vehicle].self, from: data) {
-//                vehicles = decodedResponse
-//            }
-//        } catch {
-//            print("error fetching data")
-//        }
-//        print("Fetch Vehicle Ended")
     }
     
     // MARK: - VIEW VARIABLES
