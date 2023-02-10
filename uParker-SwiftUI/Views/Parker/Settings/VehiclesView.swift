@@ -17,6 +17,7 @@ struct VehiclesView: View {
     @State private var selectedMethod: AddMethod? = .none
     private enum AddMethod { case licensePlate, vin, manual }
     
+    @State private var vehicles: [Vehicle] = [Vehicle]()
     
     @State private var selectedState: String = "--Select State--"
     
@@ -46,7 +47,7 @@ struct VehiclesView: View {
             
             if selectedMethod != .none {
                 Button {
-                    searchTapped()
+                    fetchVehicle()
                 } label: {
                     Text("Search")
                         .frame(maxWidth: .infinity)
@@ -95,8 +96,70 @@ struct VehiclesView: View {
         }
     }
     
-    private func searchTapped() {
+    
+    
+    private func fetchVehicle()  {
+//        guard self.selectedState != states[0] else {
+//            print("No State Selected")
+//            return
+//        }
+//
+//        guard self.licensePlate != "" else {
+//            print("No license plate entered")
+//            return
+//        }
         
+        guard let url = URL(string: "https://platetovin.net/api/convert") else {
+            print("Issue accessing URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("GLrgFHToBcOX8uU", forHTTPHeaderField: "Authorization")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.httpMethod = "POST"
+        
+        let parameters: [String: Any] = [
+            "plate": "S71JCY",
+            "state": "NJ"
+        ]
+        request.httpBody = parameters.percentEncoded()
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard
+                let data = data,
+                let response = response as? HTTPURLResponse,
+                error == nil
+            else {
+                // check for fundamental networking error
+                print("error", error ?? URLError(.badServerResponse))
+                return
+            }
+            
+            guard (200 ... 299) ~= response.statusCode else {
+                // check for http errors
+                print("statusCode should be 2xx, but is \(response.statusCode)")
+                print("response = \(response)")
+                return
+            }
+            print("Data:")
+            print(data)
+            print("Response:")
+            print(response)
+        }
+        
+        //From Youtube
+        
+//        do {
+//            let (data, _) = try await URLSession.shared.data(from: url)
+//
+//            if let decodedResponse = try? JSONDecoder().decode([Vehicle].self, from: data) {
+//                vehicles = decodedResponse
+//            }
+//        } catch {
+//            print("error fetching data")
+//        }
     }
     
     // MARK: - VIEW VARIABLES
@@ -188,4 +251,29 @@ struct VehiclesView_Previews: PreviewProvider {
     static var previews: some View {
         VehiclesView()
     }
+}
+
+
+
+extension Dictionary {
+    func percentEncoded() -> Data? {
+        map { key, value in
+            let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+            let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
+            return escapedKey + "=" + escapedValue
+        }
+        .joined(separator: "&")
+        .data(using: .utf8)
+    }
+}
+
+extension CharacterSet {
+    static let urlQueryValueAllowed: CharacterSet = {
+        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
+        let subDelimitersToEncode = "!$&'()*+,;="
+        
+        var allowed: CharacterSet = .urlQueryAllowed
+        allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
+        return allowed
+    }()
 }
