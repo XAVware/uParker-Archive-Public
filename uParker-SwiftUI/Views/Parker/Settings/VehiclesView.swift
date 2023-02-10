@@ -23,6 +23,10 @@ struct VehiclesView: View {
     @State private var isRequestInProgress: Bool = false
     @State private var newVehicle: Vehicle?
     
+    private var stateAbbreviation: String {
+        return String(selectedState.prefix(2))
+    }
+    
     // MARK: - BODY
     var body: some View {
         VStack {
@@ -35,8 +39,8 @@ struct VehiclesView: View {
             
             switch self.selectedMethod {
             case .none:
-                addButtonPanel
-//                foundVehicleView
+//                addButtonPanel
+                foundVehicleView
                 
             case .licensePlate:
                 if self.newVehicle == nil {
@@ -224,16 +228,27 @@ struct VehiclesView: View {
             VStack(spacing: 12) {
                 Group {
                     HStack {
-                        Text("License Plate:")
+                        Text("Plate:")
                             .modifier(TextMod(.title3, .semibold))
                         
-                        Text(self.licensePlate)
+//                        Text(self.licensePlate)
+                        Text("S71JCY")
+                            .modifier(TextMod(.title3, .regular))
+                        
+                        Spacer()
+                        
+                        Text("State:")
+                            .modifier(TextMod(.title3, .semibold))
+                        
+                        Text(self.stateAbbreviation)
                             .modifier(TextMod(.title3, .regular))
                     } //: HStack
                     
                     HStack {
                         Text("Year:")
                             .modifier(TextMod(.title3, .semibold))
+                        
+                        Spacer()
                         
                         Text(self.newVehicle?.year ?? "Empty")
                             .modifier(TextMod(.title3, .regular))
@@ -242,6 +257,8 @@ struct VehiclesView: View {
                     HStack {
                         Text("Make:")
                             .modifier(TextMod(.title3, .semibold))
+                        
+                        Spacer()
                         
                         Text(self.newVehicle?.make ?? "Empty")
                             .modifier(TextMod(.title3, .regular))
@@ -313,6 +330,8 @@ struct VehiclesView: View {
                         .modifier(TextMod(.body, .regular))
                 } //: HStack
             } //: VStack
+            .frame(maxWidth: 300)
+            .background(.blue)
             
             Spacer()
             
