@@ -10,16 +10,18 @@ import SwiftUI
 struct VehiclesView: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
-    @State var toolBarVisibility: Visibility = .hidden
+    @State var tabBarVisibility: Visibility = .hidden
+    @State var navBarVisibility: Visibility = .visible
     @State var licensePlate: String = ""
     @State var vin: String = ""
     
     @State private var selectedMethod: AddMethod? = .none
     private enum AddMethod { case licensePlate, vin, manual }
+        
+    @State private var selectedState: String = "---Select State---"
     
-    @State private var vehicles: [Vehicle] = [Vehicle]()
-    
-    @State private var selectedState: String = "--Select State--"
+    @State private var isRequestInProgress: Bool = false
+    @State private var newVehicle: Vehicle?
     
     // MARK: - BODY
     var body: some View {
@@ -34,9 +36,14 @@ struct VehiclesView: View {
             switch self.selectedMethod {
             case .none:
                 addButtonPanel
+//                foundVehicleView
                 
             case .licensePlate:
-                addLicensePlateView
+                if self.newVehicle == nil {
+                    addLicensePlateView
+                } else {
+                    foundVehicleView
+                }
                 
             case .vin:
                 Text("VIN")
@@ -45,26 +52,16 @@ struct VehiclesView: View {
                 Text("Manual")
             }
             
-            if selectedMethod != .none {
-                Button {
-                    fetchVehicle()
-                } label: {
-                    Text("Search")
-                        .frame(maxWidth: .infinity)
-                }
-                .modifier(RoundedButtonMod())
-                .padding()
-            }
-            
             Spacer()
         } //: VStack
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Your Vehicles")
-        .toolbar(toolBarVisibility, for: .tabBar)
+        .navigationTitle(self.selectedMethod == .none ? "Your Vehicles" : "Add Vehicle")
+        .toolbar(tabBarVisibility, for: .tabBar)
+        .toolbar(navBarVisibility, for: .navigationBar)
         .onDisappear {
-            toolBarVisibility = .visible
+            tabBarVisibility = .visible
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -75,7 +72,7 @@ struct VehiclesView: View {
                         Image(systemName: "chevron.left")
                             .resizable()
                             .scaledToFit()
-                            
+                        
                         Text("Back")
                             .modifier(TextMod(.footnote, .regular))
                     } //: HStack
@@ -84,67 +81,83 @@ struct VehiclesView: View {
                 .buttonStyle(PlainButtonStyle())
             }
         } //: ToolBar
+        .overlay(
+            VStack {
+                if self.isRequestInProgress {
+                    fetchingVehicleView
+                }
+            }
+        )
     } //: Body
     
     // MARK: - FUNCTIONS
     private func backTapped() {
         if self.selectedMethod == .none {
-            toolBarVisibility = .visible
+            tabBarVisibility = .visible
             dismiss.callAsFunction()
         } else {
             self.selectedMethod = .none
         }
     }
     
-    
-    
-    private func fetchVehicle()  {
-        print("Fetch Vehicle Started")
-//        guard self.selectedState != states[0] else {
-//            print("No State Selected")
-//            return
-//        }
-//
-//        guard self.licensePlate != "" else {
-//            print("No license plate entered")
-//            return
-//        }
-        
-        
-        guard let url = URL(string: "https://platetovin.net/api/convert") else {
-            print("Issue accessing URL")
+    private func searchTapped() {
+        guard self.selectedState != states[0] else {
+            print("No State Selected")
             return
         }
 
+        guard self.licensePlate != "" else {
+            print("No license plate entered")
+            return
+        }
+        self.isRequestInProgress = true
+        self.navBarVisibility = .hidden
+        let stateAbbreviation: String = String(selectedState.prefix(2))
+        let plateInfo: [String: AnyHashable] = ["plate": licensePlate, "state": stateAbbreviation]
+        
+        fetchVehicle(forPlate: plateInfo) { vehicle, error in
+            guard let vehicle = vehicle, error == nil else {
+                print(error ?? "Error Returned")
+                return
+            }
+            
+            self.newVehicle = vehicle
+        }
+    }
+    
+    private func fetchVehicle(forPlate parameters: [String: AnyHashable], completion: @escaping(Vehicle?, Error?) -> ())  {
+        guard let url = URL(string: "https://platetovin.net/api/convert") else {
+            let error = NSError(domain: "", code: 401, userInfo: [ NSLocalizedDescriptionKey: "Unable to access URL"])
+            completion(nil, error)
+            return
+        }
+        
         var request = URLRequest(url: url)
         request.setValue("GLrgFHToBcOX8uU", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpMethod = "POST"
-
-        let parameters: [String: AnyHashable] = [
-            "plate": "S71JCY",
-            "state": "NJ"
-        ]
+        
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .fragmentsAllowed)
         
-        
-
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            defer {
+                DispatchQueue.main.async {
+                    self.isRequestInProgress = false
+                    self.navBarVisibility = .visible
+                }
+            }
+            
             guard let data = data, error == nil else {
-                print("Failed 1")
+                completion(nil, error)
                 return
             }
             
             do {
-                let response = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print("Response:")
-                print(response)
-                
                 let decodedResponse = try JSONDecoder().decode(PTVResponse.self, from: data)
-                print("Decoded Response: \(decodedResponse.vin)")
+                completion(decodedResponse.vin, nil)
             } catch {
-                print(error)
+                completion(nil, error)
             }
         }
         task.resume()
@@ -170,41 +183,192 @@ struct VehiclesView: View {
         .padding(.vertical)
     } //: No Vehicles View
     
+    private var fetchingVehicleView: some View {
+        VStack {
+            Spacer()
+            
+            ProgressView()
+                .tint(primaryColor)
+                .frame(width: 50, height: 50)
+                .scaleEffect(2)
+            
+            Text("Looking for your vehicle's information...")
+                .modifier(TextMod(.title3, .semibold, primaryColor))
+                .padding(.top)
+                .padding(.bottom, 4)
+            
+            Text("This may take a few seconds")
+                .modifier(TextMod(.body, .semibold, primaryColor))
+            
+            Spacer()
+            
+        } //: VStack
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .edgesIgnoringSafeArea(.all)
+        .background(Color.white)
+    } //: Fetching Vehicle
+    
+    private var foundVehicleView: some View {
+        VStack {
+            Text("We found your vehicle!")
+                .padding(.top)
+                .frame(maxWidth: .infinity)
+                .modifier(TextMod(.title2, .semibold))
+            
+            Text("Please confirm the information below")
+                .frame(maxWidth: .infinity)
+                .modifier(TextMod(.title3, .regular))
+            
+            Spacer()
+            
+            VStack(spacing: 12) {
+                Group {
+                    HStack {
+                        Text("License Plate:")
+                            .modifier(TextMod(.title3, .semibold))
+                        
+                        Text(self.licensePlate)
+                            .modifier(TextMod(.title3, .regular))
+                    } //: HStack
+                    
+                    HStack {
+                        Text("Year:")
+                            .modifier(TextMod(.title3, .semibold))
+                        
+                        Text(self.newVehicle?.year ?? "Empty")
+                            .modifier(TextMod(.title3, .regular))
+                    } //: HStack
+                    
+                    HStack {
+                        Text("Make:")
+                            .modifier(TextMod(.title3, .semibold))
+                        
+                        Text(self.newVehicle?.make ?? "Empty")
+                            .modifier(TextMod(.title3, .regular))
+                    } //: HStack
+                    
+                    
+                    HStack {
+                        Text("Model:")
+                            .modifier(TextMod(.title3, .semibold))
+                        
+                        Text(self.newVehicle?.model ?? "Empty")
+                            .modifier(TextMod(.title3, .regular))
+                    } //: HStack
+                    
+                    HStack {
+                        Text("Color:")
+                            .modifier(TextMod(.title3, .semibold))
+                        
+                        Text(self.newVehicle?.color.name ?? "Empty")
+                            .modifier(TextMod(.title3, .regular))
+                    } //: HStack
+                }
+                
+                HStack {
+                    Text("Trim:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Text(self.newVehicle?.trim ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+                
+                HStack {
+                    Text("Engine:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Text(self.newVehicle?.engine ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+                
+                HStack {
+                    Text("Transmission:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Text(self.newVehicle?.transmission ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+                
+                HStack {
+                    Text("Style:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Text(self.newVehicle?.style ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+                
+                HStack {
+                    Text("Drivetrain:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Text(self.newVehicle?.driveType ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+                
+                HStack {
+                    Text("VIN:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Text(self.newVehicle?.vin ?? "Empty")
+                        .modifier(TextMod(.body, .regular))
+                } //: HStack
+            } //: VStack
+            
+            Spacer()
+            
+            Button {
+                //
+            } label: {
+                Text("Confirm & Save")
+                    .frame(maxWidth: .infinity)
+            }
+            .modifier(RoundedButtonMod())
+
+        } //: VStack
+    } //: Found Vehicle View
+    
     private var addLicensePlateView: some View {
         VStack(spacing: 16) {
             Text("Enter License Plate")
                 .modifier(TextMod(.title2, .semibold))
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top, 24)
-            
-            Spacer()
-            
+                .padding(.vertical, 24)
+                        
             Picker("Select State", selection: $selectedState) {
                 ForEach(states, id: \.self) {
                     Text($0)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
             .tint(.black)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: 190)
             .frame(height: 45, alignment: .trailing)
             .overlay(
                 RoundedRectangle(cornerRadius: 5).stroke(.gray)
             )
             
             AnimatedTextField(boundTo: $licensePlate, placeholder: "License Plate")
+                .frame(maxWidth: 190)
+            
+            Button {
+                searchTapped()
+            } label: {
+                Text("Search")
+                    .frame(maxWidth: .infinity)
+            }
+            .modifier(RoundedButtonMod())
+            .padding()
             
             Spacer()
         } //: VStack
         .padding(.horizontal)
         .padding(.top, 30)
-        .frame(maxWidth: 260, maxHeight: 200)
     } //: Add Licence Plate View
     
     private var addButtonPanel: some View {
         VStack(alignment: .leading) {
             Text("Add vehicle by using:")
                 .modifier(TextMod(.body, .regular))
+                .padding(.bottom, 4)
             
             Button {
                 withAnimation { self.selectedMethod = .licensePlate }
@@ -242,27 +406,3 @@ struct VehiclesView_Previews: PreviewProvider {
     }
 }
 
-
-
-extension Dictionary {
-    func percentEncoded() -> Data? {
-        map { key, value in
-            let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
-            let escapedValue = "\(value)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
-            return escapedKey + "=" + escapedValue
-        }
-        .joined(separator: "&")
-        .data(using: .utf8)
-    }
-}
-
-extension CharacterSet {
-    static let urlQueryValueAllowed: CharacterSet = {
-        let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
-        let subDelimitersToEncode = "!$&'()*+,;="
-        
-        var allowed: CharacterSet = .urlQueryAllowed
-        allowed.remove(charactersIn: "\(generalDelimitersToEncode)\(subDelimitersToEncode)")
-        return allowed
-    }()
-}

@@ -18,7 +18,7 @@ let MBAccessKey: String = "pk.eyJ1IjoicnlzbWV0IiwiYSI6ImNrZXZ5OHU4bDBoMG8ycmw5YW
 //let tabViewDividerPadding: CGFloat = 8
 let searchBarHeight: CGFloat = 50
 
-let states = [  "--Select State--",
+let states = [  "---Select State---",
                 "AK - Alaska",
                 "AL - Alabama",
                 "AR - Arkansas",
