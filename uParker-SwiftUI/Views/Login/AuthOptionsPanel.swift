@@ -13,16 +13,7 @@ struct AuthOptionsPanel: View {
     // MARK: - BODY
     var body: some View {
         VStack(spacing: 16) {
-            // MARK: - DIVIDER
-            HStack {
-                Rectangle().frame(height: 0.5)
-                
-                Text("OR")
-                    .modifier(TextMod(.footnote, .light, .gray))
-                
-                Rectangle().frame(height: 0.5)
-            } //: HStack
-            .foregroundColor(.gray)
+            OrDivider()
             .padding(.horizontal)
             .padding(.bottom, 8)
             

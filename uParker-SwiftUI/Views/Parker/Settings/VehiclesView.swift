@@ -18,7 +18,7 @@ struct VehiclesView: View {
     @State private var selectedMethod: AddMethod? = .none
     private enum AddMethod { case licensePlate, vin, manual }
         
-    @State private var selectedState: String = "---Select State---"
+    @State private var selectedState: String = "AK"
     
     @State private var isRequestInProgress: Bool = false
     @State private var newVehicle: Vehicle?
@@ -30,17 +30,18 @@ struct VehiclesView: View {
     // MARK: - BODY
     var body: some View {
         VStack {
-            noVehiclesView
-                .frame(maxWidth: 280, maxHeight: selectedMethod == .none ? 220 : 0)
-                .scaleEffect(selectedMethod == .none ? 1 : 0)
-                .opacity(selectedMethod == .none ? 1 : 0)
-            
-            Divider()
+//            noVehiclesView
+//                .frame(maxWidth: 280, maxHeight: selectedMethod == .none ? 220 : 0)
+//                .scaleEffect(selectedMethod == .none ? 1 : 0)
+//                .opacity(selectedMethod == .none ? 1 : 0)
+//
+//            Divider()
             
             switch self.selectedMethod {
             case .none:
 //                addButtonPanel
-                foundVehicleView
+//                foundVehicleView
+                addVehicleView2
                 
             case .licensePlate:
                 if self.newVehicle == nil {
@@ -345,6 +346,103 @@ struct VehiclesView: View {
 
         } //: VStack
     } //: Found Vehicle View
+    
+    private var addVehicleView2: some View {
+        VStack(spacing: 16) {
+            VStack(spacing: 32) {
+                Text("Enter License Plate")
+                    .modifier(TextMod(.title2, .semibold))
+                    .frame(maxWidth: .infinity, alignment: .center)
+                
+                HStack {
+                    AnimatedTextField(boundTo: $licensePlate, placeholder: "License Plate")
+                    
+                    ZStack(alignment: .leading) {
+                        Text("State")
+                            .foregroundColor(.gray)
+                            .offset(y: -19)
+                            .scaleEffect(0.65, anchor: .leading)
+                        
+                        Picker("", selection: $selectedState) {
+                            ForEach(stateAbbreviations, id: \.self) {
+                                Text("\($0)")
+                            }
+                        }
+                        .tint(.black)
+                        .offset(y: 7)
+                        
+                    } //: ZStack
+                    .frame(width: 65, height: 48)
+                    .padding(.leading, 8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(.gray, lineWidth: 1)
+                    )
+                    
+                } //: HStack
+                .frame(height: 48)
+                
+                Button {
+                    searchTapped()
+                } label: {
+                    Text("Find Vehicle Info")
+                        .frame(maxWidth: .infinity)
+                }
+                .modifier(RoundedButtonMod())
+                
+            } //: VStack
+            .frame(width: 300)
+            
+            OrDivider()
+            
+            VStack {
+                HStack {
+                    Text("Year:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Spacer()
+                    
+                    Text(self.newVehicle?.year ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+                
+                HStack {
+                    Text("Make:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Spacer()
+                    
+                    Text(self.newVehicle?.make ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+                
+                
+                HStack {
+                    Text("Model:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Spacer()
+                    
+                    Text(self.newVehicle?.model ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+                
+                HStack {
+                    Text("Color:")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Spacer()
+                    
+                    Text(self.newVehicle?.color.name ?? "Empty")
+                        .modifier(TextMod(.title3, .regular))
+                } //: HStack
+            } //: VStack
+            .frame(width: 300)
+            
+            
+        } //:VStack
+        .padding()
+    } // Add Vehicle View 2
     
     private var addLicensePlateView: some View {
         VStack(spacing: 16) {

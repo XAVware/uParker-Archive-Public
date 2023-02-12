@@ -26,7 +26,7 @@ struct AnimatedTextField: View {
             textFieldOffset = 0
         } else {
             placeholderOffset = -19
-            placeholderScale = 0.70
+            placeholderScale = 0.65
             textFieldOffset = 7
         }
     }
