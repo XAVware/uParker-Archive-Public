@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct VehicleOption {
-    let id: UUID = UUID()
+let vehicleList: [VehicleOption] = Bundle.main.decode("VehicleOptions.json")
+
+struct VehicleOption: Codable, Identifiable {
+    var id: UUID = UUID()
     let year: String
     let make: String
     let model: String

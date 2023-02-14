@@ -1,0 +1,6 @@
+
+[
+    {    "year" : 2020,    "make" : "Audi",    "model" : "Q3",    "category" : ["SUV"]    },
+    {    "year" : 2020,    "make" : "Chevrolet",    "model" : "Malibu",    "category" : ["Sedan"]    },
+    {    "year" : 2020,    "make" : "Cadillac",    "model" : "Escalade ESV",    "category" : ["SUV"]    }
+]

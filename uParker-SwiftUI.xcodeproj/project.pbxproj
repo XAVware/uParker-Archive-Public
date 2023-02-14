@@ -40,6 +40,8 @@
 		80654859297322A500943B72 /* PastReservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80654858297322A500943B72 /* PastReservationsView.swift */; };
 		8065485B297322B900943B72 /* UpcomingReservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065485A297322B900943B72 /* UpcomingReservationsView.swift */; };
 		806A376F297A3F3D00068FEA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A376E297A3F3D00068FEA /* LocationManager.swift */; };
+		807151E5299B437B0009A99F /* VehicleOptions.json in Resources */ = {isa = PBXBuildFile; fileRef = 807151E4299B437B0009A99F /* VehicleOptions.json */; };
+		807151E7299B44E90009A99F /* ReadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807151E6299B44E90009A99F /* ReadData.swift */; };
 		80903DC6298D6F070078881C /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC5298D6F070078881C /* Pin.swift */; };
 		80903DC8298D928C0078881C /* MapSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC7298D928C0078881C /* MapSettingsView.swift */; };
 		80A013442991999B004DBE4E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A013432991999B004DBE4E /* SignUpView.swift */; };
@@ -106,6 +108,8 @@
 		80654858297322A500943B72 /* PastReservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastReservationsView.swift; sourceTree = "<group>"; };
 		8065485A297322B900943B72 /* UpcomingReservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingReservationsView.swift; sourceTree = "<group>"; };
 		806A376E297A3F3D00068FEA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		807151E4299B437B0009A99F /* VehicleOptions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VehicleOptions.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		807151E6299B44E90009A99F /* ReadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadData.swift; sourceTree = "<group>"; };
 		80903DC5298D6F070078881C /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		80903DC7298D928C0078881C /* MapSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettingsView.swift; sourceTree = "<group>"; };
 		80A013432991999B004DBE4E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -320,6 +324,7 @@
 				8065485129730D1B00943B72 /* LineCount */,
 				804DAD52297A616C00B89AC6 /* Documentation */,
 				8036F4DB298C4110009A9566 /* Unused */,
+				807151E4299B437B0009A99F /* VehicleOptions.json */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */,
 				80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */,
 				80F500BC29954AC400880010 /* VehiclesView.swift */,
+				807151E6299B44E90009A99F /* ReadData.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 			files = (
 				80EAC1D429691D1C00F4DC09 /* ToDos in Resources */,
 				80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */,
+				807151E5299B437B0009A99F /* VehicleOptions.json in Resources */,
 				8036F4DC298C4110009A9566 /* Unused in Resources */,
 				8065485229730D1B00943B72 /* LineCount in Resources */,
 				804DAD53297A616C00B89AC6 /* Documentation in Resources */,
@@ -468,6 +475,7 @@
 				805095202991B54B0035BE56 /* AddPhoneView.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80A013442991999B004DBE4E /* SignUpView.swift in Sources */,
+				807151E7299B44E90009A99F /* ReadData.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
 				80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */,
