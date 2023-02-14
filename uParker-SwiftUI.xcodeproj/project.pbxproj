@@ -55,6 +55,7 @@
 		80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0BD06299738410007EFE7 /* OrDivider.swift */; };
 		80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAB2992A92000B6F598 /* ImagePicker.swift */; };
 		80BA6AAF2992ACAC00B6F598 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */; };
+		80BDC5FA299B0AF800B9EC26 /* VehicleOptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */; };
 		80EAC1BF2968C38900F4DC09 /* ParkerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */; };
 		80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */; };
 		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
@@ -122,6 +123,7 @@
 		80B0BD06299738410007EFE7 /* OrDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrDivider.swift; sourceTree = "<group>"; };
 		80BA6AAB2992A92000B6F598 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleOptionManager.swift; sourceTree = "<group>"; };
 		80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerSettingsView.swift; sourceTree = "<group>"; };
 		80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				800772E62969ED3A00E7FEED /* Spot.swift */,
 				80A64A2D2953FFF0001317DD /* User.swift */,
 				806548482972EF6400943B72 /* Vehicle.swift */,
+				80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */,
 				806A376F297A3F3D00068FEA /* LocationManager.swift in Sources */,
 				80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */,
+				80BDC5FA299B0AF800B9EC26 /* VehicleOptionManager.swift in Sources */,
 				80FC1130297E23D300C5102A /* SimpleSuggestion.swift in Sources */,
 				80654857297321EA00943B72 /* CurrentReservationView.swift in Sources */,
 				806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */,
@@ -624,8 +628,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To show spots near you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To show spots near you";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -655,8 +658,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To show spots near you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To show spots near you";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

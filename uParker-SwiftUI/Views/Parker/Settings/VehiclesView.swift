@@ -392,7 +392,7 @@ struct VehiclesView: View {
                 
             } //: VStack
             .frame(width: 300)
-            
+
             OrDivider()
             
             VStack {
