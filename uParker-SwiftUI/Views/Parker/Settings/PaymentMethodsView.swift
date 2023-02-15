@@ -7,38 +7,13 @@
 
 import SwiftUI
 
-class Json: ObservableObject {
-    @Published var json = [VehicleOption]()
-    
-    init() {
-        load()
-    }
-    
-    func load() {
-        let path = Bundle.main.path(forResource: "VehicleOptions", ofType: "json")
-        let url = URL(fileURLWithPath: path!)
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            do {
-                if let data = data {
-                    let json = try JSONDecoder().decode([VehicleOption].self, from: data)
-                    DispatchQueue.main.async {
-                        self.json = json
-                    }
-                } else {
-                    print("No Data")
-                }
-            } catch {
-                print("Error converting JSON: \(error)")
-            }
-        }.resume()
-    }
-}
 
 struct PaymentMethodsView: View {
-    @ObservedObject var datas = Json()
+    // MARK: - PROPERTIES
     
+    // MARK: - BODY
     var body: some View {
-        Text("List Count: \(datas.json.count)")
+        Text("Hello World!")
     }
 }
 

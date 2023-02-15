@@ -404,49 +404,7 @@ struct VehiclesView: View {
 
             OrDivider()
             
-            VStack {
-                HStack {
-                    Text("Year:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Spacer()
-                    
-                    Text(self.newVehicle?.year ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("Make:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Spacer()
-                    
-                    Text(self.newVehicle?.make ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                
-                HStack {
-                    Text("Model:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Spacer()
-                    
-                    Text(self.newVehicle?.model ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("Color:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Spacer()
-                    
-                    Text(self.newVehicle?.color.name ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-            } //: VStack
-            .frame(width: 300)
+            
             
             
         } //:VStack
