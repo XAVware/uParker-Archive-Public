@@ -61,9 +61,9 @@ struct VehiclesView: View {
             
             Spacer()
         } //: VStack
-        .onAppear {
-            print(vehicleList.count)
-        }
+//        .onAppear {
+//            print(vehicleList.count)
+//        }
 //        .onChange(of: self.data.vehicleOptions.count, perform: { newValue in
 //            print("Updated, New Count: \(newValue)")
 //        })

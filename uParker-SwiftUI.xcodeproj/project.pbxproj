@@ -76,6 +76,7 @@
 		80FC112C297E1D2900C5102A /* CompressedSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */; };
 		80FC112E297E203300C5102A /* SearchGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112D297E203300C5102A /* SearchGroupHeader.swift */; };
 		80FC1130297E23D300C5102A /* SimpleSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112F297E23D300C5102A /* SimpleSuggestion.swift */; };
+		944DA845299C45FF00568765 /* PaymentMethodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944DA844299C45FF00568765 /* PaymentMethodsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +147,7 @@
 		80FC112B297E1D2900C5102A /* CompressedSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressedSearchBar.swift; sourceTree = "<group>"; };
 		80FC112D297E203300C5102A /* SearchGroupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupHeader.swift; sourceTree = "<group>"; };
 		80FC112F297E23D300C5102A /* SimpleSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSuggestion.swift; sourceTree = "<group>"; };
+		944DA844299C45FF00568765 /* PaymentMethodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +354,7 @@
 				80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */,
 				80F500BC29954AC400880010 /* VehiclesView.swift */,
 				807151E6299B44E90009A99F /* ReadData.swift */,
+				944DA844299C45FF00568765 /* PaymentMethodsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				80F500BD29954AC400880010 /* VehiclesView.swift in Sources */,
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,
 				80654859297322A500943B72 /* PastReservationsView.swift in Sources */,
+				944DA845299C45FF00568765 /* PaymentMethodsView.swift in Sources */,
 				80AE3FAF2970989000A654E0 /* ConfirmEmailView.swift in Sources */,
 				8065484C2972EF6400943B72 /* Vehicle.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,

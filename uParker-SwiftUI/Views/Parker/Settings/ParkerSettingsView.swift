@@ -21,7 +21,7 @@ struct ParkerSettingsView: View {
             
             //Payment Methods
             NavigationLink {
-                //
+                PaymentMethodsView()
             } label: {
                 Image(systemName: "creditcard")
                     .resizable()

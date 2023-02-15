@@ -7,13 +7,21 @@
 
 import SwiftUI
 
-let vehicleList: [VehicleOption] = Bundle.main.decode("VehicleOptions.json")
+//let vehicleList: [VehicleOption] = Bundle.main.decode("VehicleOptions.json")
 
 struct VehicleOption: Codable, Identifiable {
+    
+    enum CodingKeys: CodingKey {
+        case year
+        case category
+        case model
+        case make
+    }
+    
     var id: UUID = UUID()
-    let year: String
-    let make: String
+    let year: Int
+    let category: String
     let model: String
-    let trim: [String]
+    let make: String
 }
 
