@@ -10,7 +10,7 @@ import SwiftUI
 class VehicleJSONManager: ObservableObject {
     
     @Published var vehicleList = [VehicleOption]()
-    @Published var yearOptions = [String]()
+    @Published var yearOptions = Set<Int>()
     @Published var makeOptions = [String]()
     @Published var modelOptions = [String]()
     
@@ -25,14 +25,10 @@ class VehicleJSONManager: ObservableObject {
             do {
                 if let data = data {
                     let allVehicles = try JSONDecoder().decode([VehicleOption].self, from: data)
-                    var years: [String] = [String]()
-                    Set(allVehicles.map { $0.year }).forEach { year in
-                        years.append("\(year)")
-                    }
                     
                     DispatchQueue.main.async {
                         self.vehicleList = allVehicles
-                        self.yearOptions = years
+                        self.yearOptions = Set(allVehicles.map { $0.year })
                     }
                 } else {
                     print("No Data")
@@ -49,20 +45,31 @@ struct VehiclePickerPanel: View {
     @Binding var newVehicle: Vehicle?
     @ObservedObject var vehicles = VehicleJSONManager()
     
+    @State var selectedYear: Int?
+    
     // MARK: - BODY
     var body: some View {
         VStack {
-            Text("List Count: \(vehicles.vehicleList.count)")
-            Text("List Count: \(String(describing: vehicles.yearOptions))")
             HStack {
                 Text("Year:")
                     .modifier(TextMod(.title3, .semibold))
                 
                 Spacer()
                 
-                Text(self.newVehicle?.year ?? "Empty")
-                    .modifier(TextMod(.title3, .regular))
+                Picker("", selection: $selectedYear) {
+                    ForEach(vehicles.yearOptions.sorted{$0 > $1}, id: \.self) { year in
+                        Text(String(year))
+                    }
+                }
+                
             } //: HStack
+            .onTapGesture {
+                print("Tapped")
+                print(selectedYear ?? "Empty")
+            }
+            .onChange(of: vehicles.yearOptions) { _ in
+                self.selectedYear = vehicles.yearOptions.sorted{$0 > $1}[0]
+            }
             
             HStack {
                 Text("Make:")

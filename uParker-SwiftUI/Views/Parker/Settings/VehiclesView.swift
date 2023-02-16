@@ -404,7 +404,7 @@ struct VehiclesView: View {
 
             OrDivider()
             
-            
+            VehiclePickerPanel(newVehicle: self.$newVehicle)
             
             
         } //:VStack
