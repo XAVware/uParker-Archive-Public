@@ -15,7 +15,6 @@ struct VehiclesView: View {
     @State var licensePlate: String = ""
     @State var vin: String = ""
     
-//    @ObservedObject var data = ReadData()
     
     @State private var selectedMethod: AddMethod? = .none
     private enum AddMethod { case licensePlate, vin, manual }
@@ -61,12 +60,6 @@ struct VehiclesView: View {
             
             Spacer()
         } //: VStack
-//        .onAppear {
-//            print(vehicleList.count)
-//        }
-//        .onChange(of: self.data.vehicleOptions.count, perform: { newValue in
-//            print("Updated, New Count: \(newValue)")
-//        })
         .padding(.horizontal)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)

@@ -10,10 +10,11 @@ import SwiftUI
 
 struct PaymentMethodsView: View {
     // MARK: - PROPERTIES
+    @State private var newVehicle: Vehicle?
     
     // MARK: - BODY
     var body: some View {
-        Text("Hello World!")
+        VehiclePickerPanel(newVehicle: $newVehicle)
     }
 }
 

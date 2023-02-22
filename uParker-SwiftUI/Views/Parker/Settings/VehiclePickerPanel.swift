@@ -21,9 +21,6 @@ final class VehicleJSONManager: ObservableObject {
         }
     }
     
-    @Published var makeOptions = Set<String>()
-    @Published var modelOptions = Set<String>()
-    
     @Published var selectedYear: Int = 0 {
         didSet {
             let makesForYear = vehicleList.filter{ $0.year == selectedYear }
@@ -32,16 +29,57 @@ final class VehicleJSONManager: ObservableObject {
         }
     }
     
-    @Published var selectedMake: String = ""
+    @Published var makeOptions = Set<String>() {
+        didSet {
+            let modelsForMake = vehicleList.filter{ $0.year == selectedYear && $0.make == selectedMake }
+            modelOptions = Set(modelsForMake.map { $0.model })
+            if modelOptions.count > 0 {
+                selectedModel = modelOptions.sorted{$0 < $1}[0]
+            }
+        }
+    }
+    
+    @Published var selectedMake: String = "" {
+        didSet {
+            let modelsForMake = vehicleList.filter{ $0.year == selectedYear && $0.make == selectedMake }
+            modelOptions = Set(modelsForMake.map { $0.model })
+            if modelOptions.count > 0 {
+                selectedModel = modelOptions.sorted{$0 < $1}[0]
+            }
+        }
+    }
+    
+    @Published var modelOptions = Set<String>() {
+        didSet {
+            let trimsForModel = vehicleList.filter{ $0.year == selectedYear && $0.make == selectedMake && $0.model == selectedModel }
+            trimOptions = Set(trimsForModel.map { $0.category })
+            if trimOptions.count > 0 {
+                selectedTrim = trimOptions.sorted{$0 < $1}[0]
+            }
+        }
+    }
+    
+    @Published var selectedModel: String = "" {
+        didSet {
+            let trimsForModel = vehicleList.filter{ $0.year == selectedYear && $0.make == selectedMake && $0.model == selectedModel }
+            trimOptions = Set(trimsForModel.map { $0.category })
+            selectedTrim = trimOptions.sorted{$0 < $1}[0]
+        }
+    }
+    
+    @Published var trimOptions = Set<String>() {
+        didSet {
+            if trimOptions.count > 0 {
+                selectedTrim = trimOptions.sorted{$0 < $1}[0]
+            }
+        }
+    }
+    
+    @Published var selectedTrim: String = "N/A"
     
     init() {
         print("Initialized")
         load()
-//        selectedYear = yearOptions.sorted{$0 > $1}[0]
-//
-//        print("Makes for year: \(selectedYear)")
-//        let makesForYear: [VehicleOption] = vehicleList.filter { $0.year == selectedYear }
-        
     }
     
     func load() {
@@ -51,16 +89,9 @@ final class VehicleJSONManager: ObservableObject {
             do {
                 if let data = data {
                     let allVehicles = try JSONDecoder().decode([VehicleOption].self, from: data)
-                    
-                    let yearOptions = Set(allVehicles.map { $0.year })
-                    let mostRecentYear = yearOptions.max()
-                    
-                    let makesForYear = allVehicles.filter{ $0.year == mostRecentYear }
-                    let makeOptions = Set(makesForYear.map { $0.make })
-                    
+
                     DispatchQueue.main.async {
                         self.vehicleList = allVehicles
-//                        self.yearOptions = Set(allVehicles.map { $0.year })
                     }
                 } else {
                     print("No Data")
@@ -75,10 +106,8 @@ final class VehicleJSONManager: ObservableObject {
 struct VehiclePickerPanel: View {
     // MARK: - PROPERTIES
     @Binding var newVehicle: Vehicle?
-    @ObservedObject var vehicles = VehicleJSONManager()
-    
-//    @State var selectedYear: Int = 2022
-    
+    @ObservedObject var vehicleManager = VehicleJSONManager()
+        
     // MARK: - BODY
     var body: some View {
         VStack {
@@ -88,16 +117,13 @@ struct VehiclePickerPanel: View {
                 
                 Spacer()
                 
-                Picker("", selection: $vehicles.selectedYear) {
-                    ForEach(vehicles.yearOptions.sorted{$0 > $1}, id: \.self) { year in
+                Picker("", selection: $vehicleManager.selectedYear) {
+                    ForEach(vehicleManager.yearOptions.sorted{$0 > $1}, id: \.self) { year in
                         Text(String(year))
                     }
                 }
                 
             } //: HStack
-//            .onChange(of: vehicles.yearOptions) { _ in
-//                self.selectedYear = vehicles.yearOptions.sorted{$0 > $1}[0]
-//            }
             
             HStack {
                 Text("Make:")
@@ -105,9 +131,9 @@ struct VehiclePickerPanel: View {
                 
                 Spacer()
                 
-                Picker("", selection: $vehicles.selectedMake) {
-                    ForEach(vehicles.makeOptions.sorted{$0 < $1}, id: \.self) { make in
-                        Text(String(make))
+                Picker("", selection: $vehicleManager.selectedMake) {
+                    ForEach(vehicleManager.makeOptions.sorted{$0 < $1}, id: \.self) { make in
+                        Text(make)
                     }
                 }
             } //: HStack
@@ -119,8 +145,11 @@ struct VehiclePickerPanel: View {
                 
                 Spacer()
                 
-                Text(self.newVehicle?.model ?? "Empty")
-                    .modifier(TextMod(.title3, .regular))
+                Picker("", selection: $vehicleManager.selectedModel) {
+                    ForEach(vehicleManager.modelOptions.sorted{$0 < $1}, id: \.self) { model in
+                        Text(model)
+                    }
+                }
             } //: HStack
             
             HStack {
@@ -129,8 +158,11 @@ struct VehiclePickerPanel: View {
                 
                 Spacer()
                 
-                Text(self.newVehicle?.trim ?? "Empty")
-                    .modifier(TextMod(.title3, .regular))
+                Picker("", selection: $vehicleManager.selectedTrim) {
+                    ForEach(vehicleManager.trimOptions.sorted{$0 < $1}, id: \.self) { trim in
+                        Text(trim)
+                    }
+                }
             } //: HStack
             
             HStack {
