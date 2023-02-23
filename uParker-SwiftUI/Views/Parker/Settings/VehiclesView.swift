@@ -483,3 +483,8 @@ struct VehiclesView_Previews: PreviewProvider {
     }
 }
 
+extension VehiclesView {
+    @MainActor class VehiclesViewModel: ObservableObject {
+        
+    }
+}
