@@ -58,6 +58,7 @@
 		80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAB2992A92000B6F598 /* ImagePicker.swift */; };
 		80BA6AAF2992ACAC00B6F598 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */; };
 		80BDC5FA299B0AF800B9EC26 /* VehicleOptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */; };
+		80C634BB29A84BA9003BC4C1 /* VehiclesVieww.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C634BA29A84BA9003BC4C1 /* VehiclesVieww.swift */; };
 		80EAC1BF2968C38900F4DC09 /* ParkerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */; };
 		80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */; };
 		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
@@ -129,6 +130,7 @@
 		80BA6AAB2992A92000B6F598 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleOptionManager.swift; sourceTree = "<group>"; };
+		80C634BA29A84BA9003BC4C1 /* VehiclesVieww.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesVieww.swift; sourceTree = "<group>"; };
 		80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerSettingsView.swift; sourceTree = "<group>"; };
 		80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				80F500BC29954AC400880010 /* VehiclesView.swift */,
 				944DA844299C45FF00568765 /* PaymentMethodsView.swift */,
 				80319133299D77F3003B457B /* VehiclePickerPanel.swift */,
+				80C634BA29A84BA9003BC4C1 /* VehiclesVieww.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */,
 				8065485429731D4200943B72 /* ReservationPanelButton.swift in Sources */,
 				8065484E2972EF6400943B72 /* Review.swift in Sources */,
+				80C634BB29A84BA9003BC4C1 /* VehiclesVieww.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
 				80552582298B1EE300216586 /* ChatLogView.swift in Sources */,
 				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,

@@ -41,7 +41,7 @@ struct ParkerSettingsView: View {
             
             //Vehicles
             NavigationLink {
-                VehiclesView()
+                VehiclesVieww()
             } label: {
                 Image(systemName: "car")
                     .resizable()

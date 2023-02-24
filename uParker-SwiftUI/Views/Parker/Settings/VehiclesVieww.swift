@@ -1,4 +1,10 @@
 //
+//  VehiclesVieww.swift
+//  uParker-SwiftUI
+//
+//  Created by Smetana, Ryan on 2/23/23.
+//
+//
 //  PaymentMethodsView.swift
 //  uParker-SwiftUI
 //
@@ -7,8 +13,8 @@
 
 import SwiftUI
 
-extension PaymentMethodsView {
-    @MainActor class PaymentMethodsViewModel: ObservableObject {
+extension VehiclesVieww {
+    @MainActor class VehiclesViewModel: ObservableObject {
         // MARK: - PROPERTIES
         @Published var tabBarVisibility: Visibility = .hidden
         @Published var navBarVisibility: Visibility = .visible
@@ -17,6 +23,7 @@ extension PaymentMethodsView {
         @Published var isRequestInProgress: Bool = false
         @Published var newVehicle: Vehicle?
         @Published var isShowingAddVehicle: Bool = false
+        @Published var userVehicles: [Vehicle] = [Vehicle]()
 
         enum AddMethod { case licensePlate, manual }
         @Published var selectedMethod: AddMethod? = .none
@@ -86,33 +93,124 @@ extension PaymentMethodsView {
     }
 }
 
-struct PaymentMethodsView: View {
+struct VehiclesVieww: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
-    @StateObject var vm: PaymentMethodsViewModel = PaymentMethodsViewModel()
+    @StateObject var vm: VehiclesViewModel = VehiclesViewModel()
     
     // MARK: - BODY
     var body: some View {
         VStack {
-            
-            switch vm.selectedMethod {
-            case .none:
-                noVehiclesView
-//                    .frame(maxWidth: 280, maxHeight: 220)
-                
-//                Divider()
-//                addButtonPanel
-                
-            case .licensePlate:
-                if vm.newVehicle == nil {
-//                    addLicensePlateView
-                    addVehicleView2
-                } else {
-                    foundVehicleView
+            if vm.isShowingAddVehicle {
+                switch vm.selectedMethod {
+                case .none:
+                    VStack(spacing: 16) {
+                        Text("How do you want to add your vehicle?")
+                            .modifier(TextMod(.title, .regular))
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 32)
+                        
+                        Button {
+                            withAnimation { vm.selectedMethod = .licensePlate }
+                        } label: {
+                            Text("License Plate")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .modifier(OutlinedButtonMod())
+                        
+                        OrDivider()
+                            .padding(.horizontal)
+                        
+                        Button {
+                            withAnimation { vm.selectedMethod = .manual }
+                        } label: {
+                            Text("Year, Make & Model")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .modifier(OutlinedButtonMod())
+                        
+                    } //: VStack
+                    .padding()
+                case .licensePlate:
+                    if vm.newVehicle == nil {
+                        VStack(spacing: 48) {
+                            Text("Enter License Plate")
+                                .modifier(TextMod(.title2, .semibold))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                            
+                            HStack {
+                                AnimatedTextField(boundTo: $vm.licensePlate, placeholder: "License Plate")
+                                
+                                ZStack(alignment: .leading) {
+                                    Text("State")
+                                        .foregroundColor(.gray)
+                                        .offset(y: -19)
+                                        .scaleEffect(0.65, anchor: .leading)
+                                    
+                                    Picker("", selection: $vm.selectedState) {
+                                        ForEach(stateAbbreviations, id: \.self) {
+                                            Text("\($0)")
+                                        }
+                                    }
+                                    .tint(.black)
+                                    .offset(y: 7)
+                                    
+                                } //: ZStack
+                                .frame(width: 65, height: 48)
+                                .padding(.leading, 8)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(.gray, lineWidth: 1)
+                                )
+                                
+                            } //: HStack
+                            .frame(height: 48)
+                            
+                            Button {
+                                vm.searchTapped()
+                            } label: {
+                                Text("Find Vehicle Info")
+                                    .frame(maxWidth: .infinity)
+                            }
+                            .modifier(RoundedButtonMod())
+                            
+                        } //: VStack
+                        .frame(width: 300)
+                    } else {
+                        foundVehicleView
+                    }
+                case .manual:
+                    VehiclePickerPanel(newVehicle: $vm.newVehicle)
                 }
                 
-            case .manual:
-                Text("Manual")
+            } else if vm.userVehicles.isEmpty {
+                VStack(spacing: 8) {
+                    Image(systemName: "car.2.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: 100)
+                        .foregroundColor(primaryColor)
+                        .padding(.vertical)
+                        .opacity(0.7)
+                    
+                    Text("Looks like you haven't added a vehicle yet!")
+                        .modifier(TextMod(.title3, .semibold))
+                        .multilineTextAlignment(.center)
+                    
+                    Spacer().frame(height: 80)
+                    
+                    Button {
+                        vm.isShowingAddVehicle.toggle()
+                    } label: {
+                        Text("Add A Vehicle")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .modifier(RoundedButtonMod())
+
+                } //: VStack
+                .padding(.vertical)
+            } else {
+                Text("Vehicle List")
             }
             
         } //: VStack
@@ -147,7 +245,28 @@ struct PaymentMethodsView: View {
         .overlay(
             VStack {
                 if vm.isRequestInProgress {
-                    fetchingVehicleView
+                    VStack {
+                        Spacer()
+                        
+                        ProgressView()
+                            .tint(primaryColor)
+                            .frame(width: 50, height: 50)
+                            .scaleEffect(2)
+                        
+                        Text("Looking for your vehicle's information...")
+                            .modifier(TextMod(.title3, .semibold, primaryColor))
+                            .padding(.top)
+                            .padding(.bottom, 4)
+                        
+                        Text("This may take a few seconds")
+                            .modifier(TextMod(.body, .semibold, primaryColor))
+                        
+                        Spacer()
+                        
+                    } //: VStack
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .edgesIgnoringSafeArea(.all)
+                    .background(Color.white)
                 }
             } //: VStack
         )
@@ -156,114 +275,6 @@ struct PaymentMethodsView: View {
     }
     
     // MARK: - VIEW VARIABLES
-    private var fetchingVehicleView: some View {
-        VStack {
-            Spacer()
-            
-            ProgressView()
-                .tint(primaryColor)
-                .frame(width: 50, height: 50)
-                .scaleEffect(2)
-            
-            Text("Looking for your vehicle's information...")
-                .modifier(TextMod(.title3, .semibold, primaryColor))
-                .padding(.top)
-                .padding(.bottom, 4)
-            
-            Text("This may take a few seconds")
-                .modifier(TextMod(.body, .semibold, primaryColor))
-            
-            Spacer()
-            
-        } //: VStack
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .edgesIgnoringSafeArea(.all)
-        .background(Color.white)
-    } //: Fetching Vehicle
-    
-    private var noVehiclesView: some View {
-        VStack(spacing: 8) {
-            Image(systemName: "car.2.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(maxHeight: 100)
-                .foregroundColor(primaryColor)
-                .padding(.vertical)
-                .opacity(0.7)
-            
-            Text("Looks like you haven't added a vehicle yet!")
-                .modifier(TextMod(.title3, .semibold))
-                .multilineTextAlignment(.center)
-            
-            Spacer().frame(height: 80)
-            
-            Button {
-                //
-            } label: {
-                Text("Add A Vehicle")
-                    .frame(maxWidth: .infinity)
-            }
-            .modifier(RoundedButtonMod())
-
-            
-        } //: VStack
-        .padding(.vertical)
-    } //: No Vehicles View
-    
-    private var addVehicleView2: some View {
-        VStack(spacing: 16) {
-            VStack(spacing: 32) {
-                Text("Enter License Plate")
-                    .modifier(TextMod(.title2, .semibold))
-                    .frame(maxWidth: .infinity, alignment: .center)
-                
-                HStack {
-                    AnimatedTextField(boundTo: $vm.licensePlate, placeholder: "License Plate")
-                    
-                    ZStack(alignment: .leading) {
-                        Text("State")
-                            .foregroundColor(.gray)
-                            .offset(y: -19)
-                            .scaleEffect(0.65, anchor: .leading)
-                        
-                        Picker("", selection: $vm.selectedState) {
-                            ForEach(stateAbbreviations, id: \.self) {
-                                Text("\($0)")
-                            }
-                        }
-                        .tint(.black)
-                        .offset(y: 7)
-                        
-                    } //: ZStack
-                    .frame(width: 65, height: 48)
-                    .padding(.leading, 8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(.gray, lineWidth: 1)
-                    )
-                    
-                } //: HStack
-                .frame(height: 48)
-                
-                Button {
-                    vm.searchTapped()
-                } label: {
-                    Text("Find Vehicle Info")
-                        .frame(maxWidth: .infinity)
-                }
-                .modifier(RoundedButtonMod())
-                
-            } //: VStack
-            .frame(width: 300)
-
-            OrDivider()
-            
-            VehiclePickerPanel(newVehicle: $vm.newVehicle)
-            
-            
-        } //:VStack
-        .padding()
-    } // Add Vehicle View 2
     
     private var foundVehicleView: some View {
         VStack {
@@ -322,6 +333,8 @@ struct PaymentMethodsView: View {
                         Text("Model:")
                             .modifier(TextMod(.title3, .semibold))
                         
+                        Spacer()
+                        
                         Text(vm.newVehicle?.model ?? "Empty")
                             .modifier(TextMod(.title3, .regular))
                     } //: HStack
@@ -329,6 +342,8 @@ struct PaymentMethodsView: View {
                     HStack {
                         Text("Color:")
                             .modifier(TextMod(.title3, .semibold))
+                        
+                        Spacer()
                         
                         Text(vm.newVehicle?.color.name ?? "Empty")
                             .modifier(TextMod(.title3, .regular))
@@ -339,23 +354,9 @@ struct PaymentMethodsView: View {
                     Text("Trim:")
                         .modifier(TextMod(.title3, .semibold))
                     
+                    Spacer()
+                    
                     Text(vm.newVehicle?.trim ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("Engine:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(vm.newVehicle?.engine ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("Transmission:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(vm.newVehicle?.transmission ?? "Empty")
                         .modifier(TextMod(.title3, .regular))
                 } //: HStack
                 
@@ -363,28 +364,24 @@ struct PaymentMethodsView: View {
                     Text("Style:")
                         .modifier(TextMod(.title3, .semibold))
                     
+                    Spacer()
+                    
                     Text(vm.newVehicle?.style ?? "Empty")
                         .modifier(TextMod(.title3, .regular))
                 } //: HStack
                 
-                HStack {
-                    Text("Drivetrain:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(vm.newVehicle?.driveType ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
                 
                 HStack {
                     Text("VIN:")
                         .modifier(TextMod(.title3, .semibold))
+                    
+                    Spacer()
                     
                     Text(vm.newVehicle?.vin ?? "Empty")
                         .modifier(TextMod(.body, .regular))
                 } //: HStack
             } //: VStack
             .frame(maxWidth: 300)
-            .background(.blue)
             
             Spacer()
             
@@ -436,39 +433,12 @@ struct PaymentMethodsView: View {
         .padding(.top, 30)
     } //: Add Licence Plate View
     
-    private var addButtonPanel: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Add vehicle by using:")
-                .modifier(TextMod(.body, .regular))
-                .padding(.bottom, 4)
-            
-            Button {
-                withAnimation { vm.selectedMethod = .licensePlate }
-            } label: {
-                Text("License Plate")
-                    .frame(maxWidth: .infinity)
-            }
-            .modifier(OutlinedButtonMod())
-            
-            OrDivider()
-                .padding(.horizontal)
-            
-            Button {
-                withAnimation { vm.selectedMethod = .manual }
-            } label: {
-                Text("Year, Make & Model")
-                    .frame(maxWidth: .infinity)
-            }
-            .modifier(OutlinedButtonMod())
-            
-        } //: VStack
-        .padding()
-    }
+    
 }
 
-struct PaymentMethodsView_Previews: PreviewProvider {
+struct VehiclesVieww_Previews: PreviewProvider {
     static var previews: some View {
-        PaymentMethodsView()
+        VehiclesVieww()
     }
 }
 
