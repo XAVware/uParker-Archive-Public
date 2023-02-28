@@ -1,141 +1,83 @@
 //
+//  VehiclesVieww.swift
+//  uParker-SwiftUI
+//
+//  Created by Smetana, Ryan on 2/23/23.
+//
+//
 //  VehiclesView.swift
 //  uParker-SwiftUI
 //
-//  Created by Smetana, Ryan on 2/9/23.
+//  Created by Ryan Smetana on 2/14/23.
 //
 
 import SwiftUI
 
-struct VehiclesView: View {
+@MainActor class VehiclesViewModel: ObservableObject {
     // MARK: - PROPERTIES
-    @Environment(\.dismiss) var dismiss
-    @State var tabBarVisibility: Visibility = .hidden
-    @State var navBarVisibility: Visibility = .visible
-    @State var licensePlate: String = ""
-    @State var vin: String = ""
+    @Published var tabBarVisibility: Visibility = .hidden
+    @Published var navBarVisibility: Visibility = .visible
+    @Published var licensePlate: String = "S71JCY"
+    @Published var selectedState: String = "NJ"
+    @Published var isRequestInProgress: Bool = false
+    @Published var isShowingAddVehicle: Bool = false
+    @Published var newVehicle: Vehicle?
+    @Published var userVehicles: [Vehicle] = [Vehicle]()
     
-    
-    @State private var selectedMethod: AddMethod? = .none
-    private enum AddMethod { case licensePlate, vin, manual }
-        
-    @State private var selectedState: String = "AK"
-    
-    @State private var isRequestInProgress: Bool = false
-    @State private var newVehicle: Vehicle?
-    
-    private var stateAbbreviation: String {
-        return String(selectedState.prefix(2))
-    }
-    
-    // MARK: - BODY
-    var body: some View {
-        VStack {
-//            noVehiclesView
-//                .frame(maxWidth: 280, maxHeight: selectedMethod == .none ? 220 : 0)
-//                .scaleEffect(selectedMethod == .none ? 1 : 0)
-//                .opacity(selectedMethod == .none ? 1 : 0)
-//
-//            Divider()
-            
-            switch self.selectedMethod {
-            case .none:
-//                addButtonPanel
-//                foundVehicleView
-                addVehicleView2
-                
-            case .licensePlate:
-                if self.newVehicle == nil {
-                    addLicensePlateView
-                } else {
-                    foundVehicleView
-                }
-                
-            case .vin:
-                Text("VIN")
-                
-            case .manual:
-                Text("Manual")
-            }
-            
-            Spacer()
-        } //: VStack
-        .padding(.horizontal)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(self.selectedMethod == .none ? "Your Vehicles" : "Add Vehicle")
-        .toolbar(tabBarVisibility, for: .tabBar)
-        .toolbar(navBarVisibility, for: .navigationBar)
-        .onDisappear {
-            tabBarVisibility = .visible
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    backTapped()
-                } label: {
-                    HStack(spacing: 5) {
-                        Image(systemName: "chevron.left")
-                            .resizable()
-                            .scaledToFit()
-                        
-                        Text("Back")
-                            .modifier(TextMod(.footnote, .regular))
-                    } //: HStack
-                    .frame(height: 16, alignment: .leading)
-                }
-                .buttonStyle(PlainButtonStyle())
-            }
-        } //: ToolBar
-        .overlay(
-            VStack {
-                if self.isRequestInProgress {
-                    fetchingVehicleView
-                }
-            }
-        )
-        
-    } //: Body
+    enum AddMethod { case licensePlate, manual }
+    @Published var selectedMethod: AddMethod? = .none
     
     // MARK: - FUNCTIONS
-    private func backTapped() {
-        if self.selectedMethod == .none {
-            tabBarVisibility = .visible
-            dismiss.callAsFunction()
-        } else {
-            self.selectedMethod = .none
-        }
+    func addVehicleTapped() {
+        isShowingAddVehicle.toggle()
     }
     
-    private func searchTapped() {
-        guard self.selectedState != states[0] else {
-            print("No State Selected")
+    func backTapped(_ dismiss: DismissAction) {
+        if isShowingAddVehicle {
+            if selectedMethod == .none {
+                isShowingAddVehicle = false
+            } else {
+                if newVehicle == nil {
+                    self.selectedMethod = .none
+                } else {
+                    newVehicle = nil
+                }
+            }
+        } else {
+            tabBarVisibility = .visible
+            dismiss.callAsFunction()
+        }
+        
+    }
+    
+    func saveTapped() {
+        guard newVehicle != nil else {
+            print("New vehicle is nil")
             return
         }
-
+        
+        userVehicles.append(newVehicle!)
+        newVehicle = nil
+        selectedMethod = .none
+        isShowingAddVehicle = false
+    }
+    
+    func lookupPlate() {
         guard self.licensePlate != "" else {
             print("No license plate entered")
             return
         }
         self.isRequestInProgress = true
         self.navBarVisibility = .hidden
-        let stateAbbreviation: String = String(selectedState.prefix(2))
-        let plateInfo: [String: AnyHashable] = ["plate": licensePlate, "state": stateAbbreviation]
+        let plateInfo: [String: AnyHashable] = ["plate": licensePlate, "state": selectedState]
         
-        fetchVehicle(forPlate: plateInfo) { vehicle, error in
-            guard let vehicle = vehicle, error == nil else {
-                print(error ?? "Error Returned")
-                return
-            }
-            
-            self.newVehicle = vehicle
-        }
+        fetchVehicle(forPlate: plateInfo)
     }
     
-    private func fetchVehicle(forPlate parameters: [String: AnyHashable], completion: @escaping(Vehicle?, Error?) -> ())  {
+    private func fetchVehicle(forPlate parameters: [String: AnyHashable])  {
         guard let url = URL(string: "https://platetovin.net/api/convert") else {
             let error = NSError(domain: "", code: 401, userInfo: [ NSLocalizedDescriptionKey: "Unable to access URL"])
-            completion(nil, error)
+            print(error)
             return
         }
         
@@ -147,7 +89,7 @@ struct VehiclesView: View {
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .fragmentsAllowed)
         
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        URLSession.shared.dataTask(with: request) { data, _, error in
             defer {
                 DispatchQueue.main.async {
                     self.isRequestInProgress = false
@@ -155,257 +97,133 @@ struct VehiclesView: View {
                 }
             }
             
-            guard let data = data, error == nil else {
-                completion(nil, error)
-                return
-            }
+            guard let data = data, error == nil else { return }
             
             do {
                 let decodedResponse = try JSONDecoder().decode(PTVResponse.self, from: data)
-                completion(decodedResponse.vin, nil)
+                DispatchQueue.main.async {
+                    self.newVehicle = decodedResponse.vin
+                }
             } catch {
-                completion(nil, error)
+                print(error)
             }
+        }.resume()
+        
+    }
+}
+
+
+struct VehiclesView: View {
+    // MARK: - PROPERTIES
+    @Environment(\.dismiss) var dismiss
+    @StateObject var vm: VehiclesViewModel = VehiclesViewModel()
+    
+    // MARK: - BODY
+    var body: some View {
+        VStack {
+            if vm.isShowingAddVehicle {
+                AddVehicleView()
+                    .environmentObject(vm)
+                
+            } else if vm.userVehicles.isEmpty {
+                VStack(spacing: 8) {
+                    Image(systemName: "car.2.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: 100)
+                        .foregroundColor(primaryColor)
+                        .padding(.vertical)
+                        .opacity(0.7)
+                    
+                    Text("Looks like you haven't added a vehicle yet!")
+                        .modifier(TextMod(.title3, .semibold))
+                        .multilineTextAlignment(.center)
+                    
+                    Spacer().frame(height: 80)
+                    
+                    Button {
+                        vm.addVehicleTapped()
+                        print(vm.isShowingAddVehicle)
+                    } label: {
+                        Text("Add A Vehicle")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .modifier(RoundedButtonMod())
+
+                } //: VStack
+                .padding(.vertical)
+            } else {
+                List(vm.userVehicles, id: \.vin) { vehicle in
+                    VStack {
+                        Text(vehicle.year)
+                        Text(vehicle.make)
+                        Text(vehicle.model)
+                        Text(vehicle.vin)
+                        Divider()
+                    }
+                }
+            }
+            
+        } //: VStack
+        .padding(.horizontal)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(vm.isShowingAddVehicle ? "Add Vehicle" : "Your Vehicles")
+        .toolbar(vm.tabBarVisibility, for: .tabBar)
+        .toolbar(vm.navBarVisibility, for: .navigationBar)
+        .onDisappear {
+            vm.tabBarVisibility = .visible
         }
-        task.resume()
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                backButton
+            }
+            if vm.userVehicles.count != 0 {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    addButton
+                }
+            }
+        } //: ToolBar
         
     }
     
     // MARK: - VIEW VARIABLES
-    private var noVehiclesView: some View {
-        VStack(spacing: 8) {
-            Image(systemName: "car.2.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(maxHeight: 100)
-                .foregroundColor(primaryColor)
-                .padding(.vertical)
-                .opacity(0.7)
-            
-            Text("Looks like you haven't added a vehicle yet!")
-                .modifier(TextMod(.title3, .semibold))
-                .multilineTextAlignment(.center)
-            
-        } //: VStack
-        .padding(.vertical)
-    } //: No Vehicles View
-    
-    private var fetchingVehicleView: some View {
-        VStack {
-            Spacer()
-            
-            ProgressView()
-                .tint(primaryColor)
-                .frame(width: 50, height: 50)
-                .scaleEffect(2)
-            
-            Text("Looking for your vehicle's information...")
-                .modifier(TextMod(.title3, .semibold, primaryColor))
-                .padding(.top)
-                .padding(.bottom, 4)
-            
-            Text("This may take a few seconds")
-                .modifier(TextMod(.body, .semibold, primaryColor))
-            
-            Spacer()
-            
-        } //: VStack
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .edgesIgnoringSafeArea(.all)
-        .background(Color.white)
-    } //: Fetching Vehicle
-    
-    struct VehicleSpecCell: View {
-        let title: String
-        let value: String
-        
-        var body: some View {
-            HStack {
-                Text(title)
-                    .modifier(TextMod(.title3, .semibold))
+    private var addButton: some View {
+        Button {
+            vm.addVehicleTapped()
+        } label: {
+            HStack(spacing: 5) {
+                Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .scaledToFit()
                 
-                Spacer()
-                
-                Text(value)
-                    .modifier(TextMod(.title3, .regular))
+                Text("Add")
+                    .modifier(TextMod(.footnote, .regular))
             } //: HStack
+            .frame(height: 16, alignment: .leading)
         }
+        .buttonStyle(PlainButtonStyle())
     }
     
-    private var foundVehicleView: some View {
-        VStack {
-            Text("We found your vehicle!")
-                .padding(.top)
-                .frame(maxWidth: .infinity)
-                .modifier(TextMod(.title2, .semibold))
-            
-            Text("Please confirm the information below")
-                .frame(maxWidth: .infinity)
-                .modifier(TextMod(.title3, .regular))
-            
-            Spacer()
-            
-            VStack(spacing: 12) {
-                Group {
-                    VehicleSpecCell(title: "Plate:", value: "\(stateAbbreviation)-\(licensePlate)")
-                    VehicleSpecCell(title: "Year:", value: newVehicle?.year ?? "Empty")
-                    VehicleSpecCell(title: "Make:", value: newVehicle?.make ?? "Empty")
-                    VehicleSpecCell(title: "Model:", value: newVehicle?.model ?? "Empty")
-                    VehicleSpecCell(title: "Color:", value: newVehicle?.color.name ?? "Empty")
-                }
+    private var backButton: some View {
+        Button {
+            vm.backTapped(dismiss)
+        } label: {
+            HStack(spacing: 5) {
+                Image(systemName: "chevron.left")
+                    .resizable()
+                    .scaledToFit()
                 
-                VehicleSpecCell(title: "Trim:", value: newVehicle?.trim ?? "Empty")
-                VehicleSpecCell(title: "Engine:", value: newVehicle?.engine ?? "Empty")
-                VehicleSpecCell(title: "Transmission:", value: newVehicle?.transmission ?? "Empty")
-                VehicleSpecCell(title: "Style:", value: newVehicle?.style ?? "Empty")
-                VehicleSpecCell(title: "Drivetrain:", value: self.newVehicle?.driveType ?? "Empty")
-                VehicleSpecCell(title: "VIN:", value: self.newVehicle?.vin ?? "Empty")
-            } //: VStack
-            .frame(maxWidth: 300)
-            .background(.blue)
-            
-            Spacer()
-            
-            Button {
-                //
-            } label: {
-                Text("Confirm & Save")
-                    .frame(maxWidth: .infinity)
-            }
-            .modifier(RoundedButtonMod())
-
-        } //: VStack
-    } //: Found Vehicle View
-    
-    private var addVehicleView2: some View {
-        VStack(spacing: 16) {
-            VStack(spacing: 32) {
-                Text("Enter License Plate")
-                    .modifier(TextMod(.title2, .semibold))
-                    .frame(maxWidth: .infinity, alignment: .center)
-                
-                HStack {
-                    AnimatedTextField(boundTo: $licensePlate, placeholder: "License Plate")
-                    
-                    ZStack(alignment: .leading) {
-                        Text("State")
-                            .foregroundColor(.gray)
-                            .offset(y: -19)
-                            .scaleEffect(0.65, anchor: .leading)
-                        
-                        Picker("", selection: $selectedState) {
-                            ForEach(stateAbbreviations, id: \.self) {
-                                Text("\($0)")
-                            }
-                        }
-                        .tint(.black)
-                        .offset(y: 7)
-                        
-                    } //: ZStack
-                    .frame(width: 65, height: 48)
-                    .padding(.leading, 8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(.gray, lineWidth: 1)
-                    )
-                    
-                } //: HStack
-                .frame(height: 48)
-                
-                Button {
-                    searchTapped()
-                } label: {
-                    Text("Find Vehicle Info")
-                        .frame(maxWidth: .infinity)
-                }
-                .modifier(RoundedButtonMod())
-                
-            } //: VStack
-            .frame(width: 300)
-
-            OrDivider()
-            
-            VehiclePickerPanel(newVehicle: self.$newVehicle)
-            
-            
-        } //:VStack
-        .padding()
-    } // Add Vehicle View 2
-    
-    private var addLicensePlateView: some View {
-        VStack(spacing: 16) {
-            Text("Enter License Plate")
-                .modifier(TextMod(.title2, .semibold))
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 24)
-                        
-            Picker("Select State", selection: $selectedState) {
-                ForEach(states, id: \.self) {
-                    Text($0)
-                }
-            }
-            .tint(.black)
-            .frame(maxWidth: 190)
-            .frame(height: 45, alignment: .trailing)
-            .overlay(
-                RoundedRectangle(cornerRadius: 5).stroke(.gray)
-            )
-            
-            AnimatedTextField(boundTo: $licensePlate, placeholder: "License Plate")
-                .frame(maxWidth: 190)
-            
-            Button {
-                searchTapped()
-            } label: {
-                Text("Search")
-                    .frame(maxWidth: .infinity)
-            }
-            .modifier(RoundedButtonMod())
-            .padding()
-            
-            Spacer()
-        } //: VStack
-        .padding(.horizontal)
-        .padding(.top, 30)
-    } //: Add Licence Plate View
-    
-    private var addButtonPanel: some View {
-        VStack(alignment: .leading) {
-            Text("Add vehicle by using:")
-                .modifier(TextMod(.body, .regular))
-                .padding(.bottom, 4)
-            
-            Button {
-                withAnimation { self.selectedMethod = .licensePlate }
-            } label: {
-                Text("License Plate")
-                    .frame(maxWidth: .infinity)
-            }
-            .modifier(OutlinedButtonMod())
-            
-            Button {
-                withAnimation { self.selectedMethod = .vin }
-            } label: {
-                Text("VIN")
-                    .frame(maxWidth: .infinity)
-            }
-            .modifier(OutlinedButtonMod())
-            
-            Button {
-                withAnimation { self.selectedMethod = .manual }
-            } label: {
-                Text("Year, Make & Model")
-                    .frame(maxWidth: .infinity)
-            }
-            .modifier(OutlinedButtonMod())
-            
-        } //: VStack
-        .padding()
+                Text("Back")
+                    .modifier(TextMod(.footnote, .regular))
+            } //: HStack
+            .frame(height: 16, alignment: .leading)
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 
-// MARK: - PREVIEW
-struct VehiclesView_Previews: PreviewProvider {
+struct VehiclesVieww_Previews: PreviewProvider {
     static var previews: some View {
         VehiclesView()
     }
