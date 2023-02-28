@@ -215,6 +215,23 @@ struct VehiclesView: View {
         .background(Color.white)
     } //: Fetching Vehicle
     
+    struct VehicleSpecCell: View {
+        let title: String
+        let value: String
+        
+        var body: some View {
+            HStack {
+                Text(title)
+                    .modifier(TextMod(.title3, .semibold))
+                
+                Spacer()
+                
+                Text(value)
+                    .modifier(TextMod(.title3, .regular))
+            } //: HStack
+        }
+    }
+    
     private var foundVehicleView: some View {
         VStack {
             Text("We found your vehicle!")
@@ -230,108 +247,19 @@ struct VehiclesView: View {
             
             VStack(spacing: 12) {
                 Group {
-                    HStack {
-                        Text("Plate:")
-                            .modifier(TextMod(.title3, .semibold))
-                        
-//                        Text(self.licensePlate)
-                        Text("S71JCY")
-                            .modifier(TextMod(.title3, .regular))
-                        
-                        Spacer()
-                        
-                        Text("State:")
-                            .modifier(TextMod(.title3, .semibold))
-                        
-                        Text(self.stateAbbreviation)
-                            .modifier(TextMod(.title3, .regular))
-                    } //: HStack
-                    
-                    HStack {
-                        Text("Year:")
-                            .modifier(TextMod(.title3, .semibold))
-                        
-                        Spacer()
-                        
-                        Text(self.newVehicle?.year ?? "Empty")
-                            .modifier(TextMod(.title3, .regular))
-                    } //: HStack
-                    
-                    HStack {
-                        Text("Make:")
-                            .modifier(TextMod(.title3, .semibold))
-                        
-                        Spacer()
-                        
-                        Text(self.newVehicle?.make ?? "Empty")
-                            .modifier(TextMod(.title3, .regular))
-                    } //: HStack
-                    
-                    
-                    HStack {
-                        Text("Model:")
-                            .modifier(TextMod(.title3, .semibold))
-                        
-                        Text(self.newVehicle?.model ?? "Empty")
-                            .modifier(TextMod(.title3, .regular))
-                    } //: HStack
-                    
-                    HStack {
-                        Text("Color:")
-                            .modifier(TextMod(.title3, .semibold))
-                        
-                        Text(self.newVehicle?.color.name ?? "Empty")
-                            .modifier(TextMod(.title3, .regular))
-                    } //: HStack
+                    VehicleSpecCell(title: "Plate:", value: "\(stateAbbreviation)-\(licensePlate)")
+                    VehicleSpecCell(title: "Year:", value: newVehicle?.year ?? "Empty")
+                    VehicleSpecCell(title: "Make:", value: newVehicle?.make ?? "Empty")
+                    VehicleSpecCell(title: "Model:", value: newVehicle?.model ?? "Empty")
+                    VehicleSpecCell(title: "Color:", value: newVehicle?.color.name ?? "Empty")
                 }
                 
-                HStack {
-                    Text("Trim:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(self.newVehicle?.trim ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("Engine:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(self.newVehicle?.engine ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("Transmission:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(self.newVehicle?.transmission ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("Style:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(self.newVehicle?.style ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("Drivetrain:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(self.newVehicle?.driveType ?? "Empty")
-                        .modifier(TextMod(.title3, .regular))
-                } //: HStack
-                
-                HStack {
-                    Text("VIN:")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text(self.newVehicle?.vin ?? "Empty")
-                        .modifier(TextMod(.body, .regular))
-                } //: HStack
+                VehicleSpecCell(title: "Trim:", value: newVehicle?.trim ?? "Empty")
+                VehicleSpecCell(title: "Engine:", value: newVehicle?.engine ?? "Empty")
+                VehicleSpecCell(title: "Transmission:", value: newVehicle?.transmission ?? "Empty")
+                VehicleSpecCell(title: "Style:", value: newVehicle?.style ?? "Empty")
+                VehicleSpecCell(title: "Drivetrain:", value: self.newVehicle?.driveType ?? "Empty")
+                VehicleSpecCell(title: "VIN:", value: self.newVehicle?.vin ?? "Empty")
             } //: VStack
             .frame(maxWidth: 300)
             .background(.blue)

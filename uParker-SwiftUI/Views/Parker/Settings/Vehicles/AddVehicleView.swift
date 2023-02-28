@@ -20,10 +20,6 @@ struct AddVehicleView: View {
                     .modifier(TextMod(.title, .regular))
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 32)
-                    .onTapGesture {
-                        print(vm.isShowingAddVehicle)
-                        print(vm.selectedMethod)
-                    }
                 
                 Button {
                     vm.selectedMethod = .licensePlate

@@ -16,6 +16,8 @@
 		80319134299D77F3003B457B /* VehiclePickerPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80319133299D77F3003B457B /* VehiclePickerPanel.swift */; };
 		8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036CB2D296DA2A300B1A2B9 /* Extensions.swift */; };
 		8036F4DC298C4110009A9566 /* Unused in Resources */ = {isa = PBXBuildFile; fileRef = 8036F4DB298C4110009A9566 /* Unused */; };
+		804287C129ADD4A400D9621C /* TermsConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804287C029ADD4A400D9621C /* TermsConditionsView.swift */; };
+		804287C329ADDE3C00D9621C /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804287C229ADDE3C00D9621C /* PrivacyPolicy.swift */; };
 		8047EDB8296E0BC600AF3896 /* ConfirmPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */; };
 		804DAD53297A616C00B89AC6 /* Documentation in Resources */ = {isa = PBXBuildFile; fileRef = 804DAD52297A616C00B89AC6 /* Documentation */; };
 		804DAD56297B369D00B89AC6 /* MapboxSearch in Frameworks */ = {isa = PBXBuildFile; productRef = 804DAD55297B369D00B89AC6 /* MapboxSearch */; };
@@ -90,6 +92,8 @@
 		80319133299D77F3003B457B /* VehiclePickerPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePickerPanel.swift; sourceTree = "<group>"; };
 		8036CB2D296DA2A300B1A2B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8036F4DB298C4110009A9566 /* Unused */ = {isa = PBXFileReference; lastKnownFileType = text; path = Unused; sourceTree = "<group>"; };
+		804287C029ADD4A400D9621C /* TermsConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsConditionsView.swift; sourceTree = "<group>"; };
+		804287C229ADDE3C00D9621C /* PrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicy.swift; sourceTree = "<group>"; };
 		8047EDB7296E0BC600AF3896 /* ConfirmPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneView.swift; sourceTree = "<group>"; };
 		804DAD52297A616C00B89AC6 /* Documentation */ = {isa = PBXFileReference; lastKnownFileType = text; path = Documentation; sourceTree = "<group>"; };
 		8050951B2991ACC20035BE56 /* AuthOptionsPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOptionsPanel.swift; sourceTree = "<group>"; };
@@ -169,6 +173,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		804287BF29ADD48E00D9621C /* Legal */ = {
+			isa = PBXGroup;
+			children = (
+				804287C029ADD4A400D9621C /* TermsConditionsView.swift */,
+				804287C229ADDE3C00D9621C /* PrivacyPolicy.swift */,
+			);
+			path = Legal;
+			sourceTree = "<group>";
+		};
+		804287C429ADE26300D9621C /* Vehicles */ = {
+			isa = PBXGroup;
+			children = (
+				80F500BC29954AC400880010 /* VehiclesView.swift */,
+				80319133299D77F3003B457B /* VehiclePickerPanel.swift */,
+				80C634BA29A84BA9003BC4C1 /* VehiclesVieww.swift */,
+				80C9050729A94F35006AC211 /* AddVehicleView.swift */,
+			);
+			path = Vehicles;
+			sourceTree = "<group>";
+		};
+		804287C529ADE27900D9621C /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		8047EDB3296E013100AF3896 /* SpotSearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,13 +386,11 @@
 		80BA6AAD2992AC9C00B6F598 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				804287C529ADE27900D9621C /* Account */,
+				804287C429ADE26300D9621C /* Vehicles */,
+				804287BF29ADD48E00D9621C /* Legal */,
 				80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */,
-				80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */,
-				80F500BC29954AC400880010 /* VehiclesView.swift */,
 				944DA844299C45FF00568765 /* PaymentMethodsView.swift */,
-				80319133299D77F3003B457B /* VehiclePickerPanel.swift */,
-				80C634BA29A84BA9003BC4C1 /* VehiclesVieww.swift */,
-				80C9050729A94F35006AC211 /* AddVehicleView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -488,6 +518,7 @@
 				80319134299D77F3003B457B /* VehiclePickerPanel.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
+				804287C329ADDE3C00D9621C /* PrivacyPolicy.swift in Sources */,
 				80C9050829A94F35006AC211 /* AddVehicleView.swift in Sources */,
 				80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */,
 				800772F1296C61C600E7FEED /* SearchField.swift in Sources */,
@@ -505,6 +536,7 @@
 				80AE3FAF2970989000A654E0 /* ConfirmEmailView.swift in Sources */,
 				8065484C2972EF6400943B72 /* Vehicle.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
+				804287C129ADD4A400D9621C /* TermsConditionsView.swift in Sources */,
 				8047EDB8296E0BC600AF3896 /* ConfirmPhoneView.swift in Sources */,
 				8050952329920E860035BE56 /* SpotPageView.swift in Sources */,
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,
