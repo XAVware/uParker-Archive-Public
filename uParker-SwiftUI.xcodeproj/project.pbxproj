@@ -62,6 +62,7 @@
 		80BDC5FA299B0AF800B9EC26 /* VehicleOptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */; };
 		80C634BB29A84BA9003BC4C1 /* VehiclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C634BA29A84BA9003BC4C1 /* VehiclesView.swift */; };
 		80C9050829A94F35006AC211 /* AddVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C9050729A94F35006AC211 /* AddVehicleView.swift */; };
+		80CD7E7529AFEF2A00EE2F2F /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */; };
 		80EAC1BF2968C38900F4DC09 /* ParkerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */; };
 		80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */; };
 		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
@@ -136,6 +137,7 @@
 		80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleOptionManager.swift; sourceTree = "<group>"; };
 		80C634BA29A84BA9003BC4C1 /* VehiclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesView.swift; sourceTree = "<group>"; };
 		80C9050729A94F35006AC211 /* AddVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleView.swift; sourceTree = "<group>"; };
+		80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
 		80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerSettingsView.swift; sourceTree = "<group>"; };
 		80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
@@ -171,15 +173,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		804287BF29ADD48E00D9621C /* Legal */ = {
-			isa = PBXGroup;
-			children = (
-				804287C029ADD4A400D9621C /* TermsConditionsView.swift */,
-				804287C229ADDE3C00D9621C /* PrivacyPolicy.swift */,
-			);
-			path = Legal;
-			sourceTree = "<group>";
-		};
 		804287C429ADE26300D9621C /* Vehicles */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,13 +376,23 @@
 		80BA6AAD2992AC9C00B6F598 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				80CD7E7329AFEF0C00EE2F2F /* Info */,
 				804287C529ADE27900D9621C /* Account */,
 				804287C429ADE26300D9621C /* Vehicles */,
-				804287BF29ADD48E00D9621C /* Legal */,
 				80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */,
 				944DA844299C45FF00568765 /* PaymentMethodsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		80CD7E7329AFEF0C00EE2F2F /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				804287C029ADD4A400D9621C /* TermsConditionsView.swift */,
+				804287C229ADDE3C00D9621C /* PrivacyPolicy.swift */,
+				80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,6 +485,7 @@
 				80A64A26294D8F77001317DD /* ButtonModifier.swift in Sources */,
 				80903DC8298D928C0078881C /* MapSettingsView.swift in Sources */,
 				8065484B2972EF6400943B72 /* Reservation.swift in Sources */,
+				80CD7E7529AFEF2A00EE2F2F /* MoreInfoView.swift in Sources */,
 				8055257F298B1BA200216586 /* PinView.swift in Sources */,
 				80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */,
 				80F372A42965FECB004A2570 /* ContinueWithButton.swift in Sources */,

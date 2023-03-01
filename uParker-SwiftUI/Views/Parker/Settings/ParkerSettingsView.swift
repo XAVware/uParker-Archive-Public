@@ -32,14 +32,19 @@ struct ParkerSettingsView: View {
                             .padding(.top)
                     } //: If Is logged in
                     
-                    supportSection
+                    supportSection 
                         .padding(.top)
                     
-                    legalSection
-                        .padding(.top)
-                    
-                    footerSection
-                        .padding(.top)
+                    if self.sessionManager.isLoggedIn {
+                        Button {
+                            self.sessionManager.logOut()
+                        } label: {
+                            Text("Log Out").underline()
+                                .foregroundColor(.black)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 32)
+                    }
                         
                 } //: VStack
                 .padding()
@@ -208,7 +213,7 @@ struct ParkerSettingsView: View {
 
             //More Info
             NavigationLink {
-                
+                MoreInfoView()
             } label: {
                 Image(systemName: "info.circle")
                     .resizable()
@@ -246,75 +251,6 @@ struct ParkerSettingsView: View {
         } //: VStack
     } //: SupportSection
     
-    // MARK: - LEGAL
-    private var legalSection: some View {
-        VStack(alignment: .leading) {
-            Text("Legal")
-                .modifier(TextMod(.title2, .semibold))
-
-            //Privacy Policy
-            NavigationLink {
-                PrivacyPolicy()
-            } label: {
-                Image(systemName: "doc.text.magnifyingglass")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18)
-                
-                Text("Privacy Policy")
-                    .padding(.horizontal, 8)
-                    
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-            }
-            .modifier(SettingsButtonMod())
-            
-            Divider()
-
-            //Terms & Conditions
-            NavigationLink {
-                TermsConditionsView()
-            } label: {
-                Image(systemName: "doc.text.magnifyingglass")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18)
-                
-                Text("Terms & Conditions")
-                    .padding(.horizontal, 8)
-                    
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-            }
-            .modifier(SettingsButtonMod())
-                        
-            Divider()
-        } //: VStack
-    } //: LegalSection
-    
-    
-    
-    // MARK: - FOOTER
-    private var footerSection: some View {
-        VStack(spacing: 20) {
-            if self.sessionManager.isLoggedIn {
-                Button {
-                    self.sessionManager.logOut()
-                } label: {
-                    Text("Log Out").underline()
-                        .foregroundColor(.black)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            
-            Text("Version 2.0.1")
-                .modifier(TextMod(.footnote, .regular))
-                .frame(maxWidth: .infinity, alignment: .leading)
-        } //: VStack
-        .padding(.top)
-    } //: FooterSection
 }
 // MARK: - PREVIEW
 struct ParkerSettingsView_Previews: PreviewProvider {
