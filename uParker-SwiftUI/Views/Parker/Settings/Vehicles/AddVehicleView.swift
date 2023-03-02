@@ -134,15 +134,6 @@ struct AddVehicleView: View {
     }
     
     private var vehicleDetails: [VehicleDetail] {
-//        let plateDetail = VehicleDetail(header: "Plate:", detail: "\(vm.selectedState)-\(vm.licensePlate)")
-//        let yearDetail =  VehicleDetail(header: "Year:", detail: vm.newVehicle?.year ?? "Empty")
-//        let makeDetail =  VehicleDetail(header: "Make:", detail: vm.newVehicle?.make ?? "Empty")
-//        let modelDetail = VehicleDetail(header: "Model:", detail: vm.newVehicle?.model ?? "Empty")
-//        let trimDetail =  VehicleDetail(header: "Trim:", detail: vm.newVehicle?.trim ?? "Empty")
-//        let styleDetail = VehicleDetail(header: "Style:", detail: vm.newVehicle?.style ?? "Empty")
-//        let colorDetail = VehicleDetail(header: "Color:", detail: vm.newVehicle?.color.name ?? "Empty")
-//        let vinDetail =   VehicleDetail(header: "Vin:", detail: vm.newVehicle?.vin ?? "Empty")
-//        let detailArray: [VehicleDetail] = [plateDetail, yearDetail, makeDetail, modelDetail, colorDetail]
         let detailArray: [VehicleDetail] = [
             VehicleDetail(header: "Plate:", detail: "\(vm.selectedState)-\(vm.licensePlate)"),
             VehicleDetail(header: "Year:", detail: vm.newVehicle?.year ?? "Empty"),

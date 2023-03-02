@@ -56,6 +56,11 @@ import SwiftUI
             return
         }
         
+        if licensePlate != "" && selectedState != ""{
+            newVehicle!.plate = licensePlate
+            newVehicle!.state = selectedState
+        }
+        
         userVehicles.append(newVehicle!)
         newVehicle = nil
         selectedMethod = .none
@@ -125,63 +130,25 @@ struct VehiclesView: View {
                 AddVehicleView()
                     .environmentObject(vm)
                 
-            } else if vm.userVehicles.isEmpty {
-                VStack(spacing: 8) {
-                    Image(systemName: "car.2.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxHeight: 100)
-                        .foregroundColor(primaryColor)
-                        .padding(.vertical)
-                        .opacity(0.7)
-                    
-                    Text("Looks like you haven't added a vehicle yet!")
-                        .modifier(TextMod(.title3, .semibold))
-                        .multilineTextAlignment(.center)
-                    
-                    Spacer().frame(height: 80)
-                    
-                    Button {
-                        vm.addVehicleTapped()
-                        print(vm.isShowingAddVehicle)
-                    } label: {
-                        Text("Add A Vehicle")
-                            .frame(maxWidth: .infinity)
-                    }
-                    .modifier(RoundedButtonMod())
-
-                } //: VStack
-                .padding(.vertical)
             } else {
-                List(vm.userVehicles, id: \.vin) { vehicle in
-                    VStack {
-                        Text(vehicle.year)
-                        Text(vehicle.make)
-                        Text(vehicle.model)
-                        Text(vehicle.vin)
-                        Divider()
-                    }
-                }
-            }
-            
+                vehicleListView
+            } //: If-Else
         } //: VStack
         .padding(.horizontal)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.large)
         .navigationTitle(vm.isShowingAddVehicle ? "Add Vehicle" : "Your Vehicles")
-        .toolbar(vm.tabBarVisibility, for: .tabBar)
-        .toolbar(vm.navBarVisibility, for: .navigationBar)
         .onDisappear {
             vm.tabBarVisibility = .visible
         }
+        .overlay((vm.userVehicles.isEmpty && !vm.isShowingAddVehicle) ? noVehiclesView : nil, alignment: .center)
+        .overlay(vm.isShowingAddVehicle ? nil : addButton, alignment: .bottom)
+        .toolbar(vm.tabBarVisibility, for: .tabBar)
+        .toolbar(vm.navBarVisibility, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 backButton
-            }
-            if vm.userVehicles.count != 0 {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    addButton
-                }
             }
         } //: ToolBar
         
@@ -192,17 +159,12 @@ struct VehiclesView: View {
         Button {
             vm.addVehicleTapped()
         } label: {
-            HStack(spacing: 5) {
-                Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                
-                Text("Add")
-                    .modifier(TextMod(.footnote, .regular))
-            } //: HStack
-            .frame(height: 16, alignment: .leading)
+            Text("+ Add A Vehicle")
+                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(PlainButtonStyle())
+        .modifier(RoundedButtonMod())
+        .padding()
+        .padding(.bottom, 32)
     }
     
     private var backButton: some View {
@@ -220,6 +182,66 @@ struct VehiclesView: View {
             .frame(height: 16, alignment: .leading)
         }
         .buttonStyle(PlainButtonStyle())
+    }
+    
+    private var noVehiclesView: some View {
+        GeometryReader { geo in
+            VStack(spacing: 8) {
+                Image(systemName: "car.2.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxHeight: 100)
+                    .foregroundColor(primaryColor)
+                    .padding(.vertical)
+                    .opacity(0.7)
+                
+                Text("Looks like you haven't added a vehicle yet!")
+                    .modifier(TextMod(.title3, .semibold))
+                    .multilineTextAlignment(.center)
+                    .frame(maxWidth: 300)
+                
+            } //: VStack
+            .padding(.vertical)
+            .frame(maxWidth: .infinity)
+            .offset(y: geo.size.height / 5)
+        }
+    } //: No Vehicles View
+    
+    private var vehicleListView: some View {
+        ScrollView {
+            VStack {
+                ForEach(vm.userVehicles, id: \.vin) { vehicle in
+                    Button {
+                        //
+                    } label: {
+                        VStack {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text("\(vehicle.year) \(vehicle.make) \("- \(vehicle.plate ?? "")")")
+                                        .modifier(TextMod(.title2, .semibold))
+                                    
+                                    Text("\(vehicle.model)")
+                                    Text("Color: \(vehicle.color.name)")
+                                    
+                                } //: VStack
+                                
+                                Spacer()
+                                
+                                Image(systemName: "chevron.right")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: 15)
+                            } //: HStack
+                            
+                            Divider()
+                        } //: VStack
+                    } //: Card Button
+                    .padding(.horizontal)
+                    .padding(.top, 32)
+                    
+                } //: For Each
+            } //: VStack
+        } //: Scroll
     }
 }
 

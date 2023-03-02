@@ -21,6 +21,8 @@ class Vehicle: Codable {
     let trim: String
     let vin: String
     let year: String
+    var plate: String?
+    var state: String?
 }
 
 struct VehicleColor: Codable {
