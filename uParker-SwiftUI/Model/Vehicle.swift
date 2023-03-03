@@ -23,12 +23,13 @@ class Vehicle: Codable {
     let year: String
     var plate: String?
     var state: String?
+    
+    struct VehicleColor: Codable {
+        let abbreviation: String
+        let name: String
+    }
 }
 
-struct VehicleColor: Codable {
-    let abbreviation: String
-    let name: String
-}
 
 struct PTVResponse: Codable {
     let success: Bool

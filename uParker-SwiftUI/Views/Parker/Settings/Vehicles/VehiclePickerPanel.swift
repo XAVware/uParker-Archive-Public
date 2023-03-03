@@ -72,10 +72,17 @@ final class VehicleJSONManager: ObservableObject {
             if trimOptions.count > 0 {
                 selectedTrim = trimOptions.sorted{$0 < $1}[0]
             }
+            isLoadingPickers = false
         }
     }
     
     @Published var selectedTrim: String = "N/A"
+    
+    @Published var selectedColor: String = "--Select Color--"
+    
+    let vehicleColors: [String] = ["Beige", "Black", "Blue", "Brown", "Cyan", "Gold", "Gray", "Green", "Maroon", "Orange", "Pink", "Purple", "Red", "Silver", "White", "Yellow"]
+    
+    @Published var isLoadingPickers: Bool = true
     
     init() {
         print("Initialized")
@@ -101,82 +108,188 @@ final class VehicleJSONManager: ObservableObject {
             }
         }.resume()
     }
+    
+    struct VehicleOption: Codable, Identifiable {
+        enum CodingKeys: CodingKey {
+            case year
+            case category
+            case model
+            case make
+        }
+        
+        var id: UUID = UUID()
+        let year: Int
+        let category: String
+        let model: String
+        let make: String
+    }
+
 }
 
 struct VehiclePickerPanel: View {
     // MARK: - PROPERTIES
     @Binding var newVehicle: Vehicle?
     @ObservedObject var vehicleManager = VehicleJSONManager()
-        
+    @EnvironmentObject var vm: VehiclesViewModel
+    
     // MARK: - BODY
     var body: some View {
+        VStack {
+            Spacer()
+            
+            Text("Please enter your vehicle information")
+                .modifier(TextMod(.title3, .regular))
+                .padding(.bottom, 32)
+            
+            yearRow
+            makeRow
+            modelRow
+            trimRow
+            colorRow
+            
+            Spacer()
+            
+            saveButton
+        } //: VStack
+        .padding()
+        .overlay(vehicleManager.isLoadingPickers ? loadingView : nil)
+        
+    } //: Body
+    
+    
+    // MARK: - VIEW VARIABLES
+    private var saveButton: some View {
+        Button {
+            
+            vm.saveTapped()
+        } label: {
+            Text("Confirm & Save")
+                .frame(maxWidth: .infinity)
+        }
+        .modifier(RoundedButtonMod())
+        .padding()
+    } //: Save Button
+    
+    private var loadingView: some View {
+        VStack {
+            ProgressView()
+                .tint(primaryColor)
+                .frame(width: 50, height: 50)
+                .scaleEffect(2)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.white)
+    } //: Loading View
+    
+    private var yearRow: some View {
         VStack {
             HStack {
                 Text("Year:")
                     .modifier(TextMod(.title3, .semibold))
                 
-                Spacer()
-                
-                Picker("", selection: $vehicleManager.selectedYear) {
-                    ForEach(vehicleManager.yearOptions.sorted{$0 > $1}, id: \.self) { year in
-                        Text(String(year))
-                    }
-                }
-                
+                yearPicker
             } //: HStack
             
+            Divider()
+        } //: VStack
+    } //: Year Row
+    
+    private var makeRow: some View {
+        VStack {
             HStack {
                 Text("Make:")
                     .modifier(TextMod(.title3, .semibold))
                 
-                Spacer()
-                
-                Picker("", selection: $vehicleManager.selectedMake) {
-                    ForEach(vehicleManager.makeOptions.sorted{$0 < $1}, id: \.self) { make in
-                        Text(make)
-                    }
-                }
+                makePicker
             } //: HStack
-            
-            
+            Divider()
+        } //: VStack
+    } //: Make Row
+    
+    private var modelRow: some View {
+        VStack {
             HStack {
                 Text("Model:")
                     .modifier(TextMod(.title3, .semibold))
                 
-                Spacer()
-                
-                Picker("", selection: $vehicleManager.selectedModel) {
-                    ForEach(vehicleManager.modelOptions.sorted{$0 < $1}, id: \.self) { model in
-                        Text(model)
-                    }
-                }
+                modelPicker
             } //: HStack
             
+            Divider()
+        } //: VStack
+    } //: Model Row
+    
+    private var trimRow: some View {
+        VStack {
             HStack {
                 Text("Trim:")
                     .modifier(TextMod(.title3, .semibold))
                 
-                Spacer()
-                
-                Picker("", selection: $vehicleManager.selectedTrim) {
-                    ForEach(vehicleManager.trimOptions.sorted{$0 < $1}, id: \.self) { trim in
-                        Text(trim)
-                    }
-                }
+                trimPicker
             } //: HStack
             
-            HStack {
-                Text("Color:")
-                    .modifier(TextMod(.title3, .semibold))
-                
-                Spacer()
-                
-                Text(self.newVehicle?.color.name ?? "Empty")
-                    .modifier(TextMod(.title3, .regular))
-            } //: HStack
+            Divider()
         } //: VStack
-        .frame(width: 300)
+    } //: Trim Row
+    
+    private var colorRow: some View {
+        HStack {
+            Text("Color:")
+                .modifier(TextMod(.title3, .semibold))
+            
+            colorPicker
+        } //: HStack
     }
+    
+    private var yearPicker: some View {
+        Picker("", selection: $vehicleManager.selectedYear) {
+            ForEach(vehicleManager.yearOptions.sorted{$0 > $1}, id: \.self) { year in
+                Text(String(year))
+                    .modifier(TextMod(.title3, .regular))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
+    } //: Year Picker
+    
+    private var makePicker: some View {
+        Picker("", selection: $vehicleManager.selectedMake) {
+            ForEach(vehicleManager.makeOptions.sorted{$0 < $1}, id: \.self) { make in
+                Text(make)
+                    .modifier(TextMod(.title3, .regular))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
+    } //: Make Picker
+    
+    private var modelPicker: some View {
+        Picker("", selection: $vehicleManager.selectedModel) {
+            ForEach(vehicleManager.modelOptions.sorted{$0 < $1}, id: \.self) { model in
+                Text(model)
+                    .modifier(TextMod(.title3, .regular))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
+    } //: Model Picker
+    
+    private var trimPicker: some View {
+        Picker("", selection: $vehicleManager.selectedTrim) {
+            ForEach(vehicleManager.trimOptions.sorted{$0 < $1}, id: \.self) { trim in
+                Text(trim)
+                    .modifier(TextMod(.title3, .regular))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
+    } //: Trim Picker
+    
+    private var colorPicker: some View {
+        Picker("", selection: $vehicleManager.selectedColor) {
+            ForEach(vehicleManager.vehicleColors.sorted{$0 < $1}, id: \.self) { color in
+                Text(color)
+                    .modifier(TextMod(.title3, .regular))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .trailing)
+    } //: Color Picker
 }
 
 struct VehiclePickerPanel_Previews: PreviewProvider {
