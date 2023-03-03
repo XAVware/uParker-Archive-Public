@@ -59,7 +59,6 @@
 		80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0BD06299738410007EFE7 /* OrDivider.swift */; };
 		80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAB2992A92000B6F598 /* ImagePicker.swift */; };
 		80BA6AAF2992ACAC00B6F598 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */; };
-		80BDC5FA299B0AF800B9EC26 /* VehicleOptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */; };
 		80C634BB29A84BA9003BC4C1 /* VehiclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C634BA29A84BA9003BC4C1 /* VehiclesView.swift */; };
 		80C9050829A94F35006AC211 /* AddVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C9050729A94F35006AC211 /* AddVehicleView.swift */; };
 		80CD7E7529AFEF2A00EE2F2F /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */; };
@@ -134,7 +133,6 @@
 		80B0BD06299738410007EFE7 /* OrDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrDivider.swift; sourceTree = "<group>"; };
 		80BA6AAB2992A92000B6F598 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleOptionManager.swift; sourceTree = "<group>"; };
 		80C634BA29A84BA9003BC4C1 /* VehiclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesView.swift; sourceTree = "<group>"; };
 		80C9050729A94F35006AC211 /* AddVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleView.swift; sourceTree = "<group>"; };
 		80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
@@ -368,7 +366,6 @@
 				800772E62969ED3A00E7FEED /* Spot.swift */,
 				80A64A2D2953FFF0001317DD /* User.swift */,
 				806548482972EF6400943B72 /* Vehicle.swift */,
-				80BDC5F9299B0AF800B9EC26 /* VehicleOptionManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -504,7 +501,6 @@
 				806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */,
 				806A376F297A3F3D00068FEA /* LocationManager.swift in Sources */,
 				80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */,
-				80BDC5FA299B0AF800B9EC26 /* VehicleOptionManager.swift in Sources */,
 				80FC1130297E23D300C5102A /* SimpleSuggestion.swift in Sources */,
 				80654857297321EA00943B72 /* CurrentReservationView.swift in Sources */,
 				806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */,

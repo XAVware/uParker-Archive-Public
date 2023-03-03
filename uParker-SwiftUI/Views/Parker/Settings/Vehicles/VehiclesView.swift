@@ -107,7 +107,40 @@ import SwiftUI
             do {
                 let decodedResponse = try JSONDecoder().decode(PTVResponse.self, from: data)
                 DispatchQueue.main.async {
-                    self.newVehicle = decodedResponse.vin
+//                    var model = "Empty"
+                    
+//                    if decodedResponse.vin.model.count > 0 {
+//                        model = safeModel
+//                    }
+                    
+                    
+//                    if let trim = decodedResponse.vin.trim {
+//
+//                    }
+                    
+                    let year = decodedResponse.vin.year
+                    let make = decodedResponse.vin.make
+                    
+                    
+                    var model = decodedResponse.vin.model
+                    var trimResponse = decodedResponse.vin.trim
+                    if trimResponse.count > 0 {
+                        if model == "Empty" {
+                            model = trimResponse
+                        } else {
+                            model.append(" \(trimResponse)")
+                        }
+                    }
+                    
+                    var trim = decodedResponse.vin.style
+                    
+                    
+                    let color = decodedResponse.vin.color.name
+                    let vin = decodedResponse.vin.vin
+                    let plate = self.licensePlate
+                    let state = self.selectedState
+                    self.newVehicle = Vehicle(year: year, make: make, model: model, trim: trim, color: color, plate: plate, state: state, vin: vin)
+//                    self.newVehicle = decodedResponse.vin
                 }
             } catch {
                 print(error)
@@ -221,7 +254,7 @@ struct VehiclesView: View {
                                         .modifier(TextMod(.title2, .semibold))
                                     
                                     Text("\(vehicle.model)")
-                                    Text("Color: \(vehicle.color.name)")
+                                    Text("Color: \(vehicle.color)")
                                     
                                 } //: VStack
                                 

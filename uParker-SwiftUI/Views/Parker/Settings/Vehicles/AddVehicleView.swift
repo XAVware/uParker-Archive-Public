@@ -135,35 +135,35 @@ struct AddVehicleView: View {
     }
     
     private var vehicleDetails: [VehicleDetail] {
-        var model = "Empty"
-        
-        if let safeModel = vm.newVehicle?.model {
-            if safeModel.count > 0 {
-                model = safeModel
-            }
-        }
-        
-        if let trim = vm.newVehicle?.trim {
-            if trim.count > 0 {
-                if model == "Empty" {
-                    model = trim
-                } else {
-                    model.append(" \(trim)")
-                }
-            }
-        }
+//        var model = "Empty"
+//
+//        if let safeModel = vm.newVehicle?.model {
+//            if safeModel.count > 0 {
+//                model = safeModel
+//            }
+//        }
+//
+//        if let trim = vm.newVehicle?.trim {
+//            if trim.count > 0 {
+//                if model == "Empty" {
+//                    model = trim
+//                } else {
+//                    model.append(" \(trim)")
+//                }
+//            }
+//        }
         
         let detailArray: [VehicleDetail] = [
             VehicleDetail(header: "Plate:", detail: "\(vm.selectedState)-\(vm.licensePlate)"),
             VehicleDetail(header: "Year:", detail: vm.newVehicle?.year ?? "Empty"),
             VehicleDetail(header: "Make:", detail: vm.newVehicle?.make ?? "Empty"),
-            VehicleDetail(header: "Model:", detail: "\(vm.newVehicle?.model ?? "") \(vm.newVehicle?.trim  ?? "")"),
+            VehicleDetail(header: "Model:", detail: "\(vm.newVehicle?.model ?? "")"),
 //            VehicleDetail(header: "Trim:", detail: vm.newVehicle?.trim ?? "Empty"),
-            VehicleDetail(header: "Style:", detail: vm.newVehicle?.style ?? "Empty"),
+            VehicleDetail(header: "Style:", detail: vm.newVehicle?.trim ?? "Empty"),
 //            VehicleDetail(header: "Engine:", detail: vm.newVehicle?.engine ?? "Empty"),
 //            VehicleDetail(header: "Transmission:", detail: vm.newVehicle?.transmission ?? "Empty"),
 //            VehicleDetail(header: "Drivetrain:", detail: vm.newVehicle?.driveType ?? "Empty"),
-            VehicleDetail(header: "Color:", detail: vm.newVehicle?.color.name ?? "Empty"),
+            VehicleDetail(header: "Color:", detail: vm.newVehicle?.color ?? "Empty"),
 //            VehicleDetail(header: "Vin:", detail: vm.newVehicle?.vin ?? "Empty")
         ]
         return detailArray

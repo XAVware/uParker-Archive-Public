@@ -8,7 +8,12 @@
 
 import SwiftUI
 
-class Vehicle: Codable {
+struct Vehicle: Codable {
+    let year, make, model, trim, color: String
+    var plate, state, vin: String?
+}
+
+class VehicleResponse: Codable {
     let color: VehicleColor
     let driveType: String
     let engine: String
@@ -33,7 +38,7 @@ class Vehicle: Codable {
 
 struct PTVResponse: Codable {
     let success: Bool
-    let vin: Vehicle
+    let vin: VehicleResponse
 }
 
 /*
