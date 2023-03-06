@@ -78,14 +78,13 @@ final class VehicleJSONManager: ObservableObject {
     
     @Published var selectedTrim: String = "N/A"
     
-    @Published var selectedColor: String = "--Select Color--"
+    @Published var selectedColor: String = "Beige"
     
     let vehicleColors: [String] = ["Beige", "Black", "Blue", "Brown", "Cyan", "Gold", "Gray", "Green", "Maroon", "Orange", "Pink", "Purple", "Red", "Silver", "White", "Yellow"]
     
     @Published var isLoadingPickers: Bool = true
     
     init() {
-        print("Initialized")
         load()
     }
     
@@ -132,6 +131,9 @@ struct VehiclePickerPanel: View {
     @ObservedObject var vehicleManager = VehicleJSONManager()
     @EnvironmentObject var vm: VehiclesViewModel
     
+    @FocusState private var focusField: FocusText?
+    enum FocusText { case licensePlate }
+    
     // MARK: - BODY
     var body: some View {
         VStack {
@@ -153,14 +155,21 @@ struct VehiclePickerPanel: View {
         } //: VStack
         .padding()
         .overlay(vehicleManager.isLoadingPickers ? loadingView : nil)
-        
     } //: Body
     
     
     // MARK: - VIEW VARIABLES
     private var saveButton: some View {
         Button {
-            
+            let tempVehicle = Vehicle(
+                year: String(describing: vehicleManager.selectedYear),
+                make: vehicleManager.selectedMake,
+                model: vehicleManager.selectedModel,
+                trim: vehicleManager.selectedTrim,
+                color: vehicleManager.selectedColor
+            )
+            focusField = nil
+            vm.newVehicle = tempVehicle
             vm.saveTapped()
         } label: {
             Text("Confirm & Save")
@@ -169,6 +178,37 @@ struct VehiclePickerPanel: View {
         .modifier(RoundedButtonMod())
         .padding()
     } //: Save Button
+    
+    private var licensePlateField: some View {
+        HStack {
+            AnimatedTextField(boundTo: $vm.licensePlate, placeholder: "License Plate")
+//                .focused($focusField, equals: .licensePlate)
+            
+            ZStack(alignment: .leading) {
+                Text("State")
+                    .foregroundColor(.gray)
+                    .offset(y: -19)
+                    .scaleEffect(0.65, anchor: .leading)
+                
+                Picker("", selection: $vm.selectedState) {
+                    ForEach(stateAbbreviations, id: \.self) {
+                        Text("\($0)")
+                    }
+                }
+                .tint(.black)
+                .offset(y: 7)
+                
+            } //: ZStack
+            .frame(width: 65, height: 48)
+            .padding(.leading, 8)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(.gray, lineWidth: 1)
+            )
+            
+        } //: HStack
+        .frame(height: 48)
+    }
     
     private var loadingView: some View {
         VStack {

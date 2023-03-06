@@ -12,6 +12,9 @@ struct AddVehicleView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var vm: VehiclesViewModel
     
+    @FocusState private var focusField: FocusText?
+    enum FocusText { case licensePlate }
+    
     var body: some View {
         switch vm.selectedMethod {
         case .none:
@@ -53,6 +56,7 @@ struct AddVehicleView: View {
                     licensePlateField
                     
                     Button {
+                        focusField = nil
                         vm.lookupPlate()
                     } label: {
                         Text("Find Vehicle Info")
@@ -102,6 +106,7 @@ struct AddVehicleView: View {
     private var licensePlateField: some View {
         HStack {
             AnimatedTextField(boundTo: $vm.licensePlate, placeholder: "License Plate")
+                .focused($focusField, equals: .licensePlate)
             
             ZStack(alignment: .leading) {
                 Text("State")
@@ -198,6 +203,7 @@ struct AddVehicleView: View {
             Spacer()
             
             Button {
+                focusField = nil
                 vm.saveTapped()
             } label: {
                 Text("Confirm & Save")
