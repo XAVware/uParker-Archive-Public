@@ -139,7 +139,7 @@ struct ParkerSettingsView: View {
             
             //Notifications
             NavigationLink {
-                //
+                NotificationsView()
             } label: {
                 Image(systemName: "bell")
                     .resizable()

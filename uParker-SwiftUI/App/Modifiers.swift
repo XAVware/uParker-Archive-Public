@@ -75,6 +75,7 @@ struct SettingsButtonMod: ViewModifier {
         content
             .buttonStyle(PlainButtonStyle())
             .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.white)
             .font(.callout)
             .fontDesign(.rounded)
             .frame(height: 30)
