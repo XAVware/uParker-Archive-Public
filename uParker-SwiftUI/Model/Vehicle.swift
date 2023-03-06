@@ -8,7 +8,8 @@
 
 import SwiftUI
 
-struct Vehicle: Codable {
+struct Vehicle: Codable, Equatable, Identifiable {
+    var id: UUID = UUID()
     let year, make, model, trim, color: String
     var plate, state, vin: String?
 }

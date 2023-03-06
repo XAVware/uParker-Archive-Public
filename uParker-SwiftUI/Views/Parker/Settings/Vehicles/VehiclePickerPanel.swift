@@ -168,6 +168,7 @@ struct VehiclePickerPanel: View {
                 trim: vehicleManager.selectedTrim,
                 color: vehicleManager.selectedColor
             )
+            
             focusField = nil
             vm.newVehicle = tempVehicle
             vm.saveTapped()

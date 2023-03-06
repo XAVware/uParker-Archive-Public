@@ -35,9 +35,6 @@ struct SpotMapView: View {
         GeometryReader { geo in
             ZStack {
                 MapViewWrapper(center: $locationManager.location, mapStyle: $mapStyle, selectedSpotId: $selectedSpotId)
-                    .onChange(of: self.selectedSpotId) { newValue in
-                        print("Changed to: \(newValue)")
-                    }
                 
                 SpotListView(viewHeight: $listHeight, minHeight: initialListHeight, maxHeight: geo.size.height)
                     .edgesIgnoringSafeArea(.bottom)

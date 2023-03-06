@@ -37,8 +37,10 @@ public class MapViewController: UIViewController {
     internal var mapView: MapView!
     var selectedPin: PinView?
     var mapStyle: StyleURI
-    let markers: [PinModel] = [PinModel(id: "Spot_ID", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)), price: 3.00),
-                                      PinModel(id: "Spot_ID2", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505)), price: 40.00)]
+    let markers: [PinModel] = [
+        PinModel(id: "Spot_ID", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)), price: 3.00),
+        PinModel(id: "Spot_ID2", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505)), price: 40.00)
+    ]
     
     var cameraOptions: CameraOptions {
         return CameraOptions(center: centerLocation, zoom: 12, bearing: -17.6, pitch: 0)
@@ -107,7 +109,6 @@ extension MapViewController: PinViewInteractionDelegate {
         self.selectedPin = pin
         let newCenter = CLLocation(latitude: pin.data.coordinate.coordinates.latitude, longitude: pin.data.coordinate.coordinates.longitude)
         LocationManager.shared.setCenter(newLocation: newCenter)
-        print("Selected pin: \(pin.data)")
     }
 }
 

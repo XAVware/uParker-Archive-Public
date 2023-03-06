@@ -23,9 +23,23 @@ import SwiftUI
     @Published var isShowingAddVehicle: Bool = false
     @Published var newVehicle: Vehicle?
     @Published var userVehicles: [Vehicle] = [Vehicle]()
+    @Published var isShowingOptions: Bool = false
+    @Published var isShowingConfirmDelete: Bool = false
+    @Published var selectedVehicle: Vehicle?
+    @Published var defaultVehicle: Vehicle?
     
     enum AddMethod { case licensePlate, manual }
     @Published var selectedMethod: AddMethod? = .none
+    
+    var dialogText: String {
+        if let selectedVehicle = selectedVehicle {
+            let year = String(describing: selectedVehicle.year)
+            return "\(year) \(selectedVehicle.make) \(selectedVehicle.model)"
+        } else {
+            return "No Vehicle Selected"
+        }
+        
+    }
     
     // MARK: - FUNCTIONS
     func addVehicleTapped() {
@@ -62,9 +76,14 @@ import SwiftUI
         }
         
         userVehicles.append(newVehicle!)
+        if userVehicles.count == 1 {
+            defaultVehicle = newVehicle
+        }
+        
         newVehicle = nil
         selectedMethod = .none
         isShowingAddVehicle = false
+        print(userVehicles)
     }
     
     func lookupPlate() {
@@ -107,23 +126,12 @@ import SwiftUI
             do {
                 let decodedResponse = try JSONDecoder().decode(PTVResponse.self, from: data)
                 DispatchQueue.main.async {
-//                    var model = "Empty"
-                    
-//                    if decodedResponse.vin.model.count > 0 {
-//                        model = safeModel
-//                    }
-                    
-                    
-//                    if let trim = decodedResponse.vin.trim {
-//
-//                    }
-                    
                     let year = decodedResponse.vin.year
                     let make = decodedResponse.vin.make
                     
                     
                     var model = decodedResponse.vin.model
-                    var trimResponse = decodedResponse.vin.trim
+                    let trimResponse = decodedResponse.vin.trim
                     if trimResponse.count > 0 {
                         if model == "Empty" {
                             model = trimResponse
@@ -132,21 +140,39 @@ import SwiftUI
                         }
                     }
                     
-                    var trim = decodedResponse.vin.style
-                    
+                    let trim = decodedResponse.vin.style
                     
                     let color = decodedResponse.vin.color.name
                     let vin = decodedResponse.vin.vin
                     let plate = self.licensePlate
                     let state = self.selectedState
                     self.newVehicle = Vehicle(year: year, make: make, model: model, trim: trim, color: color, plate: plate, state: state, vin: vin)
-//                    self.newVehicle = decodedResponse.vin
                 }
             } catch {
                 print(error)
             }
         }.resume()
         
+    }
+    
+    func vehicleTapped(_ vehicle: Vehicle) {
+        selectedVehicle = vehicle
+        isShowingOptions = true
+        
+    }
+    
+    func setDefault() {
+        defaultVehicle = selectedVehicle
+    }
+    
+    func deleteTapped() {
+        guard selectedVehicle != nil else {
+            return
+        }
+        
+        userVehicles.removeAll { vehicle in
+            vehicle == selectedVehicle
+        }
     }
 }
 
@@ -184,8 +210,32 @@ struct VehiclesView: View {
                 backButton
             }
         } //: ToolBar
-        
+        .confirmationDialog("Select an option for: \(vm.dialogText)", isPresented: $vm.isShowingOptions, titleVisibility: .visible) {
+            Button("Make Default") {
+                vm.setDefault()
+            }
+            
+            Button("Delete", role: .destructive) {
+                vm.isShowingConfirmDelete = true
+            }
+            
+            Button("Cancel", role: .cancel) {
+                vm.isShowingOptions = false
+                vm.selectedVehicle = nil
+            }
+        }
+        .alert("Are you sure you want to delete \(vm.dialogText)", isPresented: $vm.isShowingConfirmDelete) {
+            Button("Yes, Delete Vehicle", role: .destructive) {
+                vm.deleteTapped()
+            }
+            
+            Button("Cancel", role: .cancel) {
+                vm.isShowingConfirmDelete = false
+                vm.selectedVehicle = nil
+            }
+        }
     }
+    
     
     // MARK: - VIEW VARIABLES
     private var addButton: some View {
@@ -217,6 +267,11 @@ struct VehiclesView: View {
         .buttonStyle(PlainButtonStyle())
     }
     
+    private var defaultText: some View {
+        Text("* Default")
+            .modifier(TextMod(.callout, .light))
+    }
+    
     private var noVehiclesView: some View {
         GeometryReader { geo in
             VStack(spacing: 8) {
@@ -243,44 +298,44 @@ struct VehiclesView: View {
     private var vehicleListView: some View {
         ScrollView {
             VStack {
-                ForEach(vm.userVehicles, id: \.vin) { vehicle in
+                ForEach(vm.userVehicles) { vehicle in
                     Button {
-                        //
+                        vm.vehicleTapped(vehicle)
                     } label: {
-                        VStack {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text("\(vehicle.year) \(vehicle.make) \("- \(vehicle.plate ?? "")")")
-                                        .modifier(TextMod(.title2, .semibold))
-                                    
-                                    Text("\(vehicle.model)")
-                                    Text("Color: \(vehicle.color)")
-                                    
-                                } //: VStack
+                        HStack {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("\(vehicle.year) \(vehicle.make) \("- \(vehicle.plate ?? "")")")
+                                    .modifier(TextMod(.title2, .semibold))
                                 
-                                Spacer()
+                                Text("\(vehicle.model)")
                                 
-                                Image(systemName: "chevron.right")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 15)
-                            } //: HStack
+                                Text("Color: \(vehicle.color)")
+                            } //: VStack
                             
-                            Divider()
-                        } //: VStack
+                            Spacer()
+                            
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 15)
+                        } //: HStack
+                        .overlay(vehicle == vm.defaultVehicle ? defaultText : nil, alignment: .topTrailing)
                     } //: Card Button
                     .padding(.horizontal)
-                    .padding(.top, 32)
                     
+                    Divider()
                 } //: For Each
             } //: VStack
+            .padding(.top, 32)
         } //: Scroll
     }
 }
 
 struct VehiclesVieww_Previews: PreviewProvider {
     static var previews: some View {
-        VehiclesView()
+        NavigationView {
+            VehiclesView()
+        }
     }
 }
 

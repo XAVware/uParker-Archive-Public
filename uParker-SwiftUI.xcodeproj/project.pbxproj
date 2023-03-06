@@ -46,6 +46,7 @@
 		807151E5299B437B0009A99F /* VehicleOptions.json in Resources */ = {isa = PBXBuildFile; fileRef = 807151E4299B437B0009A99F /* VehicleOptions.json */; };
 		80903DC6298D6F070078881C /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC5298D6F070078881C /* Pin.swift */; };
 		80903DC8298D928C0078881C /* MapSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC7298D928C0078881C /* MapSettingsView.swift */; };
+		8090710029B64EA20015C590 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809070FF29B64EA20015C590 /* Notifications.swift */; };
 		80A013442991999B004DBE4E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A013432991999B004DBE4E /* SignUpView.swift */; };
 		80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */; };
 		80A64A0A294D6491001317DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A09294D6491001317DD /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 		807151E4299B437B0009A99F /* VehicleOptions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VehicleOptions.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		80903DC5298D6F070078881C /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		80903DC7298D928C0078881C /* MapSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettingsView.swift; sourceTree = "<group>"; };
+		809070FF29B64EA20015C590 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		80A013432991999B004DBE4E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		80A64A02294D6490001317DD /* uParker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uParker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uParker_SwiftUIApp.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				804287C429ADE26300D9621C /* Vehicles */,
 				80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */,
 				944DA844299C45FF00568765 /* PaymentMethodsView.swift */,
+				809070FF29B64EA20015C590 /* Notifications.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				804287C129ADD4A400D9621C /* TermsConditionsView.swift in Sources */,
 				8047EDB8296E0BC600AF3896 /* ConfirmPhoneView.swift in Sources */,
 				8050952329920E860035BE56 /* SpotPageView.swift in Sources */,
+				8090710029B64EA20015C590 /* Notifications.swift in Sources */,
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,
 				80903DC6298D6F070078881C /* Pin.swift in Sources */,
 				8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */,

@@ -19,7 +19,16 @@ struct SearchField: View {
     @State private var dateIsExpanded = false
     @State var destination: String = "Beaver Stadium"
     @State private var date: Date = Date()
-    @State private var isShowingSuggestions: Bool = false
+    @State private var isShowingSuggestions: Bool = false {
+        willSet(newValue) {
+            if newValue == false && selectedSuggestion == nil && LocationManager.shared.suggestionList.count > 0 {
+                LocationManager.shared.selectSuggestion(LocationManager.shared.suggestionList[0]) { sug in
+                    selectedSuggestion = sug
+                    destination = selectedSuggestion?.name ?? "Empty"
+                }
+            }
+        }
+    }
     
     @State var selectedSuggestion: SimpleSuggestion?
     
@@ -64,10 +73,16 @@ struct SearchField: View {
     }
     
     private func searchTapped() {
+        if selectedSuggestion == nil && LocationManager.shared.suggestionList.count > 0 {
+            LocationManager.shared.selectSuggestion(LocationManager.shared.suggestionList[0]) { sug in
+                self.selectedSuggestion = sug
+            }
+        }
+        
         guard self.selectedSuggestion != nil else {
-            print("Search tapped but suggestion nil")
             return
         }
+        
         let location: CLLocation = CLLocation(latitude: selectedSuggestion!.coordinate.latitude, longitude: selectedSuggestion!.coordinate.longitude)
         LocationManager.shared.location = location
         closeSearch()
