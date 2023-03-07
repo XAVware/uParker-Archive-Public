@@ -16,31 +16,31 @@ struct ParkerReservationsView: View {
     
     // MARK: - BODY
     var body: some View {
-        VStack {
-            if sessionManager.isLoggedIn == false {
-                HeaderView(leftItem: nil, title: nil, rightItem: nil)
-                NeedLoginView(title: "Reservations", mainHeadline: "Login to view your reservations", mainDetail: "Once you login, your upcoming and past reservations will appear here.")
-            } else {
-                Text("Reservations")
-                    .modifier(TextMod(.title3, .semibold))
+        NavigationView {
+            VStack {
+                if sessionManager.isLoggedIn == false {
+                    NeedLoginView(mainHeadline: "Login to view your reservations", mainDetail: "Once you login, your upcoming and past reservations will appear here.")
+                } else {
+                    ReservationsPicker(selectedIndex: $selection, options: self.options)
+                    
+                    switch(selection) {
+                    case 0:
+                        PastReservationsView()
+                    case 1:
+                        CurrentReservationView()
+                    case 2:
+                        UpcomingReservationsView()
+                    default:
+                        CurrentReservationView()
+                    }
+                } //: If-Else
                 
-                ReservationsPicker(selectedIndex: $selection, options: self.options)
-                
-                switch(selection) {
-                case 0:
-                    PastReservationsView()
-                case 1:
-                    CurrentReservationView()
-                case 2:
-                    UpcomingReservationsView()
-                default:
-                    CurrentReservationView()
-                }
-            } //: If-Else
-            
-            Spacer()
-        } //: VStack
-        .padding()
+                Spacer()
+            } //: VStack
+            .padding()
+            .navigationTitle("Reservations")
+        } //: Navigation View
+        
     }
 }
 

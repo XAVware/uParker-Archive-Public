@@ -21,7 +21,7 @@ struct ChatLogView: View {
             
         } //: VStack
         .toolbar(.hidden, for: .tabBar)
-//        .navigationTitle(chatUser?.email ?? "")
+        .navigationTitle("Conversation")
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -52,7 +52,7 @@ struct ChatLogView: View {
         HStack(spacing: 16) {
             Image(systemName: "photo.on.rectangle")
                 .font(.system(size: 24))
-                .foregroundColor(Color(.darkGray))
+                .foregroundColor(.gray)
             
             ZStack(alignment: .leading) {
                 TextEditor(text: $chatText)
@@ -60,9 +60,9 @@ struct ChatLogView: View {
                     .background(.clear)
                 
                 if chatText.isEmpty {
-                    Text("Description")
+                    Text("Message")
                         .padding(.leading, 6)
-                        .modifier(TextMod(.callout, .regular, Color(.darkGray)))
+                        .modifier(TextMod(.callout, .regular, .gray))
                 }
             }
             Button {

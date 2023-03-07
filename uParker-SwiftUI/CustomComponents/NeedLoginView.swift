@@ -11,7 +11,7 @@ struct NeedLoginView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
     
-    let title: String
+//    let title: String
     let mainHeadline: String
     let mainDetail: String
     
@@ -19,9 +19,9 @@ struct NeedLoginView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 40) {
             VStack(alignment: .leading, spacing: 10) {
-                Text(title)
-                    .modifier(TextMod(.largeTitle, .semibold))
-                    .padding(.bottom, 20)
+//                Text(title)
+//                    .modifier(TextMod(.largeTitle, .semibold))
+//                    .padding(.bottom, 20)
                 
                 Text(mainHeadline)
                     .modifier(TextMod(.headline, .semibold))
@@ -34,7 +34,7 @@ struct NeedLoginView: View {
                 Button {
                     sessionManager.isShowingLoginView = true
                 } label: {
-                    Text("Continue")
+                    Text("Log In")
                         .frame(maxWidth: .infinity)
                 }
                 .modifier(RoundedButtonMod())
@@ -73,7 +73,7 @@ struct NeedLoginView_Previews: PreviewProvider {
     static let subheadline: String = "You need to log in before you can reserve parking"
     
     static var previews: some View {
-        NeedLoginView(title: title, mainHeadline: headline, mainDetail: subheadline)
+        NeedLoginView(mainHeadline: headline, mainDetail: subheadline)
             .environmentObject(SessionManager())
             .previewLayout(.sizeThatFits)
     }

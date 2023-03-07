@@ -16,10 +16,8 @@ struct ParkerSettingsView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    HeaderView(leftItem: nil, title: nil, rightItem: nil)
-                    
                     if !sessionManager.isLoggedIn {
-                        NeedLoginView(title: "Profile", mainHeadline: "Tell us about yourself", mainDetail: "You need to log in before you can reserve parking")
+                        NeedLoginView(mainHeadline: "Tell us about yourself", mainDetail: "You need to log in before you can reserve parking")
                     }
                     
                     if sessionManager.isLoggedIn {
@@ -47,8 +45,9 @@ struct ParkerSettingsView: View {
                     }
                         
                 } //: VStack
-                .padding()
             } //: ScrollView
+            .navigationTitle("Profile")
+            .padding()
             
         } //: Navigation View
     }
@@ -56,8 +55,8 @@ struct ParkerSettingsView: View {
     // MARK: - PROFILE
     private var profileSection: some View {
         VStack(alignment: .leading) {
-            Text("Profile")
-                .modifier(TextMod(.largeTitle, .semibold))
+//            Text("Profile")
+//                .modifier(TextMod(.largeTitle, .semibold))
             
             NavigationLink {
                 ProfileView()
@@ -255,7 +254,9 @@ struct ParkerSettingsView: View {
 // MARK: - PREVIEW
 struct ParkerSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ParkerSettingsView()
-            .environmentObject(SessionManager())
+        NavigationView {
+            ParkerSettingsView()
+                .environmentObject(SessionManager())
+        }
     }
 }

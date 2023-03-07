@@ -12,10 +12,13 @@ import SwiftUI
     @Published var tabBarVisibility: Visibility = .hidden
     @Published var notificationSettings: [NotificationSetting] = [
         NotificationSetting(title: "Reminders", description: "Get important reminders about your reservations, listings, and account activity.", group: .general, emailIsOn: true, pushIsOn: false, smsIsOn: true),
-        NotificationSetting(title: "Reviews", description: "Get notified when someone leaves you a review or if you are able to leave someone a review.", group: .general, emailIsOn: true, pushIsOn: false, smsIsOn: true),
-        NotificationSetting(title: "Messages", description: "Stay in touch with the host or parker throughout each reservation.", group: .general, emailIsOn: true, pushIsOn: false, smsIsOn: true)
+        NotificationSetting(title: "Reviews", description: "Get notified when someone leaves you a review or if you are able to leave someone a review.", group: .general, emailIsOn: true, pushIsOn: true, smsIsOn: true),
+        NotificationSetting(title: "Messages", description: "Stay in touch with the host or parker throughout each reservation.", group: .general, emailIsOn: true, pushIsOn: false, smsIsOn: true),
+        NotificationSetting(title: "News & Updates", description: "Stay up to date on what's new with uParker.", group: .general, emailIsOn: false, pushIsOn: false, smsIsOn: true),
+        NotificationSetting(title: "Tips", description: "Receive daily tips to increase your sales.", group: .hosting, emailIsOn: true, pushIsOn: true, smsIsOn: false),
+        NotificationSetting(title: "Market Trends", description: "Receive notifications for ", group: .hosting, emailIsOn: true, pushIsOn: true, smsIsOn: false)
     ]
-
+   
 }
 
 struct NotificationsView: View {
@@ -26,23 +29,25 @@ struct NotificationsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text("General")
-                    .modifier(TextMod(.title, .semibold))
-                
-                Text("Get important notifications about your account, reservations, and more.")
-                    .modifier(TextMod(.callout, .light, .gray))
-                    .multilineTextAlignment(.leading)
-                
-                ForEach(vm.notificationSettings.filter { $0.group == .general }, id: \.title) { notificationSetting in
-                    SettingsButton(setting: notificationSetting)
-                        .padding(.vertical, 8)
-                        .onTapGesture {
-                            vm.isShowingDetail = true
-                        }
+                ForEach(NotificationSetting.Groups.allCases) { group in
+                    Text(group.header)
+                        .modifier(TextMod(.title, .semibold))
+                        .padding(.top)
+                    
+                    Text(group.description)
+                        .modifier(TextMod(.callout, .light, .gray))
+                        .multilineTextAlignment(.leading)
+                    
+                    ForEach(vm.notificationSettings.filter { $0.group == group }, id: \.title) { notificationSetting in
+                        SettingsButton(setting: notificationSetting)
+                            .padding(.vertical, 8)
+                            .onTapGesture {
+                                vm.isShowingDetail = true
+                            }
+                    }
+                    
+                    Divider()
                 }
-                
-                
-                Divider()
             } //: VStack
             .padding(.top)
             .padding(.horizontal)
@@ -55,7 +60,7 @@ struct NotificationsView: View {
                 .presentationDetents([.fraction(0.40)])
                 .presentationDragIndicator(.visible)
                 .padding()
-                .padding(.top, 16)
+                .padding(.top, 24)
         }
         .onDisappear {
             vm.tabBarVisibility = .visible
@@ -83,6 +88,7 @@ struct NotificationsView: View {
                     .underline()
                     .modifier(TextMod(.callout, .semibold))
             } //: HStack
+            .background(Color.white)
         }
     }
     

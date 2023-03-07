@@ -9,7 +9,9 @@ import SwiftUI
 
 struct NotificationSettingView: View {
     // MARK: - PROPERTIES
+    @Environment(\.dismiss) var dismiss
     @Binding var notificationSetting: NotificationSetting
+    @State var isButtonDisabled: Bool = true
     
     // MARK: - BODY
     var body: some View {
@@ -38,8 +40,23 @@ struct NotificationSettingView: View {
                     .modifier(TextMod(.body, .regular))
             }
             
+            Button {
+                dismiss.callAsFunction()
+            } label: {
+                Text("Save Changes")
+                    .frame(maxWidth: .infinity)
+            }
+            .modifier(RoundedButtonMod())
+            .disabled(isButtonDisabled)
+            .opacity(isButtonDisabled ? 0.55 : 1)
+            .padding(.top)
+
+            
             Spacer()
         } //: VStack
+        .onChange(of: notificationSetting) { _ in
+            isButtonDisabled = false
+        }
     }
 }
 
@@ -53,8 +70,30 @@ struct NotificationSettingView_Previews: PreviewProvider {
 }
 
 
-struct NotificationSetting {
-    enum Groups { case general, messages, hosting, reviews }
+struct NotificationSetting: Equatable {
+    enum Groups: CaseIterable, Identifiable {
+        case general, hosting
+        var id: UUID { return UUID() }
+        
+        var header: String {
+            switch self {
+            case .general:
+                return "General"
+            case .hosting:
+                return "Hosting"
+            }
+        }
+        
+        var description: String {
+            switch self {
+            case .general:
+                return "Get important notifications about your account, reservations, and more."
+            case .hosting:
+                return "Hosting section description"
+            }
+        }
+    }
+    
     let title: String
     let description: String
     let group: Groups

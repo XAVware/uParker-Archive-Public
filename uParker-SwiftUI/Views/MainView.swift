@@ -11,6 +11,12 @@ struct MainView: View {
     // MARK: - PROPERTIES
     @EnvironmentObject var sessionManager: SessionManager
         
+    init() {
+        var titleFont = UIFont.preferredFont(forTextStyle: .largeTitle)
+                titleFont = UIFont(descriptor: titleFont.fontDescriptor.withDesign(.rounded)?.withSymbolicTraits(.traitBold) ?? titleFont.fontDescriptor, size: titleFont.pointSize)
+                
+                UINavigationBar.appearance().largeTitleTextAttributes = [.font: titleFont]
+    }
     // MARK: - BODY
     var body: some View {
         if sessionManager.userType == .parker {

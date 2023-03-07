@@ -19,14 +19,8 @@ struct ParkerChatView: View {
             VStack(alignment: .leading, spacing: 0) {
                 
                 if sessionManager.isLoggedIn == false {
-                    HeaderView(leftItem: nil, title: nil, rightItem: nil)
-                    NeedLoginView(title: "Chat", mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
+                    NeedLoginView(mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
                 } else {
-                    HeaderView(leftItem: nil, title: "Inbox", rightItem: .settings)
-                    
-                    Divider()
-                        .padding(.vertical, 10)
-                    
                     ScrollView(showsIndicators: false) {
                         VStack {
                             ForEach(1 ..< 6) { contact in
@@ -35,13 +29,16 @@ struct ParkerChatView: View {
                                 } label: {
                                     HStack {
                                         Image(systemName: "person.fill")
-                                            .font(.system(size: 28))
-                                            .padding(8)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: 44)
-                                                    .stroke(lineWidth: 1)
-                                            )
+                                            .resizable()
+                                            .scaledToFill()
+                                            .padding(10)
                                             .foregroundColor(.gray)
+                                            .frame(width: 50, height: 50, alignment: .center)
+                                            .clipShape(Circle())
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(.gray, lineWidth: 0.5)
+                                            )
                                         
                                         Spacer()
                                         
@@ -50,7 +47,7 @@ struct ParkerChatView: View {
                                                 .modifier(TextMod(.title3, .regular))
                                             
                                             Text("Sample message preview ...")
-                                                .modifier(TextMod(.callout, .regular, .gray))
+                                                .modifier(TextMod(.callout, .light, .gray))
                                         } //: VStack
                                         .padding(.horizontal, 10)
                                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -82,6 +79,7 @@ struct ParkerChatView: View {
                 Spacer()
             } //: VStack
             .padding()
+            .navigationTitle("Chat")
         }
     }
 }
