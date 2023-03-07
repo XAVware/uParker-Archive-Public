@@ -45,6 +45,7 @@
 		8065485B297322B900943B72 /* UpcomingReservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065485A297322B900943B72 /* UpcomingReservationsView.swift */; };
 		806A376F297A3F3D00068FEA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A376E297A3F3D00068FEA /* LocationManager.swift */; };
 		807151E5299B437B0009A99F /* VehicleOptions.json in Resources */ = {isa = PBXBuildFile; fileRef = 807151E4299B437B0009A99F /* VehicleOptions.json */; };
+		808182B229B7DABF00B42232 /* BulletListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808182B129B7DABF00B42232 /* BulletListItem.swift */; };
 		80903DC6298D6F070078881C /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC5298D6F070078881C /* Pin.swift */; };
 		80903DC8298D928C0078881C /* MapSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC7298D928C0078881C /* MapSettingsView.swift */; };
 		8090710029B64EA20015C590 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809070FF29B64EA20015C590 /* NotificationsView.swift */; };
@@ -119,6 +120,7 @@
 		8065485A297322B900943B72 /* UpcomingReservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingReservationsView.swift; sourceTree = "<group>"; };
 		806A376E297A3F3D00068FEA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		807151E4299B437B0009A99F /* VehicleOptions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VehicleOptions.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
+		808182B129B7DABF00B42232 /* BulletListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletListItem.swift; sourceTree = "<group>"; };
 		80903DC5298D6F070078881C /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		80903DC7298D928C0078881C /* MapSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSettingsView.swift; sourceTree = "<group>"; };
 		809070FF29B64EA20015C590 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				804287C029ADD4A400D9621C /* TermsConditionsView.swift */,
 				804287C229ADDE3C00D9621C /* PrivacyPolicy.swift */,
 				80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */,
+				808182B129B7DABF00B42232 /* BulletListItem.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80A013442991999B004DBE4E /* SignUpView.swift in Sources */,
 				80319134299D77F3003B457B /* VehiclePickerPanel.swift in Sources */,
+				808182B229B7DABF00B42232 /* BulletListItem.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
 				804287C329ADDE3C00D9621C /* PrivacyPolicy.swift in Sources */,

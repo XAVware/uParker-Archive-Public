@@ -22,7 +22,7 @@ struct ParkerSettingsView: View {
                     
                     if sessionManager.isLoggedIn {
                         profileSection
-                                                
+                        
                         accountSection
                             .padding(.top)
                         
@@ -30,7 +30,7 @@ struct ParkerSettingsView: View {
                             .padding(.top)
                     } //: If Is logged in
                     
-                    supportSection 
+                    supportSection
                         .padding(.top)
                     
                     if self.sessionManager.isLoggedIn {
@@ -43,7 +43,7 @@ struct ParkerSettingsView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 32)
                     }
-                        
+                    
                 } //: VStack
             } //: ScrollView
             .navigationTitle("Profile")
@@ -55,8 +55,8 @@ struct ParkerSettingsView: View {
     // MARK: - PROFILE
     private var profileSection: some View {
         VStack(alignment: .leading) {
-//            Text("Profile")
-//                .modifier(TextMod(.largeTitle, .semibold))
+            //            Text("Profile")
+            //                .modifier(TextMod(.largeTitle, .semibold))
             
             NavigationLink {
                 ProfileView()
@@ -100,59 +100,65 @@ struct ParkerSettingsView: View {
             NavigationLink {
                 PaymentMethodsView()
             } label: {
-                Image(systemName: "creditcard")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18)
-                
-                Text("Payment Methods")
-                    .padding(.horizontal, 8)
+                HStack {
+                    Image(systemName: "creditcard")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
                     
-                Spacer()
-                
-                Image(systemName: "chevron.right")
+                    Text("Payment Methods")
+                        .padding(.horizontal, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image(systemName: "chevron.right")
+                } //: HStack
+                .modifier(SettingsButtonMod())
             }
-            .modifier(SettingsButtonMod())
-                        
+            .buttonStyle(PlainButtonStyle())
+            
             Divider()
             
             //Vehicles
             NavigationLink {
                 VehiclesView()
             } label: {
-                Image(systemName: "car")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18)
-                
-                Text("Vehicles")
-                    .padding(.horizontal, 8)
+                HStack {
+                    Image(systemName: "car")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
                     
-                Spacer()
-                
-                Image(systemName: "chevron.right")
+                    Text("Vehicles")
+                        .padding(.horizontal, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image(systemName: "chevron.right")
+                } //: HStack
+                .modifier(SettingsButtonMod())
             }
-            .modifier(SettingsButtonMod())
-                        
+            .buttonStyle(PlainButtonStyle())
+            
             Divider()
             
             //Notifications
             NavigationLink {
                 NotificationsView()
             } label: {
-                Image(systemName: "bell")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18)
-                
-                Text("Notifications")
-                    .padding(.horizontal, 8)
+                HStack {
+                    Image(systemName: "bell")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
                     
-                Spacer()
-                
-                Image(systemName: "chevron.right")
+                    Text("Notifications")
+                        .padding(.horizontal, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image(systemName: "chevron.right")
+                } //: HStack
+                .modifier(SettingsButtonMod())
             }
-            .modifier(SettingsButtonMod())
+            .buttonStyle(PlainButtonStyle())
         } //: VStack
     } //: Account Section
     
@@ -166,19 +172,21 @@ struct ParkerSettingsView: View {
             NavigationLink {
                 //
             } label: {
-                Image(systemName: "arrowshape.zigzag.right")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18)
-                
-                Text("Switch to Hosting")
-                    .padding(.horizontal, 8)
+                HStack {
+                    Image(systemName: "arrowshape.zigzag.right")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
                     
-                Spacer()
-                
-                Image(systemName: "chevron.right")
+                    Text("Switch to Hosting")
+                        .padding(.horizontal, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image(systemName: "chevron.right")
+                } //: HStack
+                .modifier(SettingsButtonMod())
             }
-            .modifier(SettingsButtonMod())
+            .buttonStyle(PlainButtonStyle())
             
             Divider()
             
@@ -186,21 +194,23 @@ struct ParkerSettingsView: View {
             NavigationLink {
                 //
             } label: {
-                Image(systemName: "car.rear.road.lane")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 22)
-                    .offset(x: -2)
-                
-                Text("Host your Spot")
-                    .padding(.leading, 6)
-                    .padding(.trailing, 8)
+                HStack {
+                    Image(systemName: "car.rear.road.lane")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 22)
+                        .offset(x: -2)
                     
-                Spacer()
-                
-                Image(systemName: "chevron.right")
+                    Text("Host your Spot")
+                        .padding(.leading, 6)
+                        .padding(.trailing, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image(systemName: "chevron.right")
+                } //: HStack
+                .modifier(SettingsButtonMod())
             }
-            .modifier(SettingsButtonMod())
+            .buttonStyle(PlainButtonStyle())
         } //: VStack
     } //: HostSection
     
@@ -209,44 +219,48 @@ struct ParkerSettingsView: View {
         VStack(alignment: .leading) {
             Text("Support")
                 .modifier(TextMod(.title2, .semibold))
-
+            
             //More Info
             NavigationLink {
                 MoreInfoView()
             } label: {
-                Image(systemName: "info.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18)
-                
-                Text("More Info")
-                    .padding(.horizontal, 8)
+                HStack {
+                    Image(systemName: "info.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
                     
-                Spacer()
-                
-                Image(systemName: "chevron.right")
+                    Text("More Info")
+                        .padding(.horizontal, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image(systemName: "chevron.right")
+                } //: HStack
+                .modifier(SettingsButtonMod())
             }
-            .modifier(SettingsButtonMod())
-
+            .buttonStyle(PlainButtonStyle())
+            
             Divider()
-
+            
             //Contact Support
             NavigationLink {
                 //
             } label: {
-                Image(systemName: "phone")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 18)
-                
-                Text("Contact Support")
-                    .padding(.horizontal, 8)
+                HStack {
+                    Image(systemName: "phone")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 18)
                     
-                Spacer()
-                
-                Image(systemName: "chevron.right")
+                    Text("Contact Support")
+                        .padding(.horizontal, 8)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    Image(systemName: "chevron.right")
+                } //: HStack
+                .modifier(SettingsButtonMod())
             }
-            .modifier(SettingsButtonMod())
+            .buttonStyle(PlainButtonStyle())
         } //: VStack
     } //: SupportSection
     

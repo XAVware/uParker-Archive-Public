@@ -74,8 +74,8 @@ struct SettingsButtonMod: ViewModifier {
     func body(content: Content) -> some View {
         content
             .buttonStyle(PlainButtonStyle())
-            .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .font(.callout)
             .fontDesign(.rounded)
             .frame(height: 30)
