@@ -66,6 +66,7 @@
 		80C634BB29A84BA9003BC4C1 /* VehiclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C634BA29A84BA9003BC4C1 /* VehiclesView.swift */; };
 		80C9050829A94F35006AC211 /* AddVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C9050729A94F35006AC211 /* AddVehicleView.swift */; };
 		80CD7E7529AFEF2A00EE2F2F /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */; };
+		80E6F1DA29B9234E00C894FA /* FAQsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E6F1D929B9234E00C894FA /* FAQsView.swift */; };
 		80EAC1BF2968C38900F4DC09 /* ParkerSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */; };
 		80EAC1C12968CAC700F4DC09 /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */; };
 		80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */; };
@@ -144,6 +145,7 @@
 		80C634BA29A84BA9003BC4C1 /* VehiclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesView.swift; sourceTree = "<group>"; };
 		80C9050729A94F35006AC211 /* AddVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleView.swift; sourceTree = "<group>"; };
 		80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
+		80E6F1D929B9234E00C894FA /* FAQsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQsView.swift; sourceTree = "<group>"; };
 		80EAC1BE2968C38900F4DC09 /* ParkerSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerSettingsView.swift; sourceTree = "<group>"; };
 		80EAC1C02968CAC700F4DC09 /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				808182B129B7DABF00B42232 /* BulletListItem.swift */,
+				80E6F1D929B9234E00C894FA /* FAQsView.swift */,
 				801C4B1B29B8198B0064B825 /* HowItWorksView.swift */,
 				80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */,
 				804287C229ADDE3C00D9621C /* PrivacyPolicy.swift */,
@@ -519,6 +522,7 @@
 				8065485429731D4200943B72 /* ReservationPanelButton.swift in Sources */,
 				8065484E2972EF6400943B72 /* Review.swift in Sources */,
 				80C634BB29A84BA9003BC4C1 /* VehiclesView.swift in Sources */,
+				80E6F1DA29B9234E00C894FA /* FAQsView.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
 				80552582298B1EE300216586 /* ChatLogView.swift in Sources */,
 				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,
