@@ -13,6 +13,7 @@
 		800772F1296C61C600E7FEED /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772F0296C61C600E7FEED /* SearchField.swift */; };
 		800772F9296C97DA00E7FEED /* SpotMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772F8296C97DA00E7FEED /* SpotMapView.swift */; };
 		800772FB296CCF3D00E7FEED /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772FA296CCF3D00E7FEED /* SpotListView.swift */; };
+		8009382B29BA526C0017946F /* ObservableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009382A29BA526C0017946F /* ObservableScrollView.swift */; };
 		800B3BB129B676C2006EFDBE /* NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */; };
 		801C4B1C29B8198B0064B825 /* HowItWorksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B1B29B8198B0064B825 /* HowItWorksView.swift */; };
 		801C4B1E29B9787E0064B825 /* SpotListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B1D29B9787E0064B825 /* SpotListingView.swift */; };
@@ -94,6 +95,7 @@
 		800772F0296C61C600E7FEED /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		800772F8296C97DA00E7FEED /* SpotMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMapView.swift; sourceTree = "<group>"; };
 		800772FA296CCF3D00E7FEED /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
+		8009382A29BA526C0017946F /* ObservableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableScrollView.swift; sourceTree = "<group>"; };
 		800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingView.swift; sourceTree = "<group>"; };
 		801C4B1B29B8198B0064B825 /* HowItWorksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowItWorksView.swift; sourceTree = "<group>"; };
 		801C4B1D29B9787E0064B825 /* SpotListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListingView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8009382929BA520D0017946F /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				80EAC1D329691D1C00F4DC09 /* ToDos */,
+				8065485129730D1B00943B72 /* LineCount */,
+				804DAD52297A616C00B89AC6 /* Documentation */,
+				8036F4DB298C4110009A9566 /* Unused */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
 		800B3BB229B676C8006EFDBE /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +336,7 @@
 				80A64A292953FB46001317DD /* Info.plist */,
 				80A64A23294D8A49001317DD /* App */,
 				80A64A22294D8A2C001317DD /* CustomComponents */,
+				8009382929BA520D0017946F /* Documents */,
 				80A64A2C2953FFE7001317DD /* Model */,
 				80A64A1B294D6716001317DD /* Views */,
 				80A64A09294D6491001317DD /* Assets.xcassets */,
@@ -357,6 +371,7 @@
 				80EAC1C92968F2E400F4DC09 /* HeaderView.swift */,
 				80BA6AAB2992A92000B6F598 /* ImagePicker.swift */,
 				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
+				8009382A29BA526C0017946F /* ObservableScrollView.swift */,
 				80B0BD06299738410007EFE7 /* OrDivider.swift */,
 				8065485329731D4200943B72 /* ReservationPanelButton.swift */,
 				806548452972EBFC00943B72 /* ReservationsPicker.swift */,
@@ -376,10 +391,6 @@
 				800772EB2969F27F00E7FEED /* MBGeocoder.swift */,
 				80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
-				80EAC1D329691D1C00F4DC09 /* ToDos */,
-				8065485129730D1B00943B72 /* LineCount */,
-				804DAD52297A616C00B89AC6 /* Documentation */,
-				8036F4DB298C4110009A9566 /* Unused */,
 				807151E4299B437B0009A99F /* VehicleOptions.json */,
 			);
 			path = App;
@@ -553,6 +564,7 @@
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
 				80EAC1C52968CC1D00F4DC09 /* Modifiers.swift in Sources */,
 				804287C329ADDE3C00D9621C /* PrivacyPolicy.swift in Sources */,
+				8009382B29BA526C0017946F /* ObservableScrollView.swift in Sources */,
 				80C9050829A94F35006AC211 /* AddVehicleView.swift in Sources */,
 				80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */,
 				800772F1296C61C600E7FEED /* SearchField.swift in Sources */,
