@@ -19,6 +19,8 @@ struct SpotMapView: View {
     
     @State var spots: [Spot] = []
     
+    @State var isShowingListing: Bool = false
+    
     private let initialListHeight: CGFloat = 120
     
     private var buttonPanelOpacity: CGFloat {
@@ -81,20 +83,20 @@ struct SpotMapView: View {
                     
                     Spacer()
                     
-                    if self.selectedSpotId != nil {
+                    if selectedSpotId != nil {
                         TabView {
                             ForEach(1..<5) { spot in
                                 SpotPageView()
                                     .padding()
+                                    .onTapGesture {
+                                        isShowingListing.toggle()
+                                    }
                                 
                             }
                         } //: Tab
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                         .frame(height: 130)
                     }
-
-                    
-                    
                 } //: VStack
                 .overlay(
                     SearchField()
@@ -104,6 +106,9 @@ struct SpotMapView: View {
                         .presentationDetents([.fraction(0.65)])
                         .presentationDragIndicator(.hidden)
                         .edgesIgnoringSafeArea(.bottom)
+                }
+                .sheet(isPresented: $isShowingListing) {
+                    SpotListingView()
                 }
                 
             } //: ZStack

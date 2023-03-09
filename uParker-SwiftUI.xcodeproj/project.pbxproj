@@ -15,6 +15,7 @@
 		800772FB296CCF3D00E7FEED /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772FA296CCF3D00E7FEED /* SpotListView.swift */; };
 		800B3BB129B676C2006EFDBE /* NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */; };
 		801C4B1C29B8198B0064B825 /* HowItWorksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B1B29B8198B0064B825 /* HowItWorksView.swift */; };
+		801C4B1E29B9787E0064B825 /* SpotListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B1D29B9787E0064B825 /* SpotListingView.swift */; };
 		80319134299D77F3003B457B /* VehiclePickerPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80319133299D77F3003B457B /* VehiclePickerPanel.swift */; };
 		8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036CB2D296DA2A300B1A2B9 /* Extensions.swift */; };
 		8036F4DC298C4110009A9566 /* Unused in Resources */ = {isa = PBXBuildFile; fileRef = 8036F4DB298C4110009A9566 /* Unused */; };
@@ -95,6 +96,7 @@
 		800772FA296CCF3D00E7FEED /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
 		800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingView.swift; sourceTree = "<group>"; };
 		801C4B1B29B8198B0064B825 /* HowItWorksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowItWorksView.swift; sourceTree = "<group>"; };
+		801C4B1D29B9787E0064B825 /* SpotListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListingView.swift; sourceTree = "<group>"; };
 		80319133299D77F3003B457B /* VehiclePickerPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePickerPanel.swift; sourceTree = "<group>"; };
 		8036CB2D296DA2A300B1A2B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8036F4DB298C4110009A9566 /* Unused */ = {isa = PBXFileReference; lastKnownFileType = text; path = Unused; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				80903DC7298D928C0078881C /* MapSettingsView.swift */,
 				800772F0296C61C600E7FEED /* SearchField.swift */,
 				800772FA296CCF3D00E7FEED /* SpotListView.swift */,
+				801C4B1D29B9787E0064B825 /* SpotListingView.swift */,
 				800772F8296C97DA00E7FEED /* SpotMapView.swift */,
 				8050952229920E860035BE56 /* SpotPageView.swift */,
 				8055257E298B1BA200216586 /* PinView.swift */,
@@ -572,6 +575,7 @@
 				800B3BB129B676C2006EFDBE /* NotificationSettingView.swift in Sources */,
 				8090710029B64EA20015C590 /* NotificationsView.swift in Sources */,
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,
+				801C4B1E29B9787E0064B825 /* SpotListingView.swift in Sources */,
 				80903DC6298D6F070078881C /* Pin.swift in Sources */,
 				8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */,
 				80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */,
