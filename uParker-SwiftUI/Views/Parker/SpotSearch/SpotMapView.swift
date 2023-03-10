@@ -83,7 +83,7 @@ struct SpotMapView: View {
                     
                     Spacer()
                     
-                    if selectedSpotId != nil {
+                    if selectedSpotId != nil && listHeight < 200 {
                         TabView {
                             ForEach(1..<5) { spot in
                                 SpotPageView()
@@ -107,7 +107,7 @@ struct SpotMapView: View {
                         .presentationDragIndicator(.hidden)
                         .edgesIgnoringSafeArea(.bottom)
                 }
-                .sheet(isPresented: $isShowingListing) {
+                .fullScreenCover(isPresented: $isShowingListing) {
                     SpotListingView()
                 }
                 

@@ -55,8 +55,8 @@ struct ParkerSettingsView: View {
     // MARK: - PROFILE
     private var profileSection: some View {
         VStack(alignment: .leading) {
-            //            Text("Profile")
-            //                .modifier(TextMod(.largeTitle, .semibold))
+//            Text("Profile")
+//                .modifier(TextMod(.largeTitle, .semibold))
             
             NavigationLink {
                 ProfileView()

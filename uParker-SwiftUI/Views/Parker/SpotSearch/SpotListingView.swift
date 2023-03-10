@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+
 @MainActor class SpotListingViewModel: ObservableObject {
     @Published var scrollOffset: CGFloat = 0
     @Published var isFavorite: Bool = false
     
-    let imageHeight: CGFloat = 260
+    let imageHeight: CGFloat = 340
     
     var topBarOpacity: CGFloat {
-        let startingPoint: CGFloat = 80
+        let startingPoint: CGFloat = imageHeight / 2.5
         if scrollOffset < imageHeight - startingPoint {
             return 0
         } else if scrollOffset > imageHeight {
@@ -23,6 +24,14 @@ import SwiftUI
             return (startingPoint - difference) / (startingPoint / 2)
         }
     }
+    
+    let amenities: [AmenityDetail] = [
+        AmenityDetail(title: "Lighting", imageName: "lightbulb.fill"),
+        AmenityDetail(title: "Covered", imageName: "umbrella.fill"),
+        AmenityDetail(title: "Gated", imageName: "pedestrian.gate.closed"),
+        AmenityDetail(title: "Camera", imageName: "camera.fill"),
+        AmenityDetail(title: "Verified", imageName: "checkmark.shield.fill")
+    ]
 }
 
 struct SpotListingView: View {
@@ -39,85 +48,114 @@ struct SpotListingView: View {
             VStack {
                 imageTabView
                 VStack(alignment: .leading) {
-                    Text("Spot Name")
-                        .modifier(TextMod(.title, .semibold))
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    infoSection
+                    Divider().padding(.vertical)
+                    descriptionSection
+                    Divider().padding(.vertical)
                     
-                    Text("State College, Pennsylvania")
-                        .modifier(TextMod(.body, .semibold, .gray))
+                    amenitiesSection
                     
-                    HStack(alignment: .center, spacing: 6) {
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 12)
+                    Divider().padding(.vertical)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Image(systemName: "star.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20)
+                            
+                            Text("4.92")
+                                .modifier(TextMod(.title3, .semibold))
+                            
+                            dotSpacer.scaleEffect(2)
+                            
+                            Text("17 Reviews")
+                                .modifier(TextMod(.title3, .semibold))
+                        } //: HStack
                         
-                        Text("4.92")
-                            .modifier(TextMod(.footnote, .regular, .gray))
-                        
-                        dotSpacer
+                        TabView {
+                            ForEach(1..<4) { review in
+                                VStack(alignment: .leading, spacing: 16) {
+                                    HStack(spacing: 16) {
+                                        Image(systemName: "person.fill")
+                                            .resizable()
+                                            .scaledToFill()
+                                            .padding(10)
+                                            .foregroundColor(.gray)
+                                            .frame(width: 55, height: 55, alignment: .center)
+                                            .clipShape(Circle())
+                                            .overlay(
+                                                Circle()
+                                                    .stroke(.gray, lineWidth: 0.5)
+                                            )
+                                        
+                                        VStack(alignment: .leading) {
+                                            Text("Rachel")
+                                                .modifier(TextMod(.body, .semibold))
+                                            
+                                            Text("2 Weeks Ago")
+                                                .modifier(TextMod(.callout, .semibold, .gray))
+                                        } //: VStack
+                                        
+                                        Spacer()
+                                    } //: HStack
+                                    .frame(height: 40)
+                                    
+                                    Text("The driveway was spacious and well-maintained. We had no trouble parking our SUV and the host was friendly and accommodating. Would definitely use again!")
+                                        .frame(height: 100)
+                                    
+                                    Button {
+                                        //
+                                    } label: {
+                                        Text("See More")
+                                            .modifier(TextMod(.callout, .semibold))
+                                            .underline()
+                                            .frame(maxHeight: .infinity)
+                                        
+                                        Image(systemName: "chevron.right")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(height: 10)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.black)
+                                            .offset(y: 1)
+                                    }
+                                    
+                                } //: VStack
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(lineWidth: 1)
+                                        .foregroundColor(.gray)
+                                )
+                                .padding()
+                            } //: For Each
+                        } //: Tab View
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .padding()
+                        .frame(height: 260)
                         
                         Button {
-                            //scroll to review section
+                            //
                         } label: {
-                            Text("17 Reviews")
-                                .underline()
-                                .modifier(TextMod(.footnote, .medium))
+                            Text("See All Reviews")
+                                .modifier(TextMod(.title3, .semibold))
+                                .frame(maxWidth: .infinity)
                         }
-                        .foregroundColor(.black)
-                        
-                        dotSpacer
-                        
-                        Text("35 Total Reservations")
-                            .modifier(TextMod(.footnote, .regular))
-                    } //: HStack
-                    .padding(.vertical, 8)
-                    
-                    Divider()
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Description:")
-                            .modifier(TextMod(.title3, .semibold, .gray))
-                        
-                        Text("""
-                        Looking for a safe and convenient place to park your car? Look no further than my private driveway! Located in a quiet and secure residential area, my driveway is the perfect spot for anyone in need of a reliable parking space. Whether you're a commuter looking for a regular spot to park during the work week, or you need a place to leave your car while you're away on vacation, my driveway is available for rent on a short-term or long-term basis. With 24/7 access, you can park your vehicle with peace of mind knowing it's in a safe and monitored location. Contact me today to secure your spot!
-                        """)
-                        .multilineTextAlignment(.leading)
-                        .modifier(TextMod(.callout, .regular))
-                    }
-                    .padding(.vertical)
-                    
-                    Divider()
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Amenities:")
-                            .modifier(TextMod(.title3, .semibold, .gray))
-                        
-                        LazyVGrid(columns: columns, spacing: 12) {
-                            //Gated, lighting, covered, available now,
-                            ForEach(1..<7, id: \.self) { item in
-                                HStack(spacing: 8) {
-                                    Image(systemName: "lightbulb.fill")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 12)
-                                        .opacity(0.7)
-                                    
-                                    Text("Lighting")
-                                        .modifier(TextMod(.headline, .regular))
-                                } //: HStack
-                            } //: For Each
-                        } //: VGrid
+                        .modifier(OutlinedButtonMod())
+                        .padding(.top, 8)
+
                     } //: VStack
                     
                     Spacer().frame(height: 80)
                 } //: VStack
                 .padding()
             } //: VStack
-            .edgesIgnoringSafeArea(.all)
+            
         } //: Scroll
+        .edgesIgnoringSafeArea(.top)
         .overlay(buttonOverlay)
-        
     }
     
     // MARK: - VIEW VARIABLES
@@ -199,6 +237,79 @@ struct SpotListingView: View {
         } //: Tab
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .frame(height: vm.imageHeight)
+    } //: Image Tab View
+    
+    private var infoSection: some View {
+        VStack(alignment: .leading) {
+            Text("Spot Name")
+                .modifier(TextMod(.title, .semibold))
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            Text("State College, Pennsylvania")
+                .modifier(TextMod(.body, .semibold, .gray))
+            
+            HStack(alignment: .center, spacing: 6) {
+                Image(systemName: "star.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 12)
+                
+                Text("4.92")
+                    .modifier(TextMod(.footnote, .regular, .gray))
+                
+                dotSpacer
+                
+                Button {
+                    //scroll to review section
+                } label: {
+                    Text("17 Reviews")
+                        .underline()
+                        .modifier(TextMod(.footnote, .medium))
+                }
+                .foregroundColor(.black)
+                
+                dotSpacer
+                
+                Text("35 Total Reservations")
+                    .modifier(TextMod(.footnote, .regular))
+            } //: HStack
+        } //: VStack
+    } //: Info Section
+    
+    private var descriptionSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Description:")
+                .modifier(TextMod(.title3, .semibold, .gray))
+            
+            Text("""
+            Looking for a safe and convenient place to park your car? Look no further than my private driveway! Located in a quiet and secure residential area, my driveway is the perfect spot for anyone in need of a reliable parking space. Whether you're a commuter looking for a regular spot to park during the work week, or you need a place to leave your car while you're away on vacation, my driveway is available for rent on a short-term or long-term basis. With 24/7 access, you can park your vehicle with peace of mind knowing it's in a safe and monitored location. Contact me today to secure your spot!
+            """)
+            .multilineTextAlignment(.leading)
+            .modifier(TextMod(.callout, .regular))
+        } //: VStack
+    } //: Description Section
+    
+    private var amenitiesSection: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Amenities:")
+                .modifier(TextMod(.title3, .semibold, .gray))
+            
+            LazyVGrid(columns: columns, spacing: 12) {
+                ForEach(vm.amenities) { amenity in
+                    HStack(spacing: 8) {
+                        Image(systemName: amenity.imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 16, height: 16, alignment: .center)
+                            .opacity(0.7)
+                        
+                        Text(amenity.title)
+                            .modifier(TextMod(.headline, .regular))
+                            .frame(width: 100, alignment: .leading)
+                    } //: HStack
+                } //: For Each
+            } //: VGrid
+        } //: VStack
     }
 }
 
@@ -207,4 +318,9 @@ struct SpotListingView_Previews: PreviewProvider {
     static var previews: some View {
         SpotListingView()
     }
+}
+
+struct AmenityDetail: Identifiable {
+    let id: UUID = UUID()
+    let title, imageName: String
 }

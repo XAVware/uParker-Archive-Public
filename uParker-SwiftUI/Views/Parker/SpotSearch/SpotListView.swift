@@ -13,6 +13,7 @@ struct SpotListView: View {
     @State private var isDragging = false
     @State private var prevDragTranslation: CGSize = CGSize.zero
     @State private var velocity: CGFloat = 0
+    @State private var isShowingSpot: Bool = false
     @GestureState var isDetectingLongPress = false
     
     @Binding var viewHeight: CGFloat
@@ -119,25 +120,77 @@ struct SpotListView: View {
                         }
                         .gesture(dragGesture)
                 } else {
-                    Button {
-                        compressList()
-                    } label: {
-                        Image(systemName: "map.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15)
-                        
-                        Text("Map")
-                            .modifier(TextMod(.footnote, .semibold, .white))
-                    }
-                    .padding(.horizontal)
-                    .foregroundColor(.white)
-                    .frame(height: 30)
-                    .background(backgroundGradient)
-                    .clipShape(Capsule())
-                    .shadow(radius: 5)
-                    .opacity(viewButtonOpacity)
-                    .padding(.bottom)
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            ForEach(1..<6) { spot in
+                                VStack(alignment: .leading) {
+                                    Image("driveway")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .cornerRadius(10)
+                                    
+                                    HStack {
+                                        VStack(alignment: .leading) {
+                                            Text("Spot Name")
+                                                .modifier(TextMod(.title3, .semibold))
+                                            
+                                            Text("State College, Pennsylvania")
+                                                .modifier(TextMod(.body, .semibold, .gray))
+                                                .padding(.bottom, 1)
+                                            
+                                            Text("$3.00 / Day")
+                                                .modifier(TextMod(.callout, .semibold))
+                                        } //: VStack
+                                        
+                                        Spacer()
+                                        
+                                        VStack {
+                                            HStack {
+                                                Image(systemName: "star.fill")
+                                                    .resizable()
+                                                    .scaledToFit()
+                                                    .frame(width: 14)
+                                                
+                                                Text("4.92")
+                                                    .modifier(TextMod(.callout, .regular))
+                                            } //: HStack
+                                            
+                                            Spacer()
+                                        } //: VStack
+                                    } //: HStack
+                                } //: VStack
+                                .padding()
+                                .padding(.horizontal)
+                                .onTapGesture {
+                                    isShowingSpot.toggle()
+                                }
+                            } //: VStack
+                        } //: ForEach
+                    } //: Scroll
+                    .padding(.top, searchBarHeight)
+                    .overlay (
+                        Button {
+                            compressList()
+                        } label: {
+                            Image(systemName: "map.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 15)
+                            
+                            Text("Map")
+                                .modifier(TextMod(.footnote, .semibold, .white))
+                        }
+                        .padding(.horizontal)
+                        .foregroundColor(.white)
+                        .frame(height: 35)
+                        .background(backgroundGradient)
+                        .clipShape(Capsule())
+                        .shadow(radius: 5)
+                        .opacity(viewButtonOpacity)
+                        .padding(.bottom)
+                    , alignment: .bottom)
+                    
+                    
                     
                 }
                 
@@ -147,7 +200,7 @@ struct SpotListView: View {
                         .frame(width: 40, height: 6)
                         .opacity(self.isDragging ? 1.0 : 0.6)
                         .padding(.bottom, 10)
-                        .gesture(dragGesture)
+                        .gesture(isExpanded ? nil : dragGesture)
                 }
                 
             } //: VStack
@@ -160,10 +213,13 @@ struct SpotListView: View {
                     .mask(Rectangle().padding(.bottom, -20))
             )
             .transition(.move(edge: .top))
-            .gesture(dragGesture)
+            .gesture(isExpanded ? nil : dragGesture)
             .animation(.linear, value: true)
         } //: ZStack
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .fullScreenCover(isPresented: $isShowingSpot) {
+            SpotListingView()
+        }
         
     } //: Body
 } //: Struct

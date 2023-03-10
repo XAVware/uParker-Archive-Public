@@ -10,40 +10,50 @@ import SwiftUI
 
 struct ChatLogView: View {
     // MARK: - PROPERTIES
+    @State var tabBarVisibility: Visibility = .hidden
     @State var chatText: String = ""
+    @State var messages: [String] = ["Fake", "Testing"]
     
     // MARK: - BODY
     var body: some View {
         VStack {
+            
             messagesView
             
             chatBottomBar
             
         } //: VStack
-        .toolbar(.hidden, for: .tabBar)
+        .toolbar(tabBarVisibility, for: .tabBar)
         .navigationTitle("Conversation")
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            tabBarVisibility = .visible
+        }
     }
     
     private var messagesView: some View {
         ScrollView {
-            ForEach(0..<10) { num in
+            VStack {
+                Spacer()
+                ForEach(messages, id: \.self) { message in
+                    HStack {
+                        Spacer()
+                        
+                        Text(message)
+                            .modifier(TextMod(.body, .regular, .white))
+                            .padding(12)
+                            .background(primaryColor)
+                            .cornerRadius(10)
+                        
+                    } //: HStack
+                    .padding(.horizontal)
+                    .padding(.top, 8)
+                } //: For Each
+                
                 HStack {
                     Spacer()
-                    
-                    HStack {
-                        Text("Fake")
-                            .modifier(TextMod(.callout, .regular, .white))
-                    } //: HStack
-                    .padding()
-                    .background(.blue)
-                    .cornerRadius(8)
                 } //: HStack
-                .padding(.horizontal)
-                .padding(.top, 8)
-            }
-            
-            HStack { Spacer() }
+            } //: VStack
         } //: Scroll
         .background(Color(.init(white: 0.95, alpha: 1)))
     }
@@ -65,15 +75,18 @@ struct ChatLogView: View {
                         .modifier(TextMod(.callout, .regular, .gray))
                 }
             }
+            
             Button {
-                //
+                guard chatText != "" else { return }
+                messages.append(chatText)
+                chatText = ""
             } label: {
                 Text("Send")
                     .modifier(TextMod(.callout, .semibold, .white))
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
-            .background(.blue)
+            .background(primaryColor)
             .cornerRadius(5)
 
         } //: HStack
