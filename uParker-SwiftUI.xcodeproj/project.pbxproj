@@ -17,6 +17,7 @@
 		800B3BB129B676C2006EFDBE /* NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */; };
 		801C4B1C29B8198B0064B825 /* HowItWorksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B1B29B8198B0064B825 /* HowItWorksView.swift */; };
 		801C4B1E29B9787E0064B825 /* SpotListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B1D29B9787E0064B825 /* SpotListingView.swift */; };
+		801C4B2129C13BB60064B825 /* SpotMapView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B2029C13BB60064B825 /* SpotMapView2.swift */; };
 		80319134299D77F3003B457B /* VehiclePickerPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80319133299D77F3003B457B /* VehiclePickerPanel.swift */; };
 		8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8036CB2D296DA2A300B1A2B9 /* Extensions.swift */; };
 		8036F4DC298C4110009A9566 /* Unused in Resources */ = {isa = PBXBuildFile; fileRef = 8036F4DB298C4110009A9566 /* Unused */; };
@@ -99,6 +100,7 @@
 		800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingView.swift; sourceTree = "<group>"; };
 		801C4B1B29B8198B0064B825 /* HowItWorksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowItWorksView.swift; sourceTree = "<group>"; };
 		801C4B1D29B9787E0064B825 /* SpotListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListingView.swift; sourceTree = "<group>"; };
+		801C4B2029C13BB60064B825 /* SpotMapView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMapView2.swift; sourceTree = "<group>"; };
 		80319133299D77F3003B457B /* VehiclePickerPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclePickerPanel.swift; sourceTree = "<group>"; };
 		8036CB2D296DA2A300B1A2B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8036F4DB298C4110009A9566 /* Unused */ = {isa = PBXFileReference; lastKnownFileType = text; path = Unused; sourceTree = "<group>"; };
@@ -213,6 +215,15 @@
 			path = PaymentMethods;
 			sourceTree = "<group>";
 		};
+		801C4B1F29C13AE80064B825 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				801C4B1D29B9787E0064B825 /* SpotListingView.swift */,
+				801C4B2029C13BB60064B825 /* SpotMapView2.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		804287C429ADE26300D9621C /* Vehicles */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,7 +250,6 @@
 				80903DC7298D928C0078881C /* MapSettingsView.swift */,
 				800772F0296C61C600E7FEED /* SearchField.swift */,
 				800772FA296CCF3D00E7FEED /* SpotListView.swift */,
-				801C4B1D29B9787E0064B825 /* SpotListingView.swift */,
 				800772F8296C97DA00E7FEED /* SpotMapView.swift */,
 				8050952229920E860035BE56 /* SpotPageView.swift */,
 				8055257E298B1BA200216586 /* PinView.swift */,
@@ -269,6 +279,7 @@
 		8047EDB6296E014C00AF3896 /* Parker */ = {
 			isa = PBXGroup;
 			children = (
+				801C4B1F29C13AE80064B825 /* Map */,
 				80552580298B1EBB00216586 /* Chat */,
 				80654855297321D100943B72 /* Reservations */,
 				80BA6AAD2992AC9C00B6F598 /* Settings */,
@@ -559,6 +570,7 @@
 				805095202991B54B0035BE56 /* AddPhoneView.swift in Sources */,
 				80A64A06294D6490001317DD /* uParker_SwiftUIApp.swift in Sources */,
 				80A013442991999B004DBE4E /* SignUpView.swift in Sources */,
+				801C4B2129C13BB60064B825 /* SpotMapView2.swift in Sources */,
 				80319134299D77F3003B457B /* VehiclePickerPanel.swift in Sources */,
 				808182B229B7DABF00B42232 /* BulletListItem.swift in Sources */,
 				80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */,
