@@ -189,9 +189,6 @@ struct SpotListView: View {
                         .opacity(viewButtonOpacity)
                         .padding(.bottom)
                     , alignment: .bottom)
-                    
-                    
-                    
                 }
                 
                 if viewHeight < maxHeight {
@@ -225,16 +222,16 @@ struct SpotListView: View {
 } //: Struct
 
 // MARK: - PREVIEW
-struct SpotListView_Previews: PreviewProvider {
-    @State static var viewHeight: CGFloat = 650
-    static let minHeight: CGFloat = 120
-    static let maxHeight: CGFloat = 650
-    static var previews: some View {
-        ZStack {
-            Color.white
-                .edgesIgnoringSafeArea(.all)
-            
-            SpotListView(viewHeight: $viewHeight, minHeight: minHeight, maxHeight: maxHeight)
-        }
-    }
-}
+//struct SpotListView_Previews: PreviewProvider {
+//    @State static var viewHeight: CGFloat = 650
+//    static let minHeight: CGFloat = 120
+//    static let maxHeight: CGFloat = 650
+//    static var previews: some View {
+//        ZStack {
+//            Color.white
+//                .edgesIgnoringSafeArea(.all)
+//            
+//            SpotListView(viewHeight: $viewHeight, minHeight: minHeight, maxHeight: maxHeight)
+//        }
+//    }
+//}

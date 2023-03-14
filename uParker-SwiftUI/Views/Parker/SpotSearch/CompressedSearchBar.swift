@@ -65,11 +65,11 @@ struct CompressedSearchBar: View {
     }
 }
 
-struct CompressedSearchBar_Previews: PreviewProvider {
-    @State static var destination: String = ""
-    @State static var date: Date = Date()
-    
-    static var previews: some View {
-        CompressedSearchBar(destination: $destination, date: $date)
-    }
-}
+//struct CompressedSearchBar_Previews: PreviewProvider {
+//    @State static var destination: String = ""
+//    @State static var date: Date = Date()
+//    
+//    static var previews: some View {
+//        CompressedSearchBar(destination: $destination, date: $date)
+//    }
+//}

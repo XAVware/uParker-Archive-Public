@@ -78,14 +78,6 @@ struct MapSettingsView: View {
     }
 }
 
-// MARK: - PREVEIW
-struct MapSettingsView_Previews: PreviewProvider {
-    @State static var style: StyleURI = StyleURI.streets
-    static var previews: some View {
-        MapSettingsView(mapStyle: $style)
-    }
-}
-
 let mapStyles: [MapStyle] = [
     MapStyle(labelName: "Streets", imageName: "Style.streets"),
     MapStyle(labelName: "Satellite", imageName: "Style.satellite"),
@@ -116,3 +108,11 @@ struct MapStyle: Identifiable {
         }
     }
 }
+
+// MARK: - PREVEIW
+//struct MapSettingsView_Previews: PreviewProvider {
+//    @State static var style: StyleURI = StyleURI.streets
+//    static var previews: some View {
+//        MapSettingsView(mapStyle: $style)
+//    }
+//}

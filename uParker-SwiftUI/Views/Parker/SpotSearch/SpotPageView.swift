@@ -12,7 +12,6 @@ struct SpotPageView: View {
     
     // MARK: - BODY
     var body: some View {
-        
         HStack {
             Image("driveway")
                 .resizable()
@@ -48,9 +47,9 @@ struct SpotPageView: View {
     }
 }
 
-struct SpotPageView_Previews: PreviewProvider {
-    static var previews: some View {
-        SpotPageView()
-            .padding()
-    }
-}
+//struct SpotPageView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SpotPageView()
+//            .padding()
+//    }
+//}

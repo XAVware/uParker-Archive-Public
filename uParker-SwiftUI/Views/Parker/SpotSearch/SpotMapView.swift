@@ -7,18 +7,24 @@
 
 import SwiftUI
 import MapboxMaps
+import MapboxSearch
+import MapboxSearchUI
+import CoreLocation
+
+@MainActor class SpotMapViewModel: ObservableObject {
+    
+}
 
 struct SpotMapView: View {
     // MARK: - PROPERTIES
     @StateObject var locationManager = LocationManager.shared
+    @StateObject var vm: SpotMapViewModel = SpotMapViewModel()
     
     @State var listHeight: CGFloat = 120
     @State var mapStyle: StyleURI = .streets
     @State var isShowingSettings: Bool = false
     @State var selectedSpotId: String?
-    
     @State var spots: [Spot] = []
-    
     @State var isShowingListing: Bool = false
     
     private let initialListHeight: CGFloat = 120
@@ -112,15 +118,8 @@ struct SpotMapView: View {
                 }
                 
             } //: ZStack
-//            .onAppear{
-//                self.spots = [Spot(streetAdress: "123 East Beaver Ave, State College, PA 16801", title: "Spot 1", price: 3.00, rating: 4.0),
-//                                  Spot(streetAdress: "100 Waupelani Drive, State College, PA 16801", title: "Spot 2", price: 40.00, rating: 5.0)]
-//                
-//            }
-            
         } //: Geometry Reader
     }
-    
 }
 
 // MARK: - PREVIEW
