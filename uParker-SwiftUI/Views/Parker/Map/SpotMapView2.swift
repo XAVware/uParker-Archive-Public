@@ -10,387 +10,211 @@ import MapboxMaps
 import MapboxSearch
 import MapboxSearchUI
 import CoreLocation
+import CoreLocationUI
+import MapKit
 
-@MainActor class SpotMapViewModel: ObservableObject {
+@MainActor class SpotMapViewModel: NSObject, ObservableObject {
+    static let shared = SpotMapViewModel()
+    @Published var listHeight: CGFloat = 120
+    @Published var isShowingSettings: Bool = false
+    @Published var isShowingSpot: Bool = false
+    @Published var isShowingListing: Bool = false
+    @Published var mapStyle: StyleURI = .streets
     
-}
+    @Published var selectedSpotId: String?
+    
+    let initialListHeight: CGFloat = 120
+    @Published var maxListHeight: CGFloat = 0
+    @Published var isListExpanded: Bool = false
+    @Published var isListDragging = false
+    @Published var prevDragTranslation: CGSize = CGSize.zero
+    @Published var velocity: CGFloat = 0
+    @GestureState var isDetectingLongPress = false
+    
+    @Published var location: CLLocation = CLLocation(latitude: 40.7934, longitude: -77.8600)
+    @Published var region = MKCoordinateRegion()
+    @Published var suggestionList: [SearchSuggestion] = []
+    @Published var lastSelectedSuggestion: SimpleSuggestion?
+    
+    private let locationManager = CLLocationManager()
+    
+    let searchEngine = SearchEngine()
+    var searchText: String = ""
+    let mapSettingsColumns = [GridItem(.flexible()), GridItem(.flexible())]
 
-struct SpotMapView: View {
-    // MARK: - PROPERTIES
-    @StateObject var locationManager = LocationManager.shared
-    @StateObject var vm: SpotMapViewModel = SpotMapViewModel()
-    
-    @State var listHeight: CGFloat = 120
-    @State var mapStyle: StyleURI = .streets
-    @State var isShowingSettings: Bool = false
-    @State var selectedSpotId: String?
-    @State var spots: [Spot] = []
-    @State var isShowingListing: Bool = false
-    
-    private let initialListHeight: CGFloat = 120
-    
-    private var buttonPanelOpacity: CGFloat {
+    var listCornerRad: CGFloat {
         if listHeight == initialListHeight {
-            return 1
+            return 30
+        } else if listHeight < maxListHeight {
+            return 30 * (initialListHeight / listHeight)
         } else {
-            return 1 - ((listHeight - initialListHeight) / 10)
+            return 0
         }
     }
     
+    var threshold: CGFloat {
+        return (maxListHeight - initialListHeight) / 2
+    }
     
-    // MARK: - BODY
-    var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                MapViewWrapper(center: $locationManager.location, mapStyle: $mapStyle, selectedSpotId: $selectedSpotId)
-                
-                SpotListView(viewHeight: $listHeight, minHeight: initialListHeight, maxHeight: geo.size.height)
-                    .edgesIgnoringSafeArea(.bottom)
-                
-                
-                VStack(spacing: 0) {
-                    Spacer().frame(height: initialListHeight - geo.safeAreaInsets.top + searchBarHeight)
-                        .padding(.top)
-                    
-                    HStack {
-                        Spacer()
-                        
-                        VStack(spacing: 10) {
-                            Button {
-                                LocationManager.shared.requestLocation()
-                            } label: {
-                                Image(systemName: "location.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            }
-                            .frame(width: 15)
-                            
-                            Divider()
-                            
-                            Button {
-                                self.isShowingSettings.toggle()
-                            } label: {
-                                Image(systemName: "gear")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 15)
-                            }
-                            .frame(width: 15)
-                            
-                        } //: VStack
-                        .frame(width: 35, height: 70)
-                        .background(Color.white)
-                        .cornerRadius(5)
-                        .shadow(radius: 5)
-                        .padding(.horizontal)
-                        .opacity(buttonPanelOpacity)
-                    } //: HStack
-                    
-                    Spacer()
-                    
-                    if selectedSpotId != nil && listHeight < 200 {
-                        TabView {
-                            ForEach(1..<5) { spot in
-                                SpotPageView()
-                                    .padding()
-                                    .onTapGesture {
-                                        isShowingListing.toggle()
-                                    }
-                                
-                            }
-                        } //: Tab
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                        .frame(height: 130)
-                    }
-                } //: VStack
-                .overlay(
-                    SearchField()
-                )
-                .sheet(isPresented: $isShowingSettings) {
-                    MapSettingsView(mapStyle: $mapStyle)
-                        .presentationDetents([.fraction(0.65)])
-                        .presentationDragIndicator(.hidden)
-                        .edgesIgnoringSafeArea(.bottom)
-                }
-                .fullScreenCover(isPresented: $isShowingListing) {
-                    SpotListingView()
+    var dragGesture: some Gesture {
+        DragGesture(minimumDistance: 0, coordinateSpace: .global)
+            .onChanged { val in
+                if !self.isListDragging {
+                    self.isListDragging = true
                 }
                 
-            } //: ZStack
-        } //: Geometry Reader
-    }
-}
-
-// MARK: - COMPRESSED SEARCH BAR
-struct CompressedSearchBar: View {
-    @Binding var destination: String
-    @Binding var date: Date
-    
-    let iconSize: CGFloat = 15
-    
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
-    
-    var dateText: String {
-        if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {
-            return "Today"
-        } else {
-            return dateFormatter.string(from: date)
-        }
-    }
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .resizable()
-                .scaledToFit()
-                .frame(width: iconSize)
-            
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Where to?")
-                    .modifier(TextMod(.headline, .semibold))
+                self.velocity = val.predictedEndLocation.y - val.location.y
                 
-                Text("\(destination) - \(dateText)")
-                    .modifier(TextMod(.caption, .regular))
-            } //: VStack
-            .padding(.horizontal)
-            
-            Spacer()
-            
-            Button {
-                //
-            } label: {
-                Image(systemName: "slider.horizontal.3")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: iconSize)
+                let dragAmount = val.translation.height - self.prevDragTranslation.height
+                
+                if self.listHeight >= self.maxListHeight && dragAmount > 0 {
+                    self.listHeight += 0
+                } else if self.listHeight < self.initialListHeight {
+                    self.listHeight += dragAmount / 10
+                } else {
+                    self.listHeight += dragAmount
+                }
+                
+                self.prevDragTranslation = val.translation
             }
-            .frame(width: 35, height: 35)
-            .overlay(Circle().stroke(.gray))
-        } //: HStack
-        .padding(.horizontal)
-        .frame(height: searchBarHeight)
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: searchBarHeight))
-        .shadow(radius: 4)
-        
+            .onEnded { val in
+                self.prevDragTranslation = CGSize.zero
+                self.isListDragging = false
+                
+                if self.velocity > 200 {
+                    self.expandList()
+                } else if self.velocity < -200 {
+                    self.compressList()
+                }
+                
+                if self.listHeight >= self.threshold {
+                    self.expandList()
+                } else if self.listHeight < self.threshold {
+                    self.compressList()
+                }
+            }
     }
-}
+    
+    let mapStyles: [MapStyle] = [
+        MapStyle(labelName: "Streets", imageName: "Style.streets"),
+        MapStyle(labelName: "Satellite", imageName: "Style.satellite"),
+        MapStyle(labelName: "Outdoors", imageName: "Style.outdoors"),
+        MapStyle(labelName: "Light", imageName: "Style.light"),
+        MapStyle(labelName: "Dark", imageName: "Style.dark")
+    ]
 
-// MARK: - VIEW WRAPPER
-struct MapViewWrapper: UIViewControllerRepresentable {
-    @Binding var center: CLLocation
-    @Binding var mapStyle: StyleURI
-    @Binding var selectedSpotId: String?
-    
-    typealias UIViewControllerType = MapViewController
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext< MapViewWrapper >) -> MapViewController {
-        return MapViewController(center: center, mapStyle: mapStyle)
-    }
-    
-    func updateUIViewController(_ mapViewController: MapViewController, context: UIViewControllerRepresentableContext< MapViewWrapper >) {
-        mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
-        mapViewController.changeMapStyle(to: mapStyle)
-        if let pin = mapViewController.selectedPin {
-            guard self.selectedSpotId != pin.data.id else { return }
-            self.selectedSpotId = pin.data.id
+    struct MapStyle: Identifiable {
+        let id: UUID = UUID()
+        let labelName: String
+        let imageName: String
+        
+        var styleURI: StyleURI {
+            switch labelName {
+            case "Streets":
+                return StyleURI.streets
+            case "Outdoors":
+                return StyleURI.outdoors
+            case "Light":
+                return StyleURI.light
+            case "Dark":
+                return StyleURI.dark
+            case "Satellite":
+                return StyleURI.satellite
+            default:
+                return StyleURI.streets
+            }
         }
     }
-}
-
-// MARK: - CONTROLLER
-public class MapViewController: UIViewController {
-    // MARK: - PROPERTIES
-    internal var mapView: MapView!
-    var selectedPin: PinView?
-    var mapStyle: StyleURI
-    let markers: [PinModel] = [
-        PinModel(id: "Spot_ID", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)), price: 3.00),
-        PinModel(id: "Spot_ID2", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505)), price: 40.00)
-    ]
     
-    var cameraOptions: CameraOptions {
-        return CameraOptions(center: centerLocation, zoom: 12, bearing: -17.6, pitch: 0)
+    override init() {
+        super.init()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.delegate = self
+        searchEngine.delegate = self
     }
     
-    var centerLocation: CLLocationCoordinate2D {
-        didSet { mapView.camera.fly(to: cameraOptions, duration: 1) }
-    }
-    
-    // MARK: - INITIALIZER
-    init(center: CLLocation, mapStyle: StyleURI) {
-        centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
-        self.mapStyle = mapStyle
-        super.init(nibName: nil, bundle: nil)
-    }
-    
+    //May not need
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        
-        initializeMap()
-        
-        self.markers.forEach { marker in
-            let options = ViewAnnotationOptions(
-                geometry: marker.coordinate,
-                allowOverlap: true,
-                visible: true,
-                anchor: .bottom,
-                offsetY: 0)
-            
-            let pin = PinView(pin: marker)
-            pin.delegate = self
-            try? mapView.viewAnnotations.add(pin, options: options)
+    func expandList() {
+        withAnimation {
+            listHeight = maxListHeight
+            self.isListExpanded = true
         }
     }
     
-    func changeMapStyle(to style: StyleURI) {
-        self.mapStyle = style
-        mapView.mapboxMap.loadStyleURI(mapStyle)
+    func compressList() {
+        withAnimation {
+            listHeight = initialListHeight
+            self.isListExpanded = false
+        }
     }
-
-    private func initializeMap() {
-        let myResourceOptions = ResourceOptions(accessToken: MBAccessKey)
-        // Pass camera options to map init options
-        let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleURI: self.mapStyle)
         
-        mapView = MapView(frame: view.bounds, mapInitOptions: options)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        self.view.addSubview(mapView)
+    func requestLocation() {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
-}
-
-// MARK: - PIN VIEW DELEGATE
-extension MapViewController: PinViewInteractionDelegate {
-    public func didSelectPin(_ pin: PinView) {
-        if let previousPin = self.selectedPin {
-            previousPin.isSelected = false
-            previousPin.updateUI()
-        }
-        
-        self.selectedPin = pin
-        let newCenter = CLLocation(latitude: pin.data.coordinate.coordinates.latitude, longitude: pin.data.coordinate.coordinates.longitude)
-        LocationManager.shared.setCenter(newLocation: newCenter)
+    func setCenter(newLocation: CLLocation) {
+        self.location = newLocation
     }
 }
 
-public protocol PinViewInteractionDelegate: AnyObject {
-    func didSelectPin(_ pin: PinView)
+extension SpotMapViewModel: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        self.location = location
+        //5000 is a little over 3 miles
+        self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {}
 }
 
-struct MapSettingsView: View {
+extension SpotMapViewModel: SearchEngineDelegate {
+    func selectSuggestion(_ suggestion: SearchSuggestion, completion: @escaping (SimpleSuggestion?) -> Void) {
+        searchEngine.select(suggestion: suggestion)
+        
+        DispatchQueue.main.async {
+            guard self.lastSelectedSuggestion != nil else {return}
+            completion(self.lastSelectedSuggestion)
+        }
+    }
+    
+    @objc func updateQuery(text: String) {
+        searchEngine.query = text
+    }
+
+    func dumpSuggestions(_ suggestions: [SearchSuggestion], query: String) {
+        self.suggestionList = suggestions
+    }
+     
+    // MARK: - SEARCH ENGINE DELEGATE METHODS
+    func suggestionsUpdated(suggestions: [SearchSuggestion], searchEngine: SearchEngine) {
+        dumpSuggestions(suggestions, query: searchEngine.query)
+    }
+    
+    func resultResolved(result: SearchResult, searchEngine: SearchEngine) {
+        lastSelectedSuggestion = SimpleSuggestion(name: result.name, address: result.address, coordinate: result.coordinate, categories: result.categories)
+    }
+    
+    func searchErrorHappened(searchError: SearchError, searchEngine: SearchEngine) {
+        print("Error during search: \(searchError)")
+    }
+}
+
+struct SpotMapView: View {
     // MARK: - PROPERTIES
-    @Environment(\.dismiss) var dismiss
-    @Binding var mapStyle: StyleURI
-    
-    let columns = [GridItem(.flexible()), GridItem(.flexible())]
-    
-    // MARK: - BODY
-    var body: some View {
-        GeometryReader { geo in
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Map Settings")
-                        .modifier(TextMod(.title, .semibold))
-                    
-                    Spacer()
-                    
-                    Button {
-                        self.dismiss.callAsFunction()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 20)
-                            .foregroundColor(Color(.systemGray4))
-                    }
-
-                } //: HStacl
-                
-                
-                ScrollView(showsIndicators: false) {
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(mapStyles) { style in
-                            ZStack {
-                                Image(style.imageName)
-                                    .resizable()
-                                    .scaledToFill()
-
-                                VStack {
-                                    Spacer()
-
-                                    Text(style.labelName)
-                                        .modifier(TextMod(.callout, self.mapStyle == style.styleURI ? .bold : .regular))
-                                        .padding()
-                                        .frame(height: 45)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .background(.ultraThickMaterial)
-                                } //: VStack
-
-                            } //: ZStack
-                            .frame(width: geo.size.width / 2 - 24, height: (geo.size.width / 2 - 24) * 0.70)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(primaryColor, lineWidth: self.mapStyle == style.styleURI ? 1 : 0))
-                            .onTapGesture {
-                                self.mapStyle = style.styleURI
-                            }
-
-                        } //: ForEach
-                    } //: VGrid
-                    .padding(.top,8)
-                } //: Scroll
-                
-                Spacer()
-            } //: VStack
-            .padding(.horizontal)
-            .padding(.top)
-        } //: Geometry Reader
-    }
-}
-
-let mapStyles: [MapStyle] = [
-    MapStyle(labelName: "Streets", imageName: "Style.streets"),
-    MapStyle(labelName: "Satellite", imageName: "Style.satellite"),
-    MapStyle(labelName: "Outdoors", imageName: "Style.outdoors"),
-    MapStyle(labelName: "Light", imageName: "Style.light"),
-    MapStyle(labelName: "Dark", imageName: "Style.dark")
-]
-
-struct MapStyle: Identifiable {
-    let id: UUID = UUID()
-    let labelName: String
-    let imageName: String
-    
-    var styleURI: StyleURI {
-        switch labelName {
-        case "Streets":
-            return StyleURI.streets
-        case "Outdoors":
-            return StyleURI.outdoors
-        case "Light":
-            return StyleURI.light
-        case "Dark":
-            return StyleURI.dark
-        case "Satellite":
-            return StyleURI.satellite
-        default:
-            return StyleURI.streets
-        }
-    }
-}
-
-struct SearchField: View {
-    // MARK: - PROPERTIES
+    @StateObject var vm: SpotMapViewModel = .shared
+        
     @State private var originalDestination: String = "Beaver Stadium"
     
     @State private var searchIsExpanded: Bool = false
@@ -400,8 +224,8 @@ struct SearchField: View {
     @State private var date: Date = Date()
     @State private var isShowingSuggestions: Bool = false {
         willSet(newValue) {
-            if newValue == false && selectedSuggestion == nil && LocationManager.shared.suggestionList.count > 0 {
-                LocationManager.shared.selectSuggestion(LocationManager.shared.suggestionList[0]) { sug in
+            if newValue == false && selectedSuggestion == nil && vm.suggestionList.count > 0 {
+                vm.selectSuggestion(vm.suggestionList[0]) { sug in
                     selectedSuggestion = sug
                     destination = selectedSuggestion?.name ?? "Empty"
                 }
@@ -452,8 +276,8 @@ struct SearchField: View {
     }
     
     private func searchTapped() {
-        if selectedSuggestion == nil && LocationManager.shared.suggestionList.count > 0 {
-            LocationManager.shared.selectSuggestion(LocationManager.shared.suggestionList[0]) { sug in
+        if selectedSuggestion == nil && vm.suggestionList.count > 0 {
+            vm.selectSuggestion(vm.suggestionList[0]) { sug in
                 self.selectedSuggestion = sug
             }
         }
@@ -463,7 +287,7 @@ struct SearchField: View {
         }
         
         let location: CLLocation = CLLocation(latitude: selectedSuggestion!.coordinate.latitude, longitude: selectedSuggestion!.coordinate.longitude)
-        LocationManager.shared.location = location
+        vm.location = location
         closeSearch()
     }
     
@@ -476,10 +300,93 @@ struct SearchField: View {
             self.dateIsExpanded = false
         }
     }
-    
+
     // MARK: - BODY
     var body: some View {
-        if self.searchIsExpanded {
+        GeometryReader { geo in
+            ZStack {
+                MapViewWrapper(center: $vm.location, mapStyle: $vm.mapStyle)
+                
+                spotListView
+                    .edgesIgnoringSafeArea(.bottom)
+                
+                VStack(spacing: 0) {
+                    Spacer().frame(height: vm.initialListHeight - geo.safeAreaInsets.top + searchBarHeight)
+                        .padding(.top)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        VStack(spacing: 10) {
+                            Button {
+                                vm.requestLocation()
+                            } label: {
+                                Image(systemName: "location.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                            }
+                            .frame(width: 15)
+                            
+                            Divider()
+                            
+                            Button {
+                                vm.isShowingSettings.toggle()
+                            } label: {
+                                Image(systemName: "gear")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 15)
+                            }
+                            .frame(width: 15)
+                            
+                        } //: VStack
+                        .frame(width: 35, height: 70)
+                        .background(.white)
+                        .cornerRadius(5)
+                        .shadow(radius: 5)
+                        .padding(.horizontal)
+                        .opacity(vm.listHeight == vm.initialListHeight ? 1 : (1 - 0.1 * (vm.listHeight - vm.initialListHeight)))
+                    } //: HStack
+                    
+                    Spacer()
+                    
+                    if vm.selectedSpotId != nil && vm.listHeight < 200 {
+                        TabView {
+                            ForEach(1..<5) { spot in
+                                SpotPageView()
+                                    .padding()
+                                    .onTapGesture {
+                                        vm.isShowingListing.toggle()
+                                    }
+                                
+                            }
+                        } //: Tab
+                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                        .frame(height: 130)
+                    }
+                } //: VStack
+                .overlay(searchView)
+                .sheet(isPresented: $vm.isShowingSettings) {
+                    mapSettingsView
+//                    MapSettingsView(mapStyle: $vm.mapStyle)
+                        .presentationDetents([.fraction(0.65)])
+                        .presentationDragIndicator(.hidden)
+                        .edgesIgnoringSafeArea(.bottom)
+                }
+                .fullScreenCover(isPresented: $vm.isShowingListing) {
+                    SpotListingView()
+                }
+                .onAppear {
+                    vm.maxListHeight = geo.size.height
+                }
+                
+            } //: ZStack
+        } //: Geometry Reader
+    }
+    
+    @ViewBuilder private var searchView: some View {
+        if searchIsExpanded {
             VStack(spacing: 20) {
                 HStack {
                     Button {
@@ -518,9 +425,9 @@ struct SearchField: View {
                             
                             ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading) {
-                                    ForEach(LocationManager.shared.suggestionList, id: \.id) { suggestion in
+                                    ForEach(vm.suggestionList, id: \.id) { suggestion in
                                         Button {
-                                            LocationManager.shared.selectSuggestion(suggestion) { sug in
+                                            vm.selectSuggestion(suggestion) { sug in
                                                 self.selectedSuggestion = sug
                                             }
                                             destination = suggestion.name
@@ -555,7 +462,7 @@ struct SearchField: View {
                 } //: Disclosure Group
                 .modifier(SearchCardMod())
                 .onChange(of: destination, perform: { newValue in
-                    LocationManager.shared.updateQuery(text: newValue)
+                    vm.updateQuery(text: newValue)
                 })
                 .onChange(of: focusField) { newValue in
                     if newValue == .destination {
@@ -563,7 +470,7 @@ struct SearchField: View {
                             isShowingSuggestions = true
                             dateIsExpanded = false
                         }
-                        LocationManager.shared.updateQuery(text: destination)
+                        vm.updateQuery(text: destination)
                     } else if newValue == nil {
                         withAnimation {
                             isShowingSuggestions = false
@@ -646,7 +553,6 @@ struct SearchField: View {
             .ignoresSafeArea(.keyboard)
             .animation(.linear, value: true)
         } else {
-            // MARK: - SEARCH BAR
             VStack {
                 CompressedSearchBar(destination: $destination, date: $date)
                     .onTapGesture { searchBarTapped() }
@@ -655,174 +561,34 @@ struct SearchField: View {
             .padding()
             .opacity(self.searchIsExpanded ? 0 : 1)
         }
-        
-    }
-}
-
-struct SpotListView: View {
-    // MARK: - PROPERTIES
-    @State private var isExpanded: Bool = false
-    @State private var isDragging = false
-    @State private var prevDragTranslation: CGSize = CGSize.zero
-    @State private var velocity: CGFloat = 0
-    @State private var isShowingSpot: Bool = false
-    @GestureState var isDetectingLongPress = false
-    
-    @Binding var viewHeight: CGFloat
-    let minHeight: CGFloat
-    let maxHeight: CGFloat
-    
-    private var viewButtonOpacity: CGFloat {
-        if viewHeight < threshold {
-            return (threshold - viewHeight) / (threshold - minHeight)
-        } else {
-            return (viewHeight - threshold) / (maxHeight - threshold)
-        }
     }
     
-    private var listCornerRad: CGFloat {
-        if viewHeight == minHeight {
-            return 30
-        } else if viewHeight < maxHeight {
-            
-            return 30 * (minHeight / viewHeight)
-        } else {
-            return 0
-        }
-    }
     
-    private var listShadowRad: CGFloat {
-        if viewHeight == maxHeight {
-            return 0
-        } else {
-            return 5
-        }
-    }
-    
-    private var threshold: CGFloat {
-        return (maxHeight - minHeight) / 2
-    }
-    
-    var dragGesture: some Gesture {
-        DragGesture(minimumDistance: 0, coordinateSpace: .global)
-            .onChanged { val in
-                if !isDragging {
-                    self.isDragging = true
-                }
-                
-                velocity = val.predictedEndLocation.y - val.location.y
-
-                let dragAmount = val.translation.height - prevDragTranslation.height
-                
-                if viewHeight >= maxHeight && dragAmount > 0 {
-                    viewHeight += 0
-                } else if viewHeight < minHeight {
-                    viewHeight += dragAmount / 10
-                } else {
-                    viewHeight += dragAmount
-                }
-                
-                prevDragTranslation = val.translation
-            }
-            .onEnded { val in
-                prevDragTranslation = CGSize.zero
-                isDragging = false
-                
-                if velocity > 200 {
-                    expandList()
-                } else if velocity < -200 {
-                    compressList()
-                }
-                
-                if viewHeight >= threshold {
-                    expandList()
-                } else if viewHeight < threshold {
-                    compressList()
-                }
-            }
-    }
-    
-    // MARK: - FUNCTIONS
-    func expandList() {
-        withAnimation {
-            viewHeight = maxHeight
-            self.isExpanded = true
-        }
-    }
-    
-    func compressList() {
-        withAnimation {
-            viewHeight = minHeight
-            self.isExpanded = false
-        }
-    }
-    
-    // MARK: - BODY
-    var body: some View {
+    private var spotListView: some View {
         ZStack(alignment: .top) {
             VStack(spacing: 8) {
                 Spacer()
                 
-                if viewHeight < threshold {
+                if vm.listHeight < vm.threshold {
                     Text("List View")
                         .modifier(TextMod(.footnote, .semibold))
-                        .opacity(viewButtonOpacity)
+                        .opacity(vm.listHeight < vm.threshold ? ((vm.threshold - vm.listHeight) / (vm.threshold - vm.initialListHeight)) : ((vm.listHeight - vm.threshold) / (vm.maxListHeight - vm.threshold)))
                         .onTapGesture {
-                            expandList()
+                            vm.expandList()
                         }
-                        .gesture(dragGesture)
+                        .gesture(vm.dragGesture)
                 } else {
                     ScrollView(showsIndicators: false) {
                         VStack {
                             ForEach(1..<6) { spot in
-                                VStack(alignment: .leading) {
-                                    Image("driveway")
-                                        .resizable()
-                                        .scaledToFill()
-                                        .cornerRadius(10)
-                                    
-                                    HStack {
-                                        VStack(alignment: .leading) {
-                                            Text("Spot Name")
-                                                .modifier(TextMod(.title3, .semibold))
-                                            
-                                            Text("State College, Pennsylvania")
-                                                .modifier(TextMod(.body, .semibold, .gray))
-                                                .padding(.bottom, 1)
-                                            
-                                            Text("$3.00 / Day")
-                                                .modifier(TextMod(.callout, .semibold))
-                                        } //: VStack
-                                        
-                                        Spacer()
-                                        
-                                        VStack {
-                                            HStack {
-                                                Image(systemName: "star.fill")
-                                                    .resizable()
-                                                    .scaledToFit()
-                                                    .frame(width: 14)
-                                                
-                                                Text("4.92")
-                                                    .modifier(TextMod(.callout, .regular))
-                                            } //: HStack
-                                            
-                                            Spacer()
-                                        } //: VStack
-                                    } //: HStack
-                                } //: VStack
-                                .padding()
-                                .padding(.horizontal)
-                                .onTapGesture {
-                                    isShowingSpot.toggle()
-                                }
-                            } //: VStack
-                        } //: ForEach
+                                spotListItem
+                            } //: ForEach
+                        } //: VStack
                     } //: Scroll
                     .padding(.top, searchBarHeight)
                     .overlay (
                         Button {
-                            compressList()
+                            vm.compressList()
                         } label: {
                             Image(systemName: "map.fill")
                                 .resizable()
@@ -832,46 +598,318 @@ struct SpotListView: View {
                             Text("Map")
                                 .modifier(TextMod(.footnote, .semibold, .white))
                         }
-                        .padding(.horizontal)
-                        .foregroundColor(.white)
-                        .frame(height: 35)
-                        .background(backgroundGradient)
-                        .clipShape(Capsule())
-                        .shadow(radius: 5)
-                        .opacity(viewButtonOpacity)
-                        .padding(.bottom)
-                    , alignment: .bottom)
+                            .padding(.horizontal)
+                            .foregroundColor(.white)
+                            .frame(height: 35)
+                            .background(backgroundGradient)
+                            .clipShape(Capsule())
+                            .shadow(radius: 5)
+                            .opacity(vm.listHeight < vm.threshold ? ((vm.threshold - vm.listHeight) / (vm.threshold - vm.initialListHeight)) : ((vm.listHeight - vm.threshold) / (vm.maxListHeight - vm.threshold)))
+                            .padding(.bottom)
+                        , alignment: .bottom)
                 }
                 
-                if viewHeight < maxHeight {
+                if vm.listHeight < vm.maxListHeight {
                     Capsule()
                         .foregroundColor(.gray)
                         .frame(width: 40, height: 6)
-                        .opacity(self.isDragging ? 1.0 : 0.6)
+                        .opacity(vm.isListDragging ? 1.0 : 0.6)
                         .padding(.bottom, 10)
-                        .gesture(isExpanded ? nil : dragGesture)
+                        .gesture(vm.isListExpanded ? nil : vm.dragGesture)
                 }
                 
             } //: VStack
-            .frame(height: viewHeight)
+            .frame(height: vm.listHeight)
             .frame(maxWidth: .infinity)
             .background (
                 Color.white
-                    .cornerRadius(listCornerRad, corners: [.bottomLeft, .bottomRight])
-                    .shadow(radius: listShadowRad)
+                    .cornerRadius(vm.listCornerRad, corners: [.bottomLeft, .bottomRight])
+                    .shadow(radius: vm.listHeight == vm.maxListHeight ? 0 : 5)
                     .mask(Rectangle().padding(.bottom, -20))
             )
             .transition(.move(edge: .top))
-            .gesture(isExpanded ? nil : dragGesture)
+            .gesture(vm.isListExpanded ? nil : vm.dragGesture)
             .animation(.linear, value: true)
         } //: ZStack
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .fullScreenCover(isPresented: $isShowingSpot) {
+        .fullScreenCover(isPresented: $vm.isShowingSpot) {
             SpotListingView()
         }
+    }
+    
+    private var spotListItem: some View {
+        VStack(alignment: .leading) {
+            Image("driveway")
+                .resizable()
+                .scaledToFill()
+                .cornerRadius(10)
+            
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("Spot Name")
+                        .modifier(TextMod(.title3, .semibold))
+                    
+                    Text("State College, Pennsylvania")
+                        .modifier(TextMod(.body, .semibold, .gray))
+                        .padding(.bottom, 1)
+                    
+                    Text("$3.00 / Day")
+                        .modifier(TextMod(.callout, .semibold))
+                } //: VStack
+                
+                Spacer()
+                
+                VStack {
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 14)
+                        
+                        Text("4.92")
+                            .modifier(TextMod(.callout, .regular))
+                    } //: HStack
+                    
+                    Spacer()
+                } //: VStack
+            } //: HStack
+        } //: VStack
+        .padding()
+        .padding(.horizontal)
+        .onTapGesture {
+            vm.isShowingSpot.toggle()
+        }
+    }
+    
+    private var mapSettingsView: some View {
+        GeometryReader { geo in
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Map Settings")
+                        .modifier(TextMod(.title, .semibold))
+                    
+                    Spacer()
+                    
+                    Button {
+                        vm.isShowingSettings.toggle()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20)
+                            .foregroundColor(Color(.systemGray4))
+                    }
+                    
+                } //: HStack
+                
+                ScrollView(showsIndicators: false) {
+                    LazyVGrid(columns: vm.mapSettingsColumns, spacing: 20) {
+                        ForEach(vm.mapStyles) { style in
+                            ZStack {
+                                Image(style.imageName)
+                                    .resizable()
+                                    .scaledToFill()
+                                
+                                VStack {
+                                    Spacer()
+                                    
+                                    Text(style.labelName)
+                                        .modifier(TextMod(.callout, vm.mapStyle == style.styleURI ? .bold : .regular))
+                                        .padding()
+                                        .frame(height: 45)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .background(.ultraThickMaterial)
+                                } //: VStack
+                                
+                            } //: ZStack
+                            .frame(width: geo.size.width / 2 - 24, height: (geo.size.width / 2 - 24) * 0.70)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(primaryColor, lineWidth: vm.mapStyle == style.styleURI ? 1 : 0))
+                            .onTapGesture {
+                                vm.mapStyle = style.styleURI
+                            }
+                            
+                        } //: ForEach
+                    } //: VGrid
+                    .padding(.top,8)
+                } //: Scroll
+                
+                Spacer()
+            } //: VStack
+            .padding(.horizontal)
+            .padding(.top)
+        } //: Geometry Reader
+    }
+}
+
+// MARK: - COMPRESSED SEARCH BAR
+struct CompressedSearchBar: View {
+    @Binding var destination: String
+    @Binding var date: Date
+    
+    let iconSize: CGFloat = 15
+    
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }
+    
+    var dateText: String {
+        if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {
+            return "Today"
+        } else {
+            return dateFormatter.string(from: date)
+        }
+    }
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .resizable()
+                .scaledToFit()
+                .frame(width: iconSize)
+            
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Where to?")
+                    .modifier(TextMod(.headline, .semibold))
+                
+                Text("\(destination) - \(dateText)")
+                    .modifier(TextMod(.caption, .regular))
+            } //: VStack
+            .padding(.horizontal)
+            
+            Spacer()
+            
+            Button {
+                //
+            } label: {
+                Image(systemName: "slider.horizontal.3")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: iconSize)
+            }
+            .frame(width: 35, height: 35)
+            .overlay(Circle().stroke(.gray))
+        } //: HStack
+        .padding(.horizontal)
+        .frame(height: searchBarHeight)
+        .background(Color.white)
+        .clipShape(RoundedRectangle(cornerRadius: searchBarHeight))
+        .shadow(radius: 4)
         
-    } //: Body
-} //: Struct
+    }
+}
+
+// MARK: - VIEW WRAPPER
+struct MapViewWrapper: UIViewControllerRepresentable {
+    @Binding var center: CLLocation
+    @Binding var mapStyle: StyleURI
+//    @Binding var selectedSpotId: String?
+    
+    typealias UIViewControllerType = MapViewController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext< MapViewWrapper >) -> MapViewController {
+        return MapViewController(center: center, mapStyle: mapStyle)
+    }
+    
+    func updateUIViewController(_ mapViewController: MapViewController, context: UIViewControllerRepresentableContext< MapViewWrapper >) {
+        mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        mapViewController.changeMapStyle(to: mapStyle)
+//        if let pin = mapViewController.selectedPin {
+//            guard self.selectedSpotId != pin.data.id else { return }
+//            self.selectedSpotId = pin.data.id
+//        }
+    }
+}
+
+// MARK: - CONTROLLER
+public class MapViewController: UIViewController {
+    // MARK: - PROPERTIES
+    internal var mapView: MapView!
+    var selectedPin: PinView?
+    var mapStyle: StyleURI
+    let markers: [PinModel] = [
+        PinModel(id: "Spot_ID", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)), price: 3.00),
+        PinModel(id: "Spot_ID2", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505)), price: 40.00)
+    ]
+    
+    var cameraOptions: CameraOptions {
+        return CameraOptions(center: centerLocation, zoom: 12, bearing: -17.6, pitch: 0)
+    }
+    
+    var centerLocation: CLLocationCoordinate2D {
+        didSet { mapView.camera.fly(to: cameraOptions, duration: 1) }
+    }
+    
+    // MARK: - INITIALIZER
+    init(center: CLLocation, mapStyle: StyleURI) {
+        centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        self.mapStyle = mapStyle
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initializeMap()
+        
+        self.markers.forEach { marker in
+            let options = ViewAnnotationOptions(
+                geometry: marker.coordinate,
+                allowOverlap: true,
+                visible: true,
+                //                anchor: .bottom,
+                offsetY: 0)
+            
+            let pin = PinView(pin: marker)
+            pin.delegate = self
+            try? mapView.viewAnnotations.add(pin, options: options)
+        }
+    }
+    
+    func changeMapStyle(to style: StyleURI) {
+        self.mapStyle = style
+        mapView.mapboxMap.loadStyleURI(mapStyle)
+    }
+    
+    private func initializeMap() {
+        let myResourceOptions = ResourceOptions(accessToken: MBAccessKey)
+        // Pass camera options to map init options
+        let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleURI: self.mapStyle)
+        
+        mapView = MapView(frame: view.bounds, mapInitOptions: options)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.view.addSubview(mapView)
+    }
+    
+}
+
+// MARK: - PIN VIEW DELEGATE
+extension MapViewController: PinViewInteractionDelegate {
+    public func didSelectPin(_ pin: PinView) {
+        if let previousPin = self.selectedPin {
+            previousPin.isSelected = false
+            previousPin.updateUI()
+        }
+        
+        self.selectedPin = pin
+        let newCenter = CLLocation(latitude: pin.data.coordinate.coordinates.latitude, longitude: pin.data.coordinate.coordinates.longitude)
+        SpotMapViewModel.shared.setCenter(newLocation: newCenter)
+        SpotMapViewModel.shared.selectedSpotId = pin.data.id
+    }
+}
+
+public protocol PinViewInteractionDelegate: AnyObject {
+    func didSelectPin(_ pin: PinView)
+}
+
+
 
 struct SpotPageView: View {
     // MARK: - PROPERTIES
@@ -885,22 +923,22 @@ struct SpotPageView: View {
                 .frame(width: 140, alignment: .center)
                 .frame(maxHeight: .infinity)
                 .clipped()
-                
-
+            
+            
             VStack(alignment: .leading) {
                 Text("$8.00 / Day")
                     .modifier(TextMod(.footnote, .semibold))
                     .frame(maxWidth: .infinity, alignment:.leading)
-
+                
                 Text(" 4.5 Stars")
                     .modifier(TextMod(.footnote, .semibold))
                     .frame(maxWidth: .infinity, alignment:.leading)
                 
                 Spacer()
-
+                
                 Text("Spot Name")
                     .modifier(TextMod(.caption, .regular))
-
+                
             } //: VStack
             .padding(8)
             
@@ -981,6 +1019,7 @@ public class PinView: UIView {
         }
         
         self.delegate?.didSelectPin(self)
+//        SpotMapViewModel.shared.selectedSpotId = self.data.id
         
         self.isSelected.toggle()
         updateUI()
