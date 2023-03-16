@@ -14,7 +14,7 @@ import CoreLocationUI
 import MapKit
 
 @MainActor class SpotMapViewModel: NSObject, ObservableObject {
-    static let shared = SpotMapViewModel()
+//    static let shared = SpotMapViewModel()
     @Published var listHeight: CGFloat = 120
     @Published var isShowingSettings: Bool = false
     @Published var isShowingSpot: Bool = false
@@ -213,7 +213,7 @@ extension SpotMapViewModel: SearchEngineDelegate {
 
 struct SpotMapView: View {
     // MARK: - PROPERTIES
-    @StateObject var vm: SpotMapViewModel = .shared
+    @StateObject var vm: SpotMapViewModel = SpotMapViewModel()
         
     @State private var originalDestination: String = "Beaver Stadium"
     
@@ -306,6 +306,7 @@ struct SpotMapView: View {
         GeometryReader { geo in
             ZStack {
                 MapViewWrapper(center: $vm.location, mapStyle: $vm.mapStyle)
+                    .environmentObject(vm)
                 
                 spotListView
                     .edgesIgnoringSafeArea(.bottom)
@@ -801,116 +802,6 @@ struct CompressedSearchBar: View {
     }
 }
 
-// MARK: - VIEW WRAPPER
-struct MapViewWrapper: UIViewControllerRepresentable {
-    @Binding var center: CLLocation
-    @Binding var mapStyle: StyleURI
-//    @Binding var selectedSpotId: String?
-    
-    typealias UIViewControllerType = MapViewController
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext< MapViewWrapper >) -> MapViewController {
-        return MapViewController(center: center, mapStyle: mapStyle)
-    }
-    
-    func updateUIViewController(_ mapViewController: MapViewController, context: UIViewControllerRepresentableContext< MapViewWrapper >) {
-        mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
-        mapViewController.changeMapStyle(to: mapStyle)
-//        if let pin = mapViewController.selectedPin {
-//            guard self.selectedSpotId != pin.data.id else { return }
-//            self.selectedSpotId = pin.data.id
-//        }
-    }
-}
-
-// MARK: - CONTROLLER
-public class MapViewController: UIViewController {
-    // MARK: - PROPERTIES
-    internal var mapView: MapView!
-    var selectedPin: PinView?
-    var mapStyle: StyleURI
-    let markers: [PinModel] = [
-        PinModel(id: "Spot_ID", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)), price: 3.00),
-        PinModel(id: "Spot_ID2", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505)), price: 40.00)
-    ]
-    
-    var cameraOptions: CameraOptions {
-        return CameraOptions(center: centerLocation, zoom: 12, bearing: -17.6, pitch: 0)
-    }
-    
-    var centerLocation: CLLocationCoordinate2D {
-        didSet { mapView.camera.fly(to: cameraOptions, duration: 1) }
-    }
-    
-    // MARK: - INITIALIZER
-    init(center: CLLocation, mapStyle: StyleURI) {
-        centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
-        self.mapStyle = mapStyle
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        
-        initializeMap()
-        
-        self.markers.forEach { marker in
-            let options = ViewAnnotationOptions(
-                geometry: marker.coordinate,
-                allowOverlap: true,
-                visible: true,
-                //                anchor: .bottom,
-                offsetY: 0)
-            
-            let pin = PinView(pin: marker)
-            pin.delegate = self
-            try? mapView.viewAnnotations.add(pin, options: options)
-        }
-    }
-    
-    func changeMapStyle(to style: StyleURI) {
-        self.mapStyle = style
-        mapView.mapboxMap.loadStyleURI(mapStyle)
-    }
-    
-    private func initializeMap() {
-        let myResourceOptions = ResourceOptions(accessToken: MBAccessKey)
-        // Pass camera options to map init options
-        let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleURI: self.mapStyle)
-        
-        mapView = MapView(frame: view.bounds, mapInitOptions: options)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        self.view.addSubview(mapView)
-    }
-    
-}
-
-// MARK: - PIN VIEW DELEGATE
-extension MapViewController: PinViewInteractionDelegate {
-    public func didSelectPin(_ pin: PinView) {
-        if let previousPin = self.selectedPin {
-            previousPin.isSelected = false
-            previousPin.updateUI()
-        }
-        
-        self.selectedPin = pin
-        let newCenter = CLLocation(latitude: pin.data.coordinate.coordinates.latitude, longitude: pin.data.coordinate.coordinates.longitude)
-        SpotMapViewModel.shared.setCenter(newLocation: newCenter)
-        SpotMapViewModel.shared.selectedSpotId = pin.data.id
-    }
-}
-
-public protocol PinViewInteractionDelegate: AnyObject {
-    func didSelectPin(_ pin: PinView)
-}
-
-
-
 struct SpotPageView: View {
     // MARK: - PROPERTIES
     
@@ -951,11 +842,141 @@ struct SpotPageView: View {
     }
 }
 
+
+// MARK: - VIEW WRAPPER
+struct MapViewWrapper: UIViewControllerRepresentable {
+    @EnvironmentObject var vm: SpotMapViewModel
+    @Binding var center: CLLocation
+    @Binding var mapStyle: StyleURI
+    
+    var selectedPin: PinView? {
+        willSet {
+            if let newPin = newValue {
+                guard vm.selectedSpotId != newPin.data.id else { print("Issue"); return }
+                let newCenter = CLLocation(latitude: newPin.data.coordinate.coordinates.latitude, longitude: newPin.data.coordinate.coordinates.longitude)
+                vm.setCenter(newLocation: newCenter)
+            } else {
+                print("Nil New Value")
+            }
+        }
+    }
+
+    typealias UIViewControllerType = MapViewController
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext< MapViewWrapper >) -> MapViewController {
+        let mapView = MapViewController(center: center, mapStyle: mapStyle)
+
+        mapView.delegate = self.makeCoordinator()
+        return mapView
+    }
+    
+    //From SwiftUI to UIKit
+    func updateUIViewController(_ mapViewController: MapViewController, context: UIViewControllerRepresentableContext< MapViewWrapper >) {
+        mapViewController.centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        mapViewController.changeMapStyle(to: mapStyle)
+    }
+    
+    class Coordinator: NSObject, MapViewDelegate {
+        var parent: MapViewWrapper
+
+        init(_ parent: MapViewWrapper) {
+            self.parent = parent
+        }
+        
+        func selectPin(_ pin: PinView) {
+            if let previousPin = parent.selectedPin {
+                previousPin.isSelected = false
+                previousPin.updateUI()
+            }
+            
+            parent.selectedPin = pin
+        }
+    }
+    
+     //From UIKit to SwiftUI
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+}
+
+// MARK: - CONTROLLER
+public class MapViewController: UIViewController {
+    // MARK: - PROPERTIES
+    internal var mapView: MapView!
+    var selectedPin: PinView?
+    var mapStyle: StyleURI
+    var delegate: MapViewDelegate?
+    let markers: [PinModel] = [
+        PinModel(id: "Spot_ID", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7934, longitude: -77.8600)), price: 3.00),
+        PinModel(id: "Spot_ID2", coordinate: Point(CLLocationCoordinate2D(latitude: 40.7820, longitude: -77.8505)), price: 40.00)
+    ]
+    
+    var cameraOptions: CameraOptions {
+        return CameraOptions(center: centerLocation, zoom: 12, bearing: -17.6, pitch: 0)
+    }
+    
+    var centerLocation: CLLocationCoordinate2D {
+        didSet { mapView.camera.fly(to: cameraOptions, duration: 1) }
+    }
+    
+    // MARK: - INITIALIZER
+    init(center: CLLocation, mapStyle: StyleURI) {
+        centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
+        self.mapStyle = mapStyle
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initializeMap()
+        
+        self.markers.forEach { marker in
+            let options = ViewAnnotationOptions(
+                geometry: marker.coordinate,
+                allowOverlap: true,
+                visible: true,
+                //                anchor: .bottom,
+                offsetY: 0)
+            
+            let pin = PinView(pin: marker)
+            pin.delegate = self.delegate
+            try? mapView.viewAnnotations.add(pin, options: options)
+        }
+    }
+    
+    func changeMapStyle(to style: StyleURI) {
+        self.mapStyle = style
+        mapView.mapboxMap.loadStyleURI(mapStyle)
+    }
+    
+    private func initializeMap() {
+        let myResourceOptions = ResourceOptions(accessToken: MBAccessKey)
+        // Pass camera options to map init options
+        let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleURI: self.mapStyle)
+        
+        mapView = MapView(frame: view.bounds, mapInitOptions: options)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        self.view.addSubview(mapView)
+    }
+    
+}
+
+public protocol MapViewDelegate: AnyObject {
+    func selectPin(_ pin: PinView)
+}
+
+
 // MARK: - ANNOTATION VIEW
 public class PinView: UIView {
     let annotationFrame: CGRect = CGRect(x: 0, y: 0, width: 60, height: 26)
     var isSelected: Bool = false
-    weak var delegate: PinViewInteractionDelegate?
+    weak var delegate: MapViewDelegate?
     let data: PinModel
     
     lazy var priceLabel: UILabel = {
@@ -968,7 +989,6 @@ public class PinView: UIView {
     }()
     
     func getFormattedPrice(price: Double) -> NSMutableAttributedString {
-        //Returns a String that has a small & offset dollar sign, a small space to act as padding between the dollar sign and the price, and the price in bold which automatically adjusts its font size based on the length of the price. With a frame that is 60 wide and 26 tall, the price label touches the edges if the price has 3 digits before the decimal.
         let dollarSignFont: UIFont = UIFont.systemFont(ofSize: 10)
         let spaceFont: UIFont = UIFont.systemFont(ofSize: 6)
         let priceFont: UIFont = UIFont.boldSystemFont(ofSize: price < 100.0 ? 14 : 12)
@@ -1018,9 +1038,8 @@ public class PinView: UIView {
             return
         }
         
-        self.delegate?.didSelectPin(self)
-//        SpotMapViewModel.shared.selectedSpotId = self.data.id
-        
+        self.delegate?.selectPin(self)
+
         self.isSelected.toggle()
         updateUI()
     }
