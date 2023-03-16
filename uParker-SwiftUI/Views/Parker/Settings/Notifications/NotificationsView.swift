@@ -18,6 +18,13 @@ import SwiftUI
         NotificationSetting(title: "Tips", description: "Receive daily tips to increase your sales.", group: .hosting, emailIsOn: true, pushIsOn: true, smsIsOn: false),
         NotificationSetting(title: "Market Trends", description: "Receive notifications for ", group: .hosting, emailIsOn: true, pushIsOn: true, smsIsOn: false)
     ]
+    
+    @Published var selectedSetting: NotificationSetting = NotificationSetting(title: "Reminders", description: "Get important reminders about your reservations, listings, and account activity.", group: .general, emailIsOn: true, pushIsOn: false, smsIsOn: true)
+    
+    func settingTapped(setting: NotificationSetting) {
+        selectedSetting = setting
+        isShowingDetail = true
+    }
    
 }
 
@@ -38,12 +45,11 @@ struct NotificationsView: View {
                         .modifier(TextMod(.callout, .light, .gray))
                         .multilineTextAlignment(.leading)
                     
-                    ForEach(vm.notificationSettings.filter { $0.group == group }, id: \.title) { notificationSetting in
+                    ForEach(vm.notificationSettings.filter { $0.group == group }) { notificationSetting in
                         SettingsButton(setting: notificationSetting)
                             .padding(.vertical, 8)
-                            .onTapGesture {
-                                vm.isShowingDetail = true
-                            }
+                            .environmentObject(vm)
+                            
                     }
                     
                     Divider()
@@ -56,7 +62,7 @@ struct NotificationsView: View {
         .navigationTitle("Notifications")
         .navigationBarTitleDisplayMode(.automatic)
         .sheet(isPresented: $vm.isShowingDetail) {
-            NotificationSettingView(notificationSetting: $vm.notificationSettings[0])
+            NotificationSettingView(notificationSetting: $vm.selectedSetting)
                 .presentationDetents([.fraction(0.40)])
                 .presentationDragIndicator(.visible)
                 .padding()
@@ -70,7 +76,10 @@ struct NotificationsView: View {
     
     
     struct SettingsButton: View {
+        @EnvironmentObject var vm: NotificationsViewModel
         var setting: NotificationSetting
+        
+        @State var overview: String = ""
         
         var body: some View {
             HStack {
@@ -78,7 +87,7 @@ struct NotificationsView: View {
                     Text(setting.title)
                         .modifier(TextMod(.headline, .regular))
                     
-                    Text(setting.overviewText)
+                    Text(overview)
                         .modifier(TextMod(.callout, .light, .gray))
                 } //: VStack
                 
@@ -89,7 +98,17 @@ struct NotificationsView: View {
                     .modifier(TextMod(.callout, .semibold))
             } //: HStack
             .background(Color.white)
-        }
+            .onTapGesture {
+                vm.settingTapped(setting: setting)
+            }
+            .onAppear {
+                overview = setting.overviewText
+            }
+            .onChange(of: setting) { newValue in
+                print(newValue)
+            }
+            
+        } //: Body
     }
     
     
@@ -100,6 +119,121 @@ struct NotificationsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             NotificationsView()
+        }
+    }
+}
+
+struct NotificationSettingView: View {
+    // MARK: - PROPERTIES
+    @Environment(\.dismiss) var dismiss
+    @Binding var notificationSetting: NotificationSetting
+    @State var isButtonDisabled: Bool = true
+    
+    //Improve this... use in case of nil optional notification setting toggle values
+    @State var defaultEmail: Bool = true
+    
+    
+    // MARK: - BODY
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(notificationSetting.title)
+                .modifier(TextMod(.title2, .semibold))
+            
+            Text(notificationSetting.description)
+                .modifier(TextMod(.callout, .light, .gray))
+                .multilineTextAlignment(.leading)
+                .padding(.bottom, 22)
+            
+            Toggle(isOn: $notificationSetting.emailIsOn) {
+                Text("Email Notifications:")
+                    .modifier(TextMod(.body, .regular))
+            }
+            
+            Toggle(isOn: $notificationSetting.pushIsOn) {
+                Text("Push Notifications:")
+                    .modifier(TextMod(.body, .regular))
+            }
+            .padding(.vertical, 22)
+            
+            Toggle(isOn: $notificationSetting.smsIsOn) {
+                Text("SMS/Text Notifications:")
+                    .modifier(TextMod(.body, .regular))
+            }
+            
+            Button {
+                dismiss.callAsFunction()
+            } label: {
+                Text("Save Changes")
+                    .frame(maxWidth: .infinity)
+            }
+            .modifier(RoundedButtonMod())
+            .disabled(isButtonDisabled)
+            .opacity(isButtonDisabled ? 0.55 : 1)
+            .padding(.top)
+
+            
+            Spacer()
+        } //: VStack
+        .onChange(of: notificationSetting) { _ in
+            isButtonDisabled = false
+        }
+        
+    }
+}
+
+
+struct NotificationSetting: Equatable, Identifiable {
+    enum Groups: CaseIterable, Identifiable {
+        case general, hosting
+        var id: UUID { return UUID() }
+        
+        var header: String {
+            switch self {
+            case .general:
+                return "General"
+            case .hosting:
+                return "Hosting"
+            }
+        }
+        
+        var description: String {
+            switch self {
+            case .general:
+                return "Get important notifications about your account, reservations, and more."
+            case .hosting:
+                return "Hosting section description"
+            }
+        }
+    }
+    
+    let id: UUID = UUID()
+    let title: String
+    let description: String
+    let group: Groups
+    var emailIsOn: Bool
+    var pushIsOn: Bool
+    var smsIsOn: Bool
+    
+    var overviewText: String {
+        var optionsTurnedOn: [String] = [String]()
+        
+        if emailIsOn { optionsTurnedOn.append("Email") }
+        
+        if pushIsOn { optionsTurnedOn.append("Push") }
+        
+        if smsIsOn { optionsTurnedOn.append("SMS") }
+        
+        switch optionsTurnedOn.count {
+        case 0:
+            return "Off"
+        case 1:
+            return "On: \(optionsTurnedOn[0])"
+        case 2:
+            return "On: \(optionsTurnedOn[0]), \(optionsTurnedOn[1])"
+        case 3:
+            return "On: \(optionsTurnedOn[0]), \(optionsTurnedOn[1]), \(optionsTurnedOn[2])"
+        default:
+            return "Error"
         }
     }
 }
