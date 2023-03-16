@@ -22,7 +22,9 @@ struct AddVehicleView: View {
                 Text("How do you want to add your vehicle?")
                     .modifier(TextMod(.title, .regular))
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, 32)
+                    .padding(.vertical, 32)
+                
+                Spacer()
                 
                 Button {
                     vm.selectedMethod = .licensePlate
@@ -43,6 +45,7 @@ struct AddVehicleView: View {
                 }
                 .modifier(OutlinedButtonMod())
                 
+                Spacer()
             } //: VStack
             .padding()
             

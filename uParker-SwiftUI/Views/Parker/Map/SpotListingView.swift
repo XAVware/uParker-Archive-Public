@@ -203,7 +203,8 @@ struct SpotListingView: View {
                 .shadow(radius: vm.topBarOpacity > 0.85 ? 0 : 1)
                 
             } //: HStack
-            .padding()
+            .padding(.horizontal)
+            .padding(.vertical, 8)
             .background(Color.white.opacity(vm.topBarOpacity))
             
             Divider().opacity(vm.topBarOpacity)
