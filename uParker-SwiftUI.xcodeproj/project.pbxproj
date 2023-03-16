@@ -79,6 +79,7 @@
 		80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */; };
 		80EAC1D22969190D00F4DC09 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1D12969190D00F4DC09 /* SettingsButton.swift */; };
 		80EAC1D429691D1C00F4DC09 /* ToDos in Resources */ = {isa = PBXBuildFile; fileRef = 80EAC1D329691D1C00F4DC09 /* ToDos */; };
+		80EB038729C2C4D8006B1219 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EB038629C2C4D8006B1219 /* LaunchScreen.storyboard */; };
 		80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE942E2964E8A200A85CEF /* ParkerView.swift */; };
 		80EE94312964E8C500A85CEF /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94302964E8C500A85CEF /* HostView.swift */; };
 		80EE94332964E93400A85CEF /* LoginSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94322964E93400A85CEF /* LoginSignUpView.swift */; };
@@ -161,6 +162,7 @@
 		80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerChatView.swift; sourceTree = "<group>"; };
 		80EAC1D12969190D00F4DC09 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		80EAC1D329691D1C00F4DC09 /* ToDos */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDos; sourceTree = "<group>"; };
+		80EB038629C2C4D8006B1219 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80EE942E2964E8A200A85CEF /* ParkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerView.swift; sourceTree = "<group>"; };
 		80EE94302964E8C500A85CEF /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		80EE94322964E93400A85CEF /* LoginSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignUpView.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */,
 				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
 				807151E4299B437B0009A99F /* VehicleOptions.json */,
+				80EB038629C2C4D8006B1219 /* LaunchScreen.storyboard */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80EAC1D429691D1C00F4DC09 /* ToDos in Resources */,
+				80EB038729C2C4D8006B1219 /* LaunchScreen.storyboard in Resources */,
 				80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */,
 				807151E5299B437B0009A99F /* VehicleOptions.json in Resources */,
 				8036F4DC298C4110009A9566 /* Unused in Resources */,
@@ -740,8 +744,10 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To show spots near you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To show spots near you";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -771,8 +777,10 @@
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "To show spots near you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To show spots near you";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
