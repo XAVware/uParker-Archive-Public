@@ -16,7 +16,7 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>
-		<string>LogoFull-Blue</string>
+		<string>LaunchScreen</string>
 		<key>UILaunchScreen</key>
 		<dict/>
 	</dict>

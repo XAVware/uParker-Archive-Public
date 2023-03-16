@@ -19,10 +19,10 @@ import SwiftUI
         NotificationSetting(title: "Market Trends", description: "Receive notifications for ", group: .hosting, emailIsOn: true, pushIsOn: true, smsIsOn: false)
     ]
     
-    @Published var selectedSetting: NotificationSetting = NotificationSetting(title: "Reminders", description: "Get important reminders about your reservations, listings, and account activity.", group: .general, emailIsOn: true, pushIsOn: false, smsIsOn: true)
+    @Published var selectedIndex: Int = 0
     
     func settingTapped(setting: NotificationSetting) {
-        selectedSetting = setting
+        selectedIndex = notificationSettings.firstIndex(of: setting) ?? 0
         isShowingDetail = true
     }
    
@@ -49,7 +49,6 @@ struct NotificationsView: View {
                         SettingsButton(setting: notificationSetting)
                             .padding(.vertical, 8)
                             .environmentObject(vm)
-                            
                     }
                     
                     Divider()
@@ -62,7 +61,7 @@ struct NotificationsView: View {
         .navigationTitle("Notifications")
         .navigationBarTitleDisplayMode(.automatic)
         .sheet(isPresented: $vm.isShowingDetail) {
-            NotificationSettingView(notificationSetting: $vm.selectedSetting)
+            NotificationSettingView(notificationSetting: $vm.notificationSettings[vm.selectedIndex])
                 .presentationDetents([.fraction(0.40)])
                 .presentationDragIndicator(.visible)
                 .padding()
@@ -79,7 +78,6 @@ struct NotificationsView: View {
         @EnvironmentObject var vm: NotificationsViewModel
         var setting: NotificationSetting
         
-        @State var overview: String = ""
         
         var body: some View {
             HStack {
@@ -87,7 +85,7 @@ struct NotificationsView: View {
                     Text(setting.title)
                         .modifier(TextMod(.headline, .regular))
                     
-                    Text(overview)
+                    Text(setting.overviewText)
                         .modifier(TextMod(.callout, .light, .gray))
                 } //: VStack
                 
@@ -101,12 +99,6 @@ struct NotificationsView: View {
             .onTapGesture {
                 vm.settingTapped(setting: setting)
             }
-            .onAppear {
-                overview = setting.overviewText
-            }
-            .onChange(of: setting) { newValue in
-                print(newValue)
-            }
             
         } //: Body
     }
@@ -115,13 +107,13 @@ struct NotificationsView: View {
 }
 
 // MARK: - PREVIEW
-struct NotificationsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            NotificationsView()
-        }
-    }
-}
+//struct NotificationsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            NotificationsView()
+//        }
+//    }
+//}
 
 struct NotificationSettingView: View {
     // MARK: - PROPERTIES
