@@ -13,7 +13,7 @@ import CoreLocation
 import CoreLocationUI
 import MapKit
 
-@MainActor class SpotMapViewModel: NSObject, ObservableObject {
+@MainActor class MapViewModel: NSObject, ObservableObject {
 //    static let shared = SpotMapViewModel()
     @Published var listHeight: CGFloat = 120
     @Published var isShowingSettings: Bool = false
@@ -32,14 +32,13 @@ import MapKit
     @GestureState var isDetectingLongPress = false
     
     @Published var location: CLLocation = CLLocation(latitude: 40.7934, longitude: -77.8600)
-    @Published var region = MKCoordinateRegion()
-    @Published var suggestionList: [SearchSuggestion] = []
-    @Published var lastSelectedSuggestion: SimpleSuggestion?
+//    @Published var region = MKCoordinateRegion()
+//    @Published var suggestionList: [SearchSuggestion] = []
+//    @Published var lastSelectedSuggestion: SimpleSuggestion?
     
     private let locationManager = CLLocationManager()
     
-    let searchEngine = SearchEngine()
-    var searchText: String = ""
+    
     let mapSettingsColumns = [GridItem(.flexible()), GridItem(.flexible())]
 
     var listCornerRad: CGFloat {
@@ -126,18 +125,18 @@ import MapKit
         }
     }
     
-    override init() {
-        super.init()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.delegate = self
-        searchEngine.delegate = self
-    }
-    
-    //May not need
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    override init() {
+//        super.init()
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.distanceFilter = kCLDistanceFilterNone
+//        locationManager.delegate = self
+//        searchEngine.delegate = self
+//    }
+//
+//    //May not need
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     func expandList() {
         withAnimation {
@@ -163,143 +162,12 @@ import MapKit
     }
 }
 
-extension SpotMapViewModel: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        self.location = location
-        //5000 is a little over 3 miles
-        self.region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
-        locationManager.stopUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {}
-}
 
-extension SpotMapViewModel: SearchEngineDelegate {
-    func selectSuggestion(_ suggestion: SearchSuggestion, completion: @escaping (SimpleSuggestion?) -> Void) {
-        searchEngine.select(suggestion: suggestion)
-        
-        DispatchQueue.main.async {
-            guard self.lastSelectedSuggestion != nil else {return}
-            completion(self.lastSelectedSuggestion)
-        }
-    }
-    
-    @objc func updateQuery(text: String) {
-        searchEngine.query = text
-    }
 
-    func dumpSuggestions(_ suggestions: [SearchSuggestion], query: String) {
-        self.suggestionList = suggestions
-    }
-     
-    // MARK: - SEARCH ENGINE DELEGATE METHODS
-    func suggestionsUpdated(suggestions: [SearchSuggestion], searchEngine: SearchEngine) {
-        dumpSuggestions(suggestions, query: searchEngine.query)
-    }
-    
-    func resultResolved(result: SearchResult, searchEngine: SearchEngine) {
-        lastSelectedSuggestion = SimpleSuggestion(name: result.name, address: result.address, coordinate: result.coordinate, categories: result.categories)
-    }
-    
-    func searchErrorHappened(searchError: SearchError, searchEngine: SearchEngine) {
-        print("Error during search: \(searchError)")
-    }
-}
-
-struct SpotMapView: View {
+struct MapView: View {
     // MARK: - PROPERTIES
-    @StateObject var vm: SpotMapViewModel = SpotMapViewModel()
+    @StateObject var vm: MapViewModel = MapViewModel()
         
-    @State private var originalDestination: String = "Beaver Stadium"
-    
-    @State private var searchIsExpanded: Bool = false
-    @State private var destinationIsExpanded = true
-    @State private var dateIsExpanded = false
-    @State var destination: String = "Beaver Stadium"
-    @State private var date: Date = Date()
-    @State private var isShowingSuggestions: Bool = false {
-        willSet(newValue) {
-            if newValue == false && selectedSuggestion == nil && vm.suggestionList.count > 0 {
-                vm.selectSuggestion(vm.suggestionList[0]) { sug in
-                    selectedSuggestion = sug
-                    destination = selectedSuggestion?.name ?? "Empty"
-                }
-            }
-        }
-    }
-    
-    @State var selectedSuggestion: SimpleSuggestion?
-    
-    @FocusState private var focusField: FocusText?
-    
-    
-    enum FocusText { case destination }
-    
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
-    
-    var dateClosedRange: ClosedRange<Date> {
-        let min = Calendar.current.date(byAdding: .day, value: 0, to: Date())!
-        let max = Calendar.current.date(byAdding: .day, value: 180, to: Date())!
-        return min...max
-    }
-    
-    var dateText: String {
-        if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {
-            return "Today"
-        } else {
-            return dateFormatter.string(from: date)
-        }
-    }
-    
-    // MARK: - FUNCTIONS
-    private func searchBarTapped() {
-        withAnimation {
-            self.searchIsExpanded = true
-        }
-    }
-    
-    private func closeSearch() {
-        withAnimation {
-            self.searchIsExpanded = false
-        }
-        self.destinationIsExpanded = true
-        self.dateIsExpanded = false
-    }
-    
-    private func searchTapped() {
-        if selectedSuggestion == nil && vm.suggestionList.count > 0 {
-            vm.selectSuggestion(vm.suggestionList[0]) { sug in
-                self.selectedSuggestion = sug
-            }
-        }
-        
-        guard self.selectedSuggestion != nil else {
-            return
-        }
-        
-        let location: CLLocation = CLLocation(latitude: selectedSuggestion!.coordinate.latitude, longitude: selectedSuggestion!.coordinate.longitude)
-        vm.location = location
-        closeSearch()
-    }
-    
-    private func resetTapped() {
-        self.destination = self.originalDestination
-        self.date = Date()
-        
-        withAnimation {
-            self.destinationIsExpanded = true
-            self.dateIsExpanded = false
-        }
-    }
 
     // MARK: - BODY
     var body: some View {
@@ -312,7 +180,8 @@ struct SpotMapView: View {
                     .edgesIgnoringSafeArea(.bottom)
                 
                 VStack(spacing: 0) {
-                    Spacer().frame(height: vm.initialListHeight - geo.safeAreaInsets.top + searchBarHeight)
+                    Spacer()
+                        .frame(height: vm.initialListHeight - geo.safeAreaInsets.top + searchBarHeight)
                         .padding(.top)
                     
                     HStack {
@@ -367,10 +236,9 @@ struct SpotMapView: View {
                         .frame(height: 130)
                     }
                 } //: VStack
-                .overlay(searchView)
+                .overlay(SearchView(observedVM: vm))
                 .sheet(isPresented: $vm.isShowingSettings) {
                     mapSettingsView
-//                    MapSettingsView(mapStyle: $vm.mapStyle)
                         .presentationDetents([.fraction(0.65)])
                         .presentationDragIndicator(.hidden)
                         .edgesIgnoringSafeArea(.bottom)
@@ -385,185 +253,6 @@ struct SpotMapView: View {
             } //: ZStack
         } //: Geometry Reader
     }
-    
-    @ViewBuilder private var searchView: some View {
-        if searchIsExpanded {
-            VStack(spacing: 20) {
-                HStack {
-                    Button {
-                        closeSearch()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 15)
-                    }
-                    .frame(width: 30, height: 30)
-                    .overlay(Circle().stroke(.gray))
-                    
-                    Text("Search")
-                        .modifier(TextMod(.title3, .semibold, .gray))
-                        .frame(maxWidth: .infinity)
-                    
-                    Spacer().frame(width: 30)
-                } //: HStack
-                
-                // MARK: - DESTINATION
-                
-                DisclosureGroup(isExpanded: $destinationIsExpanded) {
-                    AnimatedTextField(boundTo: $destination, placeholder: "Destination")
-                        .padding(8)
-                        .focused($focusField, equals: .destination)
-                    
-                    if isShowingSuggestions {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Suggestions")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            
-                            Divider()
-                                .padding(.bottom, 5)
-                            
-                            ScrollView(showsIndicators: false) {
-                                VStack(alignment: .leading) {
-                                    ForEach(vm.suggestionList, id: \.id) { suggestion in
-                                        Button {
-                                            vm.selectSuggestion(suggestion) { sug in
-                                                self.selectedSuggestion = sug
-                                            }
-                                            destination = suggestion.name
-                                            focusField = nil
-                                        } label: {
-                                            VStack(alignment: .leading) {
-                                                Text(suggestion.name)
-                                                    .modifier(TextMod(.footnote, .semibold))
-                                                
-                                                Text("\(suggestion.address?.formattedAddress(style: .medium) ?? "")")
-                                                    .modifier(TextMod(.caption, .regular, .gray))
-                                            }
-                                            .background(.white)
-                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                                        }
-                                        
-                                        Divider()
-                                        
-                                    } //: ForEach
-                                } //: VStack
-                                .padding(.horizontal, 8)
-                                Spacer()
-                            } //: ScrollView
-                            
-                        } //: VStack
-                        .frame(height: 260)
-                        .padding(.horizontal)
-                    } //: If-Else
-                    
-                } label: {
-                    SearchGroupHeader(header: "Where to?", isExpanded: $destinationIsExpanded, subtitle: $destination)
-                } //: Disclosure Group
-                .modifier(SearchCardMod())
-                .onChange(of: destination, perform: { newValue in
-                    vm.updateQuery(text: newValue)
-                })
-                .onChange(of: focusField) { newValue in
-                    if newValue == .destination {
-                        withAnimation {
-                            isShowingSuggestions = true
-                            dateIsExpanded = false
-                        }
-                        vm.updateQuery(text: destination)
-                    } else if newValue == nil {
-                        withAnimation {
-                            isShowingSuggestions = false
-                        }
-                    } else {
-                        print("Error: Different focusField value in Search field.")
-                    }
-                }
-                
-                
-                // MARK: - DATE
-                DisclosureGroup(isExpanded: $dateIsExpanded) {
-                    DatePicker("", selection: $date, in: dateClosedRange, displayedComponents: [.date])
-                        .datePickerStyle(.graphical)
-                        .padding(.top)
-                        .padding(.horizontal, 8)
-                        .padding(.bottom, 8)
-                        .clipped()
-                    
-                } label: {
-                    HStack {
-                        Text("When?")
-                            .modifier(TextMod(.headline, .semibold))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        if !dateIsExpanded {
-                            Text(dateText)
-                                .font(.footnote)
-                        }
-                    } //: HStack
-                } //: Disclosure Group
-                .modifier(SearchCardMod())
-                .onChange(of: dateIsExpanded) { newValue in
-                    if newValue == true {
-                        focusField = nil
-                    }
-                }
-                
-                Spacer()
-            } //: VStack
-            .padding()
-            .background(.ultraThinMaterial)
-            .opacity(self.searchIsExpanded ? 1 : 0)
-            .overlay(
-                HStack {
-                    Button {
-                        resetTapped()
-                    } label: {
-                        Text("Reset")
-                            .underline()
-                            .font(.callout)
-                            .padding()
-                    }
-                    .frame(maxWidth: 100)
-                    
-                    Spacer()
-                    
-                    Button {
-                        searchTapped()
-                    } label: {
-                        HStack(spacing: 15) {
-                            Text("Search")
-                                .modifier(TextMod(.callout, .semibold, .white))
-                            
-                            Image(systemName: "magnifyingglass")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15)
-                        }
-                    }
-                    .foregroundColor(.white)
-                    .frame(width: 150, height: 45)
-                    .background(backgroundGradient)
-                    .clipShape(Capsule())
-                    .shadow(radius: 4)
-                    
-                } //: HStack
-                    .padding()
-                , alignment: .bottom)
-            .ignoresSafeArea(.keyboard)
-            .animation(.linear, value: true)
-        } else {
-            VStack {
-                CompressedSearchBar(destination: $destination, date: $date)
-                    .onTapGesture { searchBarTapped() }
-                Spacer()
-            } //: VStack
-            .padding()
-            .opacity(self.searchIsExpanded ? 0 : 1)
-        }
-    }
-    
     
     private var spotListView: some View {
         ZStack(alignment: .top) {
@@ -582,7 +271,9 @@ struct SpotMapView: View {
                     ScrollView(showsIndicators: false) {
                         VStack {
                             ForEach(1..<6) { spot in
-                                spotListItem
+                                SpotCardView()
+                                    .padding()
+                                    .padding(.horizontal)
                             } //: ForEach
                         } //: VStack
                     } //: Scroll
@@ -635,50 +326,6 @@ struct SpotMapView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .fullScreenCover(isPresented: $vm.isShowingSpot) {
             SpotListingView()
-        }
-    }
-    
-    private var spotListItem: some View {
-        VStack(alignment: .leading) {
-            Image("driveway")
-                .resizable()
-                .scaledToFill()
-                .cornerRadius(10)
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Spot Name")
-                        .modifier(TextMod(.title3, .semibold))
-                    
-                    Text("State College, Pennsylvania")
-                        .modifier(TextMod(.body, .semibold, .gray))
-                        .padding(.bottom, 1)
-                    
-                    Text("$3.00 / Day")
-                        .modifier(TextMod(.callout, .semibold))
-                } //: VStack
-                
-                Spacer()
-                
-                VStack {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 14)
-                        
-                        Text("4.92")
-                            .modifier(TextMod(.callout, .regular))
-                    } //: HStack
-                    
-                    Spacer()
-                } //: VStack
-            } //: HStack
-        } //: VStack
-        .padding()
-        .padding(.horizontal)
-        .onTapGesture {
-            vm.isShowingSpot.toggle()
         }
     }
     
@@ -845,7 +492,7 @@ struct SpotPageView: View {
 
 // MARK: - VIEW WRAPPER
 struct MapViewWrapper: UIViewControllerRepresentable {
-    @EnvironmentObject var vm: SpotMapViewModel
+    @EnvironmentObject var vm: MapViewModel
     @Binding var center: CLLocation
     @Binding var mapStyle: StyleURI
     
@@ -923,6 +570,7 @@ public class MapViewController: UIViewController {
     init(center: CLLocation, mapStyle: StyleURI) {
         centerLocation = CLLocationCoordinate2D(latitude: center.coordinate.latitude, longitude: center.coordinate.longitude)
         self.mapStyle = mapStyle
+        
         super.init(nibName: nil, bundle: nil)
     }
     

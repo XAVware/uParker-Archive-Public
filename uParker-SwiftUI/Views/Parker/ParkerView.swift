@@ -15,7 +15,7 @@ struct ParkerView: View {
     var body: some View {
         GeometryReader { geo in
             TabView {
-                SpotMapView()
+                MapView()
                     .tabItem {
                         Text("Park")
                         
