@@ -36,7 +36,6 @@
 		805D01FD29C394370035E0A9 /* SpotCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D01FC29C394370035E0A9 /* SpotCardView.swift */; };
 		805D01FF29C395680035E0A9 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D01FE29C395680035E0A9 /* SearchView.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
-		806073562966B6C600C4E136 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 806073552966B6C600C4E136 /* MapboxMaps */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
 		806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548452972EBFC00943B72 /* ReservationsPicker.swift */; };
 		8065484B2972EF6400943B72 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548472972EF6400943B72 /* Reservation.swift */; };
@@ -65,6 +64,7 @@
 		80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2A2953FFCB001317DD /* SessionManager.swift */; };
 		80A64A2E2953FFF0001317DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D2953FFF0001317DD /* User.swift */; };
 		80AE3FAF2970989000A654E0 /* ConfirmEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AE3FAE2970989000A654E0 /* ConfirmEmailView.swift */; };
+		80B095CA29C3A0BD00F35ED6 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 80B095C929C3A0BD00F35ED6 /* MapboxMaps */; };
 		80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0BD06299738410007EFE7 /* OrDivider.swift */; };
 		80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAB2992A92000B6F598 /* ImagePicker.swift */; };
 		80BA6AAF2992ACAC00B6F598 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */; };
@@ -185,7 +185,7 @@
 			files = (
 				804DAD56297B369D00B89AC6 /* MapboxSearch in Frameworks */,
 				804DAD58297B369D00B89AC6 /* MapboxSearchUI in Frameworks */,
-				806073562966B6C600C4E136 /* MapboxMaps in Frameworks */,
+				80B095CA29C3A0BD00F35ED6 /* MapboxMaps in Frameworks */,
 				800772EA2969F23000E7FEED /* MapboxGeocoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,10 +474,10 @@
 			);
 			name = "uParker-SwiftUI";
 			packageProductDependencies = (
-				806073552966B6C600C4E136 /* MapboxMaps */,
 				800772E92969F23000E7FEED /* MapboxGeocoder */,
 				804DAD55297B369D00B89AC6 /* MapboxSearch */,
 				804DAD57297B369D00B89AC6 /* MapboxSearchUI */,
+				80B095C929C3A0BD00F35ED6 /* MapboxMaps */,
 			);
 			productName = "uParker-SwiftUI";
 			productReference = 80A64A02294D6490001317DD /* uParker-SwiftUI.app */;
@@ -508,9 +508,9 @@
 			);
 			mainGroup = 80A649F9294D6490001317DD;
 			packageReferences = (
-				806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				800772E82969F23000E7FEED /* XCRemoteSwiftPackageReference "MapboxGeocoder.swift" */,
 				804DAD54297B369D00B89AC6 /* XCRemoteSwiftPackageReference "search-ios" */,
+				80B095C829C3A0BD00F35ED6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 			);
 			productRefGroup = 80A64A03294D6490001317DD /* Products */;
 			projectDirPath = "";
@@ -842,12 +842,12 @@
 				version = "1.0.0-beta.41";
 			};
 		};
-		806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+		80B095C829C3A0BD00F35ED6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.10.1;
+				minimumVersion = 10.11.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -868,9 +868,9 @@
 			package = 804DAD54297B369D00B89AC6 /* XCRemoteSwiftPackageReference "search-ios" */;
 			productName = MapboxSearchUI;
 		};
-		806073552966B6C600C4E136 /* MapboxMaps */ = {
+		80B095C929C3A0BD00F35ED6 /* MapboxMaps */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 806073542966B6C600C4E136 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			package = 80B095C829C3A0BD00F35ED6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
 			productName = MapboxMaps;
 		};
 /* End XCSwiftPackageProductDependency section */

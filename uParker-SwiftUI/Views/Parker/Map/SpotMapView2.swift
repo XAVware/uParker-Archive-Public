@@ -124,20 +124,7 @@ import MapKit
             }
         }
     }
-    
-//    override init() {
-//        super.init()
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.distanceFilter = kCLDistanceFilterNone
-//        locationManager.delegate = self
-//        searchEngine.delegate = self
-//    }
-//
-//    //May not need
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
+ 
     func expandList() {
         withAnimation {
             listHeight = maxListHeight
@@ -390,64 +377,7 @@ struct MapView: View {
     }
 }
 
-// MARK: - COMPRESSED SEARCH BAR
-struct CompressedSearchBar: View {
-    @Binding var destination: String
-    @Binding var date: Date
-    
-    let iconSize: CGFloat = 15
-    
-    var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter
-    }
-    
-    var dateText: String {
-        if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {
-            return "Today"
-        } else {
-            return dateFormatter.string(from: date)
-        }
-    }
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .resizable()
-                .scaledToFit()
-                .frame(width: iconSize)
-            
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Where to?")
-                    .modifier(TextMod(.headline, .semibold))
-                
-                Text("\(destination) - \(dateText)")
-                    .modifier(TextMod(.caption, .regular))
-            } //: VStack
-            .padding(.horizontal)
-            
-            Spacer()
-            
-            Button {
-                //
-            } label: {
-                Image(systemName: "slider.horizontal.3")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: iconSize)
-            }
-            .frame(width: 35, height: 35)
-            .overlay(Circle().stroke(.gray))
-        } //: HStack
-        .padding(.horizontal)
-        .frame(height: searchBarHeight)
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: searchBarHeight))
-        .shadow(radius: 4)
-        
-    }
-}
+
 
 struct SpotPageView: View {
     // MARK: - PROPERTIES
@@ -523,6 +453,11 @@ struct MapViewWrapper: UIViewControllerRepresentable {
         mapViewController.changeMapStyle(to: mapStyle)
     }
     
+    //From UIKit to SwiftUI
+   func makeCoordinator() -> Coordinator {
+       Coordinator(self)
+   }
+    
     class Coordinator: NSObject, MapViewDelegate {
         var parent: MapViewWrapper
 
@@ -539,17 +474,12 @@ struct MapViewWrapper: UIViewControllerRepresentable {
             parent.selectedPin = pin
         }
     }
-    
-     //From UIKit to SwiftUI
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
 }
 
 // MARK: - CONTROLLER
 public class MapViewController: UIViewController {
     // MARK: - PROPERTIES
-    internal var mapView: MapView!
+    internal var mapView: MapboxMaps.MapView! //Include MapboxMaps because uParker has a MapView class
     var selectedPin: PinView?
     var mapStyle: StyleURI
     var delegate: MapViewDelegate?
@@ -607,7 +537,7 @@ public class MapViewController: UIViewController {
         // Pass camera options to map init options
         let options = MapInitOptions(resourceOptions: myResourceOptions, cameraOptions: cameraOptions, styleURI: self.mapStyle)
         
-        mapView = MapView(frame: view.bounds, mapInitOptions: options)
+        mapView = MapboxMaps.MapView(frame: view.bounds, mapInitOptions: options)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         self.view.addSubview(mapView)
