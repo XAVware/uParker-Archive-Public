@@ -14,7 +14,7 @@ import CoreLocationUI
 import MapKit
 
 @MainActor class MapViewModel: NSObject, ObservableObject {
-//    static let shared = SpotMapViewModel()
+    //    static let shared = SpotMapViewModel()
     @Published var listHeight: CGFloat = 120
     @Published var isShowingSettings: Bool = false
     @Published var isShowingSpot: Bool = false
@@ -32,15 +32,15 @@ import MapKit
     @GestureState var isDetectingLongPress = false
     
     @Published var location: CLLocation = CLLocation(latitude: 40.7934, longitude: -77.8600)
-//    @Published var region = MKCoordinateRegion()
-//    @Published var suggestionList: [SearchSuggestion] = []
-//    @Published var lastSelectedSuggestion: SimpleSuggestion?
+    //    @Published var region = MKCoordinateRegion()
+    //    @Published var suggestionList: [SearchSuggestion] = []
+    //    @Published var lastSelectedSuggestion: SimpleSuggestion?
     
     private let locationManager = CLLocationManager()
     
     
     let mapSettingsColumns = [GridItem(.flexible()), GridItem(.flexible())]
-
+    
     var listCornerRad: CGFloat {
         if listHeight == initialListHeight {
             return 30
@@ -101,7 +101,7 @@ import MapKit
         MapStyle(labelName: "Light", imageName: "Style.light"),
         MapStyle(labelName: "Dark", imageName: "Style.dark")
     ]
-
+    
     struct MapStyle: Identifiable {
         let id: UUID = UUID()
         let labelName: String
@@ -124,7 +124,7 @@ import MapKit
             }
         }
     }
- 
+    
     func expandList() {
         withAnimation {
             listHeight = maxListHeight
@@ -138,7 +138,7 @@ import MapKit
             self.isListExpanded = false
         }
     }
-        
+    
     func requestLocation() {
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
@@ -154,8 +154,8 @@ import MapKit
 struct MapView: View {
     // MARK: - PROPERTIES
     @StateObject var vm: MapViewModel = MapViewModel()
-        
-
+    
+    
     // MARK: - BODY
     var body: some View {
         GeometryReader { geo in
@@ -164,7 +164,6 @@ struct MapView: View {
                     .environmentObject(vm)
                 
                 spotListView
-                    .edgesIgnoringSafeArea(.bottom)
                 
                 VStack(spacing: 0) {
                     Spacer()
@@ -176,7 +175,8 @@ struct MapView: View {
                         
                         VStack(spacing: 10) {
                             Button {
-                                vm.requestLocation()
+                                //                                vm.requestLocation()
+                                print(geo.size.height / 3)
                             } label: {
                                 Image(systemName: "location.fill")
                                     .resizable()
@@ -208,22 +208,10 @@ struct MapView: View {
                     
                     Spacer()
                     
-                    if vm.selectedSpotId != nil && vm.listHeight < 200 {
-                        TabView {
-                            ForEach(1..<5) { spot in
-                                SpotPageView()
-                                    .padding()
-                                    .onTapGesture {
-                                        vm.isShowingListing.toggle()
-                                    }
-                                
-                            }
-                        } //: Tab
-                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                        .frame(height: 130)
-                    }
+                    
                 } //: VStack
                 .overlay(SearchView(observedVM: vm))
+                
                 .sheet(isPresented: $vm.isShowingSettings) {
                     mapSettingsView
                         .presentationDetents([.fraction(0.65)])
@@ -236,9 +224,91 @@ struct MapView: View {
                 .onAppear {
                     vm.maxListHeight = geo.size.height
                 }
+ 
                 
+//                if vm.selectedSpotId != nil && vm.listHeight < 200 {
+//                    VStack {
+//        //                Spacer().frame(maxHeight: .infinity)
+//                        Spacer().frame(maxHeight: .infinity)
+//                        TabView {
+//                            ForEach(1..<5) { spot in
+//                                SpotCardView(size: .preview)
+//
+//                            } //: For Each
+//                        } //: Tab
+//                        .padding(.bottom)
+//                        .frame(height: (geo.size.height / 3))
+//                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+//
+//
+//                    } //: VStack
+//                    .ignoresSafeArea(edges: .horizontal)
+//
+//                } //: If
             } //: ZStack
+            .overlay((vm.selectedSpotId != nil && vm.listHeight < 200) ? spotCard : nil, alignment: .bottom)
         } //: Geometry Reader
+    }
+    
+    private var spotCard: some View {
+        GeometryReader { geo in
+            VStack {
+                Spacer().frame(maxHeight: .infinity)
+                
+                TabView {
+                    ForEach(1..<5) { spot in
+                        Image("driveway")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: geo.size.width - 64, height: (geo.size.height / 3) - 60, alignment: .center)
+                            .clipped()
+                            .overlay(
+                                HStack {
+                                    VStack(alignment: .leading, spacing: 4) {
+                                        Text("Spot Name")
+                                            .modifier(TextMod(.title3, .semibold))
+
+                                        Text("$3.00 / Day")
+                                            .modifier(TextMod(.callout, .semibold))
+                                    } //: VStack
+
+                                    Spacer()
+
+                                    VStack(alignment: .trailing, spacing: 4) {
+                                        HStack(alignment: .center, spacing: 6) {
+                                            Image(systemName: "star.fill")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 10)
+
+                                            Text("4.92")
+                                                .modifier(TextMod(.footnote, .regular))
+                                        } //: HStack
+
+                                        Spacer().frame(maxHeight: .infinity)
+                                    } //: VStack
+                                } //: HStack
+                                    .padding(8)
+                                    .frame(height: 60)
+                                    .background(Color.white)
+                                , alignment: .bottom)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .padding()
+                            .padding(.horizontal)
+                            .shadow(radius: 5)
+                            .onTapGesture {
+                                vm.isShowingSpot.toggle()
+                            }
+                    } //: For Each
+                } //: Tab
+                .padding(.bottom)
+                .frame(height: (geo.size.height / 3))
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
+                
+            } //: VStack
+            .ignoresSafeArea(edges: .horizontal)
+        }
     }
     
     private var spotListView: some View {
@@ -258,7 +328,7 @@ struct MapView: View {
                     ScrollView(showsIndicators: false) {
                         VStack {
                             ForEach(1..<6) { spot in
-                                SpotCardView()
+                                SpotCardView(size: .list)
                                     .padding()
                                     .padding(.horizontal)
                             } //: ForEach
@@ -377,47 +447,51 @@ struct MapView: View {
     }
 }
 
-
-
-struct SpotPageView: View {
-    // MARK: - PROPERTIES
-    
-    // MARK: - BODY
-    var body: some View {
-        HStack {
-            Image("driveway")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 140, alignment: .center)
-                .frame(maxHeight: .infinity)
-                .clipped()
-            
-            
-            VStack(alignment: .leading) {
-                Text("$8.00 / Day")
-                    .modifier(TextMod(.footnote, .semibold))
-                    .frame(maxWidth: .infinity, alignment:.leading)
-                
-                Text(" 4.5 Stars")
-                    .modifier(TextMod(.footnote, .semibold))
-                    .frame(maxWidth: .infinity, alignment:.leading)
-                
-                Spacer()
-                
-                Text("Spot Name")
-                    .modifier(TextMod(.caption, .regular))
-                
-            } //: VStack
-            .padding(8)
-            
-            Spacer()
-        } //: HStack
-        .frame(height: 100)
-        .background(Color.white)
-        .clipShape(RoundedRectangle(cornerRadius: 15))
-        .shadow(radius: 5)
+struct MapView_Previews: PreviewProvider {
+    static var previews: some View {
+        MapView()
     }
 }
+
+//struct SpotPageView: View {
+//    // MARK: - PROPERTIES
+//
+//    // MARK: - BODY
+//    var body: some View {
+//        HStack {
+//            Image("driveway")
+//                .resizable()
+//                .scaledToFill()
+//                .frame(width: 140, alignment: .center)
+//                .frame(maxHeight: .infinity)
+//                .clipped()
+//
+//
+//            VStack(alignment: .leading) {
+//                Text("$8.00 / Day")
+//                    .modifier(TextMod(.footnote, .semibold))
+//                    .frame(maxWidth: .infinity, alignment:.leading)
+//
+//                Text(" 4.5 Stars")
+//                    .modifier(TextMod(.footnote, .semibold))
+//                    .frame(maxWidth: .infinity, alignment:.leading)
+//
+//                Spacer()
+//
+//                Text("Spot Name")
+//                    .modifier(TextMod(.caption, .regular))
+//
+//            } //: VStack
+//            .padding(8)
+//
+//            Spacer()
+//        } //: HStack
+//        .frame(height: 100)
+//        .background(Color.white)
+//        .clipShape(RoundedRectangle(cornerRadius: 15))
+//        .shadow(radius: 5)
+//    }
+//}
 
 
 // MARK: - VIEW WRAPPER
@@ -427,22 +501,23 @@ struct MapViewWrapper: UIViewControllerRepresentable {
     @Binding var mapStyle: StyleURI
     
     var selectedPin: PinView? {
-        willSet {
+        willSet(newValue) {
             if let newPin = newValue {
                 guard vm.selectedSpotId != newPin.data.id else { print("Issue"); return }
                 let newCenter = CLLocation(latitude: newPin.data.coordinate.coordinates.latitude, longitude: newPin.data.coordinate.coordinates.longitude)
                 vm.setCenter(newLocation: newCenter)
+                vm.selectedSpotId = newPin.data.id
             } else {
                 print("Nil New Value")
             }
         }
     }
-
+    
     typealias UIViewControllerType = MapViewController
     
     func makeUIViewController(context: UIViewControllerRepresentableContext< MapViewWrapper >) -> MapViewController {
         let mapView = MapViewController(center: center, mapStyle: mapStyle)
-
+        
         mapView.delegate = self.makeCoordinator()
         return mapView
     }
@@ -454,13 +529,13 @@ struct MapViewWrapper: UIViewControllerRepresentable {
     }
     
     //From UIKit to SwiftUI
-   func makeCoordinator() -> Coordinator {
-       Coordinator(self)
-   }
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
     
     class Coordinator: NSObject, MapViewDelegate {
         var parent: MapViewWrapper
-
+        
         init(_ parent: MapViewWrapper) {
             self.parent = parent
         }
@@ -476,7 +551,7 @@ struct MapViewWrapper: UIViewControllerRepresentable {
     }
 }
 
-// MARK: - CONTROLLER
+// MARK: - MAP VIEW CONTROLLER
 public class MapViewController: UIViewController {
     // MARK: - PROPERTIES
     internal var mapView: MapboxMaps.MapView! //Include MapboxMaps because uParker has a MapView class
@@ -550,7 +625,7 @@ public protocol MapViewDelegate: AnyObject {
 }
 
 
-// MARK: - ANNOTATION VIEW
+// MARK: - PIN VIEW
 public class PinView: UIView {
     let annotationFrame: CGRect = CGRect(x: 0, y: 0, width: 60, height: 26)
     var isSelected: Bool = false
@@ -617,7 +692,7 @@ public class PinView: UIView {
         }
         
         self.delegate?.selectPin(self)
-
+        
         self.isSelected.toggle()
         updateUI()
     }
