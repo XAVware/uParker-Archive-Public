@@ -29,7 +29,7 @@ import MapKit
     @Published var isListDragging = false
     @Published var prevDragTranslation: CGSize = CGSize.zero
     @Published var velocity: CGFloat = 0
-    @GestureState var isDetectingLongPress = false
+//    @GestureState var isDetectingLongPress = false
     
     @Published var location: CLLocation = CLLocation(latitude: 40.7934, longitude: -77.8600)
     //    @Published var region = MKCoordinateRegion()
@@ -40,6 +40,14 @@ import MapKit
     
     
     let mapSettingsColumns = [GridItem(.flexible()), GridItem(.flexible())]
+    
+    var isShowingSpotCard: Bool {
+        if selectedSpotId != nil && listHeight < 200 {
+            return true
+        } else {
+            return false
+        }
+    }
     
     var listCornerRad: CGFloat {
         if listHeight == initialListHeight {
@@ -126,14 +134,14 @@ import MapKit
     }
     
     func expandList() {
-        withAnimation {
+        withAnimation(.linear) {
             listHeight = maxListHeight
             self.isListExpanded = true
         }
     }
     
     func compressList() {
-        withAnimation {
+        withAnimation(.linear) {
             listHeight = initialListHeight
             self.isListExpanded = false
         }
@@ -148,8 +156,6 @@ import MapKit
         self.location = newLocation
     }
 }
-
-
 
 struct MapView: View {
     // MARK: - PROPERTIES
@@ -175,8 +181,7 @@ struct MapView: View {
                         
                         VStack(spacing: 10) {
                             Button {
-                                //                                vm.requestLocation()
-                                print(geo.size.height / 3)
+                                vm.requestLocation()
                             } label: {
                                 Image(systemName: "location.fill")
                                     .resizable()
@@ -211,7 +216,6 @@ struct MapView: View {
                     
                 } //: VStack
                 .overlay(SearchView(observedVM: vm))
-                
                 .sheet(isPresented: $vm.isShowingSettings) {
                     mapSettingsView
                         .presentationDetents([.fraction(0.65)])
@@ -225,28 +229,9 @@ struct MapView: View {
                     vm.maxListHeight = geo.size.height
                 }
  
-                
-//                if vm.selectedSpotId != nil && vm.listHeight < 200 {
-//                    VStack {
-//        //                Spacer().frame(maxHeight: .infinity)
-//                        Spacer().frame(maxHeight: .infinity)
-//                        TabView {
-//                            ForEach(1..<5) { spot in
-//                                SpotCardView(size: .preview)
-//
-//                            } //: For Each
-//                        } //: Tab
-//                        .padding(.bottom)
-//                        .frame(height: (geo.size.height / 3))
-//                        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-//
-//
-//                    } //: VStack
-//                    .ignoresSafeArea(edges: .horizontal)
-//
-//                } //: If
+
             } //: ZStack
-            .overlay((vm.selectedSpotId != nil && vm.listHeight < 200) ? spotCard : nil, alignment: .bottom)
+            .overlay(vm.isShowingSpotCard ? spotCard : nil, alignment: .bottom)
         } //: Geometry Reader
     }
     
@@ -316,15 +301,22 @@ struct MapView: View {
             VStack(spacing: 8) {
                 Spacer()
                 
-                if vm.listHeight < vm.threshold {
+                if vm.listHeight < vm.maxListHeight {
                     Text("List View")
                         .modifier(TextMod(.footnote, .semibold))
-                        .opacity(vm.listHeight < vm.threshold ? ((vm.threshold - vm.listHeight) / (vm.threshold - vm.initialListHeight)) : ((vm.listHeight - vm.threshold) / (vm.maxListHeight - vm.threshold)))
+//                        .opacity(vm.listHeight < vm.threshold ? ((vm.threshold - vm.listHeight) / (vm.threshold - vm.initialListHeight)) : ((vm.listHeight - vm.threshold) / (vm.maxListHeight - vm.threshold)))
                         .onTapGesture {
                             vm.expandList()
                         }
                         .gesture(vm.dragGesture)
-                } else {
+                    
+                    Capsule()
+                        .foregroundColor(.gray)
+                        .frame(width: 40, height: 6)
+                        .opacity(vm.isListDragging ? 1.0 : 0.6)
+                        .padding(.bottom, 10)
+                        .gesture(vm.isListExpanded ? nil : vm.dragGesture)
+                } else if vm.listHeight == vm.maxListHeight {
                     ScrollView(showsIndicators: false) {
                         VStack {
                             ForEach(1..<6) { spot in
@@ -353,19 +345,16 @@ struct MapView: View {
                             .background(backgroundGradient)
                             .clipShape(Capsule())
                             .shadow(radius: 5)
-                            .opacity(vm.listHeight < vm.threshold ? ((vm.threshold - vm.listHeight) / (vm.threshold - vm.initialListHeight)) : ((vm.listHeight - vm.threshold) / (vm.maxListHeight - vm.threshold)))
+//                            .opacity(vm.listHeight < vm.threshold ? ((vm.threshold - vm.listHeight) / (vm.threshold - vm.initialListHeight)) : ((vm.listHeight - vm.threshold) / (vm.maxListHeight - vm.threshold)))
                             .padding(.bottom)
                         , alignment: .bottom)
+                } else {
+                    Spacer()
                 }
                 
-                if vm.listHeight < vm.maxListHeight {
-                    Capsule()
-                        .foregroundColor(.gray)
-                        .frame(width: 40, height: 6)
-                        .opacity(vm.isListDragging ? 1.0 : 0.6)
-                        .padding(.bottom, 10)
-                        .gesture(vm.isListExpanded ? nil : vm.dragGesture)
-                }
+//                if vm.listHeight < vm.maxListHeight {
+//
+//                }
                 
             } //: VStack
             .frame(height: vm.listHeight)
@@ -378,7 +367,7 @@ struct MapView: View {
             )
             .transition(.move(edge: .top))
             .gesture(vm.isListExpanded ? nil : vm.dragGesture)
-            .animation(.linear, value: true)
+//            .animation(.linear, value: vm.isListExpanded)
         } //: ZStack
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .fullScreenCover(isPresented: $vm.isShowingSpot) {

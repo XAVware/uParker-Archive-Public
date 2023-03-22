@@ -37,6 +37,7 @@
 		805D01FF29C395680035E0A9 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805D01FE29C395680035E0A9 /* SearchView.swift */; };
 		80607353296662F600C4E136 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80607352296662F600C4E136 /* MainView.swift */; };
 		806073582966B70B00C4E136 /* MapViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806073572966B70B00C4E136 /* MapViewWrapper.swift */; };
+		8064590A29CB8762001A00D3 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8064590929CB8762001A00D3 /* RangeSlider.swift */; };
 		806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548452972EBFC00943B72 /* ReservationsPicker.swift */; };
 		8065484B2972EF6400943B72 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548472972EF6400943B72 /* Reservation.swift */; };
 		8065484C2972EF6400943B72 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806548482972EF6400943B72 /* Vehicle.swift */; };
@@ -121,6 +122,7 @@
 		805D01FE29C395680035E0A9 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		80607352296662F600C4E136 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		806073572966B70B00C4E136 /* MapViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWrapper.swift; sourceTree = "<group>"; };
+		8064590929CB8762001A00D3 /* RangeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
 		806548452972EBFC00943B72 /* ReservationsPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsPicker.swift; sourceTree = "<group>"; };
 		806548472972EF6400943B72 /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		806548482972EF6400943B72 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				8065485329731D4200943B72 /* ReservationPanelButton.swift */,
 				806548452972EBFC00943B72 /* ReservationsPicker.swift */,
 				80FC112D297E203300C5102A /* SearchGroupHeader.swift */,
+				8064590929CB8762001A00D3 /* RangeSlider.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */,
 				8065485429731D4200943B72 /* ReservationPanelButton.swift in Sources */,
 				8065484E2972EF6400943B72 /* Review.swift in Sources */,
+				8064590A29CB8762001A00D3 /* RangeSlider.swift in Sources */,
 				80C634BB29A84BA9003BC4C1 /* VehiclesView.swift in Sources */,
 				80E6F1DA29B9234E00C894FA /* FAQsView.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,

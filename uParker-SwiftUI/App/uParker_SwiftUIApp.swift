@@ -11,6 +11,10 @@ import SwiftUI
 struct uParker_SwiftUIApp: App {
     @EnvironmentObject var sessionManager: SessionManager
     
+    init() {
+        UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .unspecified)
+    }
+    
     var body: some Scene {
         WindowGroup {
             MainView()

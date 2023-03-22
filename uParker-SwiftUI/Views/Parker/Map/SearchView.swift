@@ -22,10 +22,19 @@ import MapKit
             updateQuery(text: newDestination)
         }
     }
-    @Published var searchIsExpanded: Bool = false
-    @Published var destinationIsExpanded = true
+    @Published var searchIsExpanded: Bool = true
+    @Published var destinationIsExpanded = false
     @Published var dateIsExpanded = false
-    @Published var date: Date = Date()
+    @Published var priceIsExpanded = true
+    @Published var date: Date = Date() {
+        didSet {
+            if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {
+                dateText = "Today"
+            } else {
+                dateText = dateFormatter.string(from: date)
+            }
+        }
+    }
     
     @Published var suggestionList: [SearchSuggestion] = []
     @Published var lastSelectedSuggestion: SimpleSuggestion?
@@ -45,6 +54,11 @@ import MapKit
         }
     }
     
+    @Published var selectedMinPrice: String = "No Min"
+    @Published var selectedMaxPrice: String = "No Max"
+    let minPrices: [String] = ["No Min", "$5.00", "$10.00", "$15.00", "$20.00", "$30.00", "$40.00", "$50.00", "$60.00", "$70.00", "$90.00", "$100.00"]
+    let maxPrices: [String] = ["$5.00", "$10.00", "$15.00", "$20.00", "$30.00", "$40.00", "$50.00", "$60.00", "$70.00", "$90.00", "$100.00", "No Max"]
+    
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -57,17 +71,22 @@ import MapKit
         return min...max
     }
     
-    var dateText: String {
-        if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {
-            return "Today"
-        } else {
-            return dateFormatter.string(from: date)
-        }
-    }
+    @Published var dateText: String = "Today"
+    @Published var priceText: String = "No Min - No Max"
+    @Published var amenityOptions: [AmenityDetail]
+//    var dateText: String {
+//        if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {
+//            return "Today"
+//        } else {
+//            return dateFormatter.string(from: date)
+//        }
+//    }
     
     override init() {
+        amenityOptions = spotAmenities
         super.init()
         searchEngine.delegate = self
+        
     }
     
     //May not need
@@ -154,7 +173,7 @@ struct SearchView: View {
     @ObservedObject var observedVM: MapViewModel
     @StateObject var vm: SearchViewModel = SearchViewModel()
     @FocusState private var focusField: FocusText?
-
+    @ObservedObject var slider = CustomSlider(start: 10, end: 100)
     enum FocusText { case destination }
     
     var body: some View {
@@ -164,7 +183,10 @@ struct SearchView: View {
             } else {
                 VStack {
                     compressedSearchBar
-                        .onTapGesture { vm.searchBarTapped() }
+                        .onTapGesture {
+                            observedVM.selectedSpotId = nil
+                            vm.searchBarTapped()
+                        }
                     Spacer()
                 } //: VStack
                 .padding()
@@ -207,7 +229,6 @@ struct SearchView: View {
                             .foregroundColor(.gray)
                         
                         Divider()
-                            .padding(.bottom, 5)
                         
                         ScrollView(showsIndicators: false) {
                             VStack(alignment: .leading) {
@@ -223,7 +244,7 @@ struct SearchView: View {
                                             Text(suggestion.name)
                                                 .modifier(TextMod(.footnote, .semibold))
                                             
-                                            Text("\(suggestion.address?.formattedAddress(style: .medium) ?? "")")
+                                            Text("\(suggestion.address?.formattedAddress(style: .medium) ?? "") \(suggestion.address?.region ?? "")")
                                                 .modifier(TextMod(.caption, .regular, .gray))
                                         }
                                         .background(.white)
@@ -234,7 +255,8 @@ struct SearchView: View {
                                     
                                 } //: ForEach
                             } //: VStack
-                            .padding(.horizontal, 8)
+                            .padding(.top, 8)
+//                            .padding(.horizontal, 8)
                             Spacer()
                         } //: ScrollView
                         
@@ -271,22 +293,49 @@ struct SearchView: View {
                     .clipped()
                 
             } label: {
-                HStack {
-                    Text("When?")
-                        .modifier(TextMod(.headline, .semibold))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    if !vm.dateIsExpanded {
-                        Text(vm.dateText)
-                            .font(.footnote)
-                    }
-                } //: HStack
+                SearchGroupHeader(header: "When?", isExpanded: $vm.dateIsExpanded, subtitle: $vm.dateText)
             } //: Disclosure Group
             .modifier(SearchCardMod())
             .onChange(of: vm.dateIsExpanded) { newValue in
                 if newValue == true {
                     focusField = nil
                 }
+            }
+            
+            // MARK: - PRICE RANGE
+            DisclosureGroup(isExpanded: $vm.priceIsExpanded) {
+                HStack(alignment: .center) {
+                    Picker("", selection: $vm.selectedMinPrice) {
+                        ForEach(vm.minPrices, id: \.self) {
+                            Text("\($0)")
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                    
+                    Text("-")
+                    
+                    Picker("", selection: $vm.selectedMaxPrice) {
+                        ForEach(vm.maxPrices, id: \.self) {
+                            Text("\($0)")
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                } //: HStack
+                .frame(height: 150)
+            } label: {
+                SearchGroupHeader(header: "Price Range", isExpanded: $vm.priceIsExpanded, subtitle: $vm.priceText)
+            } //: Disclosure Group
+            .modifier(SearchCardMod())
+            .onChange(of: vm.dateIsExpanded) { newValue in
+                if newValue == true {
+                    focusField = nil
+                }
+            }
+            .onChange(of: vm.selectedMinPrice) { newMin in
+                vm.priceText = "\(newMin) - \(vm.selectedMaxPrice)"
+            }
+            .onChange(of: vm.selectedMaxPrice) { newMax in
+                vm.priceText = "\(vm.selectedMinPrice) - \(newMax)"
             }
             
             Spacer()

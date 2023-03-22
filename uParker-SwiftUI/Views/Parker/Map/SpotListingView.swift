@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+let spotAmenities: [AmenityDetail] = [
+    AmenityDetail(title: "Lighting", imageName: "lightbulb.fill"),
+    AmenityDetail(title: "Covered", imageName: "umbrella.fill"),
+    AmenityDetail(title: "Gated", imageName: "pedestrian.gate.closed"),
+    AmenityDetail(title: "Camera", imageName: "camera.fill"),
+    AmenityDetail(title: "Verified", imageName: "checkmark.shield.fill")
+]
+
 @MainActor class SpotListingViewModel: ObservableObject {
     @Published var scrollOffset: CGFloat = 0
     @Published var isFavorite: Bool = false
@@ -25,13 +33,7 @@ import SwiftUI
         }
     }
     
-    let amenities: [AmenityDetail] = [
-        AmenityDetail(title: "Lighting", imageName: "lightbulb.fill"),
-        AmenityDetail(title: "Covered", imageName: "umbrella.fill"),
-        AmenityDetail(title: "Gated", imageName: "pedestrian.gate.closed"),
-        AmenityDetail(title: "Camera", imageName: "camera.fill"),
-        AmenityDetail(title: "Verified", imageName: "checkmark.shield.fill")
-    ]
+    
 }
 
 struct SpotListingView: View {
@@ -296,7 +298,7 @@ struct SpotListingView: View {
                 .modifier(TextMod(.title3, .semibold, .gray))
             
             LazyVGrid(columns: columns, spacing: 12) {
-                ForEach(vm.amenities) { amenity in
+                ForEach(spotAmenities) { amenity in
                     HStack(spacing: 8) {
                         Image(systemName: amenity.imageName)
                             .resizable()
@@ -324,4 +326,5 @@ struct SpotListingView_Previews: PreviewProvider {
 struct AmenityDetail: Identifiable {
     let id: UUID = UUID()
     let title, imageName: String
+    var isSelected: Bool = false
 }
