@@ -22,10 +22,10 @@ import MapKit
             updateQuery(text: newDestination)
         }
     }
-    @Published var searchIsExpanded: Bool = true
-    @Published var destinationIsExpanded = false
+    @Published var searchIsExpanded: Bool = false
+    @Published var destinationIsExpanded = true
     @Published var dateIsExpanded = false
-    @Published var priceIsExpanded = true
+    @Published var priceIsExpanded = false
     @Published var date: Date = Date() {
         didSet {
             if dateFormatter.string(from: date) == dateFormatter.string(from: Date()) {

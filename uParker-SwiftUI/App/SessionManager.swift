@@ -8,8 +8,8 @@
 import SwiftUI
 
 class SessionManager: ObservableObject {
-    @Published var isLoggedIn: Bool = true
-    @Published var isShowingLoginView: Bool = false
+    @Published var isLoggedIn: Bool = false
+    @Published var isShowingLoginView: Bool = true
     @Published var isShowingSignUpView: Bool = false
     
     @Published var userType: UserType = .parker

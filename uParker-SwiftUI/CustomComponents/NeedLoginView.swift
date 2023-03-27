@@ -58,11 +58,11 @@ struct NeedLoginView: View {
                 .environmentObject(sessionManager)
                 .ignoresSafeArea(.keyboard)
         }
-        .fullScreenCover(isPresented: $sessionManager.isShowingSignUpView) {
-            SignUpView()
-                .environmentObject(sessionManager)
-                .ignoresSafeArea(.keyboard)
-        }
+//        .fullScreenCover(isPresented: $sessionManager.isShowingSignUpView) {
+//            SignUpView()
+//                .environmentObject(sessionManager)
+//                .ignoresSafeArea(.keyboard)
+//        }
     }
 }
 

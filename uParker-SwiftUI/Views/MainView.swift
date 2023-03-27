@@ -17,17 +17,18 @@ struct MainView: View {
                 
                 UINavigationBar.appearance().largeTitleTextAttributes = [.font: titleFont]
     }
+    
     // MARK: - BODY
     var body: some View {
         if sessionManager.userType == .parker {
             ParkerView()
                 .environmentObject(sessionManager)
-//                .sheet(isPresented: $sessionManager.isShowingLoginModal) {
-//                    LoginSignUpView()
-//                        .environmentObject(sessionManager)
-//                        .ignoresSafeArea(.keyboard)
-//                }
-//                .sheet(isPresented: $sessionManager.isShowingSignUpModal) {
+                .fullScreenCover(isPresented: $sessionManager.isShowingLoginView) {
+                    LoginView()
+                        .environmentObject(sessionManager)
+                        .ignoresSafeArea(.keyboard)
+                }
+//                .sheet(isPresented: $sessionManager.isShowingLoginView) {
 //                    SignUpView()
 //                        .environmentObject(sessionManager)
 //                        .ignoresSafeArea(.keyboard)
