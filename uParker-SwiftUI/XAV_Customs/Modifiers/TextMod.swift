@@ -1,8 +1,10 @@
 //
 //  Modifiers.swift
-//  CogCalendar2023
+//  XAV_Customs
 //
-//  Created by Smetana, Ryan on 4/4/23.
+//  © 2023 XAVware, LLC.
+//
+// ~~~~~~~~~~~~~~~ README ~~~~~~~~~~~~~~~
 //
 
 import SwiftUI

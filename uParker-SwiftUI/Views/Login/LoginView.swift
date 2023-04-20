@@ -250,10 +250,8 @@ struct LoginView: View {
 //
 //            if vm.isSigningUp {
 //                AddPhoneView()
-////                    .environmentObject(sessionManager)
 //            } else {
 //                ConfirmPhoneView(phoneNumber: "201-874-3252")
-////                    .environmentObject(sessionManager)
 //            }
 //        } label: {
 //            Text("Continue")
@@ -316,6 +314,5 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            .environmentObject(SessionManager())
     }
 }

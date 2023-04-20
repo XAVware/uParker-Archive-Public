@@ -10,7 +10,6 @@ import FirebaseCore
 
 @main
 struct uParker_SwiftUIApp: App {
-    @EnvironmentObject var sessionManager: SessionManager
     
     init() {
         UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .unspecified)
@@ -19,9 +18,7 @@ struct uParker_SwiftUIApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environmentObject(SessionManager())
-            
+            MainView()            
         }
     }
 }

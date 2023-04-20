@@ -15,25 +15,25 @@ import FirebaseAuth
     init() {
         var titleFont = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleFont = UIFont(descriptor: titleFont.fontDescriptor.withDesign(.rounded)?.withSymbolicTraits(.traitBold) ?? titleFont.fontDescriptor, size: titleFont.pointSize)
-                
+        
         UINavigationBar.appearance().largeTitleTextAttributes = [.font: titleFont]
     }
     
-//    func setupStripe() {
-//        Wallet.instance.customerContext = STPCustomerContext(keyProvider: StripeApiClient())
-//
-//        let config = STPPaymentConfiguration.shared
-//        paymentContext = STPPaymentContext(customerContext: Wallet.instance.customerContext, configuration: config, theme: .defaultTheme)
-//
-//        let keyWindow = UIApplication.shared.connectedScenes
-//                    .filter({$0.activationState == .foregroundActive})
-//                    .map({$0 as? UIWindowScene})
-//                    .compactMap({$0})
-//                    .first?.windows
-//                    .filter({$0.isKeyWindow}).last
-//
-//        paymentContext.hostViewController = keyWindow?.rootViewController
-//    }
+    //    func setupStripe() {
+    //        Wallet.instance.customerContext = STPCustomerContext(keyProvider: StripeApiClient())
+    //
+    //        let config = STPPaymentConfiguration.shared
+    //        paymentContext = STPPaymentContext(customerContext: Wallet.instance.customerContext, configuration: config, theme: .defaultTheme)
+    //
+    //        let keyWindow = UIApplication.shared.connectedScenes
+    //                    .filter({$0.activationState == .foregroundActive})
+    //                    .map({$0 as? UIWindowScene})
+    //                    .compactMap({$0})
+    //                    .first?.windows
+    //                    .filter({$0.isKeyWindow}).last
+    //
+    //        paymentContext.hostViewController = keyWindow?.rootViewController
+    //    }
     
     func changeLoginStatus(to status: Bool) {
         print("User Manager isLoggedIn changed: \(status)")
@@ -64,32 +64,29 @@ struct MainView: View {
     } //: Body
     
     private var parkerView: some View {
-        GeometryReader { geo in
-            TabView {
-                MapView()
-                    .tabItem {
-                        Label("Park", systemImage: "car")
-                    } //: Tab Item
-                
-                reservationsView
-                    .tabItem {
-                        Label("Reservations", systemImage: "calendar")
-                    } //: Tab Item
-                    
-                chatView
-                    .tabItem {
-                        Label("Chat", systemImage: "bubble.left.fill")
-                    } //: Tab Item
-                
-                settingsView
-                    .tabItem {
-                        Label("Profile", systemImage: "person.circle")
-                    } //: Tab Item
-            } //: TabView
-            .ignoresSafeArea(.keyboard)
-        } //: Geometry Reader
+        TabView {
+            MapView()
+                .tabItem {
+                    Label("Park", systemImage: "car")
+                }
+            
+            reservationsView
+                .tabItem {
+                    Label("Reservations", systemImage: "calendar")
+                }
+            
+            chatView
+                .tabItem {
+                    Label("Chat", systemImage: "bubble.left.fill")
+                }
+            
+            settingsView
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle")
+                }
+        } //: TabView
+        .ignoresSafeArea(.keyboard)
     } //: Parker View
-    
     
     @ViewBuilder private var reservationsView: some View {
         if vm.isLoggedIn {
@@ -120,7 +117,7 @@ struct MainView: View {
             VStack {
                 NeedLoginView(source: .profile, isShowingLoginView: $vm.isShowingLogin)
                 SupportSettings()
-                    .padding(.top)
+                    .padding()
                 Spacer()
             } //: VStack
         }
@@ -131,7 +128,7 @@ struct MainView: View {
             Text("Hello, Host!")
             
             Button {
-//                self.sessionManager.userType = .parker
+                //                self.sessionManager.userType = .parker
             } label: {
                 Text("Change to parker")
             }

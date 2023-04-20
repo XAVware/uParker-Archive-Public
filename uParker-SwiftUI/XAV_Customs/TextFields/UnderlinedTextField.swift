@@ -1,8 +1,10 @@
 //
 //  UnderlinedTextField.swift
-//  uParker-SwiftUI
+//  XAV_Customs
 //
-//  Created by Smetana, Ryan on 12/16/22.
+//  © 2023 XAVware, LLC.
+//
+// ~~~~~~~~~~~~~~~ README ~~~~~~~~~~~~~~~
 //
 
 import SwiftUI

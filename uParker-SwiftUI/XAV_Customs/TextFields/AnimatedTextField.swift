@@ -1,8 +1,10 @@
 //
 //  AnimatedTextField.swift
-//  uParker-SwiftUI
+//  XAV_Customs
 //
-//  Created by Smetana, Ryan on 1/4/23.
+//  © 2023 XAVware, LLC.
+//
+// ~~~~~~~~~~~~~~~ README ~~~~~~~~~~~~~~~
 //
 
 import SwiftUI

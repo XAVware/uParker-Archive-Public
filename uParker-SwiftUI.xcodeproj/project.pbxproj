@@ -11,7 +11,6 @@
 		800772EA2969F23000E7FEED /* MapboxGeocoder in Frameworks */ = {isa = PBXBuildFile; productRef = 800772E92969F23000E7FEED /* MapboxGeocoder */; };
 		800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800772EB2969F27F00E7FEED /* MBGeocoder.swift */; };
 		8009382B29BA526C0017946F /* ObservableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009382A29BA526C0017946F /* ObservableScrollView.swift */; };
-		800B3BB129B676C2006EFDBE /* NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */; };
 		801C4B1C29B8198B0064B825 /* HowItWorksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B1B29B8198B0064B825 /* HowItWorksView.swift */; };
 		801C4B1E29B9787E0064B825 /* SpotListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B1D29B9787E0064B825 /* SpotListingView.swift */; };
 		801C4B2129C13BB60064B825 /* SpotMapView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C4B2029C13BB60064B825 /* SpotMapView2.swift */; };
@@ -46,11 +45,9 @@
 		80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A64A0C294D6491001317DD /* Preview Assets.xcassets */; };
 		80A64A1D294D6859001317DD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1C294D6859001317DD /* Constants.swift */; };
 		80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */; };
-		80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2A2953FFCB001317DD /* SessionManager.swift */; };
 		80A64A2E2953FFF0001317DD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A64A2D2953FFF0001317DD /* User.swift */; };
 		80B095CA29C3A0BD00F35ED6 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 80B095C929C3A0BD00F35ED6 /* MapboxMaps */; };
 		80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0BD06299738410007EFE7 /* OrDivider.swift */; };
-		80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAB2992A92000B6F598 /* ImagePicker.swift */; };
 		80BA6AAF2992ACAC00B6F598 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */; };
 		80C1911A29F188DC00727DCA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80C1911929F188DC00727DCA /* GoogleService-Info.plist */; };
 		80C1911D29F1895800727DCA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 80C1911C29F1895800727DCA /* FirebaseAuth */; };
@@ -85,7 +82,6 @@
 		800772E62969ED3A00E7FEED /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		800772EB2969F27F00E7FEED /* MBGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBGeocoder.swift; sourceTree = "<group>"; };
 		8009382A29BA526C0017946F /* ObservableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableScrollView.swift; sourceTree = "<group>"; };
-		800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingView.swift; sourceTree = "<group>"; };
 		801C4B1B29B8198B0064B825 /* HowItWorksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowItWorksView.swift; sourceTree = "<group>"; };
 		801C4B1D29B9787E0064B825 /* SpotListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListingView.swift; sourceTree = "<group>"; };
 		801C4B2029C13BB60064B825 /* SpotMapView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMapView2.swift; sourceTree = "<group>"; };
@@ -121,10 +117,8 @@
 		80A64A1C294D6859001317DD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		80A64A292953FB46001317DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		80A64A2A2953FFCB001317DD /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		80A64A2D2953FFF0001317DD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		80B0BD06299738410007EFE7 /* OrDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrDivider.swift; sourceTree = "<group>"; };
-		80BA6AAB2992A92000B6F598 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		80C1911929F188DC00727DCA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		80C1912929F18E5500727DCA /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
@@ -170,7 +164,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8009382929BA520D0017946F /* Documents */ = {
+		8009382929BA520D0017946F /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
 				80EAC1D329691D1C00F4DC09 /* ToDos */,
@@ -178,14 +172,13 @@
 				804DAD52297A616C00B89AC6 /* Documentation */,
 				8036F4DB298C4110009A9566 /* Unused */,
 			);
-			path = Documents;
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 		800B3BB229B676C8006EFDBE /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
 				809070FF29B64EA20015C590 /* NotificationsView.swift */,
-				800B3BB029B676C2006EFDBE /* NotificationSettingView.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -248,14 +241,6 @@
 			path = Parker;
 			sourceTree = "<group>";
 		};
-		805095212991B7190035BE56 /* Unused */ = {
-			isa = PBXGroup;
-			children = (
-				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
-			);
-			path = Unused;
-			sourceTree = "<group>";
-		};
 		80552580298B1EBB00216586 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,15 +277,16 @@
 		80A64A04294D6490001317DD /* uParker-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				805095212991B7190035BE56 /* Unused */,
 				80A64A292953FB46001317DD /* Info.plist */,
 				80C1911929F188DC00727DCA /* GoogleService-Info.plist */,
 				80A64A23294D8A49001317DD /* App */,
 				80A64A22294D8A2C001317DD /* CustomComponents */,
-				8009382929BA520D0017946F /* Documents */,
+				94EF40CF29F1F74A0049DDC5 /* Data */,
+				8009382929BA520D0017946F /* Documentation */,
+				94EF40CE29F1F71F0049DDC5 /* MapBox */,
 				80A64A2C2953FFE7001317DD /* Model */,
 				80A64A1B294D6716001317DD /* Views */,
-				80C1912829F18E5500727DCA /* XavCustoms */,
+				80C1912829F18E5500727DCA /* XAV_Customs */,
 				80A64A09294D6491001317DD /* Assets.xcassets */,
 				80A64A0B294D6491001317DD /* Preview Content */,
 			);
@@ -328,9 +314,7 @@
 		80A64A22294D8A2C001317DD /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
-				80F372A529660309004A2570 /* AnimatedTextField.swift */,
 				80EAC1C92968F2E400F4DC09 /* HeaderView.swift */,
-				80BA6AAB2992A92000B6F598 /* ImagePicker.swift */,
 				80EAC1C72968CEAB00F4DC09 /* NeedLoginView.swift */,
 				8009382A29BA526C0017946F /* ObservableScrollView.swift */,
 				80B0BD06299738410007EFE7 /* OrDivider.swift */,
@@ -347,12 +331,7 @@
 			children = (
 				80A64A05294D6490001317DD /* uParker_SwiftUIApp.swift */,
 				80A64A1C294D6859001317DD /* Constants.swift */,
-				8065484F2972F05600943B72 /* Data.swift */,
-				8036CB2D296DA2A300B1A2B9 /* Extensions.swift */,
-				800772EB2969F27F00E7FEED /* MBGeocoder.swift */,
 				80EAC1C42968CC1D00F4DC09 /* Modifiers.swift */,
-				80A64A2A2953FFCB001317DD /* SessionManager.swift */,
-				807151E4299B437B0009A99F /* VehicleOptions.json */,
 				80EB038629C2C4D8006B1219 /* LaunchScreen.storyboard */,
 			);
 			path = App;
@@ -386,15 +365,17 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		80C1912829F18E5500727DCA /* XavCustoms */ = {
+		80C1912829F18E5500727DCA /* XAV_Customs */ = {
 			isa = PBXGroup;
 			children = (
-				80C1912929F18E5500727DCA /* AlertManager.swift */,
-				80C1912A29F18E5500727DCA /* TextMod.swift */,
+				94EF40D229F1F7EC0049DDC5 /* Services */,
+				94EF40D129F1F7DA0049DDC5 /* Modifiers */,
+				94EF40CD29F1F6FB0049DDC5 /* Extensions */,
+				94EF40D029F1F7CF0049DDC5 /* TextFields */,
 				80C1912B29F18E5500727DCA /* CameraView.swift */,
 				80C1912C29F18E5500727DCA /* PhotoPicker.swift */,
 			);
-			path = XavCustoms;
+			path = XAV_Customs;
 			sourceTree = "<group>";
 		};
 		80CD7E7329AFEF0C00EE2F2F /* Info */ = {
@@ -408,6 +389,56 @@
 				804287C029ADD4A400D9621C /* TermsConditionsView.swift */,
 			);
 			path = Info;
+			sourceTree = "<group>";
+		};
+		94EF40CD29F1F6FB0049DDC5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8036CB2D296DA2A300B1A2B9 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		94EF40CE29F1F71F0049DDC5 /* MapBox */ = {
+			isa = PBXGroup;
+			children = (
+				800772EB2969F27F00E7FEED /* MBGeocoder.swift */,
+			);
+			path = MapBox;
+			sourceTree = "<group>";
+		};
+		94EF40CF29F1F74A0049DDC5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8065484F2972F05600943B72 /* Data.swift */,
+				807151E4299B437B0009A99F /* VehicleOptions.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		94EF40D029F1F7CF0049DDC5 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				80F372A529660309004A2570 /* AnimatedTextField.swift */,
+				80A64A1E294D6B53001317DD /* UnderlinedTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		94EF40D129F1F7DA0049DDC5 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				80C1912A29F18E5500727DCA /* TextMod.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		94EF40D229F1F7EC0049DDC5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				80C1912929F18E5500727DCA /* AlertManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -538,7 +569,6 @@
 				80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */,
 				80FC112E297E203300C5102A /* SearchGroupHeader.swift in Sources */,
 				80C1912E29F18E5500727DCA /* TextMod.swift in Sources */,
-				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
 				80EAC1BF2968C38900F4DC09 /* ParkerSettingsView.swift in Sources */,
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
 				8050951E2991AF100035BE56 /* LoginView.swift in Sources */,
@@ -549,13 +579,11 @@
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
 				80C1912D29F18E5500727DCA /* AlertManager.swift in Sources */,
 				804287C129ADD4A400D9621C /* TermsConditionsView.swift in Sources */,
-				800B3BB129B676C2006EFDBE /* NotificationSettingView.swift in Sources */,
 				8090710029B64EA20015C590 /* NotificationsView.swift in Sources */,
 				800772EC2969F27F00E7FEED /* MBGeocoder.swift in Sources */,
 				801C4B1E29B9787E0064B825 /* SpotListingView.swift in Sources */,
 				80903DC6298D6F070078881C /* Pin.swift in Sources */,
 				8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */,
-				80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
 				80C1912F29F18E5500727DCA /* CameraView.swift in Sources */,
 			);

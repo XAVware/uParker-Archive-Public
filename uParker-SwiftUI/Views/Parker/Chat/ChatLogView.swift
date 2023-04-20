@@ -17,7 +17,6 @@ struct ChatLogView: View {
     // MARK: - BODY
     var body: some View {
         VStack {
-            
             messagesView
             
             chatBottomBar

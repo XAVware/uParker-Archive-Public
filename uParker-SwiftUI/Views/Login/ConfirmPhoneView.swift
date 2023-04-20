@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ConfirmPhoneView: View {
     // MARK: - PROPERTIES
-    @EnvironmentObject var sessionManager: SessionManager
     @FocusState private var focusField: FocusText?
     enum FocusText { case confirmationCode }
     
@@ -97,8 +96,8 @@ struct ConfirmPhoneView: View {
             .frame(height: 30)
             
             Button {
-                //                dismiss.callAsFunction()
-                sessionManager.logIn()
+//                dismiss.callAsFunction()
+                //Log user in
             } label: {
                 Text("Continue")
                     .frame(maxWidth: .infinity)
@@ -116,6 +115,5 @@ struct ConfirmPhoneView: View {
 struct ConfirmPhoneView_Previews: PreviewProvider {
     static var previews: some View {
         ConfirmPhoneView(phoneNumber: "201-874-3252")
-            .environmentObject(SessionManager())
     }
 }

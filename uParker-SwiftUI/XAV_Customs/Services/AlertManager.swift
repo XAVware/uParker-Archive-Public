@@ -1,8 +1,10 @@
 //
 //  AlertManager.swift
-//  CogCalendar2023
+//  XAV_Customs
 //
-//  Created by Smetana, Ryan on 4/19/23.
+//  © 2023 XAVware, LLC.
+//
+// ~~~~~~~~~~~~~~~ README ~~~~~~~~~~~~~~~
 //
 
 import SwiftUI

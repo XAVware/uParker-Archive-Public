@@ -10,7 +10,6 @@ import SwiftUI
 struct AddPhoneView: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var sessionManager: SessionManager
     @FocusState private var focusField: FocusText?
     enum FocusText { case phone }
     
@@ -54,7 +53,6 @@ struct AddPhoneView: View {
             
             NavigationLink {
                 ConfirmPhoneView(phoneNumber: "201-874-3252")
-                    .environmentObject(sessionManager)
 //                focusField = nil
 //                isConfirming = true
 //                dismiss.callAsFunction()
@@ -75,6 +73,5 @@ struct AddPhoneView: View {
 struct AddPhoneView_Previews: PreviewProvider {
     static var previews: some View {
         AddPhoneView()
-            .environmentObject(SessionManager())
     }
 }

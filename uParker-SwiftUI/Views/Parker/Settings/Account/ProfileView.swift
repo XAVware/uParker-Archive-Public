@@ -81,7 +81,7 @@ struct ProfileView: View {
             self.imageTapped()
         }
         .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
-            ImagePicker(image: $image)
+            PhotoPicker(image: $image)
         }
     } //: Profile Image
     

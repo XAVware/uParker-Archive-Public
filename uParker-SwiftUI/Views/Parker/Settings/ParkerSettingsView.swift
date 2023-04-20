@@ -204,7 +204,6 @@ struct ParkerSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             ParkerSettingsView()
-                .environmentObject(SessionManager())
         }
     }
 }

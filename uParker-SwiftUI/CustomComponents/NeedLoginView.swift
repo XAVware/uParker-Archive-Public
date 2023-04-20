@@ -15,7 +15,17 @@ struct NeedLoginView: View {
     
     @Binding var isShowingLoginView: Bool
     
-//    let title: String
+    var title: String {
+        switch source {
+        case .reservations:
+            return "Reservations"
+        case .chat:
+            return "Chat"
+        case .profile:
+            return "Profile"
+        }
+    }
+    
     var mainHeadline: String {
         switch source {
         case .reservations:
@@ -42,9 +52,9 @@ struct NeedLoginView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 40) {
             VStack(alignment: .leading, spacing: 10) {
-//                Text(title)
-//                    .modifier(TextMod(.largeTitle, .semibold))
-//                    .padding(.bottom, 20)
+                Text(title)
+                    .modifier(TextMod(.largeTitle, .semibold))
+                    .padding(.bottom, 20)
                 
                 Text(mainHeadline)
                     .modifier(TextMod(.headline, .semibold))
@@ -76,11 +86,8 @@ struct NeedLoginView: View {
                 } //: VStack - Sign Up
             } //: VStack - Login/Sign up
         } //: VStack
-//        .fullScreenCover(isPresented: $sessionManager.isShowingLoginView) {
-//            LoginView()
-//                .environmentObject(sessionManager)
-//                .ignoresSafeArea(.keyboard)
-//        }
+        .padding()
+
     }
 }
 
