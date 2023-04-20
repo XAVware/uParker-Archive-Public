@@ -8,19 +8,11 @@
 import SwiftUI
 
 struct ParkerSettingsView: View {
-    // MARK: - PROPERTIES
-    @EnvironmentObject var sessionManager: SessionManager
-    
     // MARK: - BODY
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    if !sessionManager.isLoggedIn {
-                        NeedLoginView(mainHeadline: "Tell us about yourself", mainDetail: "You need to log in before you can reserve parking")
-                    }
-                    
-                    if sessionManager.isLoggedIn {
                         profileSection
                         
                         accountSection
@@ -28,36 +20,28 @@ struct ParkerSettingsView: View {
                         
                         hostSection
                             .padding(.top)
-                    } //: If Is logged in
                     
-                    supportSection
+                    SupportSettings()
                         .padding(.top)
                     
-                    if self.sessionManager.isLoggedIn {
                         Button {
-                            self.sessionManager.logOut()
+                            UserManager.shared.signOut()
                         } label: {
                             Text("Log Out").underline()
                                 .foregroundColor(.black)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 32)
-                    }
-                    
                 } //: VStack
             } //: ScrollView
             .navigationTitle("Profile")
             .padding()
-            
         } //: Navigation View
     }
     
     // MARK: - PROFILE
     private var profileSection: some View {
         VStack(alignment: .leading) {
-//            Text("Profile")
-//                .modifier(TextMod(.largeTitle, .semibold))
-            
             NavigationLink {
                 ProfileView()
             } label: {
@@ -213,9 +197,20 @@ struct ParkerSettingsView: View {
             .buttonStyle(PlainButtonStyle())
         } //: VStack
     } //: HostSection
-    
-    // MARK: - SUPPORT
-    private var supportSection: some View {
+}
+
+// MARK: - PREVIEW
+struct ParkerSettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            ParkerSettingsView()
+                .environmentObject(SessionManager())
+        }
+    }
+}
+
+struct SupportSettings: View {
+    var body: some View {
         VStack(alignment: .leading) {
             Text("Support")
                 .modifier(TextMod(.title2, .semibold))
@@ -262,15 +257,5 @@ struct ParkerSettingsView: View {
             }
             .buttonStyle(PlainButtonStyle())
         } //: VStack
-    } //: SupportSection
-    
-}
-// MARK: - PREVIEW
-struct ParkerSettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ParkerSettingsView()
-                .environmentObject(SessionManager())
-        }
     }
 }

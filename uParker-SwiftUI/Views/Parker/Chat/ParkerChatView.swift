@@ -18,9 +18,10 @@ struct ParkerChatView: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 0) {
                 
-                if sessionManager.isLoggedIn == false {
-                    NeedLoginView(mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
-                } else {
+//                if sessionManager.isLoggedIn == false {
+//                    NeedLoginView(source: .chat)
+////                    NeedLoginView(mainHeadline: "Login to view conversations", mainDetail: "Once you login, your message inbox will appear here.")
+//                } else {
                     ScrollView(showsIndicators: false) {
                         VStack {
                             ForEach(1 ..< 6) { contact in
@@ -74,7 +75,7 @@ struct ParkerChatView: View {
                             } //: ForEach
                         } //: VStack
                     } //: Scroll
-                } //: If-Else
+//                } //: If-Else
                 
                 Spacer()
             } //: VStack

@@ -6,22 +6,133 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestore
 
 @MainActor class LoginViewModel: ObservableObject {
     @Published var isSigningUp: Bool = false
+    
     @Published var firstName: String = ""
     @Published var lastName: String = ""
     @Published var email: String = ""
     @Published var password: String = ""
+    @Published var confirmPassword: String = ""
+    @Published var isRequestInProgress: Bool = false
     
+    func continueTapped() {
+        // Validate data before calling Firebase
+        if isSigningUp {
+            guard !email.isEmpty else {
+                AlertManager.shared.showError(title: "Error", message: "Please enter an email.")
+                return
+            }
+            
+            guard !password.isEmpty else {
+                AlertManager.shared.showError(title: "Error", message: "Please enter a password.")
+                return
+            }
+            
+            createNewAccount()
+        } else {
+            guard !email.isEmpty else {
+                AlertManager.shared.showError(title: "Error", message: "Please enter an email.")
+                return
+            }
+            
+            guard !password.isEmpty else {
+                AlertManager.shared.showError(title: "Error", message: "Please enter a password.")
+                return
+            }
+            
+            loginUser()
+        }
+    }
     
+    private func createNewAccount() {
+        isRequestInProgress = true
+        
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let error = error {
+                AlertManager.shared.showError(title: "Error", message: error.localizedDescription)
+                return
+            }
+            
+//            Functions.functions().httpsCallable("createStripeUser").call(["email": self.regEmail]) { (result, error) in
+//                defer {
+//                    Task { @MainActor in
+//                        self.isRequestInProgress = false
+//                    }
+//                }
+//
+//                if let error = error {
+//                    debugPrint(error.localizedDescription)
+//                    return
+//                }
+//
+//                print("Finished creating stripe user: \(result?.data)")
+//                self.isLoggedIn = true
+//            }
+            
+            debugPrint("Successfully created user in Auth: \(result?.user.uid ?? "")")
+            
+            if let uid = result?.user.uid {
+                let userData = [
+                    "uid": uid,
+                    "email": self.email,
+                    "firstName": self.firstName,
+                    "lastName": self.lastName,
+                    "phoneNumber": ""
+                ]
+                
+                Firestore.firestore().collection("users").document(uid).setData(userData) { err in
+                    if let err = err {
+                        AlertManager.shared.showError(title: "Error", message: err.localizedDescription)
+                        return
+                    }
+                    print("Successfully added user data to firestore")
+                    
+                    UserManager.shared.getCurrentUser {
+                        print("Successfully retrieved and stored current user locally")
+                    }
+                    
+                }
+            } else {
+                AlertManager.shared.showError(title: "Error", message: "User created in Auth but unable to create in Firestore. Bailing from CreateUser func.")
+            }
+            
+            
+        }
+    }
+    
+    private func loginUser() {
+        isRequestInProgress = true
+        
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            defer {
+                Task { @MainActor in
+                    self.isRequestInProgress = false
+                }
+            }
+            
+            if let error = error {
+                AlertManager.shared.showError(title: "Error", message: error.localizedDescription)
+                return
+            }
+            
+            debugPrint("Successfully logged in user \(result?.user.uid ?? "")")
+            
+            UserManager.shared.getCurrentUser {
+                print("Successfully retrieved and stored current user locally")
+            }
+        }
+    }
 }
 
 struct LoginView: View {
     // MARK: - PROPERTEIS
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var sessionManager: SessionManager
     @StateObject var vm: LoginViewModel = LoginViewModel()
+    @StateObject var alertManager: AlertManager = AlertManager.shared
     
     @FocusState private var focusField: FocusText?
     enum FocusText { case email }
@@ -63,6 +174,10 @@ struct LoginView: View {
                     }
                 }
             } //: ToolBar
+            .alert(isPresented: $alertManager.isShowing) {
+                alertManager.alert
+            }
+            .overlay(vm.isRequestInProgress ? ProgressView() : nil)
         } //: Navigation View
     } //: Body
     
@@ -122,19 +237,29 @@ struct LoginView: View {
     } //: Auth Options
     
     private var continueButton: some View {
-        NavigationLink {
-            if vm.isSigningUp {
-                AddPhoneView()
-                    .environmentObject(sessionManager)
-            } else {
-                ConfirmPhoneView(phoneNumber: "201-874-3252")
-                    .environmentObject(sessionManager)
-            }
+        Button {
+            vm.continueTapped()
         } label: {
             Text("Continue")
                 .frame(maxWidth: .infinity)
         }
         .modifier(RoundedButtonMod())
+        
+//        NavigationLink {
+//            vm.continueTapped()
+//
+//            if vm.isSigningUp {
+//                AddPhoneView()
+////                    .environmentObject(sessionManager)
+//            } else {
+//                ConfirmPhoneView(phoneNumber: "201-874-3252")
+////                    .environmentObject(sessionManager)
+//            }
+//        } label: {
+//            Text("Continue")
+//                .frame(maxWidth: .infinity)
+//        }
+//        .modifier(RoundedButtonMod())
         
     } //: Continue Button
     

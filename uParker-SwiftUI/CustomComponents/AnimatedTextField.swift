@@ -16,7 +16,7 @@ struct AnimatedTextField: View {
     @State var textFieldOffset: CGFloat = 0
     @State var placeholderScale: CGFloat = 1
     
-    @State var isSecure: Bool = false
+    @State var isSecure: Bool
     
     // MARK: - FUNCTIONS
     func setPlacholderSize() {
@@ -34,6 +34,7 @@ struct AnimatedTextField: View {
     init(boundTo: Binding<String>, placeholder: String) {
         self._boundTo = boundTo
         self.placeholder = placeholder
+        self.isSecure = false
         setPlacholderSize()
     }
     

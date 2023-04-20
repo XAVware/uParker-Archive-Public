@@ -37,9 +37,6 @@
 		806548502972F05600943B72 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065484F2972F05600943B72 /* Data.swift */; };
 		8065485229730D1B00943B72 /* LineCount in Resources */ = {isa = PBXBuildFile; fileRef = 8065485129730D1B00943B72 /* LineCount */; };
 		8065485429731D4200943B72 /* ReservationPanelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065485329731D4200943B72 /* ReservationPanelButton.swift */; };
-		80654857297321EA00943B72 /* CurrentReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80654856297321EA00943B72 /* CurrentReservationView.swift */; };
-		80654859297322A500943B72 /* PastReservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80654858297322A500943B72 /* PastReservationsView.swift */; };
-		8065485B297322B900943B72 /* UpcomingReservationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8065485A297322B900943B72 /* UpcomingReservationsView.swift */; };
 		807151E5299B437B0009A99F /* VehicleOptions.json in Resources */ = {isa = PBXBuildFile; fileRef = 807151E4299B437B0009A99F /* VehicleOptions.json */; };
 		808182B229B7DABF00B42232 /* BulletListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808182B129B7DABF00B42232 /* BulletListItem.swift */; };
 		80903DC6298D6F070078881C /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80903DC5298D6F070078881C /* Pin.swift */; };
@@ -55,6 +52,16 @@
 		80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B0BD06299738410007EFE7 /* OrDivider.swift */; };
 		80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAB2992A92000B6F598 /* ImagePicker.swift */; };
 		80BA6AAF2992ACAC00B6F598 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */; };
+		80C1911A29F188DC00727DCA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80C1911929F188DC00727DCA /* GoogleService-Info.plist */; };
+		80C1911D29F1895800727DCA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 80C1911C29F1895800727DCA /* FirebaseAuth */; };
+		80C1911F29F1895800727DCA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 80C1911E29F1895800727DCA /* FirebaseFirestore */; };
+		80C1912129F1895800727DCA /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 80C1912029F1895800727DCA /* FirebaseFirestoreSwift */; };
+		80C1912329F1895800727DCA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 80C1912229F1895800727DCA /* FirebaseFunctions */; };
+		80C1912529F1895800727DCA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 80C1912429F1895800727DCA /* FirebaseStorage */; };
+		80C1912D29F18E5500727DCA /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C1912929F18E5500727DCA /* AlertManager.swift */; };
+		80C1912E29F18E5500727DCA /* TextMod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C1912A29F18E5500727DCA /* TextMod.swift */; };
+		80C1912F29F18E5500727DCA /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C1912B29F18E5500727DCA /* CameraView.swift */; };
+		80C1913029F18E5500727DCA /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C1912C29F18E5500727DCA /* PhotoPicker.swift */; };
 		80C634BB29A84BA9003BC4C1 /* VehiclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C634BA29A84BA9003BC4C1 /* VehiclesView.swift */; };
 		80C9050829A94F35006AC211 /* AddVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C9050729A94F35006AC211 /* AddVehicleView.swift */; };
 		80CD7E7529AFEF2A00EE2F2F /* MoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */; };
@@ -68,8 +75,6 @@
 		80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */; };
 		80EAC1D429691D1C00F4DC09 /* ToDos in Resources */ = {isa = PBXBuildFile; fileRef = 80EAC1D329691D1C00F4DC09 /* ToDos */; };
 		80EB038729C2C4D8006B1219 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80EB038629C2C4D8006B1219 /* LaunchScreen.storyboard */; };
-		80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE942E2964E8A200A85CEF /* ParkerView.swift */; };
-		80EE94312964E8C500A85CEF /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EE94302964E8C500A85CEF /* HostView.swift */; };
 		80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F372A529660309004A2570 /* AnimatedTextField.swift */; };
 		80FC112E297E203300C5102A /* SearchGroupHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112D297E203300C5102A /* SearchGroupHeader.swift */; };
 		80FC1130297E23D300C5102A /* SimpleSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FC112F297E23D300C5102A /* SimpleSuggestion.swift */; };
@@ -105,9 +110,6 @@
 		8065484F2972F05600943B72 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		8065485129730D1B00943B72 /* LineCount */ = {isa = PBXFileReference; lastKnownFileType = text; path = LineCount; sourceTree = "<group>"; };
 		8065485329731D4200943B72 /* ReservationPanelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationPanelButton.swift; sourceTree = "<group>"; };
-		80654856297321EA00943B72 /* CurrentReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentReservationView.swift; sourceTree = "<group>"; };
-		80654858297322A500943B72 /* PastReservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastReservationsView.swift; sourceTree = "<group>"; };
-		8065485A297322B900943B72 /* UpcomingReservationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingReservationsView.swift; sourceTree = "<group>"; };
 		807151E4299B437B0009A99F /* VehicleOptions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = VehicleOptions.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		808182B129B7DABF00B42232 /* BulletListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletListItem.swift; sourceTree = "<group>"; };
 		80903DC5298D6F070078881C /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
@@ -124,6 +126,11 @@
 		80B0BD06299738410007EFE7 /* OrDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrDivider.swift; sourceTree = "<group>"; };
 		80BA6AAB2992A92000B6F598 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		80BA6AAE2992ACAC00B6F598 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		80C1911929F188DC00727DCA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		80C1912929F18E5500727DCA /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		80C1912A29F18E5500727DCA /* TextMod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextMod.swift; sourceTree = "<group>"; };
+		80C1912B29F18E5500727DCA /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		80C1912C29F18E5500727DCA /* PhotoPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		80C634BA29A84BA9003BC4C1 /* VehiclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesView.swift; sourceTree = "<group>"; };
 		80C9050729A94F35006AC211 /* AddVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVehicleView.swift; sourceTree = "<group>"; };
 		80CD7E7429AFEF2A00EE2F2F /* MoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoView.swift; sourceTree = "<group>"; };
@@ -137,8 +144,6 @@
 		80EAC1CF2969019500F4DC09 /* ParkerChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerChatView.swift; sourceTree = "<group>"; };
 		80EAC1D329691D1C00F4DC09 /* ToDos */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDos; sourceTree = "<group>"; };
 		80EB038629C2C4D8006B1219 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		80EE942E2964E8A200A85CEF /* ParkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkerView.swift; sourceTree = "<group>"; };
-		80EE94302964E8C500A85CEF /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		80F372A529660309004A2570 /* AnimatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
 		80FC112D297E203300C5102A /* SearchGroupHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGroupHeader.swift; sourceTree = "<group>"; };
 		80FC112F297E23D300C5102A /* SimpleSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSuggestion.swift; sourceTree = "<group>"; };
@@ -151,9 +156,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				804DAD56297B369D00B89AC6 /* MapboxSearch in Frameworks */,
+				80C1911D29F1895800727DCA /* FirebaseAuth in Frameworks */,
+				80C1912529F1895800727DCA /* FirebaseStorage in Frameworks */,
 				804DAD58297B369D00B89AC6 /* MapboxSearchUI in Frameworks */,
+				80C1912329F1895800727DCA /* FirebaseFunctions in Frameworks */,
+				80C1912129F1895800727DCA /* FirebaseFirestoreSwift in Frameworks */,
 				80B095CA29C3A0BD00F35ED6 /* MapboxMaps in Frameworks */,
 				800772EA2969F23000E7FEED /* MapboxGeocoder in Frameworks */,
+				80C1911F29F1895800727DCA /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,14 +237,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		8047EDB5296E014300AF3896 /* Host */ = {
-			isa = PBXGroup;
-			children = (
-				80EE94302964E8C500A85CEF /* HostView.swift */,
-			);
-			path = Host;
-			sourceTree = "<group>";
-		};
 		8047EDB6296E014C00AF3896 /* Parker */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +244,6 @@
 				80552580298B1EBB00216586 /* Chat */,
 				80654855297321D100943B72 /* Reservations */,
 				80BA6AAD2992AC9C00B6F598 /* Settings */,
-				80EE942E2964E8A200A85CEF /* ParkerView.swift */,
 			);
 			path = Parker;
 			sourceTree = "<group>";
@@ -267,10 +268,7 @@
 		80654855297321D100943B72 /* Reservations */ = {
 			isa = PBXGroup;
 			children = (
-				80654856297321EA00943B72 /* CurrentReservationView.swift */,
 				80EAC1CD2969017900F4DC09 /* ParkerReservationsView.swift */,
-				80654858297322A500943B72 /* PastReservationsView.swift */,
-				8065485A297322B900943B72 /* UpcomingReservationsView.swift */,
 			);
 			path = Reservations;
 			sourceTree = "<group>";
@@ -296,11 +294,13 @@
 			children = (
 				805095212991B7190035BE56 /* Unused */,
 				80A64A292953FB46001317DD /* Info.plist */,
+				80C1911929F188DC00727DCA /* GoogleService-Info.plist */,
 				80A64A23294D8A49001317DD /* App */,
 				80A64A22294D8A2C001317DD /* CustomComponents */,
 				8009382929BA520D0017946F /* Documents */,
 				80A64A2C2953FFE7001317DD /* Model */,
 				80A64A1B294D6716001317DD /* Views */,
+				80C1912829F18E5500727DCA /* XavCustoms */,
 				80A64A09294D6491001317DD /* Assets.xcassets */,
 				80A64A0B294D6491001317DD /* Preview Content */,
 			);
@@ -318,10 +318,9 @@
 		80A64A1B294D6716001317DD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8047EDB6296E014C00AF3896 /* Parker */,
-				8047EDB5296E014300AF3896 /* Host */,
-				8047EDB4296E013D00AF3896 /* Login */,
 				80607352296662F600C4E136 /* MainView.swift */,
+				8047EDB6296E014C00AF3896 /* Parker */,
+				8047EDB4296E013D00AF3896 /* Login */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -387,6 +386,17 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		80C1912829F18E5500727DCA /* XavCustoms */ = {
+			isa = PBXGroup;
+			children = (
+				80C1912929F18E5500727DCA /* AlertManager.swift */,
+				80C1912A29F18E5500727DCA /* TextMod.swift */,
+				80C1912B29F18E5500727DCA /* CameraView.swift */,
+				80C1912C29F18E5500727DCA /* PhotoPicker.swift */,
+			);
+			path = XavCustoms;
+			sourceTree = "<group>";
+		};
 		80CD7E7329AFEF0C00EE2F2F /* Info */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +431,11 @@
 				804DAD55297B369D00B89AC6 /* MapboxSearch */,
 				804DAD57297B369D00B89AC6 /* MapboxSearchUI */,
 				80B095C929C3A0BD00F35ED6 /* MapboxMaps */,
+				80C1911C29F1895800727DCA /* FirebaseAuth */,
+				80C1911E29F1895800727DCA /* FirebaseFirestore */,
+				80C1912029F1895800727DCA /* FirebaseFirestoreSwift */,
+				80C1912229F1895800727DCA /* FirebaseFunctions */,
+				80C1912429F1895800727DCA /* FirebaseStorage */,
 			);
 			productName = "uParker-SwiftUI";
 			productReference = 80A64A02294D6490001317DD /* uParker-SwiftUI.app */;
@@ -454,6 +469,7 @@
 				800772E82969F23000E7FEED /* XCRemoteSwiftPackageReference "MapboxGeocoder.swift" */,
 				804DAD54297B369D00B89AC6 /* XCRemoteSwiftPackageReference "search-ios" */,
 				80B095C829C3A0BD00F35ED6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+				80C1911B29F1895800727DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 80A64A03294D6490001317DD /* Products */;
 			projectDirPath = "";
@@ -470,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80EAC1D429691D1C00F4DC09 /* ToDos in Resources */,
+				80C1911A29F188DC00727DCA /* GoogleService-Info.plist in Resources */,
 				80EB038729C2C4D8006B1219 /* LaunchScreen.storyboard in Resources */,
 				80A64A0D294D6491001317DD /* Preview Assets.xcassets in Resources */,
 				807151E5299B437B0009A99F /* VehicleOptions.json in Resources */,
@@ -488,23 +505,20 @@
 			files = (
 				8065484B2972EF6400943B72 /* Reservation.swift in Sources */,
 				80CD7E7529AFEF2A00EE2F2F /* MoreInfoView.swift in Sources */,
-				80EE942F2964E8A200A85CEF /* ParkerView.swift in Sources */,
-				80EE94312964E8C500A85CEF /* HostView.swift in Sources */,
 				80F372A629660309004A2570 /* AnimatedTextField.swift in Sources */,
 				8065485429731D4200943B72 /* ReservationPanelButton.swift in Sources */,
 				8065484E2972EF6400943B72 /* Review.swift in Sources */,
 				8064590A29CB8762001A00D3 /* RangeSlider.swift in Sources */,
+				80C1913029F18E5500727DCA /* PhotoPicker.swift in Sources */,
 				80C634BB29A84BA9003BC4C1 /* VehiclesView.swift in Sources */,
 				80E6F1DA29B9234E00C894FA /* FAQsView.swift in Sources */,
 				80A64A1F294D6B53001317DD /* UnderlinedTextField.swift in Sources */,
 				80552582298B1EE300216586 /* ChatLogView.swift in Sources */,
 				80EAC1C82968CEAB00F4DC09 /* NeedLoginView.swift in Sources */,
-				8065485B297322B900943B72 /* UpcomingReservationsView.swift in Sources */,
 				806548462972EBFC00943B72 /* ReservationsPicker.swift in Sources */,
 				80EAC1D02969019600F4DC09 /* ParkerChatView.swift in Sources */,
 				805D01FD29C394370035E0A9 /* SpotCardView.swift in Sources */,
 				80FC1130297E23D300C5102A /* SimpleSuggestion.swift in Sources */,
-				80654857297321EA00943B72 /* CurrentReservationView.swift in Sources */,
 				805D01FF29C395680035E0A9 /* SearchView.swift in Sources */,
 				80CDA3FA29D22BB800043D86 /* ConfirmPhoneView.swift in Sources */,
 				80607353296662F600C4E136 /* MainView.swift in Sources */,
@@ -523,16 +537,17 @@
 				80C9050829A94F35006AC211 /* AddVehicleView.swift in Sources */,
 				80B0BD07299738410007EFE7 /* OrDivider.swift in Sources */,
 				80FC112E297E203300C5102A /* SearchGroupHeader.swift in Sources */,
+				80C1912E29F18E5500727DCA /* TextMod.swift in Sources */,
 				80A64A2B2953FFCB001317DD /* SessionManager.swift in Sources */,
 				80EAC1BF2968C38900F4DC09 /* ParkerSettingsView.swift in Sources */,
 				80EAC1CE2969017900F4DC09 /* ParkerReservationsView.swift in Sources */,
 				8050951E2991AF100035BE56 /* LoginView.swift in Sources */,
 				806548502972F05600943B72 /* Data.swift in Sources */,
 				800772E72969ED3A00E7FEED /* Spot.swift in Sources */,
-				80654859297322A500943B72 /* PastReservationsView.swift in Sources */,
 				944DA845299C45FF00568765 /* PaymentMethodsView.swift in Sources */,
 				8065484C2972EF6400943B72 /* Vehicle.swift in Sources */,
 				80EAC1CA2968F2E400F4DC09 /* HeaderView.swift in Sources */,
+				80C1912D29F18E5500727DCA /* AlertManager.swift in Sources */,
 				804287C129ADD4A400D9621C /* TermsConditionsView.swift in Sources */,
 				800B3BB129B676C2006EFDBE /* NotificationSettingView.swift in Sources */,
 				8090710029B64EA20015C590 /* NotificationsView.swift in Sources */,
@@ -542,6 +557,7 @@
 				8036CB2E296DA2A300B1A2B9 /* Extensions.swift in Sources */,
 				80BA6AAC2992A92000B6F598 /* ImagePicker.swift in Sources */,
 				80A64A1D294D6859001317DD /* Constants.swift in Sources */,
+				80C1912F29F18E5500727DCA /* CameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +792,14 @@
 				minimumVersion = 10.11.1;
 			};
 		};
+		80C1911B29F1895800727DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -798,6 +822,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80B095C829C3A0BD00F35ED6 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
 			productName = MapboxMaps;
+		};
+		80C1911C29F1895800727DCA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80C1911B29F1895800727DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		80C1911E29F1895800727DCA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80C1911B29F1895800727DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		80C1912029F1895800727DCA /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80C1911B29F1895800727DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		80C1912229F1895800727DCA /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80C1911B29F1895800727DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		80C1912429F1895800727DCA /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80C1911B29F1895800727DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

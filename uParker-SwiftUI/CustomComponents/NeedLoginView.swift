@@ -8,12 +8,35 @@
 import SwiftUI
 
 struct NeedLoginView: View {
-    // MARK: - PROPERTIES
-    @EnvironmentObject var sessionManager: SessionManager
+//    @EnvironmentObject var sessionManager: SessionManager
+    
+    enum Sources { case reservations, chat, profile }
+    let source: Sources
+    
+    @Binding var isShowingLoginView: Bool
     
 //    let title: String
-    let mainHeadline: String
-    let mainDetail: String
+    var mainHeadline: String {
+        switch source {
+        case .reservations:
+            return "Login to view your reservations"
+        case .chat:
+            return "Login to view conversations"
+        case .profile:
+            return "Tell us about yourself"
+        }
+    }
+    
+    var mainDetail: String {
+        switch source {
+        case .reservations:
+            return "Once you login, your upcoming and past reservations will appear here."
+        case .chat:
+            return "Once you login, your message inbox will appear here."
+        case .profile:
+            return "You need to log in before you can reserve parking"
+        }
+    }
     
     // MARK: - BODY
     var body: some View {
@@ -32,7 +55,7 @@ struct NeedLoginView: View {
             
             VStack(spacing: 20) {
                 Button {
-                    sessionManager.isShowingLoginView = true
+                    isShowingLoginView = true
                 } label: {
                     Text("Log In")
                         .frame(maxWidth: .infinity)
@@ -44,7 +67,7 @@ struct NeedLoginView: View {
                         .modifier(TextMod(.callout, .regular))
                     
                     Button {
-                        sessionManager.isShowingSignUpView = true
+                        isShowingLoginView = true
                     } label: {
                         Text("Sign Up").underline()
                             .modifier(TextMod(.callout, .regular))
@@ -53,13 +76,8 @@ struct NeedLoginView: View {
                 } //: VStack - Sign Up
             } //: VStack - Login/Sign up
         } //: VStack
-        .fullScreenCover(isPresented: $sessionManager.isShowingLoginView) {
-            LoginView()
-                .environmentObject(sessionManager)
-                .ignoresSafeArea(.keyboard)
-        }
-//        .fullScreenCover(isPresented: $sessionManager.isShowingSignUpView) {
-//            SignUpView()
+//        .fullScreenCover(isPresented: $sessionManager.isShowingLoginView) {
+//            LoginView()
 //                .environmentObject(sessionManager)
 //                .ignoresSafeArea(.keyboard)
 //        }
@@ -68,13 +86,10 @@ struct NeedLoginView: View {
 
 // MARK: - PREVIEW
 struct NeedLoginView_Previews: PreviewProvider {
-    static let title: String = "Profile"
-    static let headline: String = "Tell us about yourself"
-    static let subheadline: String = "You need to log in before you can reserve parking"
-    
+    @State static var isShowing: Bool = false
     static var previews: some View {
-        NeedLoginView(mainHeadline: headline, mainDetail: subheadline)
-            .environmentObject(SessionManager())
+        NeedLoginView(source: .profile, isShowingLoginView: $isShowing)
+//            .environmentObject(SessionManager())
             .previewLayout(.sizeThatFits)
     }
 }
