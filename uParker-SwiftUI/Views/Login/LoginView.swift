@@ -11,43 +11,46 @@ import FirebaseFirestore
 
 @MainActor class LoginViewModel: ObservableObject {
     @Published var isSigningUp: Bool = false
+    @Published var isRequestInProgress: Bool = false
+    @Published var isShowingAddPhone: Bool = false
     
     @Published var firstName: String = ""
     @Published var lastName: String = ""
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
-    @Published var isRequestInProgress: Bool = false
     
     func continueTapped() {
         // Validate data before calling Firebase
-        if isSigningUp {
-            guard !email.isEmpty else {
-                AlertManager.shared.showError(title: "Error", message: "Please enter an email.")
-                return
-            }
-            
-            guard !password.isEmpty else {
-                AlertManager.shared.showError(title: "Error", message: "Please enter a password.")
-                return
-            }
-            
-            createNewAccount()
-        } else {
-            guard !email.isEmpty else {
-                AlertManager.shared.showError(title: "Error", message: "Please enter an email.")
-                return
-            }
-            
-            guard !password.isEmpty else {
-                AlertManager.shared.showError(title: "Error", message: "Please enter a password.")
-                return
-            }
-            
-            loginUser()
-        }
+//        if isSigningUp {
+//            guard !email.isEmpty else {
+//                AlertManager.shared.showError(title: "Error", message: "Please enter an email.")
+//                return
+//            }
+//
+//            guard !password.isEmpty else {
+//                AlertManager.shared.showError(title: "Error", message: "Please enter a password.")
+//                return
+//            }
+//
+//            createNewAccount()
+//        } else {
+//            guard !email.isEmpty else {
+//                AlertManager.shared.showError(title: "Error", message: "Please enter an email.")
+//                return
+//            }
+//
+//            guard !password.isEmpty else {
+//                AlertManager.shared.showError(title: "Error", message: "Please enter a password.")
+//                return
+//            }
+//
+//            loginUser()
+//        }
+        isShowingAddPhone.toggle()
     }
     
+    // MARK: - Create Account
     private func createNewAccount() {
         isRequestInProgress = true
         
@@ -93,17 +96,18 @@ import FirebaseFirestore
                     
                     UserManager.shared.getCurrentUser {
                         print("Successfully retrieved and stored current user locally")
+//                        UserManager.shared.signIn()
+                        self.isShowingAddPhone.toggle()
                     }
                     
                 }
             } else {
                 AlertManager.shared.showError(title: "Error", message: "User created in Auth but unable to create in Firestore. Bailing from CreateUser func.")
             }
-            
-            
         }
     }
     
+    // MARK: - Login
     private func loginUser() {
         isRequestInProgress = true
         
@@ -123,6 +127,7 @@ import FirebaseFirestore
             
             UserManager.shared.getCurrentUser {
                 print("Successfully retrieved and stored current user locally")
+                UserManager.shared.signIn()
             }
         }
     }
@@ -140,44 +145,42 @@ struct LoginView: View {
     // MARK: - BODY
     var body: some View {
         NavigationView {
-            VStack {
-                infoFields
-                    .padding(.vertical)
-                
-                continueButton
-                    .padding(.bottom, 8)
-                
-                if vm.isSigningUp == false {
+            if vm.isShowingAddPhone {
+                AddPhoneView()
+            } else {
+                VStack {
+                    infoFields
+                        .padding(.vertical)
+                    
+                    continueButton
+                        .padding(.bottom, 8)
+                    
                     signUpButton
+                    
+                    OrDivider()
+                        .padding()
+                    
+                    authOptions
+                    
+                    Spacer()
+                } //: VStack
+                .padding(.horizontal)
+                .padding(.top)
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle(vm.isSigningUp ? "Sign Up" : "Login")
+                .onTapGesture {
+                    focusField = nil
                 }
-                
-                OrDivider()
-                    .padding()
-                
-                authOptions
-                
-                Spacer()
-            } //: VStack
-            .padding(.horizontal)
-            .padding(.top)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(vm.isSigningUp ? "Sign Up" : "Login")
-            .onTapGesture {
-                focusField = nil
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if vm.isSigningUp {
-                        backButton
-                    } else {
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
                         closeButton
                     }
+                } //: ToolBar
+                .alert(isPresented: $alertManager.isShowing) {
+                    alertManager.alert
                 }
-            } //: ToolBar
-            .alert(isPresented: $alertManager.isShowing) {
-                alertManager.alert
+                .overlay(vm.isRequestInProgress ? ProgressView() : nil)
             }
-            .overlay(vm.isRequestInProgress ? ProgressView() : nil)
         } //: Navigation View
     } //: Body
     
@@ -265,7 +268,7 @@ struct LoginView: View {
         Button {
             vm.isSigningUp.toggle()
         } label: {
-            Text("Don't have an account? Sign up now!")
+            Text(vm.isSigningUp ? "Already have an account? Log in." : "Don't have an account? Sign up now!")
                 .underline()
                 .modifier(TextMod(.footnote, .regular))
         }
