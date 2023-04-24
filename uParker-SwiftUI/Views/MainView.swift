@@ -12,6 +12,8 @@ import FirebaseAuth
     @Published var isLoggedIn: Bool = false
     @Published var isShowingLogin: Bool = false
     
+    enum UserState { case needLogin, parker, host }
+    
     init() {
         var titleFont = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleFont = UIFont(descriptor: titleFont.fontDescriptor.withDesign(.rounded)?.withSymbolicTraits(.traitBold) ?? titleFont.fontDescriptor, size: titleFont.pointSize)
@@ -48,19 +50,23 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            if userManager.user?.userType == .host {
-                hostView
+            if vm.isLoggedIn {
+                if userManager.user?.userType == .host {
+                    hostView
+                } else {
+                    parkerView
+                }
             } else {
-                parkerView
+                LoginSignUpView()
             }
         } //: VStack
         .onReceive(userManager.$isLoggedIn, perform: { output in
             vm.changeLoginStatus(to: output)
         })
-        .fullScreenCover(isPresented: $vm.isShowingLogin) {
-            LoginView()
-                .ignoresSafeArea(.keyboard)
-        }
+//        .fullScreenCover(isPresented: $vm.isShowingLogin) {
+//            LoginView()
+//                .ignoresSafeArea(.keyboard)
+//        }
     } //: Body
     
     private var parkerView: some View {

@@ -1,28 +1,38 @@
 //
-//  AddPhoneView.swift
+//  LoginSignUpView.swift
 //  uParker-SwiftUI
 //
-//  Created by Smetana, Ryan on 2/6/23.
+//  Created by Smetana, Ryan on 4/24/23.
 //
 
 import SwiftUI
 import FirebaseAuth
 
-@MainActor class AddPhoneViewModel: ObservableObject {
+@MainActor class LoginSignUpViewModel: ObservableObject {
+    @Published var isSigningUp: Bool = false
+    @Published var isRequestInProgress: Bool = false
+    @Published var isConfirmingPhone: Bool = false
+    
+    @Published var firstName: String = ""
+    @Published var lastName: String = ""
+    @Published var email: String = ""
+    
     @Published var phoneNumber: String = ""
     @Published var smsCode: String = ""
     @Published var timeRemaining: Int = 5
-    @Published var isConfirmingPhone: Bool = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let haptic = UIImpactFeedbackGenerator(style: .medium)
     
     private var verificationId: String?
     
     func continueTapped() {
-        print("Continue tapped")
         if isConfirmingPhone {
-            
+            verifyCode(code: smsCode) {
+                print("Successfully verified code")
+                UserManager.shared.getCurrentUser {
+                    //
+                }
+            }
             
         } else {
 //            guard phoneNumber.count == 14 else {
@@ -55,9 +65,7 @@ import FirebaseAuth
     }
     
     private func verifyCode(code: String, completion: @escaping () -> Void) {
-        guard let verificationId = verificationId else {
-            return
-        }
+        guard let verificationId = verificationId else { return }
         
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: code)
         
@@ -69,34 +77,40 @@ import FirebaseAuth
             completion()
         }
     }
-    
 }
 
-struct AddPhoneView: View {
-    @StateObject var vm: AddPhoneViewModel = AddPhoneViewModel()
+struct LoginSignUpView: View {
+    @StateObject var vm: LoginSignUpViewModel = LoginSignUpViewModel()
+    @StateObject var alertManager: AlertManager = AlertManager.shared
     @FocusState private var focusField: FocusText?
-    enum FocusText { case phone, confirmationCode }
+    enum FocusText { case email, phone, confirmationCode }
     
     var body: some View {
-        VStack {
-            if vm.isConfirmingPhone {
-                confirmPhone
-            } else {
-                addPhone
-            }
-            
-            navigationButtons
-            
-            Spacer()
-            
-        } //: VStack
-        .padding(.horizontal)
+        NavigationView {
+            VStack {
+                phoneViews
+                
+                continueButton
+                
+                Spacer()
+                
+            } //: VStack
+            .padding(.horizontal)
+            .navigationTitle("Login or Sign Up")
+        } //: NavigationView
     } //: Body
     
+    @ViewBuilder private var phoneViews: some View {
+        if vm.isConfirmingPhone {
+            confirmPhone
+        } else {
+            addPhone
+        }
+    }
+    
     private var addPhone: some View {
-        VStack {
+        VStack(spacing: 20) {
             AnimatedTextField(boundTo: $vm.phoneNumber, placeholder: "Phone Number")
-                .padding(.top, 20)
                 .keyboardType(.numberPad)
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
@@ -115,9 +129,9 @@ struct AddPhoneView: View {
             Text("We'll call or text to confirm your number. Standard message and data rates apply.")
                 .modifier(TextMod(.caption, .light, .gray))
                 .multilineTextAlignment(.center)
-                .padding(.vertical)
             
-        }
+        } //: VStack
+        .padding(.vertical)
     } //: Add Phone
     
     private var confirmPhone: some View {
@@ -203,32 +217,91 @@ struct AddPhoneView: View {
         .padding(.horizontal)
     } //: Confirm Phone
     
-    private var navigationButtons: some View {
+    private var infoFields: some View {
+        VStack(spacing: 16) {
+            if vm.isSigningUp {
+                nameFields
+            }
+            
+            AnimatedTextField(boundTo: $vm.email, placeholder: "Email Address")
+                .modifier(EmailFieldMod())
+                .focused($focusField, equals: .email)
+                .onSubmit {
+                    focusField = nil
+                }
+                .onTapGesture {
+                    focusField = .email
+                }
+            
+        } //: VStack
+    } //: Info Fields
+    
+    private var authOptions: some View {
         VStack(spacing: 16) {
             Button {
-                vm.continueTapped()
+                //
             } label: {
-                Text("Continue")
+                Text("Continue with Apple")
                     .frame(maxWidth: .infinity)
             }
-            .modifier(RoundedButtonMod())
+            .modifier(OutlinedButtonMod())
+            .overlay(
+                Image(systemName: "apple.logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
+                    .padding(.leading), alignment: .leading
+            )
             
             Button {
-                UserManager.shared.signIn()
+                //
             } label: {
-                Text("Add phone later").underline()
-                    .modifier(TextMod(.callout, .regular))
+                Text("Continue with Google")
+                    .frame(maxWidth: .infinity)
             }
-            .buttonStyle(PlainButtonStyle())
+            .modifier(OutlinedButtonMod())
+            .overlay(
+                Image("GoogleIcon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 22, height: 22)
+                    .padding(.leading), alignment: .leading
+            )
+            
         } //: VStack
-    } //: Navigation Buttons
+    } //: Auth Options
     
+    private var continueButton: some View {
+        Button {
+            vm.continueTapped()
+        } label: {
+            Text("Continue")
+                .frame(maxWidth: .infinity)
+        }
+        .modifier(RoundedButtonMod())
+    } //: Continue Button
+    
+    private var signUpButton: some View {
+        Button {
+            vm.isSigningUp.toggle()
+        } label: {
+            Text(vm.isSigningUp ? "Already have an account? Log in." : "Don't have an account? Sign up now!")
+                .underline()
+                .modifier(TextMod(.footnote, .regular))
+        }
+    } //: Sign Up Button
+    
+    private var nameFields: some View {
+        HStack(spacing: 16) {
+            AnimatedTextField(boundTo: $vm.firstName, placeholder: "First Name")
+            
+            AnimatedTextField(boundTo: $vm.lastName, placeholder: "Last Name")
+        } //: HStack
+    }
 }
 
-
-
-struct AddPhoneView_Previews: PreviewProvider {
+struct LoginSignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        AddPhoneView()
+        LoginSignUpView()
     }
 }
