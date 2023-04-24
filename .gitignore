@@ -1,0 +1,46 @@
+# Xcode
+.DS_Store
+*.xcuserinterfacestate
+xcuserdata/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+*.moved-aside
+DerivedData
+.idea/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.xccheckout
+
+# CocoaPods
+Pods/
+*.xcworkspace
+Podfile.lock
+
+# Swift Package Manager
+.build/
+
+# Other
+.Trashes
+*.swp
+
+# Specific Files
+GoogleService-Info.plist
+BulletListItem.swift
+FAQsView.swift
+HowItWorksView.swift
+MoreInfoView.swift
+PrivacyPolicy.swift
+TermsConditionsView.swift
