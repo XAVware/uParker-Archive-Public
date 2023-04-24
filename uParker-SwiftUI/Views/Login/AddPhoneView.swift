@@ -41,13 +41,15 @@ import FirebaseAuth
     
     private func authorizePhone(phoneNum: String, completion: @escaping () -> Void) {
         print("Authorize phone called")
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNum, uiDelegate: nil) { [weak self] verificationId, error in
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNum, uiDelegate: nil) { verificationId, error in
+            print("Entered Phone Auth Func")
             guard let verificationId = verificationId, error == nil else {
                 print("Error: \(error?.localizedDescription)")
                 AlertManager.shared.showError(title: "Error", message: error?.localizedDescription ?? "something went wrong - AddPhoneViewModel authorizePhone()")
                 return
             }
-            self?.verificationId = verificationId
+            self.verificationId = verificationId
+            print("About to call completion")
             completion()
         }
     }
