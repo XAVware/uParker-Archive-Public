@@ -23,12 +23,24 @@ DerivedData
 *.dSYM.zip
 *.dSYM
 *.xccheckout
+
 # CocoaPods
 Pods/
 *.xcworkspace
 Podfile.lock
+
 # Swift Package Manager
 .build/
+
 # Other
 .Trashes
 *.swp
+
+# Specific Files
+GoogleService-Info.plist
+BulletListItem.swift
+FAQsView.swift
+HowItWorksView.swift
+MoreInfoView.swift
+PrivacyPolicy.swift
+TermsConditionsView.swift
